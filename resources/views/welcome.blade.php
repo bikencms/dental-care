@@ -3,10 +3,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Gramentheme">
-        <meta name="description" content="Medixen – Plastic Surgery & Cosmetic Clinic HTML Template">
+        <meta name="author" content="Minh Biken">
+        <meta name="description" content="Vietnam Dental Care">
         <!-- ======== Page title ============ -->
-        <title>Medixen – Plastic Surgery & Cosmetic Clinic HTML Template</title>
+        <title>Vietnam Dental Care</title>
         <!--<< Favcion >>-->
         <link rel="shortcut icon" href="./assets/images/favicon.svg">
         <!--<< Bootstrap min.css >>-->
