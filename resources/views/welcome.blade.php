@@ -1,2195 +1,1764 @@
-<!DOCTYPE html><html lang="en"><!--<< Header Area >>--><head>
-        <!-- ========== Meta Tags ========== -->
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Minh Biken">
-        <meta name="description" content="Vietnam Dental Care">
-        <!-- ======== Page title ============ -->
-        <title>Vietnam Dental Care</title>
-        <!--<< Favcion >>-->
-        <link rel="shortcut icon" href="./assets/images/favicon.svg">
-        <!--<< Bootstrap min.css >>-->
-        <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-        <!--<< All Min Css >>-->
-        <link rel="stylesheet" href="./assets/css/all.min.css">
-        <!--<< Animate.css >>-->
-        <link rel="stylesheet" href="./assets/css/animate.css">
-        <!--<< Magnific Popup.css >>-->
-        <link rel="stylesheet" href="./assets/css/magnific-popup.css">
-        <!--<< Swiper Bundle.css >>-->
-        <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
-        <!--<< DatePicker.css >>-->
-        <link rel="stylesheet" href="./assets/css/datepickerboot.css">
-        <!--<< Nice Select.css >>-->
-        <link rel="stylesheet" href="./assets/css/nice-select.css">
-        <!--<< Main.css >>-->
-        <link rel="stylesheet" href="./assets/css/main.css">
-    </head>
-    <body>
+<!DOCTYPE html><html lang="en"><head>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="Vietnam Dental Care">
+	<meta name="keywords" content="vietnam, dental, care">
+	<meta name="author" content="Minh Biken">
+	<!-- Page Title -->
+    <title>Vietnam Dental Care</title>
+	<!-- Favicon Icon -->
+	<link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.png">
+	<!-- Google Fonts Css-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+	<!-- Bootstrap Css -->
+	<link href="./assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<!-- SlickNav Css -->
+	<link href="./assets/css/slicknav.min.css" rel="stylesheet">
+	<!-- Swiper Css -->
+	<link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
+	<!-- Font Awesome Icon Css-->
+	<link href="./assets/css/all.min.css" rel="stylesheet" media="screen">
+	<!-- Animated Css -->
+	<link href="./assets/css/animate.css" rel="stylesheet">
+    <!-- Magnific Popup Core Css File -->
+	<link rel="stylesheet" href="./assets/css/magnific-popup.css">
+    <!-- Image Comparision Css File -->
+	<link rel="stylesheet" href="./assets/css/twentytwenty.css">
+	<!-- Mouse Cursor Css File -->
+	<link rel="stylesheet" href="./assets/css/mousecursor.css">
+	<!-- Main Custom Css -->
+	<link href="./assets/css/custom.css" rel="stylesheet" media="screen">
+</head>
+<body>
 
-        <div class="page-wrapper">
+    <!-- Preloader Start -->
+	<div class="preloader">
+		<div class="loading-container">
+			<div class="loading"></div>
+			<div id="loading-icon"><img src="./assets/images/loader.svg" alt=""></div>
+		</div>
+	</div>
+	<!-- Preloader End -->
 
+    <!-- Header Start -->
+	<header class="main-header">
+		<div class="header-sticky bg-section">
+			<nav class="navbar navbar-expand-lg">
+				<div class="container-fluid">
+					<!-- Logo Start -->
+					<a class="navbar-brand" href="./">
+						<img src="./assets/images/logo.svg" alt="Logo">
+					</a>
+					<!-- Logo End -->
 
-             <!-- Back To Top Start -->
-            <button id="back-top" class="back-to-top">
-                <i class="fa-regular fa-arrow-up"></i>
-            </button>
+					<!-- Main Menu Start -->
+					<div class="collapse navbar-collapse main-menu">
+                        <div class="nav-menu-wrapper">
+                            <ul class="navbar-nav mr-auto" id="menu">
+                                <li class="nav-item"><a class="nav-link" href="./">Home</a>
+                                </li>                                
+                                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a>
+                                </li><li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                <li class="nav-item submenu"><a class="nav-link" href="#">Pages</a>
+                                    <ul>                                        
+                                        <li class="nav-item"><a class="nav-link" href="service-single.html">Service Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="blog-single.html">Blog Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="case-study.html">Case Study</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="case-study-single.html">Case Study Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="team.html">Our Team</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="team-single.html">Team Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="image-gallery.html">Image Gallery</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="video-gallery.html">Video Gallery</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="404.html">404</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                                <li class="nav-item highlighted-menu"><a class="nav-link" href="book-appointment.html"></a></li>
+                            </ul>
+                        </div>
 
+                        <!-- Header Btn Start -->
+                        <div class="header-btn">
+                            <a class="btn-default" href="book-appointment.html">Get Your Free Treatment Plan</a>
+                        </div>
+                        <!-- Header Btn End -->                      
+					</div>
+					<!-- Main Menu End -->
+					<div class="navbar-toggle"></div>
+				</div>
+			</nav>
+			<div class="responsive-menu"></div>
+		</div>
+	</header>
+	<!-- Header End -->
 
-            <header class="header-section header-1" id="sticky-header">
-                <div class="header-main">
-
-                    <!-- ===================== DESKTOP NAVBAR ===================== -->
-                    <nav class="navbar p-0 navbar-expand-xl d-none d-xl-flex">
-                            <a class="navbar-brand" href="index.html">
-                                <img src="./assets/images/black-logo.svg" alt="logo">
-                            </a>
-
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                                <ul class="navbar-nav">
-
-                                    <!-- HOME -->
-                                    <li class="nav-item menu-thumb">
-                                        <a class="nav-link active" href="javascript:void(0)">
-                                            Home <i class="fas fa-chevron-down"></i>
-                                        </a>
-                                        <ul class="sub-menu has-homemenu list-unstyled">
-                                            <li>
-                                                <div class="homemenu-items">
-                                                    <div class="row row-cols-xl-5 row-cols-md-2 row-cols-2">
-                                                        <div class="col homemenu">
-                                                            <div class="homemenu-thumb">
-                                                                <img src="./assets/images/home-1.jpg" alt="img">
-                                                                <div class="demo-button">
-                                                                   <a class="theme-btn" href="index.html">
-                                                                        Demo Page <i class="fa-solid fa-arrow-up-right"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="homemenu-content text-center">
-                                                                 <a href="index.html" class="hometitle">
-                                                                    Plastic Surgery 01
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col homemenu">
-                                                            <div class="homemenu-thumb">
-                                                                <img src="./assets/images/home-2.jpg" alt="img">
-                                                                <div class="demo-button">
-                                                                   <a class="theme-btn" href="index-2.html">
-                                                                        Demo Page <i class="fa-solid fa-arrow-up-right"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="homemenu-content text-center">
-                                                                 <a href="index-2.html" class="hometitle">
-                                                                  Plastic Surgery 02
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col homemenu">
-                                                            <div class="homemenu-thumb">
-                                                                <img src="./assets/images/home-3.jpg" alt="img">
-                                                                <div class="demo-button">
-                                                                   <a class="theme-btn" href="index-3.html">
-                                                                        Demo Page <i class="fa-solid fa-arrow-up-right"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="homemenu-content text-center">
-                                                                 <a href="index-3.html" class="hometitle">
-                                                                   Plastic Surgery 03
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col homemenu">
-                                                            <div class="homemenu-thumb">
-                                                                <img src="./assets/images/home-5.jpg" alt="img">
-                                                            </div>
-                                                            <div class="homemenu-content text-center">
-                                                                 <span class="hometitle">
-                                                                   Coming Soon
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col homemenu">
-                                                            <div class="homemenu-thumb">
-                                                                <img src="./assets/images/home-5.jpg" alt="img">
-                                                            </div>
-                                                            <div class="homemenu-content text-center">
-                                                                 <span class="hometitle">
-                                                                   Coming Soon
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-
-                                    <!-- ABOUT -->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="about.html">About Us</a>
-                                    </li>
-
-                                    <!-- SERVICES -->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            Services <i class="fas fa-chevron-down"></i>
-                                        </a>
-                                        <ul class="sub-menu list-unstyled">
-                                            <li><a href="service.html">Service Page</a></li>
-                                            <li><a href="service-details.html">Service Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <!-- PAGES -->
-                                    <li class="has-dropdown nav-item">
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            Pages <i class="fas fa-chevron-down"></i>
-                                        </a>
-
-                                        <ul class="sub-menu list-unstyled">
-                                           
-                                            <li class="has-dropdown">
-                                                <a href="javascript:void(0)">
-                                                    Projects <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li><a href="project.html">Projects page</a></li>
-                                                    <li><a href="project-details.html">Project Details</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="has-dropdown">
-                                                <a href="javascript:void(0)">
-                                                    Doctors <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li><a href="team.html">Our Doctor</a></li>
-                                                    <li><a href="team-details.html">Doctor Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="has-dropdown">
-                                                <a href="javascript:void(0)">
-                                                    Shop Page <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li><a href="shop.html">Shop Page</a></li>
-                                                    <li><a href="shop-details.html">Shop Details</a></li>
-                                                    <li><a href="shop-cart.html">Shop Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="pricing.html">Pricing Page</a></li>
-                                            <li><a href="gallery.html">Gallery Page</a></li>
-                                            <li><a href="faq.html">Faq Page</a></li>
-                                            <li><a href="analysis.html">AI facial analysis</a></li>
-                                            <li><a href="login.html">Login Page</a></li>
-                                            <li><a href="appointment.html">Appointment Page</a></li>
-                                            <li><a href="register.html">Register Page</a></li>
-                                            <li><a href="404.html">404 Error</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <!-- BLOG -->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="javascript:void(0)">
-                                            Blog <i class="fas fa-chevron-down"></i>
-                                        </a>
-                                        <ul class="sub-menu list-unstyled">
-                                            <li class="has-dropdown">
-                                                <a href="javascript:void(0)">
-                                                   Blog Grid <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li><a href="news-grid.html">Blog Grid</a></li>
-                                                    <li><a href="news-grid-left-sidebar.html">Left Sidebar</a></li>
-                                                    <li><a href="news-grid-right-sidebar.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="has-dropdown">
-                                                <a href="javascript:void(0)">
-                                                   Blog Standard  <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li><a href="news-2.html">Left Sidebar</a></li>
-                                                    <li><a href="news.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                             <li class="has-dropdown">
-                                                <a href="javascript:void(0)">
-                                                   Blog Details  <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li><a href="news-details-2.html">Left Sidebar</a></li>
-                                                    <li><a href="news-details.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-
-                                    <!-- CONTACT -->
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Contact</a>
-                                    </li>
-
-                                </ul>
-
-                                <div class="menu-right-info">
-                                    <div class="number-info">
-                                        <div class="icon">
-                                            <img src="./assets/images/phone.png" alt="img">
-                                        </div>
-                                        <a class="number" href="tel:+380961381876">+380961381876</a>
+    <!-- Hero Section Start -->
+    <div class="hero bg-section dark-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Hero Box Start -->
+                    <div class="hero-box">
+                        <!-- Hero Content Start -->
+                        <div class="hero-content">
+                            <!-- Hero Sub Heading Start -->
+                            <div class="hero-sub-heading wow fadeInUp">
+                                <!-- Satisfy Client Images Start -->
+                                <div class="satisfy-client-images">
+                                    <div class="satisfy-client-image">
+                                        <figure class="image-anime">
+                                            <img src="./assets/images/author-1.jpg" alt="">
+                                        </figure>
                                     </div>
-                                    <a href="analysis.html" class="appo-btn">
-                                        <img src="./assets/images/ai.svg" alt="img"> Your AI Analysis
-                                    </a>
-                                    <div class="sidebar__toggle offcanvas-btn">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
+                                    <div class="satisfy-client-image">
+                                        <figure class="image-anime">
+                                            <img src="./assets/images/author-2.jpg" alt="">
+                                        </figure>
+                                    </div>
+                                    <div class="satisfy-client-image">
+                                        <figure class="image-anime">
+                                            <img src="./assets/images/author-3.jpg" alt="">
+                                        </figure>
+                                    </div>
+                                    <div class="satisfy-client-image">
+                                        <figure class="image-anime">
+                                            <img src="./assets/images/author-4.jpg" alt="">
+                                        </figure>
                                     </div>
                                 </div>
+                                <!-- Satisfy Client Images End -->
 
-                            </div>
-                    </nav>
-
-                </div>
-
-                <div class="offcanvas-overlay position-fixed top-0 start-0 w-100 h-100"></div>
-                <div class="offcanvas-menu position-fixed">
-                    <div class="header-top d-flex align-items-center justify-content-between gap-4">
-                        <div class="logo">
-                            <a href="index.html">
-                            <img src="./assets/images/white-logo.svg" alt="logo">
-                            </a>
-                        </div>
-                        <button class="offcasvas-close black-bg border-0 text-white d-flex align-items-center justify-content-center rounded-pill">
-                            <i class="fa-regular fa-xmark"></i>
-                        </button>
-                    </div>
-                    <span class="action-title">Happy You’re Here</span>
-                    <a href="appointment.html" class="news-btn">
-                        <span class="text">
-                            <span class="text-default">book appointment  <i class="fa-regular fa-arrow-up-right"></i></span>
-                            <span class="text-hover">book appointment  <i class="fa-regular fa-arrow-up-right"></i></span>
-                        </span>
-                    </a>
-                    <div class="offcanvas_gallery d-none d-lg-block">
-                        <img class="gallery_img" src="./assets/images/offcanvas1.jpg" alt="gallery">
-                        <img class="gallery_img" src="./assets/images/offcanvas2.jpg" alt="gallery">
-                        <img class="gallery_img" src="./assets/images/offcanvas3.jpg" alt="gallery">
-                        <img class="gallery_img" src="./assets/images/offcanvas4.jpg" alt="gallery">
-                    </div>
-                    <div class="off-contact-info">
-                    <span class="info-title">Contact Info</span>
-                    <div class="contact-details">
-                        <span class="sub-info">Phone</span>
-                        <p>
-                            <a href="tel:+18005550123">+1 (800) 555-0123</a>
-                        </p>
-                    </div>
-                    <div class="contact-details">
-                        <span class="sub-info">Email</span>
-                        <p>
-                            <a href="mailto:hello@medixen.com">hello@medixen.com</a>
-                        </p>
-                    </div>
-                    <div class="contact-details">
-                        <span class="sub-info">Location</span>
-                        <p>
-                            374 William S Canning Blvd USA
-                        </p>
-                    </div>
-                    </div>
-                    <div class="social-icon-list">
-                        <span class="follow-title">
-                            Follow us:
-                        </span>
-                        <div class="social-icon d-flex align-items-center">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                <!-- ===================== MOBILE MENU ===================== -->
-                <div class="mobile-menu-area d-block d-xl-none">
-
-                    <div class="container">
-                        <div class="mobile-topbar">
-                            <div class="d-flex justify-content-between align-items-center">
-
-                                <div class="logo">
-                                    <a href="index.html">
-                                        <img src="./assets/images/black-logo.svg" alt="logo">
-                                    </a>
+                                <!-- Satisfy Client Content Start -->
+                                <div class="satisfy-client-content">
+                                    <p>15k Satisficed Patients</p>
                                 </div>
-
-                                <div class="menu-search d-flex align-items-center gap-4">
-                                
-                                <div class="bars">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                               </div>
-
+                                <!-- Satisfy Client Content End -->
                             </div>
+                            <!-- Hero Sub Heading Start -->
                             
+                            <!-- Section Title Start -->
+                            <div class="section-title">
+                                <h1 class="wow fadeInUp" data-wow-delay="0.2s" data-cursor="-opaque">Transforming <img src="./assets/images/hero-title-image.jpg" alt=""> smiles with expert care</h1>
+                                <p class="wow fadeInUp" data-wow-delay="0.4s">Experience personalized dental treatment designed to restore, protect, and enhance your smile with comfort and confidence</p>
+                            </div>
+                            <!-- Section Title End -->
+    
+                            <!-- Hero Button Start -->
+                            <div class="hero-btn wow fadeInUp" data-wow-delay="0.6s">
+                                <a href="contact.html" class="btn-default btn-highlighted">Start Your Smile Journey</a>
+                            </div>
+                            <!-- Hero Button End -->
                         </div>
-                    </div>
-
-                    <div class="mobile-menu-overlay"></div>
-
-                    <div class="mobile-menu-main">
-
-                        <div class="logo">
-                            <a href="index.html">
-                                <img src="./assets/images/white-logo.svg" alt="logo">
-                            </a>
-                        </div>
-
-                        <div class="close-mobile-menu">
-                            <i class="fas fa-times"></i>
-                        </div>
-
-                        <div class="menu-body">
-                            <div class="menu-list">
-                                <ul class="list-unstyled">
-
-                                    <li class="sub-mobile-menu">
-                                        <a href="javascript:void(0)">
-                                            Home <i class="fas fa-chevron-down float-end"></i>
+                        <!-- Hero Content End -->       
+                         
+                        <!-- Hero Info List Start -->
+                        <div class="hero-info-item-list">
+                            <!-- Hero Info Item Start -->
+                            <div class="hero-info-item box-1 wow fadeInUp">
+                                <!-- Hero Info Header Start -->
+                                <div class="hero-info-header">
+                                    <div class="hero-info-title">
+                                        <h3>Comprehensive Dental Care</h3>
+                                    </div>
+                                    <div class="hero-info-btn">
+                                        <a href="contact.html">
+                                            <img src="./assets/images/arrow-white.svg" alt="">
                                         </a>
-                                        <ul class="list-unstyled">
-                                            <li><a href="index.html">Plastic Surgery 01</a></li>
-                                            <li><a href="index-2.html">Plastic Surgery 02</a></li>
-                                            <li><a href="index-3.html">Plastic Surgery 03</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="about.html">About Us</a></li>
-
-                                    <li class="sub-mobile-menu">
-                                        <a href="javascript:void(0)">
-                                            Services <i class="fas fa-chevron-down float-end"></i>
-                                        </a>
-                                        <ul class="list-unstyled">
-                                            <li><a href="service.html">Service Page</a></li>
-                                            <li><a href="service-details.html">Service Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="sub-mobile-menu has-dropdown">
-                                        <a href="javascript:void(0)">
-                                            Pages <i class="fas fa-chevron-down float-end"></i>
-                                        </a>
-                                        <ul class="list-unstyled">
-                                            <li class="sub-child-menu has-dropdown">
-                                               <a href="javascript:void(0)">
-                                                    Projects <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="project.html">Projects page</a></li>
-                                                    <li><a href="project-details.html">Project Details</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="sub-child-menu has-dropdown">
-                                                <a href="javascript:void(0)">
-                                                    Doctors <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="team.html">Our Doctor</a></li>
-                                                    <li><a href="team-details.html">Doctor Details</a></li>
-                                                </ul>
-                                            </li>
-
-                                             <li class="sub-child-menu has-dropdown">
-                                                <a href="javascript:void(0)">
-                                                    Shop Page <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="shop.html">Shop Page</a></li>
-                                                    <li><a href="shop-details.html">Shop Details</a></li>
-                                                    <li><a href="shop-cart.html">Shop Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="pricing.html">Pricing Page</a></li>
-                                            <li><a href="gallery.html">Gallery Page</a></li>
-                                            <li><a href="faq.html">Faq Page</a></li>
-                                            <li><a href="analysis.html">AI facial analysis</a></li>
-                                            <li><a href="login.html">Login Page</a></li>
-                                            <li><a href="appointment.html">Appointment Page</a></li>
-                                            <li><a href="register.html">Register Page</a></li>
-                                            <li><a href="404.html">404 Error</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="sub-mobile-menu has-dropdown">
-                                        <a href="javascript:void(0)">
-                                            Blog <i class="fas fa-chevron-down float-end"></i>
-                                        </a>
-                                        <ul class="list-unstyled">
-                                            <li class="sub-child-menu has-dropdown">
-                                               <a href="javascript:void(0)">
-                                                   Blog Grid <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li><a href="news-grid.html">Blog Grid</a></li>
-                                                    <li><a href="news-grid-left-sidebar.html">Left Sidebar</a></li>
-                                                    <li><a href="news-grid-right-sidebar.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="sub-child-menu has-dropdown">
-                                                <a href="javascript:void(0)">
-                                                   Blog Standard  <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li><a href="news-2.html">Left Sidebar</a></li>
-                                                    <li><a href="news.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="sub-child-menu has-dropdown">
-                                               <a href="javascript:void(0)">
-                                                   Blog Details  <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="sub-menu list-unstyled">
-                                                    <li><a href="news-details-2.html">Left Sidebar</a></li>
-                                                    <li><a href="news-details.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ===================== MOBILE MENU END ===================== -->
-
-            </header>
-
-            <div id="smooth-wrapper">
-                <div id="smooth-content">
-
-                     <!-- Hero Section Start -->
-                    <section class="hero-section-3 fix  position-relative">
-                        <div class="hero-3">
-                            <div class="swiper hero-slider-1">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="hero-slider-items">
-                                            <div class="item-img position-absolute">
-                                                <img src="./assets/images/hero-bg-1.jpg" alt="img">
-                                            </div>
-                                            <div class="container">
-                                                 <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-xl-7">
-                                                            <div class="hero-content">
-                                                                <span class="hero-sub">Enhance Your Natural Beauty</span>
-                                                                <h1 class="hero-title hero-title tz-split-1 hero_title">
-                                                                    Advanced <b>& <br> Personalized</b> Plastic <br> Surgery Solutions
-                                                                </h1>
-                                                                <p class="hero-text">
-                                                                    Expert dental care for the whole family, combining advanced technology with a gentle touch.
-                                                                </p>
-                                                                <div class="hero-button">
-                                                                    <a class="theme-btn-main style-2" href="service.html">
-                                                                        <span class="theme-btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                                        <span class="theme-btn">our service</span>
-                                                                        <span class="theme-btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                                    </a>
-                                                                    <span class="button-text">
-                                                                        <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-btn video-popup">
-                                                                            <i class="fa-solid fa-play"></i>
-                                                                        </a>
-                                                                        <span class="ms-4 d-line">Watch Video</span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="hero-icon-wrap">
-                                                    <div class="icon-box">
-                                                        <div class="icon">
-                                                            <img src="./assets/images/icon1.png" alt="img">
-                                                        </div>
-                                                        <div class="content">
-                                                            <h2 class="title">
-                                                                Facial Surgery <br> (Rhinoplasty, Facelift)
-                                                            </h2>
-                                                            <a href="about.html" class="icon">
-                                                                <i class="fas fa-angle-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="icon-box">
-                                                        <div class="icon">
-                                                            <img src="./assets/images/icon2.png" alt="img">
-                                                        </div>
-                                                        <div class="content">
-                                                            <h2 class="title">
-                                                            Non-Surgical Treatments <br> (Botox, Fillers)
-                                                            </h2>
-                                                            <a href="about.html" class="icon">
-                                                                <i class="fas fa-angle-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    </div>
+                                </div>
+                                <!-- Hero Info Header End -->
+                                
+                                <!-- Hero Info Body Start -->
+                                <div class="hero-info-body">
+                                    <div class="satisfy-client-images">
+                                        <div class="satisfy-client-image">
+                                            <figure class="image-anime">
+                                                <img src="./assets/images/author-1.jpg" alt="">
+                                            </figure>
+                                        </div>
+                                        <div class="satisfy-client-image">
+                                            <figure class="image-anime">
+                                                <img src="./assets/images/author-2.jpg" alt="">
+                                            </figure>
+                                        </div>
+                                        <div class="satisfy-client-image">
+                                            <figure class="image-anime">
+                                                <img src="./assets/images/author-3.jpg" alt="">
+                                            </figure>
+                                        </div>
+                                        <div class="satisfy-client-image">
+                                            <figure class="image-anime">
+                                                <img src="./assets/images/author-4.jpg" alt="">
+                                            </figure>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="hero-slider-items">
-                                            <div class="item-img position-absolute">
-                                                <img src="./assets/images/hero-bg-2.jpg" alt="img">
-                                            </div>
-                                            <div class="container">
-                                                 <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-xl-7">
-                                                            <div class="hero-content">
-                                                                <span class="hero-sub">Enhance Your Natural Beauty</span>
-                                                                <h1 class="hero-title hero-title tz-split-1 hero_title">
-                                                                    Advanced <b>& <br> Personalized</b> Plastic <br> Surgery Solutions
-                                                                </h1>
-                                                                <p class="hero-text">
-                                                                    Expert dental care for the whole family, combining advanced technology with a gentle touch.
-                                                                </p>
-                                                                <div class="hero-button">
-                                                                    <a class="theme-btn-main style-2" href="service.html">
-                                                                        <span class="theme-btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                                        <span class="theme-btn">our service</span>
-                                                                        <span class="theme-btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                                    </a>
-                                                                    <span class="button-text">
-                                                                        <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-btn video-popup">
-                                                                            <i class="fa-solid fa-play"></i>
-                                                                        </a>
-                                                                        <span class="ms-4 d-line">Watch Video</span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="hero-icon-wrap">
-                                                    <div class="icon-box">
-                                                        <div class="icon">
-                                                            <img src="./assets/images/icon1.png" alt="img">
-                                                        </div>
-                                                        <div class="content">
-                                                            <h2 class="title">
-                                                                Facial Surgery <br> (Rhinoplasty, Facelift)
-                                                            </h2>
-                                                            <a href="about.html" class="icon">
-                                                                <i class="fas fa-angle-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="icon-box">
-                                                        <div class="icon">
-                                                            <img src="./assets/images/icon2.png" alt="img">
-                                                        </div>
-                                                        <div class="content">
-                                                            <h2 class="title">
-                                                            Non-Surgical Treatments <br> (Botox, Fillers)
-                                                            </h2>
-                                                            <a href="about.html" class="icon">
-                                                                <i class="fas fa-angle-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="hero-slider-items">
-                                            <div class="item-img position-absolute">
-                                                <img src="./assets/images/hero-bg-3.jpg" alt="img">
-                                            </div>
-                                            <div class="container">
-                                                 <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-xl-7">
-                                                            <div class="hero-content">
-                                                                <span class="hero-sub">Enhance Your Natural Beauty</span>
-                                                                <h1 class="hero-title hero-title tz-split-1 hero_title">
-                                                                    Advanced <b>& <br> Personalized</b> Plastic <br> Surgery Solutions
-                                                                </h1>
-                                                                <p class="hero-text">
-                                                                    Expert dental care for the whole family, combining advanced technology with a gentle touch.
-                                                                </p>
-                                                                <div class="hero-button">
-                                                                    <a class="theme-btn-main style-2" href="service.html">
-                                                                        <span class="theme-btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                                        <span class="theme-btn">our service</span>
-                                                                        <span class="theme-btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                                    </a>
-                                                                    <span class="button-text">
-                                                                        <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-btn video-popup">
-                                                                            <i class="fa-solid fa-play"></i>
-                                                                        </a>
-                                                                        <span class="ms-4 d-line">Watch Video</span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="hero-icon-wrap">
-                                                    <div class="icon-box">
-                                                        <div class="icon">
-                                                            <img src="./assets/images/icon1.png" alt="img">
-                                                        </div>
-                                                        <div class="content">
-                                                            <h2 class="title">
-                                                                Facial Surgery <br> (Rhinoplasty, Facelift)
-                                                            </h2>
-                                                            <a href="about.html" class="icon">
-                                                                <i class="fas fa-angle-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="icon-box">
-                                                        <div class="icon">
-                                                            <img src="./assets/images/icon2.png" alt="img">
-                                                        </div>
-                                                        <div class="content">
-                                                            <h2 class="title">
-                                                            Non-Surgical Treatments <br> (Botox, Fillers)
-                                                            </h2>
-                                                            <a href="about.html" class="icon">
-                                                                <i class="fas fa-angle-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="satisfy-client-content">
+                                        <p>More Than 4,000 Skilled Dentists At Your Service</p>
                                     </div>
                                 </div>
+                                <!-- Hero Info Body End -->
                             </div>
-                            <div class="array-button">
-                                <button class="array-prev"><i class="fa-solid fa-chevron-left"></i></button>
-                                <button class="array-next"><i class="fa-solid fa-chevron-right"></i></button>
-                            </div>
-                        </div>
-                    </section>	
+                            <!-- Hero Info Item End -->
+    
+                            <!-- Hero Info Image Item Start -->
+                            <div class="hero-info-image-item box-2 wow fadeInUp" data-wow-delay="0.2s">
+                                <!-- Hero Info Image Start -->
+                                <div class="hero-info-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/hero-info-item-image-1.jpg" alt="">
+                                    </figure>
+                                </div>
+                                <!-- Hero Info Image End -->
 
-                    <!-- Brand Section Start -->
-                    <div class="brand-section-three">
-                        <div class="container">
-                            <div class="marquee">
-                                <div class="marquee-group">
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand1.png" alt="img">
+                                <!-- Hero Info Content Start -->
+                                <div class="hero-info-content">
+                                    <div class="hero-info-title">
+                                        <h3>Comprehensive Dental Care</h3>
                                     </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand2.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand3.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand4.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand5.png" alt="img">
-                                    </div>
-                                </div>
-                                 <div class="marquee-group">
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand1.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand2.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand3.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand4.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand5.png" alt="img">
-                                    </div>
-                                </div>
-                                 <div class="marquee-group">
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand1.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand2.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand3.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand4.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand5.png" alt="img">
-                                    </div>
-                                </div>
-                                 <div class="marquee-group">
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand1.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand2.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand3.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand4.png" alt="img">
-                                    </div>
-                                    <div class="brand-img-3">
-                                        <img src="./assets/images/brand5.png" alt="img">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- About Section Start -->
-                    <section class="about-section-three fix section-padding">
-                        <div class="about-wrapper-3">
-                            <div class="row g-4 align-items-center">
-                                <div class="col-lg-6">
-                                    <div class="about-image-items">
-                                        <div class="row g-4">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 wow fadeInUp" data-wow-delay=".3s">
-                                                <div class="thumb fix">
-                                                    <img data-speed=".8" src="./assets/images/about-image.jpg" alt="img">
-                                                </div>
-                                            </div>
-                                             <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                                <div class="thumb fix wow fadeInUp" data-wow-delay=".5s">
-                                                    <img data-speed=".8" src="./assets/images/about-image2.jpg" alt="img">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="icon-box">
-                                            <div class="text-circle">
-                                                <img src="./assets/images/text-circle.png" alt="img">
-                                            </div>
-                                            <div class="icon">
-                                                <img src="./assets/images/icon-3.png" alt="img">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="about-content">
-                                        <div class="section-title mb-0">
-                                            <span class="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">
-                                                <img src="./assets/images/star_1.png" alt="img"> About Our Clinic
-                                            </span>
-                                            <h2 class="split-title">
-                                                <span class="style-font">Dedicated to Your</span> Beauty <br> & Confidence</h2>
-                                        </div>
-                                        <p class="about-text wow fadeInUp" data-wow-delay=".3s">
-                                            Lorem ipsum dolor sit amet consecteitur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit a sapien fringilla, mattis ligula consectietur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet.
-                                        </p>
-                                        <div class="about-counter-item wow fadeInUp" data-wow-delay=".5s">
-                                            <div class="counter-item">
-                                                <h3>
-                                                    <span class="count">75</span>%
-                                                </h3>
-                                                <p>
-                                                    Pediatric <br class="d-block"> Dentistry
-                                                </p>
-                                            </div>
-                                            <div class="about-line"></div>
-                                            <div class="counter-item">
-                                                <h3>
-                                                    <span class="count">85</span>%
-                                                </h3>
-                                                <p>
-                                                   Gum Disease
-                                                </p>
-                                            </div>
-                                            <div class="about-line"></div>
-                                            <div class="counter-item">
-                                                <h3>
-                                                    <span class="count">95</span>%
-                                                </h3>
-                                                <p>
-                                                    Orthodontics <br class="d-block"> Patients
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="about-button wow fadeInUp" data-wow-delay=".7s">
-                                            <a class="theme-btn-main style-2" href="about.html">
-                                                <span class="theme-btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                <span class="theme-btn">Know More</span>
-                                                <span class="theme-btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                            </a>
-                                            <div class="author-image">
-                                            <img src="./assets/images/author.png" alt="author-img">
-                                            <div class="content">
-                                                <h4>Ronald Richards</h4>
-                                                <p>Co, Founder</p>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Marquee Section Start -->
-                    <div class="marque-section mt-0">
-                        <div class="marquee">
-                            <div class="marquee-group">
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Cosmetic surgery
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> health care
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> beauty
-                                </div>
-                                 <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Breast Reduction
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> online doctor
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Hair fall Treatment
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Lip Enhancement
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                            </div>
-                            <div class="marquee-group">
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Cosmetic surgery
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> health care
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> beauty
-                                </div>
-                                 <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Breast Reduction
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> online doctor
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Hair fall Treatment
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Lip Enhancement
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                            </div>
-                            <div class="marquee-group">
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Cosmetic surgery
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> health care
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> beauty
-                                </div>
-                                 <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Breast Reduction
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> online doctor
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Hair fall Treatment
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Lip Enhancement
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Section Start -->
-                    <section class="service-section-three fix section-padding">
-                        <div class="service-light">
-                            <img src="./assets/images/service-light1.png" alt="img">
-                        </div>
-                        <div class="service-light-2">
-                            <img src="./assets/images/service-light2.png" alt="img">
-                        </div>
-                        <div class="container">
-                            <div class="section-title-area align-items-end">
-                                <div class="section-title mb-0">
-                                    <span class="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">
-                                        <img src="./assets/images/star_1.png" alt="img"> What we offer
-                                    </span>
-                                    <h2 class="split-title">
-                                       Our <span class="style-font">Best Services</span> For <br> Your Beauty</h2>
-                                </div>
-                                <p class="wow fadeInUp" data-wow-delay=".3s">
-                                    Lorem ipsum dolor sit amet consecteitur <br> adipiscing elit Ut et massa mi. Aliquam in <br> hendrerit urna. Pellentesque
-                                </p>
-                            </div>
-                            <div class="service-wrapper tp-service-pin">
-                                <div class="service-box-items tp-service-panel">
-                                    <div class="content">
-                                        <span class="number">
-                                            01
-                                        </span>
-                                        <h3 class="title">
-                                            <a href="service-details.html">Body Contouring (Liposuction, Tummy Tuck)</a>
-                                        </h3>
-                                        <p>
-                                            Consectetur adipiscing elit, sed do eiusm od tempor incididunt ut labore.
-                                        </p>
+                                    <div class="hero-info-list">
                                         <ul>
-                                            <li>
-                                                <a href="service.html">Personalized care</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Botox, Fillers</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Augmentation, Reduction</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Plastic Surgery</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Treatment Plan</a>
-                                            </li>
+                                            <li>Smiles</li>
+                                            <li>Dentistry</li>
+                                            <li>Cavity</li>
                                         </ul>
                                     </div>
-                                    <div class="thumb">
-                                        <img src="./assets/images/service-1.jpg" alt="img">
-                                    </div>
                                 </div>
-                                <div class="service-box-items tp-service-panel">
-                                    <div class="content">
-                                        <span class="number">
-                                            02
-                                        </span>
-                                        <h3 class="title">
-                                            <a href="service-details.html">Facial Surgery (Rhinoplasty, Facelift)</a>
-                                        </h3>
-                                        <p>
-                                            Consectetur adipiscing elit, sed do eiusm od tempor incididunt ut labore.
-                                        </p>
+                                <!-- Hero Info Content End -->
+                            </div>
+                            <!-- Hero Info Image Item End -->
+    
+                            <!-- Working Hours Item Start -->
+                            <div class="hero-info-item box-3 wow fadeInUp" data-wow-delay="0.4s">
+                                <!-- Working Hours Header Start -->
+                                <div class="working-hours-header hero-info-title">
+                                    <img src="./assets/images/icon-clock-white.svg" alt="">
+                                    <h3>Opening Hours</h3>
+                                </div>
+                                <!-- Working Hours Header End -->
+                                
+                                <!-- Working Hours Body Start -->
+                                <div class="working-hours-body">
+                                    <div class="working-hours-list">
                                         <ul>
-                                            <li>
-                                                <a href="service.html">Personalized care</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Botox, Fillers</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Augmentation, Reduction</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Plastic Surgery</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Treatment Plan</a>
-                                            </li>
+                                            <li><span>Mon to Sat:</span> 9AM to 9PM</li>
+                                            <li><span>Sunday:</span> Closed</li>
                                         </ul>
                                     </div>
-                                    <div class="thumb">
-                                        <img src="./assets/images/service-2.jpg" alt="img">
+                                    <div class="working-hours-btn">
+                                        <a href="book-appointment.html" class="btn-default btn-highlighted">Make an Appointment</a>
                                     </div>
                                 </div>
-                                <div class="service-box-items tp-service-panel">
-                                    <div class="content">
-                                        <span class="number">
-                                            03
-                                        </span>
-                                        <h3 class="title">
-                                            <a href="service-details.html">Breast Surgery (Augmentation, Reduction)</a>
-                                        </h3>
-                                        <p>
-                                            Consectetur adipiscing elit, sed do eiusm od tempor incididunt ut labore.
-                                        </p>
-                                        <ul>
-                                            <li>
-                                                <a href="service.html">Personalized care</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Botox, Fillers</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Augmentation, Reduction</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Plastic Surgery</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Treatment Plan</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="thumb">
-                                        <img src="./assets/images/service-3.jpg" alt="img">
-                                    </div>
+                                <!-- Working Hours Body End -->
+                            </div>
+                            <!-- Working Hours Item End -->
+    
+                            <!-- Hero Info Video Image Start -->
+                            <div class="hero-info-image-item box-4 wow fadeInUp" data-wow-delay="0.6s">
+                                <div class="hero-info-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/hero-info-item-image-2.jpg" alt="">
+                                    </figure>
                                 </div>
-                                <div class="service-box-items tp-service-panel">
-                                    <div class="content">
-                                        <span class="number">
-                                            04
-                                        </span>
-                                        <h3 class="title">
-                                            <a href="service-details.html">
-                                                Non-Surgical Treatments (Botox, Fillers)
-                                            </a>
-                                        </h3>
-                                        <p>
-                                            Consectetur adipiscing elit, sed do eiusm od tempor incididunt ut labore.
-                                        </p>
-                                        <ul>
-                                            <li>
-                                                <a href="service.html">Personalized care</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Botox, Fillers</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Augmentation, Reduction</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Plastic Surgery</a>
-                                            </li>
-                                            <li>
-                                                <a href="service.html">Treatment Plan</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="thumb">
-                                        <img src="./assets/images/service-4.jpg" alt="img">
-                                    </div>
+                                <div class="hero-info-btn">
+                                    <a href="contact.html">
+                                        <img src="./assets/images/arrow-white.svg" alt="">
+                                    </a>
+                                </div>
+                                <div class="hero-info-contact-list">
+                                    <ul>
+                                        <li><img src="./assets/images/icon-phone-white.svg" alt=""><a href="tel:+123254896">+00-123-254-896</a></li>
+                                        <li><img src="./assets/images/icon-mail-white.svg" alt=""><a href="mailto:support@domain.com">support@domain.com</a></li>
+                                    </ul>
                                 </div>
                             </div>
+                            <!-- Hero Info Video Image End -->
                         </div>
-                    </section>
-
-                    <!-- Process Section Start -->
-                    <section class="process-section fix section-padding bg-cover" style="background-image: url('./assets/images/process-bg.jpg');">
-                        <div class="container">
-                            <div class="section-title text-center mb-0">
-                                <span class="sub-title tz-sub-tilte tz-sub-anim tx-subTitle text-white">
-                                    <img src="./assets/images/01.png" alt="img"> Our Process
-                                </span>
-                                <h2 class="wa_title_spilt_1 text-white">
-                                    Find <span class="style-font">Most Easy Steps</span> For <br> Your Skin Care.
-                                </h2>
-                            </div>  
-                            <div class="process-wrapper fix">
-                                <div class="process-box-items wow fadeInUp" data-wow-delay=".2s">
-                                    <div class="number">
-                                        1
-                                    </div>
-                                    <div class="content">
-                                        <h3 class="title">
-                                            Book an Appointment
-                                        </h3>
-                                        <p>
-                                            Lorem ipsum dolor sit amet <br> consecteitur adipisci elit Ut et <br> massa mi.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="arrow-img wow fadeInUp" data-wow-delay=".4s">
-                                    <img src="./assets/images/arrow.png" alt="img">
-                                </div>
-                                <div class="process-box-items wow fadeInUp" data-wow-delay=".6s">
-                                    <div class="number">
-                                        2
-                                    </div>
-                                    <div class="content">
-                                        <h3 class="title">
-                                            Conduct Oral Checkup
-                                        </h3>
-                                        <p>
-                                            Lorem ipsum dolor sit amet <br> consecteitur adipisci elit Ut et <br> massa mi.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="arrow-img wow fadeInUp" data-wow-delay=".7s">
-                                    <img src="./assets/images/arrow.png" alt="img">
-                                </div>
-                                <div class="process-box-items wow fadeInUp" data-wow-delay=".8s">
-                                    <div class="number">
-                                        3
-                                    </div>
-                                    <div class="content">
-                                        <h3 class="title">
-                                            Get Treatment
-                                        </h3>
-                                        <p>
-                                            Lorem ipsum dolor sit amet <br> consecteitur adipisci elit Ut et <br> massa mi.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="contact-wrapper-three">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-contact-items">
-                                            <h3 class="title">Book Your Consultation Today</h3>
-                                            <form action="#" id="contact-form" class="contact-form-box">
-                                                <div class="row g-3 align-items-center">
-                                                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                                                        <div class="form-clt">
-                                                            <input type="text" placeholder="Name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                                                        <div class="form-clt">
-                                                            <input type="text" placeholder="Email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                                                        <div class="form-clt style-2">
-                                                            <input type="text" placeholder="+1 Phone">
-                                                            <div class="flag-img">
-                                                                <img src="./assets/images/flag.png" alt="img">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                                                        <div class="form-clt style-2">
-                                                            <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                                                <input class="form-control" type="text" placeholder="Date Form" readonly="">
-                                                                <span class="input-group-addon"><i class="far fa-calendar"></i></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 wow fadeInUp" data-wow-delay=".3s">
-                                                        <div class="form-clt">
-                                                            <textarea name="message" placeholder="Type your message"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 wow fadeInUp" data-wow-delay=".5s">
-                                                        <button class="contact-btn" type="submit">
-                                                            Book Appointment
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                            <div class="bg-shape">
-                                                <svg width="537" height="522" viewBox="0 0 537 522" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.0336 9.71116C14.1898 4.30305 18.619 1.14717e-05 24.0294 9.29086e-06L526.35 1.16339e-05C532.236 8.73699e-06 536.849 5.05891 536.307 10.9202L489.987 512.179C489.5 517.452 484.986 521.431 479.694 521.253L9.66457 505.473C4.16306 505.288 -0.154697 500.692 0.0043076 495.19L14.0336 9.71116Z" fill="white" fill-opacity="0.1"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="doctor-image wow fadeInUp" data-wow-delay=".3s">
-                                            <img src="./assets/images/doctor-image.png" alt="img">
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                                <div class="shape-img">
-                                    <img src="./assets/images/shape1.png" alt="img">
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Feature Section Start -->
-                    <section class="feature-section-three fix section-padding">
-                        <div class="container">
-                            <div class="feature-wrapper-three">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-lg-6">
-                                        <div class="feature-image2 agn-choose-5-img">
-                                            <img src="./assets/images/feature-image.png" alt="img">
-                                            <div class="light-image">
-                                                <img src="./assets/images/feature-light.png" alt="img">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="feature-content">
-                                            <div class="section-title mb-0">
-                                                <span class="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">
-                                                    <img src="./assets/images/star_1.png" alt="img"> Core Treatment
-                                                </span>
-                                                <h2 class="split-title">
-                                                Core <span class="style-font"> Treatment Pillars</span> Of Your Beauty</h2>
-                                            </div>
-                                            <ul class="nav">
-                                                <li class="nav-item wow fadeInUp" data-wow-delay=".2s">
-                                                    <a href="#About" data-bs-toggle="tab" class="nav-link active">
-                                                   Facial Refinement
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item wow fadeInUp" data-wow-delay=".4s">
-                                                    <a href="#Mission" data-bs-toggle="tab" class="nav-link">
-                                                   Sculpted Silhouette
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item wow fadeInUp" data-wow-delay=".4s">
-                                                    <a href="#Vision" data-bs-toggle="tab" class="nav-link">
-                                                    Sculpted Silhouette
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                             <div class="tab-content">
-                                                <div id="About" class="tab-pane fade show active">
-                                                     <div class="list-content wow fadeInUp" data-wow-delay=".3s">
-                                                        <h3>
-                                                            Sculpted Silhouette
-                                                        </h3>
-                                                        <p>
-                                                            Facial refinement at Rejuvita is rooted in structure and harmony. We enhance natural proportions while preserving expression, character, and individuality.
-                                                        </p>
-                                                        <ul>
-                                                            <li>
-                                                                <img src="./assets/images/star_2.png" alt="">
-                                                                Breast Lift
-                                                            </li>
-                                                            <li>
-                                                                <img src="./assets/images/star_2.png" alt="">
-                                                            Tummy Tuck
-                                                            </li>
-                                                            <li>
-                                                                <img src="./assets/images/star_2.png" alt="">
-                                                                High-Definition Liposuction
-                                                            </li>
-                                                            <li>
-                                                                <img src="./assets/images/star_2.png" alt="">
-                                                                Breast Augmentation
-                                                            </li>
-                                                            <li>
-                                                                <img src="./assets/images/star_2.png" alt="">
-                                                            Arm Lift (Brachioplasty)
-                                                            </li>
-                                                        </ul>
-                                                        <a class="theme-btn-main style-2" href="about.html">
-                                                            <span class="theme-btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                            <span class="theme-btn">Know More</span>
-                                                            <span class="theme-btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div id="Mission" class="tab-pane fade">
-                                                     <div class="list-content">
-                                                <h3>
-                                                    Sculpted Silhouette
-                                                </h3>
-                                                <p>
-                                                    Facial refinement at Rejuvita is rooted in structure and harmony. We enhance natural proportions while preserving expression, character, and individuality.
-                                                </p>
-                                                <ul>
-                                                    <li>
-                                                        <img src="./assets/images/star_2.png" alt="">
-                                                        Breast Lift
-                                                    </li>
-                                                    <li>
-                                                        <img src="./assets/images/star_2.png" alt="">
-                                                       Tummy Tuck
-                                                    </li>
-                                                    <li>
-                                                        <img src="./assets/images/star_2.png" alt="">
-                                                        High-Definition Liposuction
-                                                    </li>
-                                                    <li>
-                                                        <img src="./assets/images/star_2.png" alt="">
-                                                        Breast Augmentation
-                                                    </li>
-                                                    <li>
-                                                        <img src="./assets/images/star_2.png" alt="">
-                                                       Arm Lift (Brachioplasty)
-                                                    </li>
-                                                </ul>
-                                                <a class="theme-btn-main style-2" href="about.html">
-                                                <span class="theme-btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                <span class="theme-btn">Know More</span>
-                                                <span class="theme-btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                            </a>
-                                            </div>
-                                                </div>
-                                                <div id="Vision" class="tab-pane fade">
-                                                     <div class="list-content">
-                                                <h3>
-                                                    Sculpted Silhouette
-                                                </h3>
-                                                <p>
-                                                    Facial refinement at Rejuvita is rooted in structure and harmony. We enhance natural proportions while preserving expression, character, and individuality.
-                                                </p>
-                                                <ul>
-                                                    <li>
-                                                        <img src="./assets/images/star_2.png" alt="">
-                                                        Breast Lift
-                                                    </li>
-                                                    <li>
-                                                        <img src="./assets/images/star_2.png" alt="">
-                                                       Tummy Tuck
-                                                    </li>
-                                                    <li>
-                                                        <img src="./assets/images/star_2.png" alt="">
-                                                        High-Definition Liposuction
-                                                    </li>
-                                                    <li>
-                                                        <img src="./assets/images/star_2.png" alt="">
-                                                        Breast Augmentation
-                                                    </li>
-                                                    <li>
-                                                        <img src="./assets/images/star_2.png" alt="">
-                                                       Arm Lift (Brachioplasty)
-                                                    </li>
-                                                </ul>
-                                                <a class="theme-btn-main style-2" href="about.html">
-                                                <span class="theme-btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                <span class="theme-btn">Know More</span>
-                                                <span class="theme-btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                            </a>
-                                            </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Marquee Section Start -->
-                    <div class="marque-section mt-0">
-                        <div class="marquee">
-                            <div class="marquee-group">
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Cosmetic surgery
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> health care
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> beauty
-                                </div>
-                                 <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Breast Reduction
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> online doctor
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Hair fall Treatment
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Lip Enhancement
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                            </div>
-                            <div class="marquee-group">
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Cosmetic surgery
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> health care
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> beauty
-                                </div>
-                                 <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Breast Reduction
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> online doctor
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Hair fall Treatment
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Lip Enhancement
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                            </div>
-                            <div class="marquee-group">
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Cosmetic surgery
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> health care
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> beauty
-                                </div>
-                                 <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Breast Reduction
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> online doctor
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Hair fall Treatment
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> Lip Enhancement
-                                </div>
-                                <div class="text">
-                                    <img src="./assets/images/star.png" alt="img"> stomatology
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Hero Info List End -->
                     </div>
-
-                    <!-- Project Section Start -->
-                    <section class="project-section fix section-padding">
-                        <div class="container">
-                            <div class="section-title-area align-items-end">
-                                <div class="section-title mb-0">
-                                    <span class="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">
-                                        <img src="./assets/images/star_1.png" alt="img"> Successful surgery
-                                    </span>
-                                    <h2 class="wa_title_spilt_1">
-                                        <span class="style-font">Start Building </span> Your <br> Future Today With Us
-                                        </h2>  
-                                </div>
-                                <div class="array-button">
-                                    <button class="array-prev"><i class="fa-solid fa-chevron-left"></i></button>
-                                    <div class="swiper-dot">
-                                        <div class="dot2"></div>
-                                    </div>
-                                    <button class="array-next"><i class="fa-solid fa-chevron-right"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper project-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".2s">
-                                    <div class="project-thumb-items">
-                                        <img src="./assets/images/project-1.jpg" alt="img">
-                                        <div class="content">
-                                            <h3 class="title">
-                                                <a href="project-details.html">
-                                                    Woman before and after plastic surgery <br>
-                                                    of breast enhancement 
-                                                </a>
-                                            </h3>
-                                            <a href="project-details.html" class="icon">
-                                                <i class="fa-solid fa-arrow-up-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".4s">
-                                    <div class="project-thumb-items">
-                                        <img src="./assets/images/project-2.jpg" alt="img">
-                                        <div class="content">
-                                            <h3 class="title">
-                                                <a href="project-details.html">
-                                                    Woman before and after plastic surgery <br>
-                                                    of breast enhancement 
-                                                </a>
-                                            </h3>
-                                            <a href="project-details.html" class="icon">
-                                                <i class="fa-solid fa-arrow-up-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".6s">
-                                    <div class="project-thumb-items">
-                                        <img src="./assets/images/project-3.jpg" alt="img">
-                                        <div class="content">
-                                            <h3 class="title">
-                                                <a href="project-details.html">
-                                                    Woman before and after plastic surgery <br>
-                                                    of breast enhancement 
-                                                </a>
-                                            </h3>
-                                            <a href="project-details.html" class="icon">
-                                                <i class="fa-solid fa-arrow-up-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".8s">
-                                    <div class="project-thumb-items">
-                                        <img src="./assets/images/project-4.jpg" alt="img">
-                                        <div class="content">
-                                            <h3 class="title">
-                                                <a href="project-details.html">
-                                                    Woman before and after plastic surgery <br>
-                                                    of breast enhancement 
-                                                </a>
-                                            </h3>
-                                            <a href="project-details.html" class="icon">
-                                                <i class="fa-solid fa-arrow-up-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Shop Section Start -->
-                    <section class="shop-section fix section-padding bg-cover" style="background-image: url('./assets/images/shop-bg.jpg');">
-                        <div class="container">
-                            <div class="section-title text-center">
-                                <span class="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">
-                                    <img src="./assets/images/star_1.png" alt="img"> Our shop
-                                </span>
-                                <h2 class="wa_title_spilt_1">
-                                    Medixen
-                                    <span class="style-font">Beauty Products </span> For <br> Your Secret Beauty
-                                    </h2>  
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                                    <div class="shop-box-items bg-cover" style="background-image: url('./assets/images/shop-item-bg.jpg');">
-                                        <div class="thumb">
-                                            <img src="./assets/images/shop-1.png" alt="img">
-                                        </div>
-                                        <div class="content">
-                                            <p>$25.00</p>
-                                            <h3 class="title">
-                                                <a href="shop-details.html">High angle bottle and cream</a>
-                                            </h3>
-                                            <a href="shop-cart.html" class="cart-btn"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                                    <div class="shop-box-items bg-cover" style="background-image: url('./assets/images/shop-item-bg.jpg');">
-                                        <div class="thumb">
-                                            <img src="./assets/images/shop-2.png" alt="img">
-                                        </div>
-                                        <div class="content">
-                                            <p>$25.00</p>
-                                            <h3 class="title">
-                                                <a href="shop-details.html">High angle bottle and cream</a>
-                                            </h3>
-                                            <a href="shop-cart.html" class="cart-btn"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                                    <div class="shop-box-items bg-cover" style="background-image: url('./assets/images/shop-item-bg.jpg');">
-                                        <div class="thumb">
-                                            <img src="./assets/images/shop-3.png" alt="img">
-                                        </div>
-                                        <div class="content">
-                                            <p>$25.00</p>
-                                            <h3 class="title">
-                                                <a href="shop-details.html">High angle bottle and cream</a>
-                                            </h3>
-                                            <a href="shop-cart.html" class="cart-btn"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                                    <div class="shop-box-items bg-cover" style="background-image: url('./assets/images/shop-item-bg.jpg');">
-                                        <div class="thumb">
-                                            <img src="./assets/images/shop-4.png" alt="img">
-                                        </div>
-                                        <div class="content">
-                                            <p>$25.00</p>
-                                            <h3 class="title">
-                                                <a href="shop-details.html">High angle bottle and cream</a>
-                                            </h3>
-                                            <a href="shop-cart.html" class="cart-btn"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Testimonial Section Start -->
-                    <section class="testimonial-section-three fix section-padding">
-                        <div class="container">
-                            <div class="section-title-area align-items-end">
-                                <div class="section-title">
-                                    <span class="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">
-                                        <img src="./assets/images/star_1.png" alt="img"> Testimonials
-                                    </span>
-                                    <h2 class="wa_title_spilt_1">
-                                        What
-                                        <span class="style-font">Peoples Say </span> About <br> Our Service
-                                        </h2>  
-                                </div>
-                                <div class="array-button">
-                                    <button class="array-prev"><i class="fa-solid fa-chevron-left"></i></button>
-                                    <button class="array-next"><i class="fa-solid fa-chevron-right"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper testimonial-slider-three">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".2s">
-                                    <div class="testimonial-image-three">
-                                        <img src="./assets/images/testimonial-image-1.jpg" alt="img">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".4s">
-                                    <div class="testimonial-box-items-3">
-                                        <div class="quote-icon">
-                                            <img src="./assets/images/quote-icon.png" alt="img">
-                                        </div>
-                                        <p class="text">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sap fringilla, mattis ligula consectetur, ultrices mauris. Maecenas.
-                                        </p>
-                                        <div class="client-info">
-                                            <div class="client-img">
-                                                <img src="./assets/images/client-image1.png" alt="img">
-                                            </div>
-                                            <div class="client-content">
-                                                <h3>
-                                                    Alexander mithun
-                                                </h3>
-                                                <span>From canada</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".6s">
-                                    <div class="testimonial-image-three">
-                                        <img src="./assets/images/testimonial-image-2.jpg" alt="img">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".8s">
-                                    <div class="testimonial-box-items-3">
-                                        <div class="quote-icon">
-                                            <img src="./assets/images/quote-icon.png" alt="img">
-                                        </div>
-                                        <p class="text">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sap fringilla, mattis ligula consectetur, ultrices mauris. Maecenas.
-                                        </p>
-                                        <div class="client-info">
-                                            <div class="client-img">
-                                                <img src="./assets/images/client-image1.png" alt="img">
-                                            </div>
-                                            <div class="client-content">
-                                                <h3>
-                                                    Alexander mithun
-                                                </h3>
-                                                <span>From canada</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Counter Section Start -->
-                    <section class="counter-section-three fix bg-cover" style="background-image: url('./assets/images/counter-bg.jpg');">
-                        <div class="container">
-                            <div class="counter-wrapper-three">
-                                <div class="counter-items wow fadeInUp" data-wow-delay=".2s">
-                                    <h2>
-                                        <span class="count">85</span>+
-                                    </h2>
-                                    <p>
-                                        Dedicated team
-                                    </p>
-                                </div>
-                                <div class="line-1"></div>
-                                <div class="counter-items wow fadeInUp" data-wow-delay=".4s">
-                                    <h2>
-                                        <span class="count">99</span>%
-                                    </h2>
-                                    <p>
-                                        success rate
-                                    </p>
-                                </div>
-                                <div class="line-1"></div>
-                                <div class="counter-items wow fadeInUp" data-wow-delay=".6s">
-                                    <h2>
-                                        <span class="count">27</span>k
-                                    </h2>
-                                    <p>
-                                        Clients served
-                                    </p>
-                                </div>
-                                <div class="line-1"></div>
-                                <div class="counter-items wow fadeInUp" data-wow-delay=".8s">
-                                    <h2>
-                                        <span class="count">25</span>+
-                                    </h2>
-                                    <p>
-                                        achieve award
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Faq Section Start -->
-                    <section class="faq-section-three fix section-padding">
-                        <div class="faq-shape-1 float-bob-y">
-                            <img src="./assets/images/faq-shape-1.png" alt="img">
-                        </div>
-                        <div class="faq-shape-2 float-bob-y">
-                            <img src="./assets/images/faq-shape-2.png" alt="img">
-                        </div>
-                        <div class="container">
-                            <div class="section-title text-center mb-0">
-                                <span class="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">
-                                    <img src="./assets/images/star_1.png" alt="img"> Faq
-                                </span>
-                                <h2 class="wa_title_spilt_1">
-                                    <span class="style-font">Frequently </span> Ask Questions
-                                </h2>  
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <div class="faq-items-two">
-                                        <ul class="accordion-box wow fadeInUp" data-wow-delay=".3s">
-                                            <!--Block-->
-                                            <li class="accordion block active-block">
-                                                <div class="acc-btn active">
-                                                   1.  Is plastic surgery safe?
-                                                    <div class="icon fa-regular fa-plus"></div>
-                                                </div>
-                                                <div class="acc-content current">
-                                                    <div class="content">
-                                                        <div class="text">
-                                                           Recovery time depends on the procedure, but most patients can return to normal activities within a few days to a few weeks. Recovery time depends on the procedure, but most patients can return to normal activities within a few days to a few weeks.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!--Block-->
-                                            <li class="accordion block">
-                                                <div class="acc-btn active">
-                                                   2. How long does recovery take?
-                                                    <div class="icon fa-regular fa-plus"></div>
-                                                </div>
-                                                <div class="acc-content">
-                                                    <div class="content">
-                                                        <div class="text">
-                                                          Recovery time depends on the procedure, but most patients can return to normal activities within a few days to a few weeks. Recovery time depends on the procedure, but most patients can return to normal activities within a few days to a few weeks.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                             <!--Block-->
-                                            <li class="accordion block">
-                                                <div class="acc-btn active">
-                                                  3. Will the results look natural?
-                                                    <div class="icon fa-regular fa-plus"></div>
-                                                </div>
-                                                <div class="acc-content">
-                                                    <div class="content">
-                                                        <div class="text">
-                                                        Recovery time depends on the procedure, but most patients can return to normal activities within a few days to a few weeks. Recovery time depends on the procedure, but most patients can return to normal activities within a few days to a few weeks.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!--Block-->
-                                            <li class="accordion block">
-                                                <div class="acc-btn active">
-                                                   4. Are the results permanent?
-                                                    <div class="icon fa-regular fa-plus"></div>
-                                                </div>
-                                                <div class="acc-content">
-                                                    <div class="content">
-                                                        <div class="text">
-                                                         Recovery time depends on the procedure, but most patients can return to normal activities within a few days to a few weeks. Recovery time depends on the procedure, but most patients can return to normal activities within a few days to a few weeks.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!--Block-->
-                                            <li class="accordion block">
-                                                <div class="acc-btn active">
-                                                   5. Do I need a consultation before the procedure?
-                                                    <div class="icon fa-regular fa-plus"></div>
-                                                </div>
-                                                <div class="acc-content">
-                                                    <div class="content">
-                                                        <div class="text">
-                                                           Recovery time depends on the procedure, but most patients can return to normal activities within a few days to a few weeks. Recovery time depends on the procedure, but most patients can return to normal activities within a few days to a few weeks.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Cta Banner Section Start -->
-                    <div class="cta-banner-section full-img-wrap3">
-                        <div class="cta-banner-wrap full-img3 bg-cover" style="background-image: url('./assets/images/cta-banner.jpg');">
-                        </div>
-                    </div>
-
-                    <!-- News Section Start -->
-                    <section class="news-section fix section-padding">
-                        <div class="container">
-                            <div class="section-title-area align-items-end">
-                                <div class="section-title mb-0">
-                                    <span class="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">
-                                        <img src="./assets/images/star_1.png" alt="img"> Our press
-                                    </span>
-                                    <h2 class="wa_title_spilt_1">
-                                        <span class="style-font">Highlights</span> From News
-                                    </h2>
-                                </div>
-                                <div class="array-button">
-                                    <button class="array-prev"><i class="fa-solid fa-chevron-left"></i></button>
-                                    <div class="swiper-dot">
-                                        <div class="dot3"></div>
-                                    </div>
-                                    <button class="array-next"><i class="fa-solid fa-chevron-right"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper news-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".3s">
-                                    <div class="news-box-items">
-                                        <div class="thumb">
-                                            <img src="./assets/images/news-01.jpg" alt="img">
-                                            <img src="./assets/images/news-01.jpg" alt="img">
-                                        </div>
-                                        <div class="content">
-                                            <ul>
-                                                <li>
-                                                    <a href="news.html">plastic surgery</a>
-                                                </li>
-                                                <li>
-                                                    <p><span>By</span> Ellinien Loma</p>
-                                                </li>
-                                            </ul>
-                                            <h3 class="title"><a href="news-details.html">young female has contour plastic gets ready for cosmetic surgery</a></h3>
-                                            <a href="news-details.html" class="news-btn">
-                                                <span class="text">
-                                                    <span class="text-default">Read More  <i class="fa-regular fa-arrow-up-right"></i></span>
-                                                    <span class="text-hover">Read More  <i class="fa-regular fa-arrow-up-right"></i></span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".5s">
-                                    <div class="news-box-items">
-                                        <div class="thumb">
-                                            <img src="./assets/images/news-02.jpg" alt="img">
-                                            <img src="./assets/images/news-02.jpg" alt="img">
-                                        </div>
-                                        <div class="content">
-                                            <ul>
-                                                <li>
-                                                    <a href="news.html">plastic surgery</a>
-                                                </li>
-                                                <li>
-                                                    <p><span>By</span> Ellinien Loma</p>
-                                                </li>
-                                            </ul>
-                                            <h3 class="title"><a href="news-details.html">young female has contour plastic gets ready for cosmetic surgery</a></h3>
-                                            <a href="news-details.html" class="news-btn">
-                                                <span class="text">
-                                                    <span class="text-default">Read More  <i class="fa-regular fa-arrow-up-right"></i></span>
-                                                    <span class="text-hover">Read More  <i class="fa-regular fa-arrow-up-right"></i></span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".7s">
-                                    <div class="news-box-items">
-                                        <div class="thumb">
-                                            <img src="./assets/images/news-03.jpg" alt="img">
-                                            <img src="./assets/images/news-03.jpg" alt="img">
-                                        </div>
-                                        <div class="content">
-                                            <ul>
-                                                <li>
-                                                    <a href="news.html">plastic surgery</a>
-                                                </li>
-                                                <li>
-                                                    <p><span>By</span> Ellinien Loma</p>
-                                                </li>
-                                            </ul>
-                                            <h3 class="title"><a href="news-details.html">young female has contour plastic gets ready for cosmetic surgery</a></h3>
-                                            <a href="news-details.html" class="news-btn">
-                                                <span class="text">
-                                                    <span class="text-default">Read More  <i class="fa-regular fa-arrow-up-right"></i></span>
-                                                    <span class="text-hover">Read More  <i class="fa-regular fa-arrow-up-right"></i></span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide wow fadeInUp" data-wow-delay=".7s">
-                                    <div class="news-box-items">
-                                        <div class="thumb">
-                                            <img src="./assets/images/news-04.jpg" alt="img">
-                                            <img src="./assets/images/news-04.jpg" alt="img">
-                                        </div>
-                                        <div class="content">
-                                            <ul>
-                                                <li>
-                                                    <a href="news.html">plastic surgery</a>
-                                                </li>
-                                                <li>
-                                                    <p><span>By</span> Ellinien Loma</p>
-                                                </li>
-                                            </ul>
-                                            <h3 class="title"><a href="news-details.html">young female has contour plastic gets ready for cosmetic surgery</a></h3>
-                                            <a href="news-details.html" class="news-btn">
-                                                <span class="text">
-                                                    <span class="text-default">Read More  <i class="fa-regular fa-arrow-up-right"></i></span>
-                                                    <span class="text-hover">Read More  <i class="fa-regular fa-arrow-up-right"></i></span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Footer Section Start -->
-                    <footer class="footer-section">
-                        <div class="footer-area bg-cover fix" style="background-image: url('./assets/images/footer-bg.jpg')">
-                            <div class="footer-widget-wrapper">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="footer-left-item">
-                                                <h2 class="split-title">
-                                                    <span>Fresh Strategies, Trends</span>, & Tips Are Delivered To Your Inbox Regular!
-                                                </h2>
-                                                <form action="#" class="wow fadeInUp" data-wow-delay=".3s">
-                                                    <input type="text" placeholder="Enter your email...">
-                                                    <button class="email-btn" type="submit">
-                                                        <i class="fa-solid fa-envelope"></i>
-                                                    </button>
-                                                </form>
-                                                <ul class="wow fadeInUp" data-wow-delay=".5s">
-                                                    <li>
-                                                        Call: <a href="tel:+1234567890">+(123) 456-7890</a>
-                                                    </li>
-                                                    <li>
-                                                        /
-                                                    </li>
-                                                    <li>
-                                                        Mail:<a href="mailto:info@medixen.com">info@medixen.com</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="footer-right-item">
-                                                <div class="footer-header-item">
-                                                    <a href="index.html" class="footer-logo wow fadeInUp" data-wow-delay=".3s">
-                                                        <img src="./assets/images/footer-logo.svg" alt="img">
-                                                    </a>
-                                                    <p class="wow fadeInUp" data-wow-delay=".5s">45 Greenway Gardens, Nelson Mandela Ave, NSW 2000, Flat 3B, London, W1A 1AA, UK</p>
-                                                </div>
-                                                <div class="row g-4 justify-content-between">
-                                                    <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                                                        <div class="footer-widget-items">
-                                                            <div class="widget-head">
-                                                                <h3>Resourses</h3>
-                                                            </div>
-                                                            <ul class="gt-list-area">
-                                                                <li>
-                                                                    <a href="contact.html">
-                                                                        Contact us
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="team.html">
-                                                                        Our teams
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="contact.html">
-                                                                    Careers
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="contact.html">
-                                                                    Feedback
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="404.html">
-                                                                    Error 404
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-5 col-lg-6 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay=".5s">
-                                                        <div class="footer-widget-items">
-                                                            <div class="widget-head">
-                                                                <h3>Services</h3>
-                                                            </div>
-                                                            <ul class="gt-list-area">
-                                                                <li>
-                                                                    <a href="service-details.html">
-                                                                       Nose Reshaping
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="service-details.html">
-                                                                        Liposuction
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="service-details.html">
-                                                                       Breast Augmentation
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="service-details.html">
-                                                                       Botox & Fillers
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="service-details.html">
-                                                                        Facelift
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 col-lg-6 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay=".7s">
-                                                        <div class="social-icon d-grid align-items-center">
-                                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                                            <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                            </div>
-                            <div class="footer-bottom">
-                                <div class="container">
-                                    <div class="footer-bottom-wrapper">
-                                        <p class="wow fadeInUp" data-wow-delay=".3s">
-                                          © 2026 <b>Medixen.</b> All rights reserved.
-                                        </p>
-                                        <ul class="footer-list wow fadeInUp" data-wow-delay=".5s">
-                                            <li>
-                                                <a href="contact.html">Privacy policy</a>
-                                            </li>
-                                            <li><span class="dots"></span></li>
-                                            <li>
-                                                <a href="contact.html">Terms & conditions</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
+                    <!-- Hero Box End -->
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Hero Section End -->
+    
+    <!-- About Us Section Start -->
+    <div class="about-us">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-6">
+                    <!-- About Us Images Start -->
+                    <div class="about-us-images wow fadeInUp">
+                        <!-- About Image Box 1 Start -->
+                        <div class="about-image-box-1">
+                            <!-- About Image Start -->
+                            <div class="about-image">
+                                <figure>
+                                    <img src="./assets/images/about-us-image-1.png" alt="">
+                                </figure>
+                            </div>
+                            <!-- About Image End -->
+                        </div>
+                        <!-- About Image Box 1 End -->
 
+                        <!-- About Image Box 2 Start -->
+                        <div class="about-image-box-2">
+                            <!-- About Image Start -->
+                            <div class="about-image">
+                                <figure class="image-anime reveal">
+                                    <img src="./assets/images/about-us-image-2.jpg" alt="">
+                                </figure>
+                                
+                                <!-- Year Experience Box Start -->
+                                <div class="year-experience-circle">
+                                    <img src="./assets/images/year-experience-circle.svg" alt="">
+                                </div>
+                                <!-- Year Experience Box End -->
+                            </div>
+                            <!-- About Image End -->
+                            
+                            <!-- About Counter Box Start -->
+                            <div class="about-counter-box">
+                                <div class="about-counter-info">
+                                    <h2><span class="counter">4.9</span>/5</h2>
+                                    <ul>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                </div>
+                                <div class="about-counter-content">
+                                    <p>Average patient satisfact rating.</p>
+                                </div>
+                            </div>
+                            <!-- About Counter Box End -->
+                        </div>
+                        <!-- About Image Box 2 End -->
+                    </div>
+                    <!-- About Us Images End -->
+                </div>
+
+                <div class="col-xl-6">
+                    <!-- About Us Content Start -->
+                    <div class="about-us-content">
+                        <!-- Section Title Start -->
+                        <div class="section-title">
+                            <h3 class="wow fadeInUp">About Us</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Your trusted dental partner for every family member</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">We provide comprehensive dental care for patients of all ages, ensuring healthy, confident smiles for every member of your family.</p>
+                        </div>
+                        <!-- Section Title End -->
+
+                        <!-- About Us List Start -->
+                        <div class="about-us-list wow fadeInUp" data-wow-delay="0.4s">
+                            <ul>
+                                <li>Experience Team of Dental Professional</li>
+                                <li>Gentle and Compassionate Care</li>
+                            </ul>
+                        </div>
+                        <!-- About Us list End -->
+
+                        <!-- About Author Body Start -->
+                        <div class="about-author-body wow fadeInUp" data-wow-delay="0.6s">
+                            <div class="about-author-content">
+                                <h3>Trusted by Over 5,000+ Patient Worldwide</h3>
+                            </div>
+                            <div class="satisfy-client-images">
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/author-1.jpg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/author-2.jpg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/author-3.jpg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/author-4.jpg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image add-more">
+                                    <i class="fa fa-solid fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- About Author Body End -->
+
+                        <!-- About Us Footer Start -->
+                        <div class="about-us-footer wow fadeInUp" data-wow-delay="0.8s">
+                            <!-- About Us Button Start -->
+                            <div class="about-us-btn">
+                                <a href="about.html" class="btn-default">more about us</a>
+                            </div>
+                            <!-- About Us Button End -->
+
+                            <!-- About Contact Box Start -->
+                            <div class="about-contact-box">
+                                <div class="icon-box">
+                                    <img src="./assets/images/icon-phone-accent.svg" alt="">
+                                </div>
+                                <div class="about-contact-box-content">
+                                    <p>Need Help?</p>
+                                    <h3><a href="tel:+123254896">+123-254-896</a></h3>
+                                </div>
+                            </div>
+                            <!-- About Contact Box End -->
+                        </div>
+                        <!-- About Us Footer End -->
+                    </div>
+                    <!-- About Us Content End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Us Section End -->
+
+    <!-- Our Services Section Start -->
+    <div class="our-services bg-section">
+        <div class="container">
+            <div class="row section-row">
+                <div class="col-lg-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title section-title-center">
+                        <h3 class="wow fadeInUp">Our services</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Complete dental services for a healthy smile</h2>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <!-- Service Item Start -->
+                    <div class="service-item box-bg-shape wow fadeInUp">
+                        <!-- Service Item Image Start -->
+                        <div class="service-item-image">
+                            <figure>
+                                <img src="./assets/images/service-item-image-1.png" alt="">
+                            </figure>
+                        </div>
+                        <!-- Service Item Image End -->
+
+                        <!-- Service Content Start -->
+                        <div class="service-item-content">
+                            <h3><a href="service-single.html">Pediatric Dentistry</a></h3>
+                            <p>Our orthodontic treatments, including brace, clear aligner gently straighten teeth.</p>
+                            <ul>
+                                <li>Braces</li>
+                                <li>Clear Aligners</li>
+                            </ul>
+                        </div>
+                        <!-- Service Content End -->
+                        
+                        <!-- Box Readmore Button Start -->
+                        <div class="box-readmore-btn">
+                            <a href="service-single.html"><img src="./assets/images/arrow-white.svg" alt=""></a>
+                        </div>
+                        <!-- Box Readmore Button End -->
+                    </div>
+                    <!-- Service Item End -->
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <!-- Service Item Start -->
+                    <div class="service-item box-bg-shape wow fadeInUp" data-wow-delay="0.2s">
+                        <!-- Service Item Image Start -->
+                        <div class="service-item-image">
+                            <figure>
+                                <img src="./assets/images/service-item-image-2.png" alt="">
+                            </figure>
+                        </div>
+                        <!-- Service Item Image End -->
+
+                        <!-- Service Content Start -->
+                        <div class="service-item-content">
+                            <h3><a href="service-single.html">Orthodontics</a></h3>
+                            <p>Our orthodontic treatments, including brace, clear aligner gently straighten teeth.</p>
+                            <ul>
+                                <li>Braces</li>
+                                <li>Clear Aligners</li>
+                            </ul>
+                        </div>
+                        <!-- Service Content End -->
+                        
+                        <!-- Box Readmore Button Start -->
+                        <div class="box-readmore-btn">
+                            <a href="service-single.html"><img src="./assets/images/arrow-white.svg" alt=""></a>
+                        </div>
+                        <!-- Box Readmore Button End -->
+                    </div>
+                    <!-- Service Item End -->
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <!-- Service Item Start -->
+                    <div class="service-item box-bg-shape wow fadeInUp" data-wow-delay="0.4s">
+                        <!-- Service Item Image Start -->
+                        <div class="service-item-image">
+                            <figure>
+                                <img src="./assets/images/service-item-image-3.png" alt="">
+                            </figure>
+                        </div>
+                        <!-- Service Item Image End -->
+
+                        <!-- Service Content Start -->
+                        <div class="service-item-content">
+                            <h3><a href="service-single.html">Pediatric Dentistry</a></h3>
+                            <p>Our orthodontic treatments, including brace, clear aligner gently straighten teeth.</p>
+                            <ul>
+                                <li>Braces</li>
+                                <li>Clear Aligners</li>
+                            </ul>
+                        </div>
+                        <!-- Service Content End -->
+                        
+                        <!-- Box Readmore Button Start -->
+                        <div class="box-readmore-btn">
+                            <a href="service-single.html"><img src="./assets/images/arrow-white.svg" alt=""></a>
+                        </div>
+                        <!-- Box Readmore Button End -->
+                    </div>
+                    <!-- Service Item End -->
+                </div>
+
+                <div class="col-lg-12">
+                    <!-- Section Footer Text Start -->
+                    <div class="section-footer-text wow fadeInUp" data-wow-delay="0.6s">
+                        <p><span>Free</span>Let's make something great work together. <a href="contact.html">Get Free Quote</a></p>
+                    </div>
+                    <!-- Section Footer Text End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Services Section End -->
+
+    <!-- Our Feature Section Start -->
+    <div class="our-features">
+        <div class="container">
+            <div class="row">                
+                <div class="col-lg-12">
+                    <!-- Feature Content Start -->
+                    <div class="feature-content">
+                        <!-- Section Title Start -->
+                        <div class="section-title section-title-center">
+                            <h3 class="wow fadeInUp">Our Feature</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Modern dentistry focused on your comfort and care</h2>
+                        </div>
+                        <!-- Section Title End -->
+
+                        <!-- Feature Button Start -->
+                        <div class="feature-btn wow fadeInUp" data-wow-delay="0.2s">
+                            <a href="book-appointment.html" class="btn-default">Make an Appointment</a>
+                        </div>
+                        <!-- Feature Button End -->
+                    </div>
+                    <!-- Feature Content End -->                 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Feature Box Start -->
+                    <div class="feature-box-list">
+                        <!-- Feature Box Start -->
+                        <div class="feature-box-1">
+                            <div class="feature-item-1 wow fadeInUp">
+                                <div class="icon-box">
+                                    <img src="./assets/images/icon-feature-item-1.svg" alt="">
+                                </div>
+                                <div class="feature-item-content">
+                                    <h3>Experienced Dental Team</h3>
+                                    <p>Skilled professionals committed to gentle, personalized care.</p>
+                                </div>
+                            </div>
     
-        <!--<< All JS Plugins >>-->
-        <script src="./assets/js/jquery-3.7.1.min.js"></script>
-        <!--<< Bootstrap Js >>-->
-        <script src="./assets/js/bootstrap.bundle.min.js"></script>
-        <!--<< Gsap Min Js >>-->
-        <script src="./assets/js/gsap.min.js"></script>
-        <!--<< ScrollTrigger Min Js >>-->
-        <script src="./assets/js/ScrollTrigger.min.js"></script>
-        <!--<< ScrollSmoother Min Js >>-->
-        <script src="./assets/js/ScrollSmoother.min.js"></script>
-        <!--<< ScrollToPlugin Min Js >>-->
-        <script src="./assets/js/ScrollToPlugin.min.js"></script>
-        <!--<< SplitText Min Js >>-->
-        <script src="./assets/js/SplitText.min.js"></script>
-        <!--<< TextPlugin Min Js >>-->
-        <script src="./assets/js/TextPlugin.js"></script>
-        <!--<< Chroma Min Js >>-->
-        <script src="./assets/js/chroma.min.js"></script>
-        <!--<< Three Js >>-->
-        <script src="./assets/js/three.js"></script>
-        <!--<< Webgl Min Js >>-->
-        <script src="./assets/js/webgl.js"></script>
-        <!--<< nice-selec Js >>-->
-        <script src="./assets/js/jquery.nice-select.min.js"></script>
-        <!--<< Waypoints Js >>-->
-        <script src="./assets/js/jquery.waypoints.js"></script>
-        <!--<< Counterup Js >>-->
-        <script src="./assets/js/jquery.counterup.min.js"></script>
-        <!--<< Datepicker Js >>-->
-        <script src="./assets/js/bootstrap-datepicker.js"></script>
-        <!--<< Swiper Slider Js >>-->
-        <script src="./assets/js/swiper-bundle.min.js"></script>
-        <!--<< Magnific Popup Js >>-->
-        <script src="./assets/js/jquery.magnific-popup.min.js"></script>
-        <!--<< Wow Animation Js >>-->
-        <script src="./assets/js/wow.min.js"></script>
-        <!--<< Main.js >>-->
-        <script src="./assets/js/main.js"></script>
-        <script type="module" src="./assets/js/distortion-img.js"></script>
+                            <div class="feature-item-2 wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="feature-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/feature-image-1.jpg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="feature-item-content">
+                                    <h3>Commitment to Long-Term Oral Health</h3>
+                                </div>
+                            </div>
+                        </div>      
+                        <!-- Feature Box End -->              
     
+                        <!-- Feature Highlighted Box Start -->
+                        <div class="feature-highlighted-box wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="satisfy-client-images">
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/author-1.jpg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/author-2.jpg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/author-3.jpg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image add-more">
+                                    <i class="fa fa-solid fa-plus"></i>
+                                </div>
+                            </div>
+    
+                            <div class="feature-highlighted-content">
+                                <h2><span class="counter">5</span>k+</h2>
+                                <p>Patient Worldwide</p>
+                            </div>
+                        </div>
+                        <!-- Feature Highlighted Box End -->
+    
+                        <!-- Feature Box Start -->
+                        <div class="feature-box-2">
+                            <div class="feature-item-2 wow fadeInUp" data-wow-delay="0.6s">
+                                <div class="feature-image">
+                                    <figure class="image-anime">
+                                        <img src="./assets/images/feature-image-2.jpg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="feature-item-content">
+                                    <h2><span class="counter">24</span>/7</h2>
+                                    <p>Because your dental health can't wait.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item-1 wow fadeInUp" data-wow-delay="0.8s">
+                                <div class="feature-item-content">
+                                    <h3>Advanced Technologies for Comfortable Treatments</h3>
+                                </div>
+                                <div class="feature-charactor-image">
+                                    <figure>
+                                        <img src="./assets/images/feature-image-3.png" alt="">
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Feature Box End -->
+                    </div>
+                    <!-- Feature Box End -->
+                </div>
+
+                <div class="col-lg-12">
+                    <!-- Section Footer Text Start -->
+                    <div class="section-footer-text section-satisfy-img wow fadeInUp" data-wow-delay="1s">
+                        <!-- Satisfy Client Images Start -->
+                        <div class="satisfy-client-images">
+                            <div class="satisfy-client-image">
+                                <figure class="image-anime">
+                                    <img src="./assets/images/author-1.jpg" alt="">
+                                </figure>
+                            </div>
+                            <div class="satisfy-client-image">
+                                <figure class="image-anime">
+                                    <img src="./assets/images/author-2.jpg" alt="">
+                                </figure>
+                            </div>
+                            <div class="satisfy-client-image">
+                                <figure class="image-anime">
+                                    <img src="./assets/images/author-3.jpg" alt="">
+                                </figure>
+                            </div>
+                            <div class="satisfy-client-image">
+                                <figure class="image-anime">
+                                    <img src="./assets/images/author-4.jpg" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- Satisfy Client Images End -->
+                        
+                        <p>Join us to build smarter, faster, and future-ready technology solutions.</p>
+                    </div>
+                    <!-- Section Footer Text End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Feature Section End -->
+
+    <!-- Why Choose Us Section Start -->
+    <div class="why-choose-us bg-section dark-section">
+        <div class="container">
+            <div class="row section-row">
+                <div class="col-lg-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title section-title-center">
+                        <h3 class="wow fadeInUp">Why choose us</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Delivering gentle dental care with experience and trust</h2>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-6 order-1">
+                    <!-- Why Choose Item List Start -->
+                    <div class="why-choose-item-list">
+                        <!-- Why Choose Item Start -->
+                        <div class="why-choose-item wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="icon-box">
+                                <img src="./assets/images/icon-why-choose-1.svg" alt="">
+                            </div>
+                            <div class="why-choose-item-content">
+                                <h3>State-of-Art Technology</h3>
+                                <p>We use advanced dental technology to ensure precise, safe, and comfortable treatments for every patient.</p>
+                            </div>
+                        </div>
+                        <!-- Why Choose Item End -->
+
+                        <!-- Why Choose Item Start -->
+                        <div class="why-choose-item wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="icon-box">
+                                <img src="./assets/images/icon-why-choose-2.svg" alt="">
+                            </div>
+                            <div class="why-choose-item-content">
+                                <h3>Patient-Centered Approach</h3>
+                                <p>We use advanced dental technology to ensure precise, safe, and comfortable treatments for every patient.</p>
+                            </div>
+                        </div>
+                        <!-- Why Choose Item End -->
+                    </div>
+                    <!-- Why Choose Item List End -->
+                </div>
+
+                <div class="col-lg-4 order-lg-2 order-md-3 order-2">
+                    <!-- Why Choose Image Start -->
+                    <div class="why-choose-image wow fadeInUp" data-wow-delay="0.2s">
+                        <figure>
+                            <img src="./assets/images/why-choose-image.png" alt="">
+                        </figure>
+                    </div>
+                    <!-- Why Choose Image End -->
+                </div>
+
+                <div class="col-lg-4 col-md-6 order-lg-2 order-md-2 order-3">
+                    <!-- Why Choose Item List Start -->
+                    <div class="why-choose-item-list">
+                        <!-- Why Choose Item Start -->
+                        <div class="why-choose-item wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="icon-box">
+                                <img src="./assets/images/icon-why-choose-3.svg" alt="">
+                            </div>
+                            <div class="why-choose-item-content">
+                                <h3>Gentle Compassionate Care</h3>
+                                <p>We use advanced dental technology to ensure precise, safe, and comfortable treatments for every patient.</p>
+                            </div>
+                        </div>
+                        <!-- Why Choose Item End -->
+
+                        <!-- Why Choose Item Start -->
+                        <div class="why-choose-item wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="icon-box">
+                                <img src="./assets/images/icon-why-choose-4.svg" alt="">
+                            </div>
+                            <div class="why-choose-item-content">
+                                <h3>Family-Friendly Environment</h3>
+                                <p>We use advanced dental technology to ensure precise, safe, and comfortable treatments for every patient.</p>
+                            </div>
+                        </div>
+                        <!-- Why Choose Item End -->
+                    </div>
+                    <!-- Why Choose Item List End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Why Choose Us Section End -->
+
+    <!-- What We Do Section Start -->
+    <div class="what-we-do">
+        <div class="container">
+            <div class="row section-row">
+                <div class="col-lg-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title section-title-center">
+                        <h3 class="wow fadeInUp">what we do</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Personalized dentistry services for every stage of life</h2>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <!-- What We Do Item Start -->
+                    <div class="what-we-do-item wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="what-we-do-image">
+                            <figure>
+                                <img src="./assets/images/what-we-do-image-1.png" alt="">
+                            </figure>
+                        </div>
+                        <div class="what-we-do-content">
+                            <h3>Restorative Treatments</h3>
+                            <p>We restore damaged or missing teeth with crowns, bridges, and implants, bringing.</p>
+                        </div>
+                    </div>
+                    <!-- What We Do Item End -->
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <!-- What We Do Item Start -->
+                    <div class="what-we-do-item wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="what-we-do-content">
+                            <h3>Progress Treatments</h3>
+                            <p>We restore damaged or missing teeth with crowns, bridges, and implants, bringing.</p>
+                        </div>                        
+                        <div class="what-we-do-image">
+                            <figure>
+                                <img src="./assets/images/what-we-do-image-2.png" alt="">
+                            </figure>
+                        </div>
+                    </div>
+                    <!-- What We Do Item End -->
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <!-- What We Do Item Start -->
+                    <div class="what-we-do-item wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="what-we-do-image">
+                            <figure>
+                                <img src="./assets/images/what-we-do-image-3.png" alt="">
+                            </figure>
+                        </div>
+                        <div class="what-we-do-content">
+                            <h3>Appointment Treatment</h3>
+                            <p>We restore damaged or missing teeth with crowns, bridges, and implants, bringing.</p>
+                        </div>
+                    </div>
+                    <!-- What We Do Item End -->
+                </div>
+
+                <div class="col-lg-12">
+                    <!-- Section Footer Text Start -->
+                    <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
+                        <p>Join us and create smiles that truly inspire confidence. <a href="contact.html">Contact Us</a></p>                            
+                        <ul>
+                            <li><span class="counter">4.9</span>/5</li>
+                            <li><i class="fa-solid fa-star"></i></li>
+                            <li>Our 4k Patient Review</li>
+                        </ul>
+                    </div>
+                    <!-- Section Footer Text End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- What We Do Section End -->
+            
+    <!-- Our Expert Section Start -->
+    <div class="our-expert bg-section dark-section parallaxie">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Our Expert Section Start -->
+                    <div class="our-expert-section">
+                        <!-- Our Expert Content Start -->
+                        <div class="our-expert-content">
+                            <!-- Section Title Start -->
+                            <div class="section-title">
+                                <h2 class="text-anime-style-3" data-cursor="-opaque">Expert dentistry dedicated to lifelong oral health</h2>
+                            </div>
+                            <!-- Section Title End -->
+
+                            <!-- Our Expert List Start -->
+                            <div class="our-expert-list wow fadeInUp" data-wow-delay="0.2s">
+                                <ul>
+                                    <li>General Dentistry</li>
+                                    <li>Emergency Dentistry</li>
+                                </ul>
+                            </div>
+                            <!-- Our Expert List End -->
+                        </div>
+                        <!-- Our Expert Content End -->
+
+                        <!-- Our Expert Box Start -->
+                        <div class="our-expert-box wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="expert-box-content">
+                                <h4>patient rate</h4>
+                                <h3>Average rate</h3>
+                                <p>Our experienced team provides advanced.</p>
+                                <h2><span class="counter">90</span><sub>bpm</sub></h2>
+                            </div>
+                            <div class="expert-box-image">
+                                <img src="./assets/images/expert-box-rate-image.png" alt="">
+                            </div>
+                        </div>
+                        <!-- Our Expert Box End -->
+                    </div>
+                    <!-- Our Expert Section End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Expert Section End -->
+
+    <!-- Our Team Start -->
+    <div class="our-team">
+        <div class="container">
+            <div class="row section-row">
+                <div class="col-lg-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title section-title-center">
+                        <h3 class="wow fadeInUp">Our Team</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Trusted professionals creating smiles with expert care</h2>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <!-- Team Item Start -->
+                    <div class="team-item wow fadeInUp">
+                        <div class="team-image box-bg-shape">
+                            <figure>
+                                <img src="./assets/images/team-1.png" alt="">
+                            </figure>
+                            <div class="team-social-list">
+                                <div class="team-social-icon">
+                                    <ul>
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="team-readmore-btn">
+                                    <a href="#"><img src="./assets/images/icon-share.svg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h3><a href="team-single.html">Dr.Savannah Nguyen</a></h3>
+                            <p>Chief Dentist</p>
+                        </div>
+                    </div>
+                    <!-- Team Item End -->
+                </div>
+                
+                <div class="col-xl-3 col-md-6">
+                    <!-- Team Item Start -->
+                    <div class="team-item wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="team-image box-bg-shape">
+                            <figure>
+                                <img src="./assets/images/team-2.png" alt="">
+                            </figure>
+                            <div class="team-social-list">
+                                <div class="team-social-icon">
+                                    <ul>
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="team-readmore-btn">
+                                    <a href="#"><img src="./assets/images/icon-share.svg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h3><a href="team-single.html">Dr.Theresa Webb</a></h3>
+                            <p>Implantologist</p>
+                        </div>
+                    </div>
+                    <!-- Team Item End -->
+                </div>
+                
+                <div class="col-xl-3 col-md-6">
+                    <!-- Team Item Start -->
+                    <div class="team-item wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="team-image box-bg-shape">
+                            <figure>
+                                <img src="./assets/images/team-3.png" alt="">
+                            </figure>
+                            <div class="team-social-list">
+                                <div class="team-social-icon">
+                                    <ul>
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="team-readmore-btn">
+                                    <a href="#"><img src="./assets/images/icon-share.svg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h3><a href="team-single.html">Dr.Jenny Wilson</a></h3>
+                            <p>Pediatric Dentist</p>
+                        </div>
+                    </div>
+                    <!-- Team Item End -->
+                </div>
+                
+                <div class="col-xl-3 col-md-6">
+                    <!-- Team Item Start -->
+                    <div class="team-item wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="team-image box-bg-shape">
+                            <figure>
+                                <img src="./assets/images/team-4.png" alt="">
+                            </figure>
+                            <div class="team-social-list">
+                                <div class="team-social-icon">
+                                    <ul>
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="team-readmore-btn">
+                                    <a href="#"><img src="./assets/images/icon-share.svg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h3><a href="team-single.html">Dr.Ronald Richards</a></h3>
+                            <p>Gum Care Specialist</p>
+                        </div>
+                    </div>
+                    <!-- Team Item End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Team End -->
+
+    <!-- Our Testimonial Section Start -->
+    <div class="our-testimonial bg-section">
+        <div class="container">
+            <div class="row section-row align-items-center">
+                <div class="col-lg-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title section-title-center">
+                        <h3 class="wow fadeInUp">testimonials</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Happy patients sharing their dental care journey</h2>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Testimonial Slider Start -->
+                    <div class="testimonial-slider">
+                        <div class="swiper">
+                            <div class="swiper-wrapper" data-cursor-text="Drag">
+                                <!-- Testimonial Slide Start -->
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-item-header">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>                              
+                                            <div class="testimonial-content">
+                                                <p>"The team is amazing! They made me feel comfortable and explained every step. My smile has never looked better."</p>
+                                            </div>
+                                        </div>                                        
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-author">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="./assets/images/author-1.jpg" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>Dr. Savannah Nguyen</h3>
+                                                    <p>Chief Dentist</p>
+                                                </div>
+                                            </div> 
+                                            <div class="testimonial-quote">
+                                                <img src="./assets/images/testimonial-quote.svg" alt="">
+                                            </div>                                              
+                                        </div>                                    
+                                    </div>
+                                </div>
+                                <!-- Testimonial Slide End -->
+
+                                <!-- Testimonial Slide Start -->
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-item-header">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>                              
+                                            <div class="testimonial-content">
+                                                <p>"The team is amazing! They made me feel comfortable and explained every step. My smile has never looked better."</p>
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-author">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="./assets/images/author-2.jpg" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>Dr. Bessie Cooper</h3>
+                                                    <p>Orthodontist</p>
+                                                </div>
+                                            </div> 
+                                            <div class="testimonial-quote">
+                                                <img src="./assets/images/testimonial-quote.svg" alt="">
+                                            </div>                                              
+                                        </div>                                  
+                                    </div>
+                                </div>
+                                <!-- Testimonial Slide End -->
+
+                                <!-- Testimonial Slide Start -->
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-item-header">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>                              
+                                            <div class="testimonial-content">
+                                                <p>"The team is amazing! They made me feel comfortable and explained every step. My smile has never looked better."</p>
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-author">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="./assets/images/author-3.jpg" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>Dr. Kristin Watson</h3>
+                                                    <p>Consultant Dentist</p>
+                                                </div>
+                                            </div> 
+                                            <div class="testimonial-quote">
+                                                <img src="./assets/images/testimonial-quote.svg" alt="">
+                                            </div>                                              
+                                        </div>                                   
+                                    </div>
+                                </div>
+                                <!-- Testimonial Slide End -->
+
+                                <!-- Testimonial Slide Start -->
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-item-header">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>                              
+                                            <div class="testimonial-content">
+                                                <p>"The team is amazing! They made me feel comfortable and explained every step. My smile has never looked better."</p>
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-author">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="./assets/images/author-4.jpg" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>Dr. Cody Fisher</h3>
+                                                    <p>Pediatric Dentist</p>
+                                                </div>
+                                            </div> 
+                                            <div class="testimonial-quote">
+                                                <img src="./assets/images/testimonial-quote.svg" alt="">
+                                            </div>                                              
+                                        </div>                                   
+                                    </div>
+                                </div>
+                                <!-- Testimonial Slide End -->
+                            </div>
+                            <div class="testimonial-pagination"></div>
+                        </div>
+                    </div>
+                    <!-- Testimonial Slider End -->
+                </div>
+
+                <div class="col-lg-12">
+                    <!-- Section Footer Text Start -->
+                    <div class="section-footer-text wow fadeInUp" data-wow-delay="0.2s">
+                        <ul>
+                            <li><span class="counter">4.9</span>/5</li>
+                            <li><i class="fa-solid fa-star"></i></li>
+                            <li>Our 4k Patient Review</li>
+                        </ul>
+                    </div>
+                    <!-- Section Footer Text End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Testimonial Section End -->
+
+    <!-- Our Transformation Section Start -->
+    <div class="our-transformation">
+        <div class="container">
+            <div class="row section-row">
+                <div class="col-lg-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title section-title-center">
+                        <h3 class="wow fadeInUp">After/Before</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">See stunning smile transformation before and after</h2>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Our Transformation Box Start -->
+                    <div class="our-transformation-box tab-content wow fadeInUp" data-wow-delay="0.2s" id="myTabContent">
+                        <!-- Sidebar Our Transformation Nav start -->
+                        <div class="our-transformation-nav">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="one-tab" data-bs-toggle="tab" data-bs-target="#one" type="button" role="tab" aria-selected="true"><img src="./assets/images/icon-transformation-nav-1.svg" alt="">Invisalign Treatment</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="two-tab" data-bs-toggle="tab" data-bs-target="#two" type="button" role="tab" aria-selected="false"><img src="./assets/images/icon-transformation-nav-2.svg" alt="">Veneers & Bonding</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="three-tab" data-bs-toggle="tab" data-bs-target="#three" type="button" role="tab" aria-selected="false"><img src="./assets/images/icon-transformation-nav-3.svg" alt="">Pediatric Transformations</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="four-tab" data-bs-toggle="tab" data-bs-target="#four" type="button" role="tab" aria-selected="false"><img src="./assets/images/icon-transformation-nav-4.svg" alt="">Teeth Whitening</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Sidebar Our Transformation Nav End -->
+
+                        <!-- Our Transformation Item Start -->
+                        <div class="transformation-tab-item tab-pane fade show active" id="one" role="tabpanel">
+                            <!-- Transformation Image Box Start -->
+                            <div class="transformation-image-box">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-1.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-1.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-2.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-2.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-3.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-3.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Transformation Image Box End -->
+                        </div>
+                        <!-- Our Transformation Item End -->
+
+                        <!-- Our Transformation Item Start -->
+                        <div class="transformation-tab-item tab-pane fade" id="two" role="tabpanel">
+                            <!-- Transformation Image Box Start -->
+                            <div class="transformation-image-box">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-4.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-4.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-5.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-5.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-6.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-6.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Transformation Image Box End -->
+                        </div>
+                        <!-- Our Transformation Item End -->
+
+                        <!-- Our Transformation Item Start -->
+                        <div class="transformation-tab-item tab-pane fade" id="three" role="tabpanel">
+                            <!-- Transformation Image Box Start -->
+                            <div class="transformation-image-box">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-7.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-7.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-8.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-8.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-9.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-9.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Transformation Image Box End -->
+                        </div>
+                        <!-- Our Transformation Item End -->
+
+                        <!-- Our Transformation Item Start -->
+                        <div class="transformation-tab-item tab-pane fade" id="four" role="tabpanel">
+                            <!-- Transformation Image Box Start -->
+                            <div class="transformation-image-box">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-2.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-2.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-6.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-6.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <!-- Transformation Image Start -->
+                                        <div class="transformation_image">					
+                                            <img src="./assets/images/transformation-img-before-1.jpg" alt="">
+                                            <img src="./assets/images/transformation-img-after-1.jpg" alt="">
+                                        </div>
+                                        <!-- Transformation Image End -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Transformation Image Box End -->
+                        </div>
+                        <!-- Our Transformation Item End -->
+                    </div>
+                    <!-- Our Transformation Box End -->
+                </div>
+
+                <div class="col-lg-12">
+                    <!-- Section Footer Text Start -->
+                    <div class="section-footer-text wow fadeInUp" data-wow-delay="0.4s">
+                        <p><span>Free</span>Crafted for Your Cravings: Today's Must- <a href="menu.html">Try Selection</a></p>
+                    </div>
+                    <!-- Section Footer Text End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Transformation Section End -->
+
+    <!-- Book Appointment Section Start -->
+    <div class="book-appointment bg-section parallaxie">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Appointment Form Box Start -->
+                    <div class="appointment-form-box">
+                        <!-- Section Title Start -->
+                        <div class="section-title">
+                            <h3 class="wow fadeInUp">Book an Appointment</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Make an Appointment</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">Thousands of patients trust us for compassionate, advanced dental care that delivers lasting confidence and healthy smiles.</p>
+                        </div>
+                        <!-- Section Title End -->
+
+                        <!-- Book Appointment Form Start -->
+                        <div class="appointment-form wow fadeInUp" data-wow-delay="0.4s">
+                            <form id="appointmentForm" action="#" method="POST" data-toggle="validator">
+                                <div class="row">                                
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="text" name="fname" class="form-control" id="fname" placeholder="First Name" required="">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="text" name="lname" class="form-control" id="lname" placeholder="Last Name" required="">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-12 mb-4">
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="E-mail" required="">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-12 mb-4">
+                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone No." required="">
+                                        <div class="help-block with-errors"></div>
+                                    </div>                                 
+                                                                        
+                                    <div class="form-group col-md-6 mb-4">
+                                        <select name="services" class="form-control form-select" id="services" required="">
+                                            <option value="" disabled="" selected="">Select a Service</option>
+                                            <option value="pediatric_dentistry">Pediatric Dentistry</option>
+                                            <option value="orthodontics">Orthodontics</option>
+                                            <option value="pediatric_dentistry">Pediatric Dentistry</option>
+                                            <option value="cosmetic_dentistry">Cosmetic Dentistry</option>
+                                            <option value="restorative_dentistry">Restorative Dentistry</option>
+                                            <option value="specialized_services">Specialized Services</option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="date" name="date" class="form-control" id="date" required="">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                
+                                    <div class="col-md-12">
+                                        <div class="appointment-form-btn">
+                                            <button type="submit" class="btn-default"><span>Submit Message</span></button>
+                                            <div id="msgSubmit" class="h3 hidden"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Book Appointment Form End -->
+                    </div>
+                    <!-- Appointment Form Box End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Book Appointment Section End -->
+
+    <!-- Our Blog Section Start -->
+    <div class="our-blog">
+        <div class="container">
+            <div class="row section-row">
+                <div class="col-lg-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title section-title-center">
+                        <h3 class="wow fadeInUp">latest Blogs</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Stay informed with expert dental tips and advice</h2>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post Item Start -->
+                    <div class="post-item wow fadeInUp">
+                        <!-- Post Featured Image Start-->
+                        <div class="post-featured-image">
+                            <a href="blog-single.html" data-cursor-text="View">
+                                <figure class="image-anime">
+                                    <img src="./assets/images/post-1.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <!-- Post Featured Image End -->
+
+                        <!-- Post Item Body Start -->
+                        <div class="post-item-body">
+                            <!-- Post Item Content Start -->
+                            <div class="post-item-content">
+                                <h2><a href="blog-single.html">The Importance of Regular Dental Check-Ups Explained</a></h2>
+                            </div>
+                            <!-- Post Item Content End -->
+
+                            <!-- Post Item Readmore Button Start-->
+                            <div class="post-item-btn">
+                                <a href="blog-single.html" class="readmore-btn">read more</a>
+                            </div>
+                            <!-- Post Item Readmore Button End-->
+                        </div>
+                        <!-- Post Item Body End -->
+                    </div>
+                    <!-- Post Item End -->
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post Item Start -->
+                    <div class="post-item wow fadeInUp" data-wow-delay="0.2s">
+                        <!-- Post Featured Image Start-->
+                        <div class="post-featured-image">
+                            <a href="blog-single.html" data-cursor-text="View">
+                                <figure class="image-anime">
+                                    <img src="./assets/images/post-2.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <!-- Post Featured Image End -->
+
+                        <!-- Post Item Body Start -->
+                        <div class="post-item-body">
+                            <!-- Post Item Content Start -->
+                            <div class="post-item-content">
+                                <h2><a href="blog-single.html">Top Benefit Modern Cosmetic Dentistry Treatments</a></h2>
+                            </div>
+                            <!-- Post Item Content End -->
+
+                            <!-- Post Item Readmore Button Start-->
+                            <div class="post-item-btn">
+                                <a href="blog-single.html" class="readmore-btn">read more</a>
+                            </div>
+                            <!-- Post Item Readmore Button End-->
+                        </div>
+                        <!-- Post Item Body End -->
+                    </div>
+                    <!-- Post Item End -->
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post Item Start -->
+                    <div class="post-item wow fadeInUp" data-wow-delay="0.4s">
+                        <!-- Post Featured Image Start-->
+                        <div class="post-featured-image">
+                            <a href="blog-single.html" data-cursor-text="View">
+                                <figure class="image-anime">
+                                    <img src="./assets/images/post-3.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <!-- Post Featured Image End -->
+
+                        <!-- Post Item Body Start -->
+                        <div class="post-item-body">
+                            <!-- Post Item Content Start -->
+                            <div class="post-item-content">
+                                <h2><a href="blog-single.html">Best Oral Hygiene Practices for Children and Families</a></h2>
+                            </div>
+                            <!-- Post Item Content End -->
+
+                            <!-- Post Item Readmore Button Start-->
+                            <div class="post-item-btn">
+                                <a href="blog-single.html" class="readmore-btn">read more</a>
+                            </div>
+                            <!-- Post Item Readmore Button End-->
+                        </div>
+                        <!-- Post Item Body End -->
+                    </div>
+                    <!-- Post Item End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Blog Section End -->
+
+    <!-- Footer Start -->
+    <footer class="main-footer bg-section dark-section">
+		<div class="container">
+            <div class="row">
+                <div class="col-xl-4">
+                    <!-- Footer About Start -->
+                    <div class="footer-about">
+                        <!-- Footer Logo Start -->
+                        <div class="footer-logo">
+                            <img src="./assets/images/footer-logo.svg" alt="">
+                        </div>
+                        <!-- Footer Logo End -->
+
+                        <!-- About Footer Content Start -->
+                        <div class="about-footer-content">
+                            <p>Comprehensive dental services, confident smiles through, personalized care.</p>
+                        </div>           
+                        <!-- About Footer Content End -->
+                            
+                        <!-- Footer Social Link Start -->
+                        <div class="footer-social-links">
+                            <ul>
+                                <li><a href="#"><i class="fa-brands fa-pinterest-p"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Footer Social Link End -->
+                    </div>
+                    <!-- Footer About End -->
+                </div>
+
+                <div class="col-xl-8">
+                    <!-- Footer Links Box Start -->
+                    <div class="footer-links-box">
+                        <!-- Footer Links Start -->
+                        <div class="footer-links">
+                            <h3>quick links</h3>
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About us</a></li>
+                                <li><a href="services.html">Services</a></li>
+                                <li><a href="book-appointment.html">Appointment</a></li>
+                            </ul>
+                        </div>
+                        <!-- Footer Links End -->
+
+                        <!-- Footer Links Start -->
+                        <div class="footer-links">
+                            <h3>Support</h3>
+                            <ul>
+                                <li><a href="#">Help</a></li>
+                                <li><a href="#">Term's & Condition </a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <!-- Footer Links End -->
+    
+                        <!-- Footer Links Start -->
+                        <div class="footer-links">
+                            <h3>Our Services</h3>
+                            <ul>
+                                <li><a href="service-single.html">Pediatric Dentistry</a></li>
+                                <li><a href="service-single.html">Orthodontics</a></li>
+                                <li><a href="service-single.html">Preventive Dentistry</a></li>
+                                <li><a href="service-single.html">Cosmetic Dentistry</a></li>
+                            </ul>
+                        </div>
+                        <!-- Footer Links End -->
+    
+                        <!-- Footer Links Start -->
+                        <div class="footer-links footer-contact-links">
+                            <h3>Contact Us</h3>
+                            <!-- Footer Contact Box Start -->
+                            <div class="footer-contact-box">
+                                <div class="footer-contact-box-title">
+                                    <h3><a href="mailto:Domain@gmail.com">domain@gmail.com</a></h3>
+                                    <h3><a href="tel:789345601">(+0) 789345601</a></h3>
+                                </div>
+                                <div class="footer-contact-box-hour">
+                                    <p>Mon to Sat: <span>9AM to 9PM </span></p>
+                                </div>
+                            </div>
+                            <!-- Footer Contact Box End -->
+                        </div>
+                        <!-- Footer Links End -->
+                    </div>
+                    <!-- Footer Links Box End -->
+                </div>
+
+                <div class="col-lg-12">
+                    <!-- Footer Copyright Text Start -->
+                    <div class="footer-copyright-text">
+                        <p>Copyright © 2025 All Rights Reserved.</p>
+                    </div>
+                    <!-- Footer Copyright Text End -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Jquery Library File -->
+    <script src="./assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap js file -->
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Validator js file -->
+    <script src="./assets/js/validator.min.js"></script>
+    <!-- SlickNav js file -->
+    <script src="./assets/js/jquery.slicknav.js"></script>
+    <!-- Swiper js file -->
+    <script src="./assets/js/swiper-bundle.min.js"></script>
+    <!-- Counter js file -->
+    <script src="./assets/js/jquery.waypoints.min.js"></script>
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <!-- Magnific js file -->
+    <script src="./assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- SmoothScroll -->
+    <script src="./assets/js/SmoothScroll.js"></script>
+    <!-- Parallax js -->
+    <script src="./assets/js/parallaxie.js"></script>
+    <!-- Image Comparision js -->
+    <script src="./assets/js/jquery.event.move.js"></script>
+	<script src="./assets/js/jquery.twentytwenty.js"></script>
+    <!-- MagicCursor js file -->
+    <script src="./assets/js/gsap.min.js"></script>
+    <script src="./assets/js/magiccursor.js"></script>
+    <!-- Text Effect js file -->
+    <script src="./assets/js/SplitText.min.js"></script>
+    <script src="./assets/js/ScrollTrigger.min.js"></script>
+    <!-- YTPlayer js File -->
+    <script src="./assets/js/jquery.mb.YTPlayer.min.js"></script>
+    <!-- Wow js file -->
+    <script src="./assets/js/wow.min.js"></script>
+    <!-- Main Custom js file -->
+    <script src="./assets/js/function.js"></script>
+
 </body></html>
