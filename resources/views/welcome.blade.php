@@ -44,7 +44,7 @@
 	<div class="preloader">
 		<div class="loading-container">
 			<div class="loading"></div>
-			<div id="loading-icon"><img src="./assets/images/loader.svg" alt=""></div>
+			<div id="loading-icon"><img src="./assets/images/icon.png" alt=""></div>
 		</div>
 	</div>
 	<!-- Preloader End -->
@@ -157,7 +157,8 @@
                             <!-- Section Title Start -->
                             <div class="section-title">
                                 <h1 class="wow fadeInUp" data-wow-delay="0.2s" data-cursor="-opaque">Your perfect <img src="./assets/images/hero-title-image.jpg" alt=""> smile made in Vietnam</h1>
-                                <p class="wow fadeInUp" data-wow-delay="0.4s">Expert veneer &amp; implant treatments. Full 1-on-1 personalized care</p>
+                                <p class="wow fadeInUp" data-wow-delay="0.4s">Expert veneer &amp; implant treatments</p>
+                                <p class="wow fadeInUp" data-wow-delay="0.4s">Full 1-on-1 personalized care</p>
                             </div>
                             <!-- Section Title End -->
     
@@ -331,7 +332,7 @@ and get back to you as soon as possible, usually within 24 hours</li>
                                 
                                 <!-- Year Experience Box Start -->
                                 <div class="year-experience-circle">
-                                    <img src="./assets/images/year-experience-circle.svg" alt="">
+                                    <img src="./assets/images/circle.png" alt="">
                                 </div>
                                 <!-- Year Experience Box End -->
                             </div>
@@ -418,28 +419,6 @@ your home country</h3>
                             </div>
                         </div>
                         <!-- About Author Body End -->
-
-                        <!-- About Us Footer Start -->
-                        <div class="about-us-footer wow fadeInUp" data-wow-delay="0.8s">
-                            <!-- About Us Button Start -->
-                            <div class="about-us-btn">
-                                <a href="about.html" class="btn-default">more about us</a>
-                            </div>
-                            <!-- About Us Button End -->
-
-                            <!-- About Contact Box Start -->
-                            <div class="about-contact-box">
-                                <div class="icon-box">
-                                    <img src="./assets/images/icon-phone-accent.svg" alt="">
-                                </div>
-                                <div class="about-contact-box-content">
-                                    <p>Need Help?</p>
-                                    <h3><a href="tel:+123254896">+123-254-896</a></h3>
-                                </div>
-                            </div>
-                            <!-- About Contact Box End -->
-                        </div>
-                        <!-- About Us Footer End -->
                     </div>
                     <!-- About Us Content End -->
                 </div>
@@ -455,15 +434,15 @@ your home country</h3>
                 <div class="col-lg-12">
                     <!-- Section Title Start -->
                     <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">Our services</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Complete dental services for a healthy smile</h2>
+                        <h3 class="wow fadeInUp">Our Specialized Services</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Expert solutions for your smile</h2>
                     </div>
                     <!-- Section Title End -->
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <!-- Service Item Start -->
                     <div class="service-item box-bg-shape wow fadeInUp">
                         <!-- Service Item Image Start -->
@@ -476,11 +455,11 @@ your home country</h3>
 
                         <!-- Service Content Start -->
                         <div class="service-item-content">
-                            <h3><a href="service-single.html">Pediatric Dentistry</a></h3>
-                            <p>Our orthodontic treatments, including brace, clear aligner gently straighten teeth.</p>
+                            <h3><a href="service-single.html">Porcelain Veneers – Instant Smile Transformation</a></h3>
+                            <p>Correct discoloration, gaps, and misalignment. Achieve a radiant, natural-
+looking smile in just 3–5 days.</p>
                             <ul>
-                                <li>Braces</li>
-                                <li>Clear Aligners</li>
+                                <li>Veneer</li>
                             </ul>
                         </div>
                         <!-- Service Content End -->
@@ -494,7 +473,7 @@ your home country</h3>
                     <!-- Service Item End -->
                 </div>
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <!-- Service Item Start -->
                     <div class="service-item box-bg-shape wow fadeInUp" data-wow-delay="0.2s">
                         <!-- Service Item Image Start -->
@@ -507,42 +486,11 @@ your home country</h3>
 
                         <!-- Service Content Start -->
                         <div class="service-item-content">
-                            <h3><a href="service-single.html">Orthodontics</a></h3>
-                            <p>Our orthodontic treatments, including brace, clear aligner gently straighten teeth.</p>
+                            <h3><a href="service-single.html">Dental Implants – Restore Your Bite, Restore Your Life</a></h3>
+                            <p>Advanced implant technology for long-lasting, functional, and natural-
+feeling results. The ultimate solution for tooth replacement.</p>
                             <ul>
-                                <li>Braces</li>
-                                <li>Clear Aligners</li>
-                            </ul>
-                        </div>
-                        <!-- Service Content End -->
-                        
-                        <!-- Box Readmore Button Start -->
-                        <div class="box-readmore-btn">
-                            <a href="service-single.html"><img src="./assets/images/arrow-white.svg" alt=""></a>
-                        </div>
-                        <!-- Box Readmore Button End -->
-                    </div>
-                    <!-- Service Item End -->
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <!-- Service Item Start -->
-                    <div class="service-item box-bg-shape wow fadeInUp" data-wow-delay="0.4s">
-                        <!-- Service Item Image Start -->
-                        <div class="service-item-image">
-                            <figure>
-                                <img src="./assets/images/service-item-image-3.png" alt="">
-                            </figure>
-                        </div>
-                        <!-- Service Item Image End -->
-
-                        <!-- Service Content Start -->
-                        <div class="service-item-content">
-                            <h3><a href="service-single.html">Pediatric Dentistry</a></h3>
-                            <p>Our orthodontic treatments, including brace, clear aligner gently straighten teeth.</p>
-                            <ul>
-                                <li>Braces</li>
-                                <li>Clear Aligners</li>
+                                <li>Implant</li>
                             </ul>
                         </div>
                         <!-- Service Content End -->
