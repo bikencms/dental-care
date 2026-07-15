@@ -11074,6 +11074,47 @@ header.main-header.header-metal .header-sticky.active{
 	color: inherit;
 }
 
+.main-menu ul ul.language {
+	width: 40px;
+	text-align: left;
+	top: 35px;
+	border-radius: 3px;
+}
+
+.main-menu ul ul.language li a {
+	padding: 2px 10px !important;
+}
+
+.hero-info-list ul.custom li {
+	padding: 8px;
+    font-size: 14px;
+}
+
+.hero-info-title h3.custom {
+	letter-spacing: 1px;
+}
+
+.btn-default.custom {
+	font-size: 15px;
+}
+
+.about-us-list ul.custom {
+	display: list-item;
+}
+
+.about-us-list ul.custom li {
+	width: 100%;
+	padding: 10px 0 10px 30px;
+}
+
+.section-title.custom {
+	margin-bottom: 30px;
+}
+
+.about-author-content.custom {
+	width: 60%;
+}
+
 @media only screen and (max-width: 1440px){
 
 	.hero-content-metal{

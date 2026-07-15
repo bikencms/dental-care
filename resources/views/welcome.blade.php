@@ -51,7 +51,7 @@
 				<div class="container-fluid">
 					<!-- Logo Start -->
 					<a class="navbar-brand" href="./">
-						<img src="./assets/images/logo.svg" alt="Logo">
+						<img src="./assets/images/logo.png" alt="Logo" width="185">
 					</a>
 					<!-- Logo End -->
 
@@ -80,6 +80,12 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                                <li class="nav-item submenu"><a class="nav-link" href="#"><img src="./assets/images/svg/us.svg" alt="Language EN" width="18"></a>
+                                    <ul class="language">                                        
+                                        <li class="nav-item"><a class="nav-link" href="#"><img src="./assets/images/svg/us.svg" alt="Language EN" width="18"></a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#"><img src="./assets/images/svg/vn.svg" alt="Language VN" width="18"></a></li>
+                                    </ul>
+                                </li>
                                 <li class="nav-item highlighted-menu"><a class="nav-link" href="book-appointment.html"></a></li>
                             </ul>
                         </div>
@@ -145,14 +151,14 @@
                             
                             <!-- Section Title Start -->
                             <div class="section-title">
-                                <h1 class="wow fadeInUp" data-wow-delay="0.2s" data-cursor="-opaque">Transforming <img src="./assets/images/hero-title-image.jpg" alt=""> smiles with expert care</h1>
-                                <p class="wow fadeInUp" data-wow-delay="0.4s">Experience personalized dental treatment designed to restore, protect, and enhance your smile with comfort and confidence</p>
+                                <h1 class="wow fadeInUp" data-wow-delay="0.2s" data-cursor="-opaque">Your perfect <img src="./assets/images/hero-title-image.jpg" alt=""> smile made in Vietnam</h1>
+                                <p class="wow fadeInUp" data-wow-delay="0.4s">Expert veneer &amp; implant treatments. Full 1-on-1 personalized care</p>
                             </div>
                             <!-- Section Title End -->
     
                             <!-- Hero Button Start -->
                             <div class="hero-btn wow fadeInUp" data-wow-delay="0.6s">
-                                <a href="contact.html" class="btn-default btn-highlighted">Start Your Smile Journey</a>
+                                <a href="contact.html" class="btn-default btn-highlighted">Get Your Free Treatment Plan</a>
                             </div>
                             <!-- Hero Button End -->
                         </div>
@@ -165,7 +171,7 @@
                                 <!-- Hero Info Header Start -->
                                 <div class="hero-info-header">
                                     <div class="hero-info-title">
-                                        <h3>Comprehensive Dental Care</h3>
+                                        <h3>Top-Tier Dental Network</h3>
                                     </div>
                                     <div class="hero-info-btn">
                                         <a href="contact.html">
@@ -200,7 +206,8 @@
                                         </div>
                                     </div>
                                     <div class="satisfy-client-content">
-                                        <p>More Than 4,000 Skilled Dentists At Your Service</p>
+                                        <p>Hand-picked specialists &amp; leading clinics. We bring the best of Vietnam&#39;s
+dentistry to you</p>
                                     </div>
                                 </div>
                                 <!-- Hero Info Body End -->
@@ -223,10 +230,11 @@
                                         <h3>Comprehensive Dental Care</h3>
                                     </div>
                                     <div class="hero-info-list">
-                                        <ul>
-                                            <li>Smiles</li>
-                                            <li>Dentistry</li>
-                                            <li>Cavity</li>
+                                        <ul class="custom">
+                                            <li>Smiles Design</li>
+                                            <li>Veneer Mastery</li>
+                                            <li>Implant Solutions</li>
+                                            <li>VIP Travel Support</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -239,7 +247,7 @@
                                 <!-- Working Hours Header Start -->
                                 <div class="working-hours-header hero-info-title">
                                     <img src="./assets/images/icon-clock-white.svg" alt="">
-                                    <h3>Opening Hours</h3>
+                                    <h3 class="custom">Always Open for Your Inquiries</h3>
                                 </div>
                                 <!-- Working Hours Header End -->
                                 
@@ -247,12 +255,12 @@
                                 <div class="working-hours-body">
                                     <div class="working-hours-list">
                                         <ul>
-                                            <li><span>Mon to Sat:</span> 9AM to 9PM</li>
-                                            <li><span>Sunday:</span> Closed</li>
+                                            <li><span>You can reach out anytime. Your dedicated Case Manager will prioritize your request
+and get back to you as soon as possible, usually within 24 hours</li>
                                         </ul>
                                     </div>
                                     <div class="working-hours-btn">
-                                        <a href="book-appointment.html" class="btn-default btn-highlighted">Make an Appointment</a>
+                                        <a href="book-appointment.html" class="btn-default btn-highlighted custom">Get Your Treatment Plan</a>
                                     </div>
                                 </div>
                                 <!-- Working Hours Body End -->
@@ -273,7 +281,7 @@
                                 </div>
                                 <div class="hero-info-contact-list">
                                     <ul>
-                                        <li><img src="./assets/images/icon-phone-white.svg" alt=""><a href="tel:+123254896">+00-123-254-896</a></li>
+                                        <li><img src="./assets/images/icon-phone-white.svg" alt=""><a href="tel:+123254896">+84 0799 108 727</a></li>
                                         <li><img src="./assets/images/icon-mail-white.svg" alt=""><a href="mailto:support@domain.com">support@domain.com</a></li>
                                     </ul>
                                 </div>
@@ -337,7 +345,7 @@
                                     </ul>
                                 </div>
                                 <div class="about-counter-content">
-                                    <p>Average patient satisfact rating.</p>
+                                    <p>Transparent Pricing - No Hidden Costs</p>
                                 </div>
                             </div>
                             <!-- About Counter Box End -->
@@ -351,26 +359,32 @@
                     <!-- About Us Content Start -->
                     <div class="about-us-content">
                         <!-- Section Title Start -->
-                        <div class="section-title">
+                        <div class="section-title custom">
                             <h3 class="wow fadeInUp">About Us</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Your trusted dental partner for every family member</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">We provide comprehensive dental care for patients of all ages, ensuring healthy, confident smiles for every member of your family.</p>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">You are never alone on this journey</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">At VDC, you are not just a patient. You have a dedicated Case Manager supporting you
+24/7 to ensure a seamless experience</p>
                         </div>
                         <!-- Section Title End -->
 
                         <!-- About Us List Start -->
                         <div class="about-us-list wow fadeInUp" data-wow-delay="0.4s">
-                            <ul>
-                                <li>Experience Team of Dental Professional</li>
-                                <li>Gentle and Compassionate Care</li>
+                            <ul class="custom">
+                                <li>Personalized Consultation: Customized treatment plans tailored to your
+specific goals and budget</li>
+                                <li>Worry-Free Experience: We manage everything—from scheduling and logistics
+to language support—so you can focus on your smile</li>
+                                <li>Uncompromising Quality: We use only certified, premium materials that meet
+international standards.</li>
                             </ul>
                         </div>
                         <!-- About Us list End -->
 
                         <!-- About Author Body Start -->
                         <div class="about-author-body wow fadeInUp" data-wow-delay="0.6s">
-                            <div class="about-author-content">
-                                <h3>Trusted by Over 5,000+ Patient Worldwide</h3>
+                            <div class="about-author-content custom">
+                                <h3>Save up to 70% compared to treatment costs in
+your home country</h3>
                             </div>
                             <div class="satisfy-client-images">
                                 <div class="satisfy-client-image">
