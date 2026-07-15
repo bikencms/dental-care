@@ -56,7 +56,7 @@
 				<div class="container-fluid">
 					<!-- Logo Start -->
 					<a class="navbar-brand" href="./">
-						<img src="./assets/images/logo.png" alt="Logo" width="185">
+						<img src="./assets/images/logo.png?Aaa" alt="Logo" width="185">
 					</a>
 					<!-- Logo End -->
 
