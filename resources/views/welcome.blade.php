@@ -38,7 +38,7 @@
 	<!-- Mouse Cursor Css File -->
 	<link rel="stylesheet" href="./assets/css/mousecursor.css">
 	<!-- Main Custom Css -->
-	<link href="./assets/css/custom.css" rel="stylesheet" media="screen">
+	<link href="./assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" media="screen">
 </head>
 <body>
 
