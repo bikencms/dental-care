@@ -12,12 +12,12 @@ Route::get('/generate-sitemap', function () {
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::middleware('auth')->group(function () {
     Route::view(
         '/dashboard',
-        'dashboard.index'
+        'dashboard'
     )->name('dashboard');
 
 });
