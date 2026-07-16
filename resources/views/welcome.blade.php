@@ -104,41 +104,6 @@
                     <div class="hero-box">
                         <!-- Hero Content Start -->
                         <div class="hero-content">
-                            <!-- Hero Sub Heading Start -->
-                            <div class="hero-sub-heading wow fadeInUp">
-                                <!-- Satisfy Client Images Start -->
-                                <div class="satisfy-client-images">
-                                    <div class="satisfy-client-image">
-                                        <figure class="image-anime">
-                                            <img src="./assets/images/author-1.jpg" alt="">
-                                        </figure>
-                                    </div>
-                                    <div class="satisfy-client-image">
-                                        <figure class="image-anime">
-                                            <img src="./assets/images/author-2.jpg" alt="">
-                                        </figure>
-                                    </div>
-                                    <div class="satisfy-client-image">
-                                        <figure class="image-anime">
-                                            <img src="./assets/images/author-3.jpg" alt="">
-                                        </figure>
-                                    </div>
-                                    <div class="satisfy-client-image">
-                                        <figure class="image-anime">
-                                            <img src="./assets/images/author-4.jpg" alt="">
-                                        </figure>
-                                    </div>
-                                </div>
-                                <!-- Satisfy Client Images End -->
-
-                                <!-- Satisfy Client Content Start -->
-                                <div class="satisfy-client-content">
-                                    <p>15k Satisficed Patients</p>
-                                </div>
-                                <!-- Satisfy Client Content End -->
-                            </div>
-                            <!-- Hero Sub Heading Start -->
-                            
                             <!-- Section Title Start -->
                             <div class="section-title">
                                 <h1 class="wow fadeInUp" data-wow-delay="0.2s" data-cursor="-opaque">Your perfect <img src="./assets/images/hero-title-image.jpg" alt=""> smile made in Vietnam</h1>
