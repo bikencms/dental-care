@@ -7,7 +7,6 @@ use Spatie\Sitemap\SitemapGenerator;
 Route::get('/generate-sitemap', function () {
     SitemapGenerator::create(config('app.url'))
         ->writeToFile(public_path('sitemap.xml'));
-
     return 'Sitemap generated!';
 });
 
