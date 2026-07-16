@@ -290,7 +290,7 @@ and get back to you as soon as possible, usually within 24 hours</li>
                                 <div class="hero-info-contact-list">
                                     <ul>
                                         <li><img src="./assets/images/icon-phone-white.svg" alt=""><a href="tel:+84 0799 108 727">+84 0799 108 727</a></li>
-                                        <li><img src="./assets/images/icon-mail-white.svg" alt=""><a href="mailto:support@vietnamdentalcare.vn">support@vietnamdentalcare.vn</a></li>
+                                        <li><img src="./assets/images/icon-mail-white.svg" alt=""><a class="fontsize14" href="mailto:support@vietnamdentalcare.vn">support@vietnamdentalcare.vn</a></li>
                                     </ul>
                                 </div>
                             </div>
