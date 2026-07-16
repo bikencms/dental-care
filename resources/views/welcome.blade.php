@@ -68,38 +68,21 @@
                             <ul class="navbar-nav mr-auto" id="menu">
                                 <li class="nav-item"><a class="nav-link" href="./">Home</a>
                                 </li>                                
-                                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a>
-                                </li><li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                <li class="nav-item submenu"><a class="nav-link" href="#">Pages</a>
-                                    <ul>                                        
-                                        <li class="nav-item"><a class="nav-link" href="service-single.html">Service Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="blog-single.html">Blog Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="case-study.html">Case Study</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="case-study-single.html">Case Study Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="team.html">Our Team</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="team-single.html">Team Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="image-gallery.html">Image Gallery</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="video-gallery.html">Video Gallery</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="404.html">404</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a>
+                                <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
                                 <li class="nav-item submenu"><a class="nav-link" href="#"><img src="./assets/images/svg/us.svg" alt="Language EN" width="18"></a>
                                     <ul class="language">                                        
                                         <li class="nav-item"><a class="nav-link" href="#"><img src="./assets/images/svg/us.svg" alt="Language EN" width="18"></a></li>
                                         <li class="nav-item"><a class="nav-link" href="#"><img src="./assets/images/svg/vn.svg" alt="Language VN" width="18"></a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item highlighted-menu"><a class="nav-link" href="book-appointment.html"></a></li>
+                                <li class="nav-item highlighted-menu"><a class="nav-link" href="#"></a></li>
                             </ul>
                         </div>
 
                         <!-- Header Btn Start -->
                         <div class="header-btn">
-                            <a class="btn-default" href="book-appointment.html">Get Your Free Treatment Plan</a>
+                            <a class="btn-default" href="#appointmentForm">Get Your Free Treatment Plan</a>
                         </div>
                         <!-- Header Btn End -->                      
 					</div>
@@ -166,7 +149,7 @@
     
                             <!-- Hero Button Start -->
                             <div class="hero-btn wow fadeInUp" data-wow-delay="0.6s">
-                                <a href="contact.html" class="btn-default btn-highlighted">Get Your Free Treatment Plan</a>
+                                <a href="#appointmentForm" class="btn-default btn-highlighted">Get Your Free Treatment Plan</a>
                             </div>
                             <!-- Hero Button End -->
                         </div>
@@ -182,7 +165,7 @@
                                         <h3>Top-Tier Dental Network</h3>
                                     </div>
                                     <div class="hero-info-btn">
-                                        <a href="contact.html">
+                                        <a href="#">
                                             <img src="./assets/images/arrow-white.svg" alt="">
                                         </a>
                                     </div>
@@ -268,7 +251,7 @@ and get back to you as soon as possible, usually within 24 hours</li>
                                         </ul>
                                     </div>
                                     <div class="working-hours-btn">
-                                        <a href="book-appointment.html" class="btn-default btn-highlighted custom">Get Your Treatment Plan</a>
+                                        <a href="#appointmentForm" class="btn-default btn-highlighted custom">Get Your Treatment Plan</a>
                                     </div>
                                 </div>
                                 <!-- Working Hours Body End -->
@@ -283,7 +266,7 @@ and get back to you as soon as possible, usually within 24 hours</li>
                                     </figure>
                                 </div>
                                 <div class="hero-info-btn">
-                                    <a href="contact.html">
+                                    <a href="#">
                                         <img src="./assets/images/arrow-white.svg" alt="">
                                     </a>
                                 </div>
@@ -306,7 +289,7 @@ and get back to you as soon as possible, usually within 24 hours</li>
     <!-- Hero Section End -->
     
     <!-- About Us Section Start -->
-    <div class="about-us">
+    <div class="about-us" id="about-us">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-6">
@@ -446,7 +429,7 @@ your home country</h3>
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <!-- Service Item Start -->
-                    <div class="service-item box-bg-shape wow fadeInUp">
+                    <div class="service-item wow fadeInUp">
                         <!-- Service Item Image Start -->
                         <div class="service-item-image">
                             <figure>
@@ -457,27 +440,23 @@ your home country</h3>
 
                         <!-- Service Content Start -->
                         <div class="service-item-content">
-                            <h3><a href="service-single.html">Porcelain Veneers – Instant Smile Transformation</a></h3>
+                            <h3><a href="#">Porcelain Veneers – Instant Smile Transformation</a></h3>
                             <p>Correct discoloration, gaps, and misalignment. Achieve a radiant, natural-
 looking smile in just 3–5 days.</p>
-                            <ul>
-                                <li>Veneer</li>
-                            </ul>
                         </div>
+                        <!-- Hero Button Start -->
+                            <div class="hero-btn wow fadeInUp" data-wow-delay="0.6s">
+                                <a href="#appointmentForm" class="btn-default btn-highlighted">Preview Your New Smile</a>
+                            </div>
+                        <!-- Hero Button End -->
                         <!-- Service Content End -->
-                        
-                        <!-- Box Readmore Button Start -->
-                        <div class="box-readmore-btn">
-                            <a href="service-single.html"><img src="./assets/images/arrow-white.svg" alt=""></a>
-                        </div>
-                        <!-- Box Readmore Button End -->
                     </div>
                     <!-- Service Item End -->
                 </div>
                 
                 <div class="col-lg-6 col-md-6">
                     <!-- Service Item Start -->
-                    <div class="service-item box-bg-shape wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="service-item wow fadeInUp" data-wow-delay="0.2s">
                         <!-- Service Item Image Start -->
                         <div class="service-item-image">
                             <figure>
@@ -488,185 +467,23 @@ looking smile in just 3–5 days.</p>
 
                         <!-- Service Content Start -->
                         <div class="service-item-content">
-                            <h3><a href="service-single.html">Dental Implants – Restore Your Bite, Restore Your Life</a></h3>
+                            <h3><a href="#">Dental Implants – Restore Your Bite, Restore Your Life</a></h3>
                             <p>Advanced implant technology for long-lasting, functional, and natural-
 feeling results. The ultimate solution for tooth replacement.</p>
-                            <ul>
-                                <li>Implant</li>
-                            </ul>
                         </div>
+                         <!-- Hero Button Start -->
+                            <div class="hero-btn wow fadeInUp" data-wow-delay="0.6s">
+                                <a href="#appointmentForm" class="btn-default btn-highlighted">Get Expert Advice</a>
+                            </div>
+                        <!-- Hero Button End -->
                         <!-- Service Content End -->
-                        
-                        <!-- Box Readmore Button Start -->
-                        <div class="box-readmore-btn">
-                            <a href="service-single.html"><img src="./assets/images/arrow-white.svg" alt=""></a>
-                        </div>
-                        <!-- Box Readmore Button End -->
                     </div>
                     <!-- Service Item End -->
-                </div>
-
-                <div class="col-lg-12">
-                    <!-- Section Footer Text Start -->
-                    <div class="section-footer-text wow fadeInUp" data-wow-delay="0.6s">
-                        <p><span>Free</span>Let's make something great work together. <a href="contact.html">Get Free Quote</a></p>
-                    </div>
-                    <!-- Section Footer Text End -->
                 </div>
             </div>
         </div>
     </div>
     <!-- Our Services Section End -->
-
-    <!-- Our Feature Section Start -->
-    <div class="our-features">
-        <div class="container">
-            <div class="row">                
-                <div class="col-lg-12">
-                    <!-- Feature Content Start -->
-                    <div class="feature-content">
-                        <!-- Section Title Start -->
-                        <div class="section-title section-title-center">
-                            <h3 class="wow fadeInUp">Our Feature</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Modern dentistry focused on your comfort and care</h2>
-                        </div>
-                        <!-- Section Title End -->
-
-                        <!-- Feature Button Start -->
-                        <div class="feature-btn wow fadeInUp" data-wow-delay="0.2s">
-                            <a href="book-appointment.html" class="btn-default">Make an Appointment</a>
-                        </div>
-                        <!-- Feature Button End -->
-                    </div>
-                    <!-- Feature Content End -->                 
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Feature Box Start -->
-                    <div class="feature-box-list">
-                        <!-- Feature Box Start -->
-                        <div class="feature-box-1">
-                            <div class="feature-item-1 wow fadeInUp">
-                                <div class="icon-box">
-                                    <img src="./assets/images/icon-feature-item-1.svg" alt="">
-                                </div>
-                                <div class="feature-item-content">
-                                    <h3>Experienced Dental Team</h3>
-                                    <p>Skilled professionals committed to gentle, personalized care.</p>
-                                </div>
-                            </div>
-    
-                            <div class="feature-item-2 wow fadeInUp" data-wow-delay="0.2s">
-                                <div class="feature-image">
-                                    <figure class="image-anime">
-                                        <img src="./assets/images/feature-image-1.jpg" alt="">
-                                    </figure>
-                                </div>
-                                <div class="feature-item-content">
-                                    <h3>Commitment to Long-Term Oral Health</h3>
-                                </div>
-                            </div>
-                        </div>      
-                        <!-- Feature Box End -->              
-    
-                        <!-- Feature Highlighted Box Start -->
-                        <div class="feature-highlighted-box wow fadeInUp" data-wow-delay="0.4s">
-                            <div class="satisfy-client-images">
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="./assets/images/author-1.jpg" alt="">
-                                    </figure>
-                                </div>
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="./assets/images/author-2.jpg" alt="">
-                                    </figure>
-                                </div>
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="./assets/images/author-3.jpg" alt="">
-                                    </figure>
-                                </div>
-                                <div class="satisfy-client-image add-more">
-                                    <i class="fa fa-solid fa-plus"></i>
-                                </div>
-                            </div>
-    
-                            <div class="feature-highlighted-content">
-                                <h2><span class="counter">5</span>k+</h2>
-                                <p>Patient Worldwide</p>
-                            </div>
-                        </div>
-                        <!-- Feature Highlighted Box End -->
-    
-                        <!-- Feature Box Start -->
-                        <div class="feature-box-2">
-                            <div class="feature-item-2 wow fadeInUp" data-wow-delay="0.6s">
-                                <div class="feature-image">
-                                    <figure class="image-anime">
-                                        <img src="./assets/images/feature-image-2.jpg" alt="">
-                                    </figure>
-                                </div>
-                                <div class="feature-item-content">
-                                    <h2><span class="counter">24</span>/7</h2>
-                                    <p>Because your dental health can't wait.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="feature-item-1 wow fadeInUp" data-wow-delay="0.8s">
-                                <div class="feature-item-content">
-                                    <h3>Advanced Technologies for Comfortable Treatments</h3>
-                                </div>
-                                <div class="feature-charactor-image">
-                                    <figure>
-                                        <img src="./assets/images/feature-image-3.png" alt="">
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Feature Box End -->
-                    </div>
-                    <!-- Feature Box End -->
-                </div>
-
-                <div class="col-lg-12">
-                    <!-- Section Footer Text Start -->
-                    <div class="section-footer-text section-satisfy-img wow fadeInUp" data-wow-delay="1s">
-                        <!-- Satisfy Client Images Start -->
-                        <div class="satisfy-client-images">
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="./assets/images/author-1.jpg" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="./assets/images/author-2.jpg" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="./assets/images/author-3.jpg" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="./assets/images/author-4.jpg" alt="">
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- Satisfy Client Images End -->
-                        
-                        <p>Join us to build smarter, faster, and future-ready technology solutions.</p>
-                    </div>
-                    <!-- Section Footer Text End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Our Feature Section End -->
 
     <!-- Why Choose Us Section Start -->
     <div class="why-choose-us bg-section dark-section">
@@ -676,7 +493,7 @@ feeling results. The ultimate solution for tooth replacement.</p>
                     <!-- Section Title Start -->
                     <div class="section-title section-title-center">
                         <h3 class="wow fadeInUp">Why choose us</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Delivering gentle dental care with experience and trust</h2>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Why Choose Vietnam</h2>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -692,8 +509,9 @@ feeling results. The ultimate solution for tooth replacement.</p>
                                 <img src="./assets/images/icon-why-choose-1.svg" alt="">
                             </div>
                             <div class="why-choose-item-content">
-                                <h3>State-of-Art Technology</h3>
-                                <p>We use advanced dental technology to ensure precise, safe, and comfortable treatments for every patient.</p>
+                                <h3>World-Class Excellence</h3>
+                                <p>Modern Vietnamese dental clinics adhere to strict international standards,
+utilizing the latest global technology.</p>
                             </div>
                         </div>
                         <!-- Why Choose Item End -->
@@ -704,8 +522,9 @@ feeling results. The ultimate solution for tooth replacement.</p>
                                 <img src="./assets/images/icon-why-choose-2.svg" alt="">
                             </div>
                             <div class="why-choose-item-content">
-                                <h3>Patient-Centered Approach</h3>
-                                <p>We use advanced dental technology to ensure precise, safe, and comfortable treatments for every patient.</p>
+                                <h3>Unmatched Value</h3>
+                                <p>Save up to 70% on premium dental treatments compared to back home,
+without compromising on quality.</p>
                             </div>
                         </div>
                         <!-- Why Choose Item End -->
@@ -732,8 +551,9 @@ feeling results. The ultimate solution for tooth replacement.</p>
                                 <img src="./assets/images/icon-why-choose-3.svg" alt="">
                             </div>
                             <div class="why-choose-item-content">
-                                <h3>Gentle Compassionate Care</h3>
-                                <p>We use advanced dental technology to ensure precise, safe, and comfortable treatments for every patient.</p>
+                                <h3>A Perfect Blend of Care &amp; Vacation</h3>
+                                <p>Combine your smile transformation with a relaxing getaway in beautiful
+Vietnam. Enjoy hospitality like nowhere else.</p>
                             </div>
                         </div>
                         <!-- Why Choose Item End -->
@@ -756,450 +576,6 @@ feeling results. The ultimate solution for tooth replacement.</p>
         </div>
     </div>
     <!-- Why Choose Us Section End -->
-
-    <!-- What We Do Section Start -->
-    <div class="what-we-do">
-        <div class="container">
-            <div class="row section-row">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">what we do</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Personalized dentistry services for every stage of life</h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <!-- What We Do Item Start -->
-                    <div class="what-we-do-item wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="what-we-do-image">
-                            <figure>
-                                <img src="./assets/images/what-we-do-image-1.png" alt="">
-                            </figure>
-                        </div>
-                        <div class="what-we-do-content">
-                            <h3>Restorative Treatments</h3>
-                            <p>We restore damaged or missing teeth with crowns, bridges, and implants, bringing.</p>
-                        </div>
-                    </div>
-                    <!-- What We Do Item End -->
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <!-- What We Do Item Start -->
-                    <div class="what-we-do-item wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="what-we-do-content">
-                            <h3>Progress Treatments</h3>
-                            <p>We restore damaged or missing teeth with crowns, bridges, and implants, bringing.</p>
-                        </div>                        
-                        <div class="what-we-do-image">
-                            <figure>
-                                <img src="./assets/images/what-we-do-image-2.png" alt="">
-                            </figure>
-                        </div>
-                    </div>
-                    <!-- What We Do Item End -->
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <!-- What We Do Item Start -->
-                    <div class="what-we-do-item wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="what-we-do-image">
-                            <figure>
-                                <img src="./assets/images/what-we-do-image-3.png" alt="">
-                            </figure>
-                        </div>
-                        <div class="what-we-do-content">
-                            <h3>Appointment Treatment</h3>
-                            <p>We restore damaged or missing teeth with crowns, bridges, and implants, bringing.</p>
-                        </div>
-                    </div>
-                    <!-- What We Do Item End -->
-                </div>
-
-                <div class="col-lg-12">
-                    <!-- Section Footer Text Start -->
-                    <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                        <p>Join us and create smiles that truly inspire confidence. <a href="contact.html">Contact Us</a></p>                            
-                        <ul>
-                            <li><span class="counter">4.9</span>/5</li>
-                            <li><i class="fa-solid fa-star"></i></li>
-                            <li>Our 4k Patient Review</li>
-                        </ul>
-                    </div>
-                    <!-- Section Footer Text End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- What We Do Section End -->
-            
-    <!-- Our Expert Section Start -->
-    <div class="our-expert bg-section dark-section parallaxie">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Our Expert Section Start -->
-                    <div class="our-expert-section">
-                        <!-- Our Expert Content Start -->
-                        <div class="our-expert-content">
-                            <!-- Section Title Start -->
-                            <div class="section-title">
-                                <h2 class="text-anime-style-3" data-cursor="-opaque">Expert dentistry dedicated to lifelong oral health</h2>
-                            </div>
-                            <!-- Section Title End -->
-
-                            <!-- Our Expert List Start -->
-                            <div class="our-expert-list wow fadeInUp" data-wow-delay="0.2s">
-                                <ul>
-                                    <li>General Dentistry</li>
-                                    <li>Emergency Dentistry</li>
-                                </ul>
-                            </div>
-                            <!-- Our Expert List End -->
-                        </div>
-                        <!-- Our Expert Content End -->
-
-                        <!-- Our Expert Box Start -->
-                        <div class="our-expert-box wow fadeInUp" data-wow-delay="0.4s">
-                            <div class="expert-box-content">
-                                <h4>patient rate</h4>
-                                <h3>Average rate</h3>
-                                <p>Our experienced team provides advanced.</p>
-                                <h2><span class="counter">90</span><sub>bpm</sub></h2>
-                            </div>
-                            <div class="expert-box-image">
-                                <img src="./assets/images/expert-box-rate-image.png" alt="">
-                            </div>
-                        </div>
-                        <!-- Our Expert Box End -->
-                    </div>
-                    <!-- Our Expert Section End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Our Expert Section End -->
-
-    <!-- Our Team Start -->
-    <div class="our-team">
-        <div class="container">
-            <div class="row section-row">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">Our Team</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Trusted professionals creating smiles with expert care</h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <!-- Team Item Start -->
-                    <div class="team-item wow fadeInUp">
-                        <div class="team-image box-bg-shape">
-                            <figure>
-                                <img src="./assets/images/team-1.png" alt="">
-                            </figure>
-                            <div class="team-social-list">
-                                <div class="team-social-icon">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="team-readmore-btn">
-                                    <a href="#"><img src="./assets/images/icon-share.svg" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h3><a href="team-single.html">Dr.Savannah Nguyen</a></h3>
-                            <p>Chief Dentist</p>
-                        </div>
-                    </div>
-                    <!-- Team Item End -->
-                </div>
-                
-                <div class="col-xl-3 col-md-6">
-                    <!-- Team Item Start -->
-                    <div class="team-item wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="team-image box-bg-shape">
-                            <figure>
-                                <img src="./assets/images/team-2.png" alt="">
-                            </figure>
-                            <div class="team-social-list">
-                                <div class="team-social-icon">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="team-readmore-btn">
-                                    <a href="#"><img src="./assets/images/icon-share.svg" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h3><a href="team-single.html">Dr.Theresa Webb</a></h3>
-                            <p>Implantologist</p>
-                        </div>
-                    </div>
-                    <!-- Team Item End -->
-                </div>
-                
-                <div class="col-xl-3 col-md-6">
-                    <!-- Team Item Start -->
-                    <div class="team-item wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="team-image box-bg-shape">
-                            <figure>
-                                <img src="./assets/images/team-3.png" alt="">
-                            </figure>
-                            <div class="team-social-list">
-                                <div class="team-social-icon">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="team-readmore-btn">
-                                    <a href="#"><img src="./assets/images/icon-share.svg" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h3><a href="team-single.html">Dr.Jenny Wilson</a></h3>
-                            <p>Pediatric Dentist</p>
-                        </div>
-                    </div>
-                    <!-- Team Item End -->
-                </div>
-                
-                <div class="col-xl-3 col-md-6">
-                    <!-- Team Item Start -->
-                    <div class="team-item wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="team-image box-bg-shape">
-                            <figure>
-                                <img src="./assets/images/team-4.png" alt="">
-                            </figure>
-                            <div class="team-social-list">
-                                <div class="team-social-icon">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="team-readmore-btn">
-                                    <a href="#"><img src="./assets/images/icon-share.svg" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h3><a href="team-single.html">Dr.Ronald Richards</a></h3>
-                            <p>Gum Care Specialist</p>
-                        </div>
-                    </div>
-                    <!-- Team Item End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Our Team End -->
-
-    <!-- Our Testimonial Section Start -->
-    <div class="our-testimonial bg-section">
-        <div class="container">
-            <div class="row section-row align-items-center">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">testimonials</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Happy patients sharing their dental care journey</h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Testimonial Slider Start -->
-                    <div class="testimonial-slider">
-                        <div class="swiper">
-                            <div class="swiper-wrapper" data-cursor-text="Drag">
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <div class="testimonial-item-header">
-                                            <div class="testimonial-rating">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                            </div>                              
-                                            <div class="testimonial-content">
-                                                <p>"The team is amazing! They made me feel comfortable and explained every step. My smile has never looked better."</p>
-                                            </div>
-                                        </div>                                        
-                                        <div class="testimonial-body">
-                                            <div class="testimonial-author">
-                                                <div class="author-image">
-                                                    <figure class="image-anime">
-                                                        <img src="./assets/images/author-1.jpg" alt="">
-                                                    </figure>
-                                                </div>
-                                                <div class="author-content">
-                                                    <h3>Dr. Savannah Nguyen</h3>
-                                                    <p>Chief Dentist</p>
-                                                </div>
-                                            </div> 
-                                            <div class="testimonial-quote">
-                                                <img src="./assets/images/testimonial-quote.svg" alt="">
-                                            </div>                                              
-                                        </div>                                    
-                                    </div>
-                                </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <div class="testimonial-item-header">
-                                            <div class="testimonial-rating">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                            </div>                              
-                                            <div class="testimonial-content">
-                                                <p>"The team is amazing! They made me feel comfortable and explained every step. My smile has never looked better."</p>
-                                            </div>
-                                        </div>
-                                        <div class="testimonial-body">
-                                            <div class="testimonial-author">
-                                                <div class="author-image">
-                                                    <figure class="image-anime">
-                                                        <img src="./assets/images/author-2.jpg" alt="">
-                                                    </figure>
-                                                </div>
-                                                <div class="author-content">
-                                                    <h3>Dr. Bessie Cooper</h3>
-                                                    <p>Orthodontist</p>
-                                                </div>
-                                            </div> 
-                                            <div class="testimonial-quote">
-                                                <img src="./assets/images/testimonial-quote.svg" alt="">
-                                            </div>                                              
-                                        </div>                                  
-                                    </div>
-                                </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <div class="testimonial-item-header">
-                                            <div class="testimonial-rating">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                            </div>                              
-                                            <div class="testimonial-content">
-                                                <p>"The team is amazing! They made me feel comfortable and explained every step. My smile has never looked better."</p>
-                                            </div>
-                                        </div>
-                                        <div class="testimonial-body">
-                                            <div class="testimonial-author">
-                                                <div class="author-image">
-                                                    <figure class="image-anime">
-                                                        <img src="./assets/images/author-3.jpg" alt="">
-                                                    </figure>
-                                                </div>
-                                                <div class="author-content">
-                                                    <h3>Dr. Kristin Watson</h3>
-                                                    <p>Consultant Dentist</p>
-                                                </div>
-                                            </div> 
-                                            <div class="testimonial-quote">
-                                                <img src="./assets/images/testimonial-quote.svg" alt="">
-                                            </div>                                              
-                                        </div>                                   
-                                    </div>
-                                </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <div class="testimonial-item-header">
-                                            <div class="testimonial-rating">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                            </div>                              
-                                            <div class="testimonial-content">
-                                                <p>"The team is amazing! They made me feel comfortable and explained every step. My smile has never looked better."</p>
-                                            </div>
-                                        </div>
-                                        <div class="testimonial-body">
-                                            <div class="testimonial-author">
-                                                <div class="author-image">
-                                                    <figure class="image-anime">
-                                                        <img src="./assets/images/author-4.jpg" alt="">
-                                                    </figure>
-                                                </div>
-                                                <div class="author-content">
-                                                    <h3>Dr. Cody Fisher</h3>
-                                                    <p>Pediatric Dentist</p>
-                                                </div>
-                                            </div> 
-                                            <div class="testimonial-quote">
-                                                <img src="./assets/images/testimonial-quote.svg" alt="">
-                                            </div>                                              
-                                        </div>                                   
-                                    </div>
-                                </div>
-                                <!-- Testimonial Slide End -->
-                            </div>
-                            <div class="testimonial-pagination"></div>
-                        </div>
-                    </div>
-                    <!-- Testimonial Slider End -->
-                </div>
-
-                <div class="col-lg-12">
-                    <!-- Section Footer Text Start -->
-                    <div class="section-footer-text wow fadeInUp" data-wow-delay="0.2s">
-                        <ul>
-                            <li><span class="counter">4.9</span>/5</li>
-                            <li><i class="fa-solid fa-star"></i></li>
-                            <li>Our 4k Patient Review</li>
-                        </ul>
-                    </div>
-                    <!-- Section Footer Text End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Our Testimonial Section End -->
 
     <!-- Our Transformation Section Start -->
     <div class="our-transformation">
@@ -1392,7 +768,7 @@ feeling results. The ultimate solution for tooth replacement.</p>
                 <div class="col-lg-12">
                     <!-- Section Footer Text Start -->
                     <div class="section-footer-text wow fadeInUp" data-wow-delay="0.4s">
-                        <p><span>Free</span>Crafted for Your Cravings: Today's Must- <a href="menu.html">Try Selection</a></p>
+                        <p><span>Free</span>Crafted for Your Cravings: Today's Must- <a href="#">Try Selection</a></p>
                     </div>
                     <!-- Section Footer Text End -->
                 </div>
@@ -1410,57 +786,55 @@ feeling results. The ultimate solution for tooth replacement.</p>
                     <div class="appointment-form-box">
                         <!-- Section Title Start -->
                         <div class="section-title">
-                            <h3 class="wow fadeInUp">Book an Appointment</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Make an Appointment</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">Thousands of patients trust us for compassionate, advanced dental care that delivers lasting confidence and healthy smiles.</p>
+                            <h3 class="wow fadeInUp">Get your free treatment plan</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Request Your Personalized Plan</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">Let&#39;s start your smile journey together. Tell us what you need, and we&#39;ll handle the rest.</p>
                         </div>
                         <!-- Section Title End -->
 
                         <!-- Book Appointment Form Start -->
                         <div class="appointment-form wow fadeInUp" data-wow-delay="0.4s">
                             <form id="appointmentForm" action="#" method="POST" data-toggle="validator">
-                                <div class="row">                                
+                                <div class="row contact-form">                                
                                     <div class="form-group col-md-6 mb-4">
-                                        <input type="text" name="fname" class="form-control" id="fname" placeholder="First Name" required="">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6 mb-4">
-                                        <input type="text" name="lname" class="form-control" id="lname" placeholder="Last Name" required="">
+                                        <label class="form-label">Full Name*</label>
+                                        <input type="text" name="fname" class="form-control" id="fname" placeholder="Your full name" required="">
                                         <div class="help-block with-errors"></div>
                                     </div>
 
-                                    <div class="form-group col-md-12 mb-4">
-                                        <input type="email" name="email" class="form-control" id="email" placeholder="E-mail" required="">
+                                    <div class="form-group col-md-6 mb-4">
+                                        <label class="form-label">Email Address*</label>
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required="">
                                         <div class="help-block with-errors"></div>
                                     </div>
 
-                                    <div class="form-group col-md-12 mb-4">
-                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone No." required="">
+                                    <div class="form-group col-md-6 mb-4">
+                                        <label class="form-label">WhatsApp / Phone Number*</label>
+                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Include country code, e.g., +1 234
+567 890" required="">
                                         <div class="help-block with-errors"></div>
                                     </div>                                 
                                                                         
                                     <div class="form-group col-md-6 mb-4">
+                                        <label class="form-label">Interested Service*</label>
                                         <select name="services" class="form-control form-select" id="services" required="">
-                                            <option value="" disabled="" selected="">Select a Service</option>
-                                            <option value="pediatric_dentistry">Pediatric Dentistry</option>
-                                            <option value="orthodontics">Orthodontics</option>
-                                            <option value="pediatric_dentistry">Pediatric Dentistry</option>
-                                            <option value="cosmetic_dentistry">Cosmetic Dentistry</option>
-                                            <option value="restorative_dentistry">Restorative Dentistry</option>
-                                            <option value="specialized_services">Specialized Services</option>
+                                            <option value="" disabled="" selected="">Interested Service</option>
+                                            <option value="pediatric_dentistry">Porcelain Veneers</option>
+                                            <option value="orthodontics">Dental Implants</option>
+                                            <option value="pediatric_dentistry">General Dental Consultation</option>
                                         </select>
                                         <div class="help-block with-errors"></div>
                                     </div>
-                
-                                    <div class="form-group col-md-6 mb-4">
-                                        <input type="date" name="date" class="form-control" id="date" required="">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
+
+                                    <div class="form-group col-md-12 col-lg-12 mb-4">
+                                        <label class="form-label">Briefly describe your dental needs</label>
+                                        <textarea rows="5" cols="40" class="form-control" placeholder="Share your current concerns or goals (e.g., stained teeth,
+missing tooth, etc.)"></textarea>
+                                    </div>   
                 
                                     <div class="col-md-12">
                                         <div class="appointment-form-btn">
-                                            <button type="submit" class="btn-default"><span>Submit Message</span></button>
+                                            <button type="submit" class="btn-default"><span>Get My Free Plan</span></button>
                                             <div id="msgSubmit" class="h3 hidden"></div>
                                         </div>
                                     </div>
@@ -1475,121 +849,6 @@ feeling results. The ultimate solution for tooth replacement.</p>
         </div>
     </div>
     <!-- Book Appointment Section End -->
-
-    <!-- Our Blog Section Start -->
-    <div class="our-blog">
-        <div class="container">
-            <div class="row section-row">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">latest Blogs</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Stay informed with expert dental tips and advice</h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <!-- Post Item Start -->
-                    <div class="post-item wow fadeInUp">
-                        <!-- Post Featured Image Start-->
-                        <div class="post-featured-image">
-                            <a href="blog-single.html" data-cursor-text="View">
-                                <figure class="image-anime">
-                                    <img src="./assets/images/post-1.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Post Featured Image End -->
-
-                        <!-- Post Item Body Start -->
-                        <div class="post-item-body">
-                            <!-- Post Item Content Start -->
-                            <div class="post-item-content">
-                                <h2><a href="blog-single.html">The Importance of Regular Dental Check-Ups Explained</a></h2>
-                            </div>
-                            <!-- Post Item Content End -->
-
-                            <!-- Post Item Readmore Button Start-->
-                            <div class="post-item-btn">
-                                <a href="blog-single.html" class="readmore-btn">read more</a>
-                            </div>
-                            <!-- Post Item Readmore Button End-->
-                        </div>
-                        <!-- Post Item Body End -->
-                    </div>
-                    <!-- Post Item End -->
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <!-- Post Item Start -->
-                    <div class="post-item wow fadeInUp" data-wow-delay="0.2s">
-                        <!-- Post Featured Image Start-->
-                        <div class="post-featured-image">
-                            <a href="blog-single.html" data-cursor-text="View">
-                                <figure class="image-anime">
-                                    <img src="./assets/images/post-2.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Post Featured Image End -->
-
-                        <!-- Post Item Body Start -->
-                        <div class="post-item-body">
-                            <!-- Post Item Content Start -->
-                            <div class="post-item-content">
-                                <h2><a href="blog-single.html">Top Benefit Modern Cosmetic Dentistry Treatments</a></h2>
-                            </div>
-                            <!-- Post Item Content End -->
-
-                            <!-- Post Item Readmore Button Start-->
-                            <div class="post-item-btn">
-                                <a href="blog-single.html" class="readmore-btn">read more</a>
-                            </div>
-                            <!-- Post Item Readmore Button End-->
-                        </div>
-                        <!-- Post Item Body End -->
-                    </div>
-                    <!-- Post Item End -->
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <!-- Post Item Start -->
-                    <div class="post-item wow fadeInUp" data-wow-delay="0.4s">
-                        <!-- Post Featured Image Start-->
-                        <div class="post-featured-image">
-                            <a href="blog-single.html" data-cursor-text="View">
-                                <figure class="image-anime">
-                                    <img src="./assets/images/post-3.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Post Featured Image End -->
-
-                        <!-- Post Item Body Start -->
-                        <div class="post-item-body">
-                            <!-- Post Item Content Start -->
-                            <div class="post-item-content">
-                                <h2><a href="blog-single.html">Best Oral Hygiene Practices for Children and Families</a></h2>
-                            </div>
-                            <!-- Post Item Content End -->
-
-                            <!-- Post Item Readmore Button Start-->
-                            <div class="post-item-btn">
-                                <a href="blog-single.html" class="readmore-btn">read more</a>
-                            </div>
-                            <!-- Post Item Readmore Button End-->
-                        </div>
-                        <!-- Post Item Body End -->
-                    </div>
-                    <!-- Post Item End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Our Blog Section End -->
 
     <!-- Footer Start -->
     <footer class="main-footer bg-section dark-section">
@@ -1631,10 +890,8 @@ feeling results. The ultimate solution for tooth replacement.</p>
                         <div class="footer-links">
                             <h3>quick links</h3>
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about.html">About us</a></li>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="book-appointment.html">Appointment</a></li>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#about-us">About us</a></li>
                             </ul>
                         </div>
                         <!-- Footer Links End -->
@@ -1643,22 +900,9 @@ feeling results. The ultimate solution for tooth replacement.</p>
                         <div class="footer-links">
                             <h3>Support</h3>
                             <ul>
-                                <li><a href="#">Help</a></li>
                                 <li><a href="#">Term's & Condition </a></li>
                                 <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <!-- Footer Links End -->
-    
-                        <!-- Footer Links Start -->
-                        <div class="footer-links">
-                            <h3>Our Services</h3>
-                            <ul>
-                                <li><a href="service-single.html">Pediatric Dentistry</a></li>
-                                <li><a href="service-single.html">Orthodontics</a></li>
-                                <li><a href="service-single.html">Preventive Dentistry</a></li>
-                                <li><a href="service-single.html">Cosmetic Dentistry</a></li>
+                                <li><a href="#">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- Footer Links End -->
