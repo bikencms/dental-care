@@ -1600,7 +1600,7 @@ feeling results. The ultimate solution for tooth replacement.</p>
                     <div class="footer-about">
                         <!-- Footer Logo Start -->
                         <div class="footer-logo">
-                            <img src="./assets/images/footer-logo.svg" alt="">
+                            <img src="./assets/images/logo.png" alt="">
                         </div>
                         <!-- Footer Logo End -->
 
@@ -1669,8 +1669,8 @@ feeling results. The ultimate solution for tooth replacement.</p>
                             <!-- Footer Contact Box Start -->
                             <div class="footer-contact-box">
                                 <div class="footer-contact-box-title">
-                                    <h3><a href="mailto:Domain@gmail.com">domain@gmail.com</a></h3>
-                                    <h3><a href="tel:789345601">(+0) 789345601</a></h3>
+                                    <h3><a class="fontsize13" href="mailto:support@vietnamdentalcare.vn">support@vietnamdentalcare.vn</a></h3>
+                                    <h3><a class="fontsize14" href="tel:+84 0799 108 727">+84 0799 108 727</a></h3>
                                 </div>
                                 <div class="footer-contact-box-hour">
                                     <p>Mon to Sat: <span>9AM to 9PM </span></p>
@@ -1686,7 +1686,7 @@ feeling results. The ultimate solution for tooth replacement.</p>
                 <div class="col-lg-12">
                     <!-- Footer Copyright Text Start -->
                     <div class="footer-copyright-text">
-                        <p>Copyright © 2025 All Rights Reserved.</p>
+                        <p>Copyright © <?= date('Y') ?> All Rights Reserved.</p>
                     </div>
                     <!-- Footer Copyright Text End -->
                 </div>

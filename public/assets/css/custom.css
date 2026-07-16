@@ -11119,6 +11119,10 @@ header.main-header.header-metal .header-sticky.active{
 	font-size: 14px;
 }
 
+.fontsize13 {
+	font-size: 13px;
+}
+
 @media only screen and (max-width: 1440px){
 
 	.hero-content-metal{
