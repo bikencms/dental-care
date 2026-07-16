@@ -15,6 +15,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon-16x16.png">
     <link rel="manifest" href="./assets/images/site.webmanifest">
 
+    <meta name="robots" content="index, follow">
+
 	<!-- Google Fonts Css-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
