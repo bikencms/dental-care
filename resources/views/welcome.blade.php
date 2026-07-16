@@ -263,7 +263,7 @@ dentistry to you</p>
                                 <div class="working-hours-body">
                                     <div class="working-hours-list">
                                         <ul>
-                                            <li><span>You can reach out anytime. Your dedicated Case Manager will prioritize your request
+                                            <li><span>You can reach out anytime. Our dedicated Case Manager will prioritize your request
 and get back to you as soon as possible, usually within 24 hours</li>
                                         </ul>
                                     </div>
@@ -289,8 +289,8 @@ and get back to you as soon as possible, usually within 24 hours</li>
                                 </div>
                                 <div class="hero-info-contact-list">
                                     <ul>
-                                        <li><img src="./assets/images/icon-phone-white.svg" alt=""><a href="tel:+123254896">+84 0799 108 727</a></li>
-                                        <li><img src="./assets/images/icon-mail-white.svg" alt=""><a href="mailto:support@domain.com">support@domain.com</a></li>
+                                        <li><img src="./assets/images/icon-phone-white.svg" alt=""><a href="tel:+84 0799 108 727">+84 0799 108 727</a></li>
+                                        <li><img src="./assets/images/icon-mail-white.svg" alt=""><a href="mailto:support@vietnamdentalcare.vn">support@vietnamdentalcare.vn</a></li>
                                     </ul>
                                 </div>
                             </div>
