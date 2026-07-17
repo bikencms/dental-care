@@ -433,7 +433,7 @@ your home country</h3>
                         <!-- Service Item Image Start -->
                         <div class="service-item-image">
                             <figure>
-                                <img src="./assets/images/service-item-image-1.png" alt="">
+                                <img src="./assets/images/implant.png" alt="">
                             </figure>
                         </div>
                         <!-- Service Item Image End -->
@@ -460,7 +460,7 @@ looking smile in just 3–5 days.</p>
                         <!-- Service Item Image Start -->
                         <div class="service-item-image">
                             <figure>
-                                <img src="./assets/images/service-item-image-2.png" alt="">
+                                <img src="./assets/images/service-item-image-4.png" alt="">
                             </figure>
                         </div>
                         <!-- Service Item Image End -->
