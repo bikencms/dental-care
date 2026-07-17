@@ -9,7 +9,6 @@
 	<meta name="keywords" content="vietnam, dental, care">
 	<meta name="author" content="Minh Biken">
 	<!-- Page Title -->
-    <title>Vietnam Dental Care</title>
 	<!-- Favicon Icon -->
 	<link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">

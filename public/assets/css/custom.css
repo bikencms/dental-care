@@ -11123,6 +11123,10 @@ header.main-header.header-metal .header-sticky.active{
 	font-size: 13px;
 }
 
+.navbar-nav .nav-link.active {
+	color: #316DFF;
+}
+
 @media only screen and (max-width: 1440px){
 
 	.hero-content-metal{

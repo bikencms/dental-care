@@ -14,6 +14,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/about-us', function () {
+    return view('about_us');
+})->name('about-us');
+
 Route::middleware('auth')->group(function () {
     Route::view(
         '/dashboard',
