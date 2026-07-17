@@ -1,7 +1,27 @@
 @extends('layouts.guest')
-@section('title', 'Vietnam Dental Care - About us')
+@section('title', 'Vietnam Dental Care | About us')
 @section('description', 'Vietnam Dental Care specializes in dental implants, orthodontics, porcelain crowns, veneers, teeth whitening, and comprehensive dental care with advanced technology and personalized treatment.')
-@section('header_title', 'Sign in to our platform')
+
+@section('schema')
+    @verbatim
+        <script type="application/ld+json">
+            {
+            "@context":"https://schema.org",
+            "@type":"WebPage",
+            "url":"https://vietnamdentalcare.vn/about-us",
+            "name":"Vietnam Dental Care | About us",
+            "description":"Vietnam Dental Care specializes in dental implants, orthodontics, porcelain crowns, veneers, teeth whitening, and comprehensive dental care with advanced technology and personalized treatment.",
+            "breadcrumb":{
+            "@id":"https://vietnamdentalcare.vn/#breadcrumb"
+            },
+            "isPartOf":{
+            "@id":"https://vietnamdentalcare.vn/#website"
+            }
+            }
+        </script>
+    @endverbatim
+@endsection
+
 @section('content')
     <!-- About Us Section Start -->
     <div class="about-us" id="about-us">

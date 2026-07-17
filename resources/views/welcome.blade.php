@@ -1,7 +1,57 @@
 @extends('layouts.guest')
-@section('title', 'Vietnam Dental Care')
-@section('description', 'Vietnam Dental Care specializes in dental implants, orthodontics, porcelain crowns, veneers, teeth whitening, and comprehensive dental care with advanced technology and personalized treatment.')
-@section('header_title', 'Sign in to our platform')
+@section('title', 'Vietnam Dental Care | Trusted Dental Clinic for International Patients')
+@section('description', 'Vietnam Dental Care provides world-class dental services in Vietnam, including dental implants, orthodontics, veneers, crowns, teeth whitening, and general dentistry. Experience personalized care, advanced technology, and affordable treatment for local and international patients.')
+
+@section('schema')
+    @verbatim
+        <script type="application/ld+json">
+            {
+                "@context":"https://schema.org",
+                "@type":"WebSite",
+                "@id":"https://vietnamdentalcare.vn/#website",
+                "url":"https://vietnamdentalcare.vn",
+                "name":"Vietnam Dental Care",
+                "alternateName":"Vietnam Dental Care Clinic",
+                "description":"Vietnam Dental Care provides high-quality dental treatments for local and international patients.",
+                "publisher":{
+                    "@id":"https://vietnamdentalcare.vn/#organization"
+                },
+                "inLanguage":"en",
+                "potentialAction":{
+                    "@type":"SearchAction",
+                    "target":{
+                    "@type":"EntryPoint",
+                    "urlTemplate":"https://vietnamdentalcare.vn/search?q={search_term_string}"
+                    },
+                    "query-input":"required name=search_term_string"
+                }
+            }
+        </script>
+
+        <script type="application/ld+json">
+            {
+                "@context":"https://schema.org",
+                "@type":"WebPage",
+                "@id":"https://vietnamdentalcare.vn/#homepage",
+                "url":"https://vietnamdentalcare.vn",
+                "name":"Vietnam Dental Care | Dental Implants, Braces & Cosmetic Dentistry",
+                "description":"Vietnam Dental Care provides dental implants, orthodontics, cosmetic dentistry, veneers, crowns and comprehensive oral healthcare.",
+                "isPartOf":{
+                    "@id":"https://vietnamdentalcare.vn/#website"
+                },
+                "about":{
+                    "@id":"https://vietnamdentalcare.vn/#clinic"
+                },
+                "primaryImageOfPage":{
+                    "@type":"ImageObject",
+                    "url":"https://vietnamdentalcare.vn/images/home-banner.jpg"
+                },
+                "inLanguage":"en"
+            }
+        </script>
+    @endverbatim
+@endsection
+
 @section('content')
     <!-- Hero Section Start -->
     <div class="hero bg-section dark-section">
