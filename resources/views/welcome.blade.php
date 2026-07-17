@@ -859,7 +859,7 @@ missing tooth, etc.)"></textarea>
                     <div class="footer-about">
                         <!-- Footer Logo Start -->
                         <div class="footer-logo">
-                            <img src="./assets/images/logo.png" alt="">
+                            <img src="./assets/images/footer_logo.png" alt="">
                         </div>
                         <!-- Footer Logo End -->
 
