@@ -1,6 +1,6 @@
 @extends('layouts.guest')
-@section('title', 'Vietnam Dental Care | Trusted Dental Clinic for International Patients')
-@section('description', 'Vietnam Dental Care provides world-class dental services in Vietnam, including dental implants, orthodontics, veneers, crowns, teeth whitening, and general dentistry. Experience personalized care, advanced technology, and affordable treatment for local and international patients.')
+@section('title', __('home.title'))
+@section('description', __('home.description'))
 
 @section('schema')
     @verbatim
@@ -99,15 +99,19 @@
                             
                             <!-- Section Title Start -->
                             <div class="section-title">
-                                <h1 class="wow fadeInUp" data-wow-delay="0.2s" data-cursor="-opaque">Your perfect <img src="./assets/images/hero-title-image.jpg" alt=""> smile made in Vietnam</h1>
-                                <p class="wow fadeInUp" data-wow-delay="0.4s">Expert veneer &amp; implant treatments</p>
-                                <p class="wow fadeInUp" data-wow-delay="0.4s">Full 1-on-1 personalized care</p>
+                                <h1 class="wow fadeInUp" data-wow-delay="0.2s" data-cursor="-opaque">
+                                {{ __('home.hero_title1') }} 
+                                <img src="./assets/images/hero-title-image.jpg" alt="">
+                                {{ __('home.hero_title2') }} 
+                            </h1>
+                                <p class="wow fadeInUp" data-wow-delay="0.4s">{{ __('home.hero_description1') }}</p>
+                                <p class="wow fadeInUp" data-wow-delay="0.4s">{{ __('home.hero_description2') }}</p>
                             </div>
                             <!-- Section Title End -->
     
                             <!-- Hero Button Start -->
                             <div class="hero-btn wow fadeInUp" data-wow-delay="0.6s">
-                                <a href="#appointmentForm" class="btn-default btn-highlighted">Get Your Free Treatment Plan</a>
+                                <a href="#appointmentForm" class="btn-default btn-highlighted">{{ __('home.button') }}</a>
                             </div>
                             <!-- Hero Button End -->
                         </div>
