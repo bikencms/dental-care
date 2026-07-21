@@ -124,7 +124,7 @@
                                 <!-- Hero Info Header Start -->
                                 <div class="hero-info-header">
                                     <div class="hero-info-title">
-                                        <h3>Top-Tier Dental Network</h3>
+                                        <h3>{{ __('home.hero_info1') }}</h3>
                                     </div>
                                     <div class="hero-info-btn">
                                         <a href="#">
@@ -159,8 +159,7 @@
                                         </div>
                                     </div>
                                     <div class="satisfy-client-content">
-                                        <p>Hand-picked specialists &amp; leading clinics. We bring the best of Vietnam&#39;s
-dentistry to you</p>
+                                        <p>{{ __('home.hero_info_description1') }}</p>
                                     </div>
                                 </div>
                                 <!-- Hero Info Body End -->
@@ -180,14 +179,14 @@ dentistry to you</p>
                                 <!-- Hero Info Content Start -->
                                 <div class="hero-info-content">
                                     <div class="hero-info-title">
-                                        <h3>Comprehensive Dental Care</h3>
+                                        <h3>{{ __('home.hero_info2') }}</h3>
                                     </div>
                                     <div class="hero-info-list">
                                         <ul class="custom">
-                                            <li>Smiles Design</li>
-                                            <li>Veneer Mastery</li>
-                                            <li>Implant Solutions</li>
-                                            <li>VIP Travel Support</li>
+                                            <li>{{ __('home.hero_info2_1') }}</li>
+                                            <li>{{ __('home.hero_info2_2') }}</li>
+                                            <li>{{ __('home.hero_info2_3') }}</li>
+                                            <li>{{ __('home.hero_info2_4') }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -200,7 +199,7 @@ dentistry to you</p>
                                 <!-- Working Hours Header Start -->
                                 <div class="working-hours-header hero-info-title">
                                     <img src="./assets/images/icon-clock-white.svg" alt="">
-                                    <h3 class="custom">Always Open for Your Inquiries</h3>
+                                    <h3 class="custom">{{ __('home.hero_info3') }}</h3>
                                 </div>
                                 <!-- Working Hours Header End -->
                                 
@@ -209,7 +208,7 @@ dentistry to you</p>
                                     <div class="working-hours-list">
                                         <ul>
                                             <li><span>You can reach out anytime. Our dedicated Case Manager will prioritize your request
-and get back to you as soon as possible, usually within 24 hours</li>
+and get back to you as soon as possible, usually within 24 hours</span></li>
                                         </ul>
                                     </div>
                                     <div class="working-hours-btn">
@@ -314,21 +313,17 @@ and get back to you as soon as possible, usually within 24 hours</li>
                         <!-- Section Title Start -->
                         <div class="section-title custom">
                             <h3 class="wow fadeInUp">About Us</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">You are never alone on this journey</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">At VDC, you are not just a patient. You have a dedicated Case Manager supporting you
-24/7 to ensure a seamless experience</p>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">{{ __('home.home_about') }}</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">{{ __('home.home_about_description') }}</p>
                         </div>
                         <!-- Section Title End -->
 
                         <!-- About Us List Start -->
                         <div class="about-us-list wow fadeInUp" data-wow-delay="0.4s">
                             <ul class="custom">
-                                <li>Personalized Consultation: Customized treatment plans tailored to your
-specific goals and budget</li>
-                                <li>Worry-Free Experience: We manage everything—from scheduling and logistics
-to language support—so you can focus on your smile</li>
-                                <li>Uncompromising Quality: We use only certified, premium materials that meet
-international standards.</li>
+                                <li>{{ __('home.home_about_description1') }}</li>
+                                <li>{{ __('home.home_about_description2') }}</li>
+                                <li>{{ __('home.home_about_description3') }}</li>
                             </ul>
                         </div>
                         <!-- About Us list End -->
@@ -336,8 +331,7 @@ international standards.</li>
                         <!-- About Author Body Start -->
                         <div class="about-author-body wow fadeInUp" data-wow-delay="0.6s">
                             <div class="about-author-content custom">
-                                <h3>Save up to 70% compared to treatment costs in
-your home country</h3>
+                                <h3>{{ __('home.author') }}</h3>
                             </div>
                             <div class="satisfy-client-images">
                                 <div class="satisfy-client-image">

@@ -198,6 +198,15 @@
         
         @yield('schema')
 
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WW5QE0C4KM"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-WW5QE0C4KM');
+        </script>
     </head>
 <body>
 
@@ -248,7 +257,7 @@
 
                         <!-- Header Btn Start -->
                         <div class="header-btn">
-                            <a class="btn-default" href="#appointmentForm">Get Your Free Treatment Plan</a>
+                            <a class="btn-default" href="#appointmentForm">{{ __('home.button') }}</a>
                         </div>
                         <!-- Header Btn End -->                      
 					</div>
