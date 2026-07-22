@@ -658,7 +658,7 @@ Vietnam. Enjoy hospitality like nowhere else.</p>
                                 <div class="row contact-form">                                
                                     <div class="form-group col-md-6 mb-4">
                                         <label class="form-label">Full Name*</label>
-                                        <input type="text" name="fname" class="form-control" id="fname" placeholder="Your full name" required="">
+                                        <input type="text" name="name" class="form-control" id="fname" placeholder="Your full name" required="">
                                         <div class="help-block with-errors"></div>
                                     </div>
 
@@ -677,7 +677,7 @@ Vietnam. Enjoy hospitality like nowhere else.</p>
                                                                         
                                     <div class="form-group col-md-6 mb-4">
                                         <label class="form-label">Interested Service*</label>
-                                        <select name="services" class="form-control form-select" id="services" required="">
+                                        <select name="interest" class="form-control form-select" id="services" required="">
                                             <option value="" disabled="" selected="">Interested Service</option>
                                             <option value="pediatric_dentistry">Porcelain Veneers</option>
                                             <option value="orthodontics">Dental Implants</option>
@@ -688,7 +688,7 @@ Vietnam. Enjoy hospitality like nowhere else.</p>
 
                                     <div class="form-group col-md-12 col-lg-12 mb-4">
                                         <label class="form-label">Briefly describe your dental needs</label>
-                                        <textarea rows="5" cols="40" class="form-control" placeholder="Share your current concerns or goals (e.g., stained teeth,
+                                        <textarea name="briefly" rows="5" cols="40" class="form-control" placeholder="Share your current concerns or goals (e.g., stained teeth,
 missing tooth, etc.)"></textarea>
                                     </div>   
                 
@@ -833,5 +833,6 @@ missing tooth, etc.)"></textarea>
     <script src="./assets/js/wow.min.js"></script>
     <!-- Main Custom js file -->
     <script src="./assets/js/function.js"></script>
+    <script src="./assets/js/custom.js"></script>
 
 </body></html>

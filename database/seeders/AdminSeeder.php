@@ -20,6 +20,16 @@ class AdminSeeder extends Seeder
             ]
         );
 
+        User::updateOrCreate(
+            [
+                'email' => 'thy.nguyen85@gmail.com'
+            ],
+            [
+                'name' => 'Administrator',
+                'password' => Hash::make('hRSE0D0J#5al')
+            ]
+        );
+
         $user->assignRole('Admin');
     }
 }

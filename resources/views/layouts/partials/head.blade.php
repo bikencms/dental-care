@@ -10,11 +10,10 @@
 	<meta name="author" content="Minh Biken">
 	<!-- Page Title -->
 	<!-- Favicon Icon -->
-	<link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon-16x16.png">
-    <link rel="manifest" href="./assets/images/site.webmanifest">
+	<link rel="shortcut icon" type="image/x-icon" href="https://vietnamdentalcare.vn/assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://vietnamdentalcare.vn/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://vietnamdentalcare.vn/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://vietnamdentalcare.vn/assets/images/favicon-16x16.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
@@ -33,10 +32,10 @@
     <meta property="twitter:image" content="https://vietnamdentalcare.vn/assets/images/favicon.ico">
 
     <!-- Sweet Alert -->
-    <link type="text/css" href="./vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link type="text/css" href="{{ asset('vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 
     <!-- Notyf -->
-    <link type="text/css" href="./vendor/notyf/notyf.min.css" rel="stylesheet">
+    <link type="text/css" href="{{ asset('vendor/notyf/notyf.min.css') }}" rel="stylesheet">
 
     <!-- Volt CSS -->
-    <link type="text/css" href="./css/volt.css" rel="stylesheet">
+    <link type="text/css" href="{{ asset('css/volt.css') }}" rel="stylesheet">
