@@ -19,7 +19,7 @@
                     <td align="center"
                         style="background:linear-gradient(135deg,#1A76D2,#26A8E0);padding:35px;">
 
-                        <img src="{{ config('app.url') }}/images/logo.png"
+                        <img src="{{ config('app.url') }}/assets/images/logo.png"
                              alt="Vietnam Dental Care"
                              style="max-width:180px;margin-bottom:20px;">
 
