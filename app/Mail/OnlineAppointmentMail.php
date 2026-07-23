@@ -30,8 +30,12 @@ class OnlineAppointmentMail extends Mailable
      */
     public function envelope(): Envelope
     {
+        $sub = 'Prepare for Your Video Consultation with Our Specialists';
+        if ( $this->appointment->language == 'vi' ) {
+            $sub = 'Chuẩn bị trước buổi tư vấn trực tuyến với đội ngũ bác sĩ chuyên khoa';
+        }
         return new Envelope(
-            subject: 'Prepare for Your Video Consultation with Our Specialists',
+            subject: $sub,
         );
     }
 
