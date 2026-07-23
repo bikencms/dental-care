@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
+use App\Models\OnlineAppointment;
 class ProfileController extends Controller
 {
     /**
@@ -56,5 +56,12 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function show(string $token)
+    {
+        $appointment = OnlineAppointment::where('token', $token)->firstOrFail();
+
+        return view('consultation', compact('appointment'));
     }
 }

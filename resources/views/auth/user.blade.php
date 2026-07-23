@@ -27,9 +27,9 @@
                         <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
                     </svg> </span><input type="text" class="form-control" placeholder="Search users"></div><select class="form-select fmxw-200 d-none d-md-inline" aria-label="Message select example 2">
                 <option selected="selected">All</option>
-                <option value="1">Active</option>
-                <option value="2">Inactive</option>
-                <option value="3">Pending</option>
+                <option value="1">Pending</option>
+                <option value="2">Confirmed</option>
+                <option value="3">Finished</option>
                 <option value="3">Cancelled</option>
             </select>
         </div>
@@ -72,6 +72,8 @@
                         <label class="form-check-label" for="userCheck55"></label>
                     </div>
                 </th>
+                <th class="border-bottom">Language</th>
+                <th class="border-bottom">Status</th>
                 <th class="border-bottom">Full Name</th>
                 <th class="border-bottom">WhatsApp / Phone Number</th>
                 <th class="border-bottom">Interested Service</th>
@@ -87,6 +89,8 @@
                         <label class="form-check-label" for="userCheck1"></label>
                     </div>
                 </td>
+                <td><span class="fw-normal text-success">{{ $user->language }}</span></td>
+                <td><span class="fw-normal text-secondary">{{ $user->status }}</span></td>
                 <td>
                     <a href="#" class="d-flex align-items-center">
                         <img src="../assets/img/team/profile-picture-1.jpg" class="avatar rounded-circle me-3" alt="Avatar">
@@ -97,7 +101,7 @@
                     </a>
                 </td>
                 <td><span class="fw-normal">{{ $user->phone }}</span></td>
-                <td><span class="fw-normal text-success d-flex align-items-center">{{ $user->interest }}</span></td>
+                <td><span class="fw-normal d-flex align-items-center text-info">{{ implode(', ', $user->interest ?? []) }}</span></td>
                 <td><span class="fw-normal">{{ $user->briefly }}</span></td>
                 <td>
                     <div class="btn-group">

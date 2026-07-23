@@ -11127,6 +11127,10 @@ header.main-header.header-metal .header-sticky.active{
 	color: #316DFF;
 }
 
+.form-check-label {
+	vertical-align: sub;
+}
+
 @media only screen and (max-width: 1440px){
 
 	.hero-content-metal{

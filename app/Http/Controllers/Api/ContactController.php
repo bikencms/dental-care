@@ -4,65 +4,60 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreContactRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\OnlineAppointment;
+
+use App\Mail\OnlineAppointmentMail;
+use App\Mail\AdminAppointmentMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class ContactController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreContactRequest $request)
+    public function store(Request $request)
     {
-        $contact = User::create(
-            [
-                'name'      => $request->name,
-                'username'     => $request->email,
-                'email'     => $request->email,
-                'password'  => Hash::make('password123'),
-                'phone'     => $request->phone,
-                'interest'  => $request->interest,
-                'briefly'   => $request->briefly,
-            ]
-        );
+        $data = $request->validate([
+            'fullname' => 'required|max:255',
+            'email' => 'nullable|email',
+            'phone' => 'required|max:20',
+            'interest' => 'nullable|max:255',
+            'briefly' => 'nullable',
+            'status' => 'required',
+            'language' => 'required|max:10',
+        ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Submitted successfully.',
-            'data' => $contact,
-        ], 201);
-    }
+        $exists = OnlineAppointment::where('email', $request->email)
+            ->where('status', '!=', 'finished')
+            ->exists();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        if ($exists) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You have a previous appointment that hasn\'t been completed yet. Please complete your current appointment before booking a new one.'
+            ], 422);
+        } else {
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+            $data['token'] = (string) Str::uuid();
+            $appointment = OnlineAppointment::create($data);
+            
+            Mail::to([
+                $data['email']
+            ])
+            ->locale($appointment->language)
+            ->send(new OnlineAppointmentMail($appointment));
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+            Mail::to([
+                'minhbiken14@gmail.com', 'support@vietnamdentalcare.vn', 'thy.nguyen85@proton.me'
+            ])
+            ->send(new AdminAppointmentMail($appointment));
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Submitted successfully.',
+                'data' => $data,
+            ], 201);
+        }
     }
 }

@@ -397,21 +397,21 @@
 		}
 	});
 
-	function submitappointmentForm(){
-		/* Ajax call to submit form */
-		$.ajax({
-			type: "POST",
-			url: "form-appointment.php",
-			data: $appointmentForm.serialize(),
-			success : function(text){
-				if (text === "success"){
-					appointmentformSuccess();
-				} else {
-					appointmentsubmitMSG(false,text);
-				}
-			}
-		});
-	}
+	// function submitappointmentForm(){
+	// 	/* Ajax call to submit form */
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url: "form-appointment.php",
+	// 		data: $appointmentForm.serialize(),
+	// 		success : function(text){
+	// 			if (text === "success"){
+	// 				appointmentformSuccess();
+	// 			} else {
+	// 				appointmentsubmitMSG(false,text);
+	// 			}
+	// 		}
+	// 	});
+	// }
 
 	function appointmentformSuccess(){
 		$appointmentForm[0].reset();

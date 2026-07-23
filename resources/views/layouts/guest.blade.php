@@ -655,6 +655,8 @@ Vietnam. Enjoy hospitality like nowhere else.</p>
                         <!-- Book Appointment Form Start -->
                         <div class="appointment-form wow fadeInUp" data-wow-delay="0.4s">
                             <form id="appointmentForm" action="#" method="POST" data-toggle="validator">
+                                <input type="hidden" name="language" value="{{ app()->getLocale() }}">
+                                <input type="hidden" name="status" value="pending">
                                 <div class="row contact-form">                                
                                     <div class="form-group col-md-6 mb-4">
                                         <label class="form-label">Full Name*</label>
@@ -668,24 +670,33 @@ Vietnam. Enjoy hospitality like nowhere else.</p>
                                         <div class="help-block with-errors"></div>
                                     </div>
 
-                                    <div class="form-group col-md-6 mb-4">
+                                    <div class="form-group col-md-12 mb-4">
                                         <label class="form-label">WhatsApp / Phone Number*</label>
                                         <input type="text" name="phone" class="form-control" id="phone" placeholder="Include country code, e.g., +1 234
 567 890" required="">
                                         <div class="help-block with-errors"></div>
-                                    </div>                                 
-                                                                        
-                                    <div class="form-group col-md-6 mb-4">
-                                        <label class="form-label">Interested Service*</label>
-                                        <select name="interest" class="form-control form-select" id="services" required="">
-                                            <option value="" disabled="" selected="">Interested Service</option>
-                                            <option value="pediatric_dentistry">Porcelain Veneers</option>
-                                            <option value="orthodontics">Dental Implants</option>
-                                            <option value="pediatric_dentistry">General Dental Consultation</option>
-                                        </select>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-
+                                    </div>            
+                                    <div class="form-group col-md-12 mb-4">
+                                        <label class="form-label">Interested Service*</label> <br/>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="interest[]" type="checkbox" value="pediatric_dentistry" id="flexCheckDefault" checked>
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Porcelain Veneers
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="interest[]" type="checkbox" value="orthodontics" id="flexCheckChecked">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Dental Implants
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="interest[]" type="checkbox" value="pediatric_dentistry" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                General Dental Consultation
+                                            </label>
+                                        </div>
+                                    </div>                     
                                     <div class="form-group col-md-12 col-lg-12 mb-4">
                                         <label class="form-label">Briefly describe your dental needs</label>
                                         <textarea name="briefly" rows="5" cols="40" class="form-control" placeholder="Share your current concerns or goals (e.g., stained teeth,

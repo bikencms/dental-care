@@ -6,10 +6,12 @@
 		const formData = new FormData(this);
 
 		const data = {
-			name: formData.get('name'),
+			status: formData.get('status'),
+			language: formData.get('language'),
+			fullname: formData.get('name'),
 			email: formData.get('email'),
 			phone: formData.get('phone'),
-			interest: formData.get('interest'),
+			interest: formData.getAll('interest[]'),
 			briefly: formData.get('briefly')
 		};
 

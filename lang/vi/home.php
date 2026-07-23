@@ -30,4 +30,5 @@ hướng dẫn di chuyển— để bạn chỉ cần tập trung đón nhận n
     'home_about_description3' => 'Chất lượng chuẩn quốc tế: Chỉ sử dụng vật liệu cao cấp, có chứng nhận và nguồn
 gốc rõ ràng.',
     'author' => 'Trải nghiệm nha khoa chuẩn quốc tế với chi phí tối ưu ngay tại Việt nam',
+    'copyright' => 'Đã đăng ký bản quyền.'
 ];
