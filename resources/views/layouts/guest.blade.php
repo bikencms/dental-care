@@ -844,6 +844,6 @@ missing tooth, etc.)"></textarea>
     <script src="./assets/js/wow.min.js"></script>
     <!-- Main Custom js file -->
     <script src="./assets/js/function.js"></script>
-    <script src="./assets/js/custom.js"></script>
-
-</body></html>
+    <script src="./assets/js/custom.js?v={{ filemtime(public_path('assets/js/custom.js')) }}"></script>
+</body>
+</html>
