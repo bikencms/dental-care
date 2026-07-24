@@ -52,18 +52,29 @@
                                 <td align="center"
                                     bgcolor="#1d233b"
                                     style="border-radius:50px;">
-
-                                    <a href="{{ route('consultation', $appointment->token) }}"
-                                       style="
-                                            display:inline-block;
-                                            padding:16px 40px;
-                                            color:#ffffff;
-                                            text-decoration:none;
-                                            font-size:16px;
-                                            font-weight:bold;">
-                                        {{ __('mail.button') }}
-                                    </a>
-
+                                    @if( $appointment->language == 'vi' )
+                                        <a href="{{ route('locale.consultation', [ 'token'  => $appointment->token, 'locale' => $appointment->language ]) }}"
+                                            style="
+                                                display:inline-block;
+                                                padding:16px 40px;
+                                                color:#ffffff;
+                                                text-decoration:none;
+                                                font-size:16px;
+                                                font-weight:bold;">
+                                            {{ __('mail.button') }}
+                                        </a>
+                                    @else
+                                        <a href="{{ route('consultation', [ 'token'  => $appointment->token, 'locale' => $appointment->language ]) }}"
+                                            style="
+                                                    display:inline-block;
+                                                    padding:16px 40px;
+                                                    color:#ffffff;
+                                                    text-decoration:none;
+                                                    font-size:16px;
+                                                    font-weight:bold;">
+                                                {{ __('mail.button') }}
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         </table>
@@ -71,9 +82,15 @@
                             {{ __('mail.note') }}:
                         </p>
                         <p style="word-break:break-all;color:#1A76D2;font-size:14px;">
-                            <a href="{{ route('consultation', $appointment->token) }}">
-                                {{ __('mail.button') }}
-                            </a>
+                            @if( $appointment->language == 'vi' )
+                                <a href="{{ route('locale.consultation', [ 'token'  => $appointment->token, 'locale' => $appointment->language ]) }}">
+                                    {{ __('mail.button') }}
+                                </a>
+                            @else
+                                <a href="{{ route('consultation', [ 'token'  => $appointment->token, 'locale' => $appointment->language ]) }}">
+                                    {{ __('mail.button') }}
+                                </a>
+                            @endif
                         </p>
 
                         <hr style="border:none;border-top:1px solid #e6e6e6;margin:40px 0;">
@@ -87,7 +104,6 @@
                         </p>
 
                         <p style="margin:0;font-weight:bold;color:#1d233b;">
-                            Kathy, 
                             [Kathy / {{ __('mail.team') }}] {{ __('mail.foot_title') }}
                         </p>
 

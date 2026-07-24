@@ -58,10 +58,9 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function show(string $token)
+    public function show(string $language, string $token)
     {
-        $appointment = OnlineAppointment::where('token', $token)->firstOrFail();
-
+        $appointment = OnlineAppointment::where('token', $token)->first();
         return view('consultation', compact('appointment'));
     }
 }
