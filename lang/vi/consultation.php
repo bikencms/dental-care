@@ -20,7 +20,7 @@ return [
     'part3_note' => '(Thông tin này rất
 quan trọng để các chuyên gia của chúng tôi đảm bảo tỷ lệ thành công cao nhất cho ca cấy
 ghép của Quý khách).',
-    'part3_answer1' => 'Không bị tiểu đường &amp; Không hút thuốc',
+    'part3_answer1' => 'Không bị tiểu đường & Không hút thuốc',
     'part3_answer2' => 'Có, tôi bị Tiểu đường',
     'part3_answer3' => 'Có, tôi hút thuốc',
     'part3_answer3_holder' => 'Số lượng ước tính mỗi ngày: (ví dụ: 5 điếu)',
