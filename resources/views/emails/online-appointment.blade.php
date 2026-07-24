@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ __('mail.title') }}</title>
 </head>
-<body style="margin:0;padding:0;background:#f3f8fc;font-family:Arial,Helvetica,sans-serif;">
+<body style="margin:0;padding:0;background:#f3f8fc;font-family:Sora, sans-serif;font-size: 16px;font-weight: 400;">
 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f8fc;padding:40px 15px;">
     <tr>
@@ -17,9 +17,9 @@
                 <!-- Header -->
                 <tr>
                     <td align="center"
-                        style="background:linear-gradient(135deg,#1A76D2,#26A8E0);padding:35px;">
+                        style="background:linear-gradient(135deg,#274289,#1d233b);padding:35px;">
 
-                        <img src="{{ config('app.url') }}/assets/images/logo.png"
+                        <img src="{{ config('app.url') }}/assets/images/footer_logo.png"
                              alt="Vietnam Dental Care"
                              style="max-width:180px;margin-bottom:20px;">
 
@@ -34,7 +34,7 @@
                 <tr>
                     <td style="padding:45px;line-height:1.8;color:#444;">
 
-                        <h2 style="margin-top:0;color:#1A76D2;">
+                        <h2 style="color: #1d233b">
                             {{ __('mail.title_head') }},
                         </h2>
 
@@ -50,7 +50,7 @@
                                width="100%"
                                cellpadding="0"
                                cellspacing="0"
-                               style="margin:30px 0;background:#eef7ff;border-left:5px solid #1A76D2;border-radius:8px;">
+                               style="margin:30px 0;background:#eef7ff;border-left:5px solid #1d233b;border-radius:8px;">
 
                             <tr>
                                 <td style="padding:20px;color:#444;">
@@ -67,7 +67,7 @@
                         <table role="presentation" align="center" cellpadding="0" cellspacing="0" style="margin:35px auto;">
                             <tr>
                                 <td align="center"
-                                    bgcolor="#1A76D2"
+                                    bgcolor="#1d233b"
                                     style="border-radius:50px;">
 
                                     <a href="{{ route('consultation', $appointment->token) }}"
@@ -105,7 +105,7 @@
                             {{ __('mail.des6') }},
                         </p>
 
-                        <p style="margin:0;font-weight:bold;color:#1A76D2;">
+                        <p style="margin:0;font-weight:bold;color:#1d233b;">
                             Kathy, {{ __('mail.team') }}
                         </p>
 
@@ -115,7 +115,7 @@
                 <!-- Footer -->
                 <tr>
                     <td align="center"
-                        style="background:#0d4f96;padding:30px;color:#ffffff;">
+                        style="background:#1d233b;padding:30px;color:#ffffff;">
 
                         <h3 style="margin-top:0;color:#ffffff;">
                             {{ __(key: 'home.title') }}
@@ -125,11 +125,11 @@
                             {{ __(key: 'home.description') }}
                         </p>
 
-                        <p style="margin:8px 0;font-size:14px;">
+                        <p style="margin:8px 0;font-size:14px;color:#ffffff;">
                             🌐 https://vietnamdentalcare.vn
                         </p>
 
-                        <p style="margin:8px 0;font-size:14px;">
+                        <p style="margin:8px 0;font-size:14px;color:#ffffff;">
                             ✉️ support@vietnamdentalcare.vn
                         </p>
 

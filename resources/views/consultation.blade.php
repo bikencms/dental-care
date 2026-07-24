@@ -32,7 +32,7 @@
             {
                 "@context":"https://schema.org",
                 "@type":"WebPage",
-                "@id":"https://vietnamdentalcare.vn/#homepage",
+                "@id":"https://vietnamdentalcare.vn/#consultation",
                 "url":"https://vietnamdentalcare.vn",
                 "name":"Vietnam Dental Care | Dental Implants, Braces & Cosmetic Dentistry",
                 "description":"Vietnam Dental Care provides dental implants, orthodontics, cosmetic dentistry, veneers, crowns and comprehensive oral healthcare.",
@@ -40,7 +40,7 @@
                     "@id":"https://vietnamdentalcare.vn/#website"
                 },
                 "about":{
-                    "@id":"https://vietnamdentalcare.vn/#clinic"
+                    "@id":"https://vietnamdentalcare.vn/#consultation"
                 },
                 "primaryImageOfPage":{
                     "@type":"ImageObject",

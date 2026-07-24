@@ -11131,6 +11131,20 @@ header.main-header.header-metal .header-sticky.active{
 	vertical-align: sub;
 }
 
+#appointmentForm {
+    position: relative;
+}
+
+.form-loading {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
 @media only screen and (max-width: 1440px){
 
 	.hero-content-metal{

@@ -705,8 +705,10 @@ missing tooth, etc.)"></textarea>
                 
                                     <div class="col-md-12">
                                         <div class="appointment-form-btn">
-                                            <button type="submit" class="btn-default"><span>Get My Free Plan</span></button>
-                                            <div id="msgSubmit" class="h3 hidden"></div>
+                                            <button type="submit" id="submitBtn" class="btn-default"><span class="btn-text">Get My Free Plan</span></button>
+                                            <div class="form-loading d-none" id="formLoading">
+                                                <div class="spinner-border text-primary" role="status"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

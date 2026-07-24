@@ -393,7 +393,7 @@
 	$appointmentForm.validator({focus: false}).on("submit", function (event) {
 		if (!event.isDefaultPrevented()) {
 			event.preventDefault();
-			submitappointmentForm();
+			// submitappointmentForm();
 		}
 	});
 
