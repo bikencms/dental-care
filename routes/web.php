@@ -26,11 +26,10 @@ Route::get('/about-us', function () {
     return view('about_us');
 })->name('about-us');
 
-Route::get('/consultation/{token}', [ProfileController::class, 'show'])->name('consultation');
-
 Route::middleware('localization')->group(function () {
     Route::get('/', function() { return view('welcome'); })->name('home');
     Route::get('/about-us', function() { return view('about_us'); })->name('about-us');
+    Route::get('/consultation/{token}', [ProfileController::class, 'show'])->name('consultation');
 });
 
 Route::prefix('{locale}')
@@ -39,6 +38,7 @@ Route::prefix('{locale}')
     ->group(function () {
     Route::get('/', function() { return view('welcome'); })->name('locale.home');
     Route::get('/about-us', function() { return view('about_us'); })->name('locale.about');
+    Route::get('/consultation/{token}', [ProfileController::class, 'show'])->name('locale.consultation');
 });
 
 

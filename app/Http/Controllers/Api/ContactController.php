@@ -8,6 +8,7 @@ use App\Models\OnlineAppointment;
 
 use App\Mail\OnlineAppointmentMail;
 use App\Mail\AdminAppointmentMail;
+use App\Mail\VeneersAppointmentMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -42,11 +43,19 @@ class ContactController extends Controller
             $data['token'] = (string) Str::uuid();
             $appointment = OnlineAppointment::create($data);
             
-            Mail::to([
+            if ( $appointment->interest === ["porcelain_veneers"] ) {
+                Mail::to([
                 $data['email']
-            ])
-            ->locale($appointment->language)
-            ->send(new OnlineAppointmentMail($appointment));
+                ])
+                ->locale($appointment->language)
+                ->send(new VeneersAppointmentMail($appointment));
+            } else if( $appointment->interest === ["dental_implants"] ) {
+                Mail::to([
+                $data['email']
+                ])
+                ->locale($appointment->language)
+                ->send(new OnlineAppointmentMail($appointment));
+            }
 
             Mail::to([
                 'minhbiken14@gmail.com', 'support@vietnamdentalcare.vn', 'thy.nguyen85@proton.me'

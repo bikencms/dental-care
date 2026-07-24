@@ -11,11 +11,11 @@
         <!-- Page Title -->
         <title>@yield('title', 'Vietnam Dental Care | Trusted Dental Clinic for International Patients')</title>
         <!-- Favicon Icon -->
-        <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.ico">
-        <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon-16x16.png">
-        <link rel="manifest" href="./assets/images/site.webmanifest">
+        <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+        <link rel="manifest" href="../assets/images/site.webmanifest">
 
 
         <meta property="og:type" content="website">
@@ -49,23 +49,23 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
         <!-- Bootstrap Css -->
-        <link href="./assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
         <!-- SlickNav Css -->
-        <link href="./assets/css/slicknav.min.css" rel="stylesheet">
+        <link href="../assets/css/slicknav.min.css" rel="stylesheet">
         <!-- Swiper Css -->
-        <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
+        <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
         <!-- Font Awesome Icon Css-->
-        <link href="./assets/css/all.min.css" rel="stylesheet" media="screen">
+        <link href="../assets/css/all.min.css" rel="stylesheet" media="screen">
         <!-- Animated Css -->
-        <link href="./assets/css/animate.css" rel="stylesheet">
+        <link href="../assets/css/animate.css" rel="stylesheet">
         <!-- Magnific Popup Core Css File -->
-        <link rel="stylesheet" href="./assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="../assets/css/magnific-popup.css">
         <!-- Image Comparision Css File -->
-        <link rel="stylesheet" href="./assets/css/twentytwenty.css">
+        <link rel="stylesheet" href="../assets/css/twentytwenty.css">
         <!-- Mouse Cursor Css File -->
-        <link rel="stylesheet" href="./assets/css/mousecursor.css">
+        <link rel="stylesheet" href="../assets/css/mousecursor.css">
         <!-- Main Custom Css -->
-        <link href="./assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" media="screen">
+        <link href="../assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" media="screen">
 
         @verbatim
             <script type="application/ld+json">
@@ -214,61 +214,10 @@
 	<div class="preloader">
 		<div class="loading-container">
 			<div class="loading"></div>
-			<div id="loading-icon"><img src="./assets/images/icon.png" alt=""></div>
+			<div id="loading-icon"><img src="../assets/images/icon.png" alt=""></div>
 		</div>
 	</div>
 	<!-- Preloader End -->
-
-    <!-- Header Start -->
-	<header class="main-header">
-		<div class="header-sticky bg-section">
-			<nav class="navbar navbar-expand-lg">
-				<div class="container-fluid">
-					<!-- Logo Start -->
-					<a class="navbar-brand" href="./">
-						<img src="./assets/images/logo.png?Aaa" alt="Logo" width="185">
-					</a>
-					<!-- Logo End -->
-
-					<!-- Main Menu Start -->
-					<div class="collapse navbar-collapse main-menu">
-                        <div class="nav-menu-wrapper">
-                            <ul class="navbar-nav mr-auto" id="menu">
-                                <li class="nav-item"><a class="nav-link {{ Route::currentRouteName() == 'welcome' ? 'active' : '' }}" href="./">Home</a>
-                                </li>                                
-                                <li class="nav-item"><a class="nav-link {{ Route::currentRouteName() == 'about-us' ? 'active' : '' }}" href="{{ route('about-us') }}">About Us</a>
-                                <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
-                                <li class="nav-item submenu">
-                                    <a class="nav-link" href="#">
-                                    @if(app()->getLocale() == 'vi')
-                                        <img src="./assets/images/svg/vn.svg" alt="Language VI" width="18">
-                                    @else
-                                        <img src="./assets/images/svg/us.svg" alt="Language EN" width="18">
-                                    @endif
-                                    </a>
-                                    <ul class="language">                                        
-                                        <li class="nav-item"><a class="nav-link" href="/"><img src="./assets/images/svg/us.svg" alt="Language EN" width="18"></a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/vi"><img src="./assets/images/svg/vn.svg" alt="Language VN" width="18"></a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item highlighted-menu"><a class="nav-link" href="#"></a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Header Btn Start -->
-                        <div class="header-btn">
-                            <a class="btn-default" href="#appointmentForm">{{ __('home.button') }}</a>
-                        </div>
-                        <!-- Header Btn End -->                      
-					</div>
-					<!-- Main Menu End -->
-					<div class="navbar-toggle"></div>
-				</div>
-			</nav>
-			<div class="responsive-menu"></div>
-		</div>
-	</header>
-	<!-- Header End -->
 
     @yield('content')
 
@@ -281,7 +230,7 @@
                     <div class="footer-about">
                         <!-- Footer Logo Start -->
                         <div class="footer-logo">
-                            <img src="./assets/images/footer_logo.png" alt="">
+                            <img src="../assets/images/footer_logo.png" alt="">
                         </div>
                         <!-- Footer Logo End -->
 
@@ -362,39 +311,39 @@
     <!-- Footer End -->
 
     <!-- Jquery Library File -->
-    <script src="./assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap js file -->
-    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
     <!-- Validator js file -->
-    <script src="./assets/js/validator.min.js"></script>
+    <script src="../assets/js/validator.min.js"></script>
     <!-- SlickNav js file -->
-    <script src="./assets/js/jquery.slicknav.js"></script>
+    <script src="../assets/js/jquery.slicknav.js"></script>
     <!-- Swiper js file -->
-    <script src="./assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
     <!-- Counter js file -->
-    <script src="./assets/js/jquery.waypoints.min.js"></script>
-    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="../assets/js/jquery.waypoints.min.js"></script>
+    <script src="../assets/js/jquery.counterup.min.js"></script>
     <!-- Magnific js file -->
-    <script src="./assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
     <!-- SmoothScroll -->
-    <script src="./assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
     <!-- Parallax js -->
-    <script src="./assets/js/parallaxie.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
     <!-- Image Comparision js -->
-    <script src="./assets/js/jquery.event.move.js"></script>
-	<script src="./assets/js/jquery.twentytwenty.js"></script>
+    <script src="../assets/js/jquery.event.move.js"></script>
+	<script src="../assets/js/jquery.twentytwenty.js"></script>
     <!-- MagicCursor js file -->
-    <script src="./assets/js/gsap.min.js"></script>
-    <script src="./assets/js/magiccursor.js"></script>
+    <script src="../assets/js/gsap.min.js"></script>
+    <script src="../assets/js/magiccursor.js"></script>
     <!-- Text Effect js file -->
-    <script src="./assets/js/SplitText.min.js"></script>
-    <script src="./assets/js/ScrollTrigger.min.js"></script>
+    <script src="../assets/js/SplitText.min.js"></script>
+    <script src="../assets/js/ScrollTrigger.min.js"></script>
     <!-- YTPlayer js File -->
-    <script src="./assets/js/jquery.mb.YTPlayer.min.js"></script>
+    <script src="../assets/js/jquery.mb.YTPlayer.min.js"></script>
     <!-- Wow js file -->
-    <script src="./assets/js/wow.min.js"></script>
+    <script src="../assets/js/wow.min.js"></script>
     <!-- Main Custom js file -->
-    <script src="./assets/js/function.js"></script>
-    <script src="./assets/js/custom.js"></script>
-
-</body></html>
+    <script src="../assets/js/function.js"></script>
+    <script src="../assets/js/custom.js?v={{ filemtime(public_path('assets/js/custom.js')) }}"></script>
+</body>
+</html>

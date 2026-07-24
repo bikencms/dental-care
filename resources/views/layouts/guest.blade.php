@@ -234,7 +234,7 @@
 					<div class="collapse navbar-collapse main-menu">
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav mr-auto" id="menu">
-                                <li class="nav-item"><a class="nav-link {{ Route::currentRouteName() == 'welcome' ? 'active' : '' }}" href="./">Home</a>
+                                <li class="nav-item"><a class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                                 </li>                                
                                 <li class="nav-item"><a class="nav-link {{ Route::currentRouteName() == 'about-us' ? 'active' : '' }}" href="{{ route('about-us') }}">About Us</a>
                                 <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
@@ -679,19 +679,19 @@ Vietnam. Enjoy hospitality like nowhere else.</p>
                                     <div class="form-group col-md-12 mb-4">
                                         <label class="form-label">Interested Service*</label> <br/>
                                         <div class="form-check">
-                                            <input class="form-check-input" name="interest[]" type="checkbox" value="pediatric_dentistry" id="flexCheckDefault" checked>
+                                            <input class="form-check-input" name="interest[]" type="checkbox" value="porcelain_veneers" id="flexCheckDefault" checked>
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 Porcelain Veneers
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" name="interest[]" type="checkbox" value="orthodontics" id="flexCheckChecked">
+                                            <input class="form-check-input" name="interest[]" type="checkbox" value="dental_implants" id="flexCheckChecked">
                                             <label class="form-check-label" for="flexCheckChecked">
                                                 Dental Implants
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" name="interest[]" type="checkbox" value="pediatric_dentistry" id="flexCheckDefault">
+                                            <input class="form-check-input" name="interest[]" type="checkbox" value="general_dental_consultation" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 General Dental Consultation
                                             </label>
