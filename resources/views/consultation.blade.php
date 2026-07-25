@@ -1,4 +1,3 @@
-{{-- File: resources/views/survey/dental-implant.blade.php --}}
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -48,6 +47,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .text-teal-700 {
@@ -71,7 +72,6 @@
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased py-10 px-4">
-
     <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
         
         {{-- Header Form --}}
@@ -245,8 +245,6 @@
             </div>
         </form>
     </div>
-
-    {{-- Script xử lý ẩn/hiện input phụ --}}
     <script>
         function toggleSmokingInput(show) {
             const wrapper = document.getElementById('smoking_amount_wrapper');
@@ -268,5 +266,6 @@
             }
         }
     </script>
+    <!-- Main Custom js file -->
 </body>
 </html>

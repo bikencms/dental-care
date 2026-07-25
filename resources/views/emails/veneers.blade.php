@@ -64,7 +64,7 @@
                                             {{ __('mail.button') }}
                                         </a>
                                     @else
-                                        <a href="{{ route('consultation', [ 'token'  => $appointment->token, 'locale' => $appointment->language ]) }}"
+                                        <a href="{{ route('consultation', [ 'token'  => $appointment->token ]) }}"
                                             style="
                                                     display:inline-block;
                                                     padding:16px 40px;
@@ -87,7 +87,7 @@
                                     {{ __('mail.button') }}
                                 </a>
                             @else
-                                <a href="{{ route('consultation', [ 'token'  => $appointment->token, 'locale' => $appointment->language ]) }}">
+                                <a href="{{ route('consultation', [ 'token'  => $appointment->token ]) }}">
                                     {{ __('mail.button') }}
                                 </a>
                             @endif

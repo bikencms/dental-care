@@ -38,7 +38,7 @@ Route::prefix('{locale}')
     ->group(function () {
     Route::get('/', function() { return view('welcome'); })->name('locale.home');
     Route::get('/about-us', function() { return view('about_us'); })->name('locale.about');
-    Route::get('/consultation/{token}', [ProfileController::class, 'show'])->name('locale.consultation');
+    Route::get('/consultation/{token}', [ProfileController::class, 'consultation'])->name('locale.consultation');
 });
 
 
