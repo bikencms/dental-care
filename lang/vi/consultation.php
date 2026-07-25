@@ -33,4 +33,40 @@ lịch tư vấn trực tuyến).',
 khách hướng dẫn nhanh về cách xin phim chụp đúng chuẩn tại phòng khám nha khoa
 gần nhà).',
     'button' => 'Gửi đánh giá',
+
+    'auto_filled' => 'Đã tự động điền',
+
+    // Phần 2: Dành cho Veneer
+    'part2_ven' => [
+        'title' => 'Phần 2: Mục tiêu Nụ cười',
+        'q2_goals_title' => '2. Mục tiêu chính cho nụ cười mới của Quý khách là gì?',
+        'select_multiple' => '(Có thể chọn nhiều đáp án)',
+        'goal_color' => 'Răng trắng và sáng hơn (Màu sắc)',
+        'goal_shape' => 'Thay đổi hình dáng hoặc kích thước răng (Hình dáng)',
+        'goal_alignment' => 'Đóng khe thưa hoặc chỉnh răng khấp khểnh nhẹ (Sự sắp xếp)',
+    ],
+
+    // Phần 3: Dành cho Veneer
+    'part3_ven' => [
+        'health_title' => 'Phần 3: Sức khỏe Nha khoa & Hình ảnh',
+
+        // Tình trạng nha khoa
+        'q3_conditions_title' => '3. Hiện tại Quý khách có đang gặp phải tình trạng nha khoa nào dưới đây không?',
+        'q3_conditions_note' => '(Thông tin này giúp các chuyên gia đảm bảo Quý khách là ứng viên lý tưởng để dán sứ Veneer và cam kết kết quả bền lâu).',
+        'bruxism' => 'Nghiến răng hoặc hay cắn chặt răng',
+        'bleeding_gums' => 'Chảy máu nướu hoặc sưng nướu',
+        'has_crowns' => 'Tôi đã từng bọc sứ hoặc dán sứ trước đây',
+        'none' => 'Không có các vấn đề trên',
+
+        // Tải ảnh nụ cười
+        'q4_photos_title' => '4. Vui lòng tải lên 3 bức ảnh chụp rõ nét nụ cười của Quý khách.',
+        'q4_photos_note' => '(Hình ảnh rõ nét là yêu cầu bắt buộc để các chuyên gia của chúng tôi đánh giá tình trạng răng và cung cấp báo giá chính xác trước chuyến đi của Quý khách).',
+        'photo1_label' => 'Ảnh 1:',
+        'photo1_desc' => 'Cười tự nhiên.',
+        'photo2_label' => 'Ảnh 2:',
+        'photo2_desc' => 'Cắn chặt hai hàm răng bình thường (để lộ răng cửa).',
+        'photo3_label' => 'Ảnh 3:',
+        'photo3_desc' => 'Chụp cận cảnh hàm răng.',
+        'btn_upload' => 'Tải tệp lên',
+    ],
 ]; 

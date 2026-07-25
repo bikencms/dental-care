@@ -69,6 +69,14 @@
         .bg-teal-600 {
             background-color: #133eb3 !important;
         }
+
+        .text-teal-600 {
+            color: #133eb3 !important;
+        }
+
+        .hover\:bg-teal-50\/50:hover {
+            background-color: #e8eeff !important;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased py-10 px-4">
@@ -85,17 +93,46 @@
         </div>
         <form action="#" method="POST" enctype="multipart/form-data" class="p-8 space-y-8">
             @csrf
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-slate-50 p-4 sm:p-5 rounded-xl border border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 gap-4">
+    
+                {{-- Name Input --}}
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">{{ __('consultation.name') }}</label>
-                    <input type="text" name="name" value="{{ old('name', $appointment->fullname ) }}" readonly
-                        class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-700 focus:outline-none cursor-not-allowed font-medium">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">
+                            {{ __('consultation.name') }}
+                        </label>
+                        <span class="text-[10px] font-semibold bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full">{{ __('consultation.auto_filled') }}</span>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
+                        <input type="text" name="name" value="{{ old('name', $appointment->fullname) }}" readonly
+                            class="w-full bg-slate-100/80 border border-slate-200 rounded-lg pl-9 pr-3 py-2 text-sm text-slate-700 font-semibold cursor-not-allowed focus:outline-none">
+                    </div>
                 </div>
+
+                {{-- Email Input --}}
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">{{ __('consultation.email') }}</label>
-                    <input type="email" name="email" value="{{ old('email', $appointment->email ?? '') }}" readonly
-                        class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-slate-700 focus:outline-none cursor-not-allowed font-medium">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">
+                            {{ __('consultation.email') }}
+                        </label>
+                        <span class="text-[10px] font-semibold bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full">{{ __('consultation.auto_filled') }}</span>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <input type="email" name="email" value="{{ old('email', $appointment->email ?? '') }}" readonly
+                            class="w-full bg-slate-100/80 border border-slate-200 rounded-lg pl-9 pr-3 py-2 text-sm text-slate-700 font-semibold cursor-not-allowed focus:outline-none">
+                    </div>
                 </div>
+
             </div>
 
             <hr class="border-slate-200">
@@ -127,114 +164,318 @@
 
             <hr class="border-slate-200">
 
-            {{-- PART 2 --}}
-            <section class="space-y-6">
-                <h2 class="text-xl font-bold text-teal-700 flex items-center gap-2">
-                    {{ __('consultation.part2') }}
+            @if( $appointment->interest === ["dental_implants"] )
+            {{-- PART 2: Smile Goals & Schedule --}}
+            <section class="space-y-4">
+                <h2 class="text-xl font-bold text-teal-700">
+                    {{ __('consultation.part2_ven.title') }}
                 </h2>
 
-                {{-- Câu 2 --}}
                 <div class="space-y-3">
                     <label class="block text-sm font-semibold text-slate-800">
-                        {{ __('consultation.part2_question') }}
+                        {{ __('consultation.part2_ven.q2_goals_title') }} 
+                        <span class="text-xs font-normal text-slate-500">{{ __('consultation.part2_ven.select_multiple') }}</span>
                     </label>
+
                     <div class="space-y-2 pl-1">
                         <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
-                            <input type="radio" name="missing_teeth_duration" value="Less than 6 months" required class="w-4 h-4 text-teal-600 focus:ring-teal-500">
-                            <span class="text-sm text-slate-700">{{ __('consultation.part2_answer1') }}</span>
+                            <input type="checkbox" name="smile_goals[]" value="Whiter and brighter teeth" class="w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">{{ __('consultation.part2_ven.goal_color') }}</span>
                         </label>
+
                         <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
-                            <input type="radio" name="missing_teeth_duration" value="6 months – 2 years" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
-                            <span class="text-sm text-slate-700">{{ __('consultation.part2_answer2') }}</span>
+                            <input type="checkbox" name="smile_goals[]" value="Change the shape or size of my teeth" class="w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">{{ __('consultation.part2_ven.goal_shape') }}</span>
                         </label>
+
                         <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
-                            <input type="radio" name="missing_teeth_duration" value="More than 2 years" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
-                            <span class="text-sm text-slate-700">{{ __('consultation.part2_answer3') }}</span>
+                            <input type="checkbox" name="smile_goals[]" value="Close gaps or fix minor misalignments" class="w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">{{ __('consultation.part2_ven.goal_alignment') }}</span>
                         </label>
                     </div>
                 </div>
+            </section>
+
+            <hr class="border-slate-200">
+
+            <section class="space-y-6">
+                <h2 class="text-xl font-bold text-teal-700">
+                    {{ __('consultation.part3_ven.health_title') }}
+                </h2>
+
+                {{-- Câu 3: Tình trạng nha khoa --}}
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-800">
+                            {{ __('consultation.part3_ven.q3_conditions_title') }}
+                        </label>
+                        <p class="text-xs text-slate-500 italic mt-0.5">
+                            {{ __('consultation.part3_ven.q3_conditions_note') }}
+                        </p>
+                    </div>
+
+                    <div class="space-y-2 pl-1">
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
+                            <input type="checkbox" name="dental_conditions[]" value="Teeth grinding or clenching" class="condition-checkbox w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">{{ __('consultation.part3_ven.bruxism') }}</span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
+                            <input type="checkbox" name="dental_conditions[]" value="Bleeding or swollen gums" class="condition-checkbox w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">{{ __('consultation.part3_ven.bleeding_gums') }}</span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
+                            <input type="checkbox" name="dental_conditions[]" value="Already have veneers or crowns" class="condition-checkbox w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">{{ __('consultation.part3_ven.has_crowns') }}</span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
+                            <input type="checkbox" name="dental_conditions[]" value="None of the above" id="none_condition" onchange="toggleNoneCondition(this)" class="w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm font-medium text-slate-700">{{ __('consultation.part3_ven.none') }}</span>
+                        </label>
+                    </div>
+                </div>
+
+                {{-- Câu 4: Tải ảnh nụ cười --}}
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-800">
+                            {{ __('consultation.part3_ven.q4_photos_title') }} <span class="text-red-500">*</span>
+                        </label>
+                        <p class="text-xs text-slate-500 italic mt-0.5">
+                            {{ __('consultation.part3_ven.q4_photos_note') }}
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pl-1">
+                        {{-- Photo 1 --}}
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-teal-600 uppercase tracking-wider block mb-1">
+                                    {{ __('consultation.part3_ven.photo1_label') }}
+                                </span>
+                                <p class="text-sm font-medium text-slate-700 mb-3">
+                                    {{ __('consultation.part3_ven.photo1_desc') }}
+                                </p>
+                            </div>
+                            <div>
+                                <label class="cursor-pointer bg-white border border-teal-600 text-teal-600 hover:bg-teal-50 text-xs font-semibold py-2 px-3 rounded-lg block text-center transition shadow-sm">
+                                    <span>{{ __('consultation.part3_ven.btn_upload') }}</span>
+                                    <input type="file" name="smile_photos[natural]" accept="image/*" required onchange="previewImage(this, 'preview_1')" class="hidden">
+                                </label>
+                                <img id="preview_1" class="hidden mt-3 w-full h-28 object-cover rounded-lg border border-slate-200">
+                            </div>
+                        </div>
+
+                        {{-- Photo 2 --}}
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-teal-600 uppercase tracking-wider block mb-1">
+                                    {{ __('consultation.part3_ven.photo2_label') }}
+                                </span>
+                                <p class="text-sm font-medium text-slate-700 mb-3">
+                                    {{ __('consultation.part3_ven.photo2_desc') }}
+                                </p>
+                            </div>
+                            <div>
+                                <label class="cursor-pointer bg-white border border-teal-600 text-teal-600 hover:bg-teal-50 text-xs font-semibold py-2 px-3 rounded-lg block text-center transition shadow-sm">
+                                    <span>{{ __('consultation.part3_ven.btn_upload') }}</span>
+                                    <input type="file" name="smile_photos[biting]" accept="image/*" required onchange="previewImage(this, 'preview_2')" class="hidden">
+                                </label>
+                                <img id="preview_2" class="hidden mt-3 w-full h-28 object-cover rounded-lg border border-slate-200">
+                            </div>
+                        </div>
+
+                        {{-- Photo 3 --}}
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-teal-600 uppercase tracking-wider block mb-1">
+                                    {{ __('consultation.part3_ven.photo3_label') }}
+                                </span>
+                                <p class="text-sm font-medium text-slate-700 mb-3">
+                                    {{ __('consultation.part3_ven.photo3_desc') }}
+                                </p>
+                            </div>
+                            <div>
+                                <label class="cursor-pointer bg-white border border-teal-600 text-teal-600 hover:bg-teal-50 text-xs font-semibold py-2 px-3 rounded-lg block text-center transition shadow-sm">
+                                    <span>{{ __('consultation.part3_ven.btn_upload') }}</span>
+                                    <input type="file" name="smile_photos[closeup]" accept="image/*" required onchange="previewImage(this, 'preview_3')" class="hidden">
+                                </label>
+                                <img id="preview_3" class="hidden mt-3 w-full h-28 object-cover rounded-lg border border-slate-200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            @elseif( $appointment->interest === ["porcelain_veneers"] )
+            
+            {{-- PART 2: Smile Goals & Schedule --}}
+            <section class="space-y-4">
+                <h2 class="text-xl font-bold text-teal-700 flex items-center gap-2">
+                    <span>Part 2:</span> Smile Goals & Schedule
+                </h2>
+
+                <div class="space-y-3">
+                    <label class="block text-sm font-semibold text-slate-800">
+                        2. What are the primary goals for your new smile? <span class="text-xs font-normal text-slate-500">(You can select multiple)</span>
+                    </label>
+
+                    <div class="space-y-2 pl-1">
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
+                            <input type="checkbox" name="smile_goals[]" value="Whiter and brighter teeth" class="w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">Whiter and brighter teeth <strong>(Color)</strong></span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
+                            <input type="checkbox" name="smile_goals[]" value="Change the shape or size of my teeth" class="w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">Change the shape or size of my teeth <strong>(Shape)</strong></span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
+                            <input type="checkbox" name="smile_goals[]" value="Close gaps or fix minor misalignments" class="w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">Close gaps or fix minor misalignments <strong>(Alignment)</strong></span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-slate-200">
+
+            {{-- PART 3: Dental Health & Photos --}}
+            <section class="space-y-6">
+                <h2 class="text-xl font-bold text-teal-700 flex items-center gap-2">
+                    <span>Part 3:</span> Dental Health & Photos
+                </h2>
 
                 {{-- Câu 3 --}}
                 <div class="space-y-3">
                     <div>
                         <label class="block text-sm font-semibold text-slate-800">
-                            {{ __('consultation.part3_question') }}
+                            3. Do you currently have any of the following dental conditions?
                         </label>
                         <p class="text-xs text-slate-500 italic mt-0.5">
-                            {{ __('consultation.part3_note') }}
+                            (This helps our specialists ensure you are an ideal candidate for veneers and guarantee long-lasting results).
                         </p>
                     </div>
-                    
+
                     <div class="space-y-2 pl-1">
                         <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
-                            <input type="radio" name="health_condition" value="Neither" required onclick="toggleSmokingInput(false)" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
-                            <span class="text-sm text-slate-700">{{ __('consultation.part3_answer1') }}</span>
+                            <input type="checkbox" name="dental_conditions[]" value="Teeth grinding or clenching" class="condition-checkbox w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">Teeth grinding or clenching (Bruxism)</span>
                         </label>
-                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
-                            <input type="radio" name="health_condition" value="Diabetes" onclick="toggleSmokingInput(false)" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
-                            <span class="text-sm text-slate-700">{{ __('consultation.part3_answer2') }}</span>
-                        </label>
-                        
-                        {{-- Smoke option --}}
-                        <div class="border border-slate-200 rounded-lg p-3 hover:bg-teal-50/50 transition">
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="radio" name="health_condition" value="Smoke" onclick="toggleSmokingInput(true)" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
-                                <span class="text-sm text-slate-700">{{ __('consultation.part3_answer3') }}</span>
-                            </label>
-                            <div id="smoking_amount_wrapper" class="hidden mt-3 pl-7">
-                                <input type="text" name="smoking_amount" placeholder="{{ __('consultation.part3_answer3_holder') }}"
-                                    class="w-full text-sm border border-slate-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-teal-500 outline-none">
-                            </div>
-                        </div>
 
-                        {{-- Both option --}}
-                        <div class="border border-slate-200 rounded-lg p-3 hover:bg-teal-50/50 transition">
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="radio" name="health_condition" value="Both" onclick="toggleSmokingInput(true)" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
-                                <span class="text-sm text-slate-700">{{ __('consultation.part3_answer4') }}</span>
-                            </label>
-                        </div>
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
+                            <input type="checkbox" name="dental_conditions[]" value="Bleeding or swollen gums" class="condition-checkbox w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">Bleeding or swollen gums</span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
+                            <input type="checkbox" name="dental_conditions[]" value="Already have veneers or crowns" class="condition-checkbox w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm text-slate-700">I already have veneers or crowns on my teeth</span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
+                            <input type="checkbox" name="dental_conditions[]" value="None of the above" id="none_condition" onchange="toggleNoneCondition(this)" class="w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                            <span class="text-sm font-medium text-slate-700">None of the above</span>
+                        </label>
                     </div>
                 </div>
 
                 {{-- Câu 4 --}}
-                <div class="space-y-3">
+                <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-semibold text-slate-800">
-                            {{ __('consultation.part4_question') }}
+                            4. Please upload 3 clear photos of your smile. <span class="text-red-500">*</span>
                         </label>
                         <p class="text-xs text-slate-500 italic mt-0.5">
-                            {{ __('consultation.part4_note') }}
+                            (Clear photos are strictly required for our specialists to evaluate your teeth and provide an accurate quotation before your trip).
                         </p>
                     </div>
 
-                    <div class="space-y-3 pl-1">
-                        {{-- Upload File Option --}}
-                        <div class="border border-slate-200 rounded-lg p-4 space-y-3">
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="radio" name="xray_option" value="upload" required onclick="toggleXrayInput(true)" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
-                                <span class="text-sm font-medium text-slate-700">{{ __('consultation.part4_answer1') }}</span>
-                            </label>
-                            
-                            <div id="xray_file_wrapper" class="hidden pl-7">
-                                <input type="file" name="xray_file" id="xray_file" accept="image/*,.pdf,.zip,.dcm"
-                                    class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100 cursor-pointer">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pl-1">
+                        {{-- Photo 1 --}}
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-teal-600 uppercase tracking-wider block mb-1">Photo 1</span>
+                                <p class="text-sm font-medium text-slate-700 mb-3">A natural smile.</p>
+                            </div>
+                            <div>
+                                <label class="cursor-pointer bg-white border border-teal-600 text-teal-600 hover:bg-teal-50 text-xs font-semibold py-2 px-3 rounded-lg block text-center transition shadow-sm">
+                                    <span>Upload Photo 1</span>
+                                    <input type="file" name="smile_photos[natural]" accept="image/*" required onchange="previewImage(this, 'preview_1')" class="hidden">
+                                </label>
+                                <img id="preview_1" class="hidden mt-3 w-full h-28 object-cover rounded-lg border border-slate-200">
                             </div>
                         </div>
 
-                        {{-- No File Option --}}
-                        <div class="border border-slate-200 rounded-lg p-4">
-                            <label class="flex items-start gap-3 cursor-pointer">
-                                <input type="radio" name="xray_option" value="no_xray" onclick="toggleXrayInput(false)" class="w-4 h-4 text-teal-600 focus:ring-teal-500 mt-0.5">
-                                <span class="text-sm text-slate-700 leading-normal">
-                                    {{ __('consultation.part4_answer2') }}
-                                </span>
-                                </span>
-                            </label>
+                        {{-- Photo 2 --}}
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-teal-600 uppercase tracking-wider block mb-1">Photo 2</span>
+                                <p class="text-sm font-medium text-slate-700 mb-3">Biting your teeth together normally.</p>
+                            </div>
+                            <div>
+                                <label class="cursor-pointer bg-white border border-teal-600 text-teal-600 hover:bg-teal-50 text-xs font-semibold py-2 px-3 rounded-lg block text-center transition shadow-sm">
+                                    <span>Upload Photo 2</span>
+                                    <input type="file" name="smile_photos[biting]" accept="image/*" required onchange="previewImage(this, 'preview_2')" class="hidden">
+                                </label>
+                                <img id="preview_2" class="hidden mt-3 w-full h-28 object-cover rounded-lg border border-slate-200">
+                            </div>
+                        </div>
+
+                        {{-- Photo 3 --}}
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-teal-600 uppercase tracking-wider block mb-1">Photo 3</span>
+                                <p class="text-sm font-medium text-slate-700 mb-3">A close-up of your teeth.</p>
+                            </div>
+                            <div>
+                                <label class="cursor-pointer bg-white border border-teal-600 text-teal-600 hover:bg-teal-50 text-xs font-semibold py-2 px-3 rounded-lg block text-center transition shadow-sm">
+                                    <span>Upload Photo 3</span>
+                                    <input type="file" name="smile_photos[closeup]" accept="image/*" required onchange="previewImage(this, 'preview_3')" class="hidden">
+                                </label>
+                                <img id="preview_3" class="hidden mt-3 w-full h-28 object-cover rounded-lg border border-slate-200">
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+            <script>
+                // Tự động bỏ chọn các mục khác nếu chọn "None of the above"
+                function toggleNoneCondition(noneCheckbox) {
+                    const otherCheckboxes = document.querySelectorAll('.condition-checkbox');
+                    if (noneCheckbox.checked) {
+                        otherCheckboxes.forEach(cb => cb.checked = false);
+                    }
+                }
+
+                // Tự động bỏ chọn "None of the above" nếu chọn mục khác
+                document.querySelectorAll('.condition-checkbox').forEach(cb => {
+                    cb.addEventListener('change', function() {
+                        if (this.checked) {
+                            document.getElementById('none_condition').checked = false;
+                        }
+                    });
+                });
+
+                // Xem trước ảnh trực tiếp sau khi chọn file
+                function previewImage(input, previewId) {
+                    const preview = document.getElementById(previewId);
+                    if (input.files && input.files[0]) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            preview.src = e.target.result;
+                            preview.classList.remove('hidden');
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+            </script>
+            @else
+                Coming soon...    
+            @endif
 
             {{-- Nút Submit --}}
             <div class="pt-4">

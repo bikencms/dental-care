@@ -28,4 +28,66 @@ return [
     'part4_answer1' => 'Upload File',
     'part4_answer2' => 'I don\'t have one yet. (Select this, and we will send you a quick guide on how to request the correct scan from your local dentist).',
     'button' => 'Submit Assessment',
+
+    'auto_filled' => 'Auto-filled',
+
+    // Part 2
+    'part2_ven' => [
+        'title' => 'Part 2: Dental & Health Assessment',
+        'goals_title' => 'Part 2: Smile Goals & Schedule',
+        
+        // Missing Teeth Duration
+        'q2_duration_title' => '2. How long have you been missing the tooth/teeth?',
+        'duration_less_6m' => 'Less than 6 months',
+        'duration_6m_2y' => '6 months – 2 years',
+        'duration_more_2y' => 'More than 2 years',
+
+        // Smile Goals
+        'q2_goals_title' => '2. What are the primary goals for your new smile?',
+        'select_multiple' => '(You can select multiple)',
+        'goal_color' => 'Whiter and brighter teeth (Color)',
+        'goal_shape' => 'Change the shape or size of my teeth (Shape)',
+        'goal_alignment' => 'Close gaps or fix minor misalignments (Alignment)',
+    ],
+
+    // Part 3
+    'part3_ven' => [
+        'title' => 'Part 3: Medical & Photos Assessment',
+        'health_title' => 'Part 3: Dental Health & Photos',
+
+        // Diabetes & Smoking
+        'q3_diabetes_title' => '3. Do you currently have Diabetes or smoke tobacco?',
+        'q3_diabetes_note' => '(This information is essential for our specialists to ensure the highest success rate for your implants).',
+        'neither' => 'Neither',
+        'has_diabetes' => 'Yes, I have Diabetes',
+        'smokes' => 'Yes, I smoke',
+        'smoking_amount_placeholder' => 'Approximate amount per day (e.g., 5 cigarettes)',
+        'both' => 'Both',
+
+        // Dental Conditions
+        'q3_conditions_title' => '3. Do you currently have any of the following dental conditions?',
+        'q3_conditions_note' => '(This helps our specialists ensure you are an ideal candidate for veneers and guarantee long-lasting results).',
+        'bruxism' => 'Teeth grinding or clenching (Bruxism)',
+        'bleeding_gums' => 'Bleeding or swollen gums',
+        'has_crowns' => 'I already have veneers or crowns on my teeth',
+        'none' => 'None of the above',
+
+        // X-Ray Upload
+        'q4_xray_title' => '4. Please upload your recent Panoramic X-ray (OPG) or 3D CBCT scan.',
+        'q4_xray_note' => '(Must be taken within the last 6 months. This is mandatory for scheduling your video consultation).',
+        'upload_file' => 'Upload File',
+        'no_xray' => 'I don\'t have one yet.',
+        'no_xray_note' => '(Select this, and we will send you a quick guide on how to request the correct scan from your local dentist).',
+
+        // Smile Photos Upload
+        'q4_photos_title' => '4. Please upload 3 clear photos of your smile.',
+        'q4_photos_note' => '(Clear photos are strictly required for our specialists to evaluate your teeth and provide an accurate quotation before your trip).',
+        'photo1_label' => 'Photo 1',
+        'photo1_desc' => 'A natural smile.',
+        'photo2_label' => 'Photo 2',
+        'photo2_desc' => 'Biting your teeth together normally (showing your front teeth).',
+        'photo3_label' => 'Photo 3',
+        'photo3_desc' => 'A close-up of your teeth.',
+        'btn_upload' => 'Upload Files',
+    ],
 ]; 
