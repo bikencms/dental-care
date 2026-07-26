@@ -3,8 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\SitemapGenerator;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\ConsultationAssessmentController;
 
 Route::get('/generate-sitemap', function () {
     SitemapGenerator::create(config('app.url'))
@@ -30,6 +29,7 @@ Route::middleware('localization')->group(function () {
     Route::get('/', function() { return view('welcome'); })->name('home');
     Route::get('/about-us', function() { return view('about_us'); })->name('about-us');
     Route::get('/consultation/{token}', [ProfileController::class, 'show'])->name('consultation');
+    Route::post('/consultation-assessment/{id}', [ConsultationAssessmentController::class, 'store'])->name('consultation.store');
 });
 
 Route::prefix('{locale}')

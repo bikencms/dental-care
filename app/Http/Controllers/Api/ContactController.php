@@ -41,6 +41,7 @@ class ContactController extends Controller
         } else {
 
             $data['token'] = (string) Str::uuid();
+            $data['status'] = 'new';
             $appointment = OnlineAppointment::create($data);
             
             if ( $appointment->interest === ["porcelain_veneers"] ) {

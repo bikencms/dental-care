@@ -20,4 +20,9 @@ class OnlineAppointment extends Model
     protected $casts = [
         'interest' => 'array',
     ];
+
+    public function consultationAssessment()
+    {
+        return $this->hasOne(OnlineAppointment::class);
+    }
 }

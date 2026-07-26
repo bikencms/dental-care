@@ -18,11 +18,12 @@ return new class extends Migration
             $table->text('briefly')->nullable();
 
             $table->enum('status', [
+                'new',
                 'pending',
                 'confirmed',
                 'finished',
                 'cancelled'
-            ])->default('pending');
+            ])->default('new');
 
             $table->string('language',10)->default('en');
 

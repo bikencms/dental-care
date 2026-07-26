@@ -97,8 +97,23 @@
                 {{ __('consultation.title_head') }}, <span class="font-semibold text-white">{{ $appointment->fullname }}</span>! {{ __('consultation.title_head2') }}
             </p>
         </div>
-        <form action="#" method="POST" enctype="multipart/form-data" class="p-8 space-y-8">
+        {{-- Hiển thị thông báo thành công từ Session --}}
+        @if (session('success'))
+            <div class="mb-4 p-4 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-sm font-medium">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        {{-- Hiển thị thông báo lỗi chung nếu có --}}
+        @if ($errors->any())
+            <div class="mb-4 p-4 bg-rose-50 text-rose-700 border border-rose-200 rounded-lg text-sm font-medium">
+                Vui lòng kiểm tra lại thông tin bên dưới.
+            </div>
+        @endif
+        <form id="consultationForm" action="{{ route('consultation.store', $appointment->id) }}" method="POST" enctype="multipart/form-data" class="p-8 space-y-8">
             @csrf
+            {{-- Alert Thông báo kết quả --}}
+        <div id="alertMessage" class="hidden p-4 rounded-lg text-sm font-medium"></div>
             <div class="bg-slate-50 p-4 sm:p-5 rounded-xl border border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 gap-4">
     
                 {{-- Name Input --}}
@@ -159,11 +174,18 @@
                         <label class="block text-sm font-semibold text-slate-700 mb-1">{{ __('consultation.expected') }}</label>
                         <input type="date" name="arrival_date" required
                             class="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition">
+                        {{-- Hiển thị lỗi Validation của Laravel --}}
+                        @error('arrival_date')
+                            <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-1">{{ __('consultation.length') }}</label>
                         <input type="text" name="length_of_stay" placeholder="{{ __('consultation.length_holder') }}" required
                             class="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition">
+                        @error('length_of_stay')
+                            <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
             </section>
@@ -195,6 +217,9 @@
                             <input type="radio" name="missing_teeth_duration" value="More than 2 years" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
                             <span class="text-sm text-slate-700">{{ __('consultation.part2_answer3') }}</span>
                         </label>
+                        @error('missing_teeth_duration')
+                            <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
@@ -238,6 +263,9 @@
                                 <span class="text-sm text-slate-700">{{ __('consultation.part3_answer4') }}</span>
                             </label>
                         </div>
+                        @error('health_condition')
+                            <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
@@ -263,6 +291,9 @@
                             <div id="xray_file_wrapper" class="hidden pl-7">
                                 <input type="file" name="xray_file" id="xray_file" accept="image/*,.pdf,.zip,.dcm"
                                     class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100 cursor-pointer">
+                                @error('xray_file')
+                                    <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
 
@@ -279,7 +310,6 @@
                     </div>
                 </div>
             </section>
-
             @elseif( $appointment->interest === ["porcelain_veneers"] )
             
             {{-- PART 2: Smile Goals & Schedule --}}
@@ -382,6 +412,9 @@
                                     <span>{{ __('consultation.part3_ven.btn_upload') }}</span>
                                     <input type="file" name="smile_photos[natural]" accept="image/*" required onchange="previewImage(this, 'preview_1')" class="hidden">
                                 </label>
+                                @error('smile_photos[natural]')
+                                    <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
+                                @enderror
                                 <img id="preview_1" class="hidden mt-3 w-full h-28 object-cover rounded-lg border border-slate-200">
                             </div>
                         </div>
@@ -401,6 +434,9 @@
                                     <span>{{ __('consultation.part3_ven.btn_upload') }}</span>
                                     <input type="file" name="smile_photos[biting]" accept="image/*" required onchange="previewImage(this, 'preview_2')" class="hidden">
                                 </label>
+                                @error('smile_photos[biting]')
+                                    <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
+                                @enderror
                                 <img id="preview_2" class="hidden mt-3 w-full h-28 object-cover rounded-lg border border-slate-200">
                             </div>
                         </div>
@@ -420,6 +456,9 @@
                                     <span>{{ __('consultation.part3_ven.btn_upload') }}</span>
                                     <input type="file" name="smile_photos[closeup]" accept="image/*" required onchange="previewImage(this, 'preview_3')" class="hidden">
                                 </label>
+                                @error('smile_photos[closeup]')
+                                    <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
+                                @enderror
                                 <img id="preview_3" class="hidden mt-3 w-full h-28 object-cover rounded-lg border border-slate-200">
                             </div>
                         </div>
