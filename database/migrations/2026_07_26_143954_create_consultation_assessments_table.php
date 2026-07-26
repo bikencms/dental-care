@@ -56,6 +56,7 @@ return new class extends Migration
             $table->json('smile_photos')->nullable();       // Lưu đường dẫn 3 ảnh nụ cười dạng JSON {"natural": "...", "biting": "...", "closeup": "..."}
 
             $table->timestamps();
+            
         });
     }
 
