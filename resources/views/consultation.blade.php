@@ -171,7 +171,7 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">{{ __('consultation.expected') }}</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">{{ __('consultation.expected') }} <span class="text-red-500">*</span></label>
                         <input type="date" name="arrival_date" required
                             class="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition">
                         {{-- Hiển thị lỗi Validation của Laravel --}}
@@ -180,7 +180,7 @@
                         @enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">{{ __('consultation.length') }}</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">{{ __('consultation.length') }} <span class="text-red-500">*</span></label>
                         <input type="text" name="length_of_stay" placeholder="{{ __('consultation.length_holder') }}" required
                             class="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition">
                         @error('length_of_stay')
@@ -202,7 +202,7 @@
                 {{-- Câu 2 --}}
                 <div class="space-y-3">
                     <label class="block text-sm font-semibold text-slate-800">
-                        {{ __('consultation.part2_question') }}
+                        {{ __('consultation.part2_question') }} <span class="text-red-500">*</span>
                     </label>
                     <div class="space-y-2 pl-1">
                         <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg hover:bg-teal-50/50 cursor-pointer transition">
@@ -227,7 +227,7 @@
                 <div class="space-y-3">
                     <div>
                         <label class="block text-sm font-semibold text-slate-800">
-                            {{ __('consultation.part3_question') }}
+                            {{ __('consultation.part3_question') }} <span class="text-red-500">*</span>
                         </label>
                         <p class="text-xs text-slate-500 italic mt-0.5">
                             {{ __('consultation.part3_note') }}
@@ -273,7 +273,7 @@
                 <div class="space-y-3">
                     <div>
                         <label class="block text-sm font-semibold text-slate-800">
-                            {{ __('consultation.part4_question') }}
+                            {{ __('consultation.part4_question') }} <span class="text-red-500">*</span>
                         </label>
                         <p class="text-xs text-slate-500 italic mt-0.5">
                             {{ __('consultation.part4_note') }}
