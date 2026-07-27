@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\OnlineAppointment;
+use App\Models\ConsultationAssessment;
 class ProfileController extends Controller
 {
     /**
@@ -61,12 +62,22 @@ class ProfileController extends Controller
     public function show(string $token)
     {
         $appointment = OnlineAppointment::where('token', $token)->firstOrFail();
-        return view('consultation', compact('appointment'));
+
+        $consultation = [];
+        if( $appointment->email ) {
+            $consultation = ConsultationAssessment::where( 'email', $appointment->email)->first();
+        }
+        return view('consultation', compact('appointment', 'consultation'));
     }
 
     public function consultation(string $language, string $token)
     {
         $appointment = OnlineAppointment::where('token', $token)->firstOrFail();
-        return view('consultation', compact('appointment'));
+
+        $consultation = [];
+        if( $appointment->email ) {
+            $consultation = ConsultationAssessment::where( 'email', $appointment->email)->first();
+        }
+        return view('consultation', compact('appointment', 'consultation'));
     }
 }

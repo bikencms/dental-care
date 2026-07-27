@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ConsultationAssessment; 
+use App\Models\ConsultationAssessment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\OnlineAppointment;
@@ -86,7 +86,7 @@ class ConsultationAssessmentController extends Controller
 
             DB::commit();
 
-            return redirect()->back()->with('success', 'Gửi thông tin đánh giá thành công! Chúng tôi sẽ liên hệ sớm nhất.');
+            return redirect()->back()->with('success', __('consultation.success'));
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -101,7 +101,7 @@ class ConsultationAssessmentController extends Controller
 
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Có lỗi xảy ra khi lưu dữ liệu: ' . $e->getMessage());
+                ->with('error', __('consultation.error') . $e->getMessage());
         }
     }
 }

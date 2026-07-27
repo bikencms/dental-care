@@ -32,6 +32,9 @@ return [
 
     'auto_filled' => 'Đã tự động điền',
 
+    'success' => 'Gửi thông tin đánh giá thành công! Chúng tôi sẽ liên hệ sớm nhất.',
+    'error' => 'Có lỗi xảy ra khi lưu dữ liệu:',
+
     // Veneer Part 2
     'title_ven' => 'Hồ sơ Đánh giá Dán sứ Veneer',
     'part2_ven' => [

@@ -32,6 +32,9 @@ return [
 
     'auto_filled' => 'Auto-filled',
 
+    'success' => 'Your assessment has been submitted successfully! Our team will contact you as soon as possible.',
+    'error' => 'An error occurred while saving the data:',
+
     // Veneer Part 2
     'title_ven' => 'Dental Veneer Assessment Form',
     'part2_ven' => [
