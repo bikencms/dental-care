@@ -669,13 +669,7 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
 
-                                        <div class="form-group col-md-12 mb-4">
-                                            <label class="form-label">WhatsApp / Phone Number*</label>
-                                            <input type="text" name="phone" class="form-control" id="phone" placeholder="Include country code, e.g., +1 234
-    567 890" required="">
-                                            <div class="help-block with-errors"></div>
-                                        </div>            
-                                        <div class="form-group col-md-12 mb-4">
+                                        <div class="form-group col-md-6 mb-4">
                                             <label class="form-label">Interested Service*</label> <br/>
                                             <div class="form-check">
                                                 <input class="form-check-input" name="interest[]" type="checkbox" value="porcelain_veneers" id="flexCheckDefault" checked>
@@ -695,7 +689,17 @@
                                                     General Dental Consultation
                                                 </label>
                                             </div>
-                                        </div>                     
+                                        </div>
+
+                                        <div class="form-group col-md-6 mb-3">
+                                            <label class="form-label block mb-4">WhatsApp / Phone Number*</label>
+                                            <!-- Input hiển thị cho người dùng nhập -->
+                                            <input type="tel" id="phone_input" class="form-control w-full" placeholder="234 567 890" required>
+                                            <!-- Input ẩn chứa dữ liệu số hoàn chỉnh (Mã quốc gia + Số ĐT) gửi lên Server -->
+                                            <input type="hidden" name="phone" id="phone_full">
+                                            <div class="help-block with-errors"></div>
+                                        </div>    
+                                                                  
                                         <div class="form-group col-md-12 col-lg-12 mb-4">
                                             <label class="form-label">Briefly describe your dental needs</label>
                                             <textarea name="briefly" rows="5" cols="40" class="form-control" placeholder="Share your current concerns or goals (e.g., stained teeth,
@@ -737,7 +741,7 @@
 
                             <!-- About Footer Content Start -->
                             <div class="about-footer-content">
-                                <p>Comprehensive dental services, confident smiles through, personalized care.</p>
+                                <p>{{ __('home.footer_title') }}</p>
                             </div>           
                             <!-- About Footer Content End -->
                                 
@@ -850,5 +854,47 @@
         <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
         <script src="https://elfsightcdn.com/platform.js" async></script>
         <div class="elfsight-app-9349fbbd-7502-45cc-b49a-1fa2d4ead97c" data-elfsight-app-lazy></div>
+
+        <!-- CSS Intl-Tel-Input -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
+
+        <!-- JS Intl-Tel-Input -->
+        <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const phoneInput = document.querySelector("#phone_input");
+                const phoneFullHidden = document.querySelector("#phone_full");
+
+                // Khởi tạo thư viện Intl-Tel-Input
+                const iti = window.intlTelInput(phoneInput, {
+                    initialCountry: "auto", // Tự động chọn quốc gia theo IP người dùng (hoặc đặt "vn", "us"...)
+                    geoIpLookup: function(success, failure) {
+                        fetch("https://ipapi.co/json/")
+                            .then(res => res.json())
+                            .then(data => success(data.country_code))
+                            .catch(() => success("vn")); // Mặc định Việt Nam nếu lỗi
+                    },
+                    separateDialCode: true, // Tách mã vùng hiển thị bên cạnh cờ
+                    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js"
+                });
+
+                // Cập nhật giá trị vào input hidden [name="phone"]
+                function updatePhoneNumber() {
+                    // iti.getNumber() sẽ trả về định dạng chuẩn quốc tế, VD: +84901234567
+                    phoneFullHidden.value = iti.getNumber();
+                }
+
+                phoneInput.addEventListener('change', updatePhoneNumber);
+                phoneInput.addEventListener('keyup', updatePhoneNumber);
+
+                // Cập nhật lần cuối trước khi submit form
+                const form = phoneInput.closest('form');
+                if (form) {
+                    form.addEventListener('submit', function () {
+                        updatePhoneNumber();
+                    });
+                }
+            });
+        </script>
     </body>
 </html>

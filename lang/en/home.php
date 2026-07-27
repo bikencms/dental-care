@@ -32,5 +32,6 @@ logistics guidance to language support—so you can focus on your smile.',
 international standards.',
     'author' => 'Save up to 70% compared to treatment costs in
 your home country',
-    'copyright' => 'All rights reserved.'
+    'copyright' => 'All rights reserved.',
+    'footer_title' => 'Connecting you to trusted dental care and confident smiles'
 ];
