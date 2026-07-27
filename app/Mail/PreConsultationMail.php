@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\OnlineAppointment;
 use Illuminate\Mail\Mailables\Address;
-class VeneersAppointmentMail extends Mailable
+class PreConsultationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,7 +21,7 @@ class VeneersAppointmentMail extends Mailable
      */
     public function __construct(OnlineAppointment $appointment)
     {
-        $this->appointment = $appointment;
+         $this->appointment = $appointment;
     }
 
     /**
@@ -29,9 +29,9 @@ class VeneersAppointmentMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        $sub = 'Let\'s Design Your Dream Smile: Prepare for Your Video Consultation';
+        $sub = 'Action Required: Guide to Obtaining Your Dental X-ray for VDC';
         if ( $this->appointment->language == 'vi' ) {
-            $sub = 'Cùng kiến tạo nụ cười mơ ước: Chuẩn bị cho buổi tư vấn trực tuyến của Quý khách';
+            $sub = 'Cần hành động: Hướng dẫn lấy phim X-quang nha khoa cho hồ sơ VDC';
         }
         return new Envelope(
             from: new Address('support@vietnamdentalcare.vn', 'Support - VDC Care'),
@@ -45,7 +45,7 @@ class VeneersAppointmentMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.veneers',
+            markdown: 'emails.pre-consultation',
         );
     }
 

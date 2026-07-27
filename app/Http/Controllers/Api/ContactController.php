@@ -36,7 +36,7 @@ class ContactController extends Controller
         if ($exists) {
             return response()->json([
                 'success' => false,
-                'message' => 'You have a previous appointment that hasn\'t been completed yet. Please complete your current appointment before booking a new one.'
+                'message' => __('mail.exists')
             ], 422);
         } else {
 
@@ -65,7 +65,7 @@ class ContactController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Submitted successfully.',
+                'message' =>  __('mail.sent'),
                 'data' => $data,
             ], 201);
         }

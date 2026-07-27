@@ -1,7 +1,7 @@
 <?php
 return [
-    'title' => 'Vietnam Dental Care | Nha khoa Việt Nam uy tín cho khách hàng quốc tế',
-    'description' => 'Vietnam Dental Care là phòng khám nha khoa uy tín tại Việt Nam, chuyên cấy ghép Implant, niềng răng, Veneer, bọc răng sứ, tẩy trắng răng và nha khoa tổng quát. Điều trị với công nghệ hiện đại, chi phí hợp lý cho khách hàng trong nước và quốc tế.',
+    'title' => 'Vietnam Dental Care | Đối tác du lịch nha khoa uy tín tại Việt Nam',
+    'description' => 'Vietnam Dental Care giúp khách hàng quốc tế tiếp cận các phòng khám nha khoa uy tín tại Việt Nam với chi phí hợp lý. Chuyên cấy ghép Implant, dán sứ Veneer và nhiều dịch vụ nha khoa chất lượng cao, cùng đội ngũ hỗ trợ tận tâm và quy trình điều trị thuận tiện.',
     'hero_title1' => 'Kiến tạo nụ cười',
     'hero_title2' => 'hoàn mỹ tại Việt Nam',
     'hero_description1' => 'Giải pháp Veneer & Implant cao cấp.',

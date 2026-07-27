@@ -8,6 +8,8 @@ use App\Models\ConsultationAssessment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\OnlineAppointment;
+use App\Mail\PreConsultationMail;
+use Illuminate\Support\Facades\Mail;
 
 class ConsultationAssessmentController extends Controller
 {
@@ -58,7 +60,7 @@ class ConsultationAssessmentController extends Controller
                 }
             }
             // 5. Khởi tạo hoặc cập nhật (updateOrCreate) thông tin đánh giá
-            ConsultationAssessment::updateOrCreate(
+            $consultationAssessment = ConsultationAssessment::updateOrCreate(
                 ['online_appointment_id' => $appointment->id], // Khóa ngoại kết nối
                 [
                     'name'                   => $validated['name'],
@@ -83,6 +85,14 @@ class ConsultationAssessmentController extends Controller
             $appointment->update(['status' => 'pending']);
 
             DB::commit();
+
+            if ( $consultationAssessment->xray_option === 'null' || $consultationAssessment->xray_option === 'no_xray' ) {
+                Mail::to([
+                $appointment->email
+                ])
+                ->locale($appointment->language)
+                ->send(new PreConsultationMail($appointment));
+            }
 
             return redirect()->back()->with('success', __('consultation.success'));
 

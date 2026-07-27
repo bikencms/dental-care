@@ -1,7 +1,7 @@
 <?php
 return [
     'title' => 'Prepare for Your Video Consultation with Our Specialists',
-    'title_head' => 'Dear valued guest',
+    'title_head' => 'Dear',
     'des1' => 'Thank you for choosing us for your dental journey!',
     'des2' => 'To schedule your direct video consultation with our implant specialists, we kindly ask you to provide a few important medical details.',
     'des3' => 'Please note: A recent dental scan is required for our doctors to assess your condition and
@@ -13,7 +13,6 @@ provide an accurate, personalized treatment plan during the call.',
     'note' => 'If the button above doesn\'t work, please copy and paste the following link into your browser',
     'team' => 'VDC Care Team',
     'title2' => 'Let\'s Design Your Dream Smile: Prepare for Your Video Consultation',
-    'title_head2' => 'Dear',
     'des21' => 'Thank you for choosing us for your smile makeover journey! To schedule your direct video
 consultation with our cosmetic dentist, we need a few specific details about your smile goals.',
     'des22' => 'Please note: Clear photos of your current smile are strictly required. This allows our doctors to
@@ -23,5 +22,9 @@ treatment plan during the call.',
 the secure link below:',
     'des25' => 'We can\'t wait to help you achieve the perfect smile you deserve! We look forward to speaking
 with you soon.',
-    'foot_title' => 'Your Expert Dental Navigators in Vietnam'
+    'foot_title' => 'Your Expert Dental Navigators in Vietnam',
+    'sent' => 'Thank you! Your request has been received. Our Case Manager will review your details
+and contact you via WhatsApp/Email within 24 hours to discuss your personalized plan.
+You are in good hands.',
+    'exists' => 'You have a previous appointment that hasn\'t been completed yet. Please complete your current appointment before booking a new one.',
 ]; 

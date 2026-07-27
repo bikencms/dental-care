@@ -10,31 +10,25 @@
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f8fc;padding:40px 15px;">
     <tr>
         <td align="center">
-
             <table role="presentation" width="650" cellpadding="0" cellspacing="0"
                    style="background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.08);">
-
                 <!-- Header -->
                 <tr>
                     <td align="center"
                         style="background:linear-gradient(135deg,#274289,#1d233b);padding:35px;">
-
                         <img src="{{ config('app.url') }}/assets/images/footer_logo.png"
                              alt="Vietnam Dental Care"
                              style="max-width:180px;margin-bottom:20px;">
-
                         <h1 style="margin:0;color:#ffffff;font-size:28px;font-weight:bold;">
                             {{ __(key: 'home.title') }}
                         </h1>
-
                     </td>
                 </tr>
-
                 <!-- Body -->
                 <tr>
                     <td style="padding:45px;line-height:1.8;color:#444;">
                         <h2 style="color: #1d233b">
-                            {{ __('mail.title_head') }},
+                            {{ __('mail.title_head') }} {{ $appointment->fullname }},
                         </h2>
                         <p>
                             {{ __('mail.des1') }}

@@ -28,7 +28,7 @@
                 <tr>
                     <td style="padding:45px;line-height:1.8;color:#444;">
                         <h2 style="color: #1d233b">
-                            {{ __('mail.title_head2') }} {{ $appointment->fullname }},
+                            {{ __('mail.title_head') }} {{ $appointment->fullname }},
                         </h2>
                         <p>
                             {{ __('mail.des21') }}

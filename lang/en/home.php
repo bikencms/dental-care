@@ -1,7 +1,9 @@
 <?php
 return [
-    'title' => 'Vietnam Dental Care | Trusted Dental Clinic for International Patients',
-    'description' => 'Vietnam Dental Care provides world-class dental services in Vietnam, including dental implants, orthodontics, veneers, crowns, teeth whitening, and general dentistry. Experience personalized care, advanced technology, and affordable treatment for local and international patients.',
+    'title' => 'Vietnam Dental Care | Your Trusted Dental Tourism Partner in Vietnam',
+    'description' => 'Discover affordable, world-class dentistry with Vietnam Dental Care. We guide
+international patients to top-rated, verified clinics for implants, veneers, and more.
+Experience personalized assistance and seamless treatment planning in Vietnam.',
     'hero_title1' => 'Your perfect',
     'hero_title2' => 'smile made in Vietnam',
     'hero_description1' => 'Expert Veneer & Implant Treatments.',

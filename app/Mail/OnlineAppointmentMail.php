@@ -3,14 +3,13 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\OnlineAppointment;
-
+use Illuminate\Mail\Mailables\Address;
 class OnlineAppointmentMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -35,6 +34,7 @@ class OnlineAppointmentMail extends Mailable
             $sub = 'Chuẩn bị trước buổi tư vấn trực tuyến với đội ngũ bác sĩ chuyên khoa';
         }
         return new Envelope(
+            from: new Address('support@vietnamdentalcare.vn', 'Support - VDC Care'),
             subject: $sub,
         );
     }

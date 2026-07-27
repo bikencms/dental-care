@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\OnlineAppointment;
+use Illuminate\Mail\Mailables\Address;
 
 class AdminAppointmentMail extends Mailable
 {
@@ -30,6 +31,7 @@ class AdminAppointmentMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
+            from: new Address('support@vietnamdentalcare.vn', 'Support - VDC Care'),
             subject: 'Admin Appointment Mail',
         );
     }
