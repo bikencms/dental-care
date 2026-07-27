@@ -35,6 +35,12 @@ return [
     'success' => 'Your assessment has been submitted successfully! Our team will contact you as soon as possible.',
     'error' => 'An error occurred while saving the data:',
 
+    'submitted' => 'You have already submitted this assessment form',
+    'responses' => 'Your responses are saved. If you wish to make changes, click the button below.',
+    'warning_title' => 'Warning',
+    'warning' => 'Updating this form will overwrite your previous answers and uploaded files.',
+    'edit_button' => 'Edit Consultation Form',
+
     // Veneer Part 2
     'title_ven' => 'Dental Veneer Assessment Form',
     'part2_ven' => [

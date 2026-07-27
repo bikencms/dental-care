@@ -35,6 +35,12 @@ return [
     'success' => 'Gửi thông tin đánh giá thành công! Chúng tôi sẽ liên hệ sớm nhất.',
     'error' => 'Có lỗi xảy ra khi lưu dữ liệu:',
 
+    'submitted' => 'Bạn đã gửi form đánh giá này rồi',
+    'responses' => 'Các câu trả lời của bạn đã được lưu. Nếu muốn thay đổi, vui lòng nhấn vào nút bên dưới.',
+    'warning_title' => 'Cảnh báo',
+    'warning' => 'Cập nhật form này sẽ ghi đè lên tất cả câu trả lời và tập tin đã tải lên trước đó của bạn.',
+    'edit_button' => 'Chỉnh sửa form tư vấn',
+
     // Veneer Part 2
     'title_ven' => 'Hồ sơ Đánh giá Dán sứ Veneer',
     'part2_ven' => [

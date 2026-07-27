@@ -118,10 +118,10 @@
 
                     <div class="space-y-2">
                         <h3 class="text-2xl font-bold text-slate-800">
-                            {{ __('You have already submitted this assessment form') }}
+                            {{ __('consultation.submitted') }}
                         </h3>
                         <p class="text-slate-600 text-sm">
-                            {{ __('Your responses are saved. If you wish to make changes, click the button below.') }}
+                            {{ __('consultation.responses') }}
                         </p>
                     </div>
 
@@ -131,14 +131,14 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                         </svg>
                         <span>
-                            <strong>{{ __('Warning') }}:</strong> {{ __('Updating this form will overwrite your previous answers and uploaded files.') }}
+                            <strong>{{ __('consultation.warning_title') }}:</strong> {{ __('consultation.warning') }}
                         </span>
                     </div>
 
                     {{-- Nút sửa thật to --}}
                     <button type="button" id="enableEditBtn" 
                         class="w-full sm:w-auto px-10 py-4 bg-teal-600 hover:bg-teal-700 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-teal-600/30 transition transform hover:-translate-y-0.5 active:translate-y-0">
-                        ✏️ {{ __('Edit Consultation Form') }}
+                        ✏️ {{ __('consultation.edit_button') }}
                     </button>
                 </div>
             @endif
