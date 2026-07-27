@@ -645,9 +645,9 @@
                         <div class="appointment-form-box">
                             <!-- Section Title Start -->
                             <div class="section-title">
-                                <h3 class="wow fadeInUp">Get your free treatment plan</h3>
-                                <h2 class="text-anime-style-3" data-cursor="-opaque">Request Your Personalized Plan</h2>
-                                <p class="wow fadeInUp" data-wow-delay="0.2s">Let&#39;s start your smile journey together. Tell us what you need, and we&#39;ll handle the rest.</p>
+                                <h3 class="wow fadeInUp">{{ __('home.plan_title') }}</h3>
+                                <h2 class="text-anime-style-3" data-cursor="-opaque">{{ __('home.plan_title') }}</h2>
+                                <p class="wow fadeInUp" data-wow-delay="0.2s">{{ __('home.plan_sub_headline') }}</p>
                             </div>
                             <!-- Section Title End -->
 
@@ -656,59 +656,70 @@
                                 <form id="appointmentForm" action="#" method="POST" data-toggle="validator">
                                     <input type="hidden" name="language" value="{{ app()->getLocale() }}">
                                     <input type="hidden" name="status" value="pending">
+                                    
                                     <div class="row contact-form">                                
+                                        {{-- Full Name --}}
                                         <div class="form-group col-md-6 mb-4">
-                                            <label class="form-label">Full Name*</label>
-                                            <input type="text" name="name" class="form-control" id="fname" placeholder="Your full name" required="">
+                                            <label class="form-label">{{ __('home.form.full_name') }}*</label>
+                                            <input type="text" name="name" class="form-control" id="fname" placeholder="{{ __('home.form.full_name_placeholder') }}" required="">
                                             <div class="help-block with-errors"></div>
                                         </div>
 
+                                        {{-- Email Address --}}
                                         <div class="form-group col-md-6 mb-4">
-                                            <label class="form-label">Email Address*</label>
-                                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required="">
+                                            <label class="form-label">{{ __('home.form.email') }}*</label>
+                                            <input type="email" name="email" class="form-control" id="email" placeholder="{{ __('home.form.email_placeholder') }}" required="">
                                             <div class="help-block with-errors"></div>
                                         </div>
 
+                                        {{-- Interested Service --}}
                                         <div class="form-group col-md-6 mb-4">
-                                            <label class="form-label">Interested Service*</label> <br/>
+                                            <label class="form-label">{{ __('home.form.service') }}*</label> <br/>
+                                            
                                             <div class="form-check">
-                                                <input class="form-check-input" name="interest[]" type="checkbox" value="porcelain_veneers" id="flexCheckDefault" checked>
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    Porcelain Veneers
+                                                <input class="form-check-input" name="interest[]" type="checkbox" value="porcelain_veneers" id="checkVeneers" checked>
+                                                <label class="form-check-label" for="checkVeneers">
+                                                    {{ __('home.form.services.veneers') }}
                                                 </label>
                                             </div>
+
                                             <div class="form-check">
-                                                <input class="form-check-input" name="interest[]" type="checkbox" value="dental_implants" id="flexCheckChecked">
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Dental Implants
+                                                <input class="form-check-input" name="interest[]" type="checkbox" value="dental_implants" id="checkImplants">
+                                                <label class="form-check-label" for="checkImplants">
+                                                    {{ __('home.form.services.implants') }}
                                                 </label>
                                             </div>
+
                                             <div class="form-check">
-                                                <input class="form-check-input" name="interest[]" type="checkbox" value="general_dental_consultation" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    General Dental Consultation
+                                                <input class="form-check-input" name="interest[]" type="checkbox" value="general_dental_consultation" id="checkConsultation">
+                                                <label class="form-check-label" for="checkConsultation">
+                                                    {{ __('home.form.services.consultation') }}
                                                 </label>
                                             </div>
                                         </div>
 
+                                        {{-- Phone / WhatsApp Number --}}
                                         <div class="form-group col-md-6 mb-3">
-                                            <label class="form-label block mb-4">WhatsApp / Phone Number*</label>
+                                            <label class="form-label block mb-4">{{ __('home.form.phone') }}*</label>
                                             <!-- Input hiển thị cho người dùng nhập -->
-                                            <input type="tel" id="phone_input" class="form-control w-full" placeholder="234 567 890" required>
+                                            <input type="tel" id="phone_input" class="form-control w-full" placeholder="{{ __('home.form.phone_placeholder') }}" required>
                                             <!-- Input ẩn chứa dữ liệu số hoàn chỉnh (Mã quốc gia + Số ĐT) gửi lên Server -->
                                             <input type="hidden" name="phone" id="phone_full">
                                             <div class="help-block with-errors"></div>
                                         </div>    
-                                                                  
+                                                                
+                                        {{-- Briefly Describe --}}
                                         <div class="form-group col-md-12 col-lg-12 mb-4">
-                                            <label class="form-label">Briefly describe your dental needs</label>
-                                            <textarea name="briefly" rows="5" cols="40" class="form-control" placeholder="Share your current concerns or goals (e.g., stained teeth,
-    missing tooth, etc.)"></textarea>
+                                            <label class="form-label">{{ __('home.form.briefly') }}</label>
+                                            <textarea name="briefly" rows="5" cols="40" class="form-control" placeholder="{{ __('home.form.briefly_placeholder') }}"></textarea>
                                         </div>   
-                    
+                                    
+                                        {{-- Submit Button --}}
                                         <div class="col-md-12">
                                             <div class="appointment-form-btn">
-                                                <button type="submit" id="submitBtn" class="btn-default"><span class="btn-text">Get My Free Plan</span></button>
+                                                <button type="submit" id="submitBtn" class="btn-default">
+                                                    <span class="btn-text">{{ __('home.form.submit_btn') }}</span>
+                                                </button>
                                                 <div class="form-loading d-none" id="formLoading">
                                                     <div class="spinner-border text-primary" role="status"></div>
                                                 </div>

@@ -31,5 +31,32 @@ hướng dẫn di chuyển— để bạn chỉ cần tập trung đón nhận n
 gốc rõ ràng.',
     'author' => 'Trải nghiệm nha khoa chuẩn quốc tế với chi phí tối ưu ngay tại Việt nam',
     'copyright' => 'Đã đăng ký bản quyền.',
-    'footer_title' => 'Kết nối bạn với dịch vụ nha khoa đáng tin cậy và những nụ cười tự tin.'
+    'footer_title' => 'Kết nối bạn với dịch vụ nha khoa đáng tin cậy và những nụ cười tự tin.',
+    'plan_title' => 'Nhận phác đồ điều trị dành riêng cho bạn',
+    'plan_sub_headline' => 'Hãy cùng bắt đầu hành trình tân trang nụ cười của bạn. Chỉ cần chia sẻ mong muốn, chúng tôi sẽ lo trọn vẹn phần còn lại.',
+
+    'form' => [
+        'full_name' => 'Họ tên',
+        'full_name_placeholder' => 'Họ và tên của bạn',
+
+        'email' => 'Địa chỉ email',
+        'email_placeholder' => 'name@example.com',
+
+        'phone' => 'Số điện thoại / WhatsApp',
+        'phone_placeholder' => 'Bao gồm mã quốc gia, VD: +84 901 234 567',
+
+        'service' => 'Dịch vụ quan tâm',
+        'service_placeholder' => 'Chọn dịch vụ',
+        'services' => [
+            'veneers' => 'Dán sứ Veneer',
+            'implants' => 'Trồng răng Implant',
+            'consultation' => 'Tư vấn nha khoa tổng quát',
+        ],
+
+        'briefly' => 'Chia sẻ ngắn gọn mong muốn làm răng của bạn',
+        'briefly_placeholder' => 'Chia sẻ tình trạng hiện tại hoặc mong muốn của bạn (VD: răng ố vàng, mất răng...)',
+
+        'submit_btn' => 'Nhận phác đồ miễn phí',
+        // 'submit_btn' => 'Yêu cầu tư vấn',
+    ],
 ];

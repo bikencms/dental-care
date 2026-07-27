@@ -33,5 +33,32 @@ international standards.',
     'author' => 'Save up to 70% compared to treatment costs in
 your home country',
     'copyright' => 'All rights reserved.',
-    'footer_title' => 'Connecting you to trusted dental care and confident smiles'
+    'footer_title' => 'Connecting you to trusted dental care and confident smiles',
+    'plan_title' => 'Request Your Personalized Plan',
+    'plan_sub_headline' => "Let's start your smile journey together. Tell us what you need, and we'll handle the rest.",
+
+    'form' => [
+        'full_name' => 'Full Name',
+        'full_name_placeholder' => 'Your full name',
+
+        'email' => 'Email Address',
+        'email_placeholder' => 'name@example.com',
+
+        'phone' => 'WhatsApp / Phone Number',
+        'phone_placeholder' => 'Include country code, e.g., +1 234 567 890',
+
+        'service' => 'Interested Service',
+        'service_placeholder' => 'Select a service',
+        'services' => [
+            'veneers' => 'Porcelain Veneers',
+            'implants' => 'Dental Implants',
+            'consultation' => 'General Dental Consultation',
+        ],
+
+        'briefly' => 'Briefly describe your dental needs',
+        'briefly_placeholder' => 'Share your current concerns or goals (e.g., stained teeth, missing tooth, etc.)',
+
+        'submit_btn' => 'Get My Free Plan',
+        // 'submit_btn' => 'Request Consultation',
+    ],
 ];
