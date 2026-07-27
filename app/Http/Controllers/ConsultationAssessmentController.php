@@ -28,7 +28,7 @@ class ConsultationAssessmentController extends Controller
             'health_condition'       => 'nullable|string',
             'smoking_amount'         => 'nullable|string|max:255',
             'xray_option'            => 'nullable|in:upload,no_xray',
-            'xray_file'              => 'nullable|file|mimes:jpeg,png,jpg,pdf,zip,dcm|max:20480', // Max 20MB
+            'xray_file_path'              => 'nullable|file|mimes:jpeg,png,jpg,pdf,zip,dcm|max:20480', // Max 20MB
 
             // Các trường Veneer (Chỉ required nếu dạng Veneer)
             'smile_goals'            => 'nullable|array',
@@ -41,14 +41,14 @@ class ConsultationAssessmentController extends Controller
             DB::beginTransaction();
 
             // 3. Xử lý Upload file X-Ray (Nếu có)
-            $xrayFilePath = null;
-            if ($request->hasFile('xray_file') && $request->xray_option === 'upload') {
+            $xrayFilePath = $appointment->consultationAssessment->xray_file_path ?? null;
+            if ($request->hasFile('xray_file_path') && $request->xray_option === 'upload') {
                 // Lưu vào folder storage/app/public/xrays
-                $xrayFilePath = $request->file('xray_file')->store('xrays', 'public');
+                $xrayFilePath = $request->file('xray_file_path')->store('xrays', 'public');
             }
 
             // 4. Xử lý Upload 3 ảnh Smile Photos của Veneer (Nếu có)
-            $smilePhotoPaths = [];
+            $smilePhotoPaths = $appointment->consultationAssessment->smile_photos ?? [];
             if ($request->hasFile('smile_photos')) {
                 foreach ($request->file('smile_photos') as $key => $photoFile) {
                     if ($photoFile && $photoFile->isValid()) {
@@ -57,7 +57,6 @@ class ConsultationAssessmentController extends Controller
                     }
                 }
             }
-
             // 5. Khởi tạo hoặc cập nhật (updateOrCreate) thông tin đánh giá
             ConsultationAssessment::updateOrCreate(
                 ['online_appointment_id' => $appointment->id], // Khóa ngoại kết nối
@@ -72,15 +71,14 @@ class ConsultationAssessmentController extends Controller
                     'health_condition'       => $request->input('health_condition'),
                     'smoking_amount'         => $request->input('smoking_amount'),
                     'xray_option'            => $request->input('xray_option'),
-                    'xray_file_path'         => $xrayFilePath ?? $appointment->assessment->xray_file_path ?? null,
+                    'xray_file_path'         => $xrayFilePath ?? null,
 
                     // Veneers Data (Cột kiểu JSON trong DB)
                     'smile_goals'            => $request->input('smile_goals', []),
                     'dental_conditions'      => $request->input('dental_conditions', []),
-                    'smile_photos'           => !empty($smilePhotoPaths) ? $smilePhotoPaths : ($appointment->assessment->smile_photos ?? []),
+                    'smile_photos'           => $smilePhotoPaths ?? [],
                 ]
             );
-
             // 6. Cập nhật trạng thái Appointment (nếu cần)
             $appointment->update(['status' => 'pending']);
 

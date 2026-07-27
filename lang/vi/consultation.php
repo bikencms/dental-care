@@ -41,6 +41,9 @@ return [
     'warning' => 'Cập nhật form này sẽ ghi đè lên tất cả câu trả lời và tập tin đã tải lên trước đó của bạn.',
     'edit_button' => 'Chỉnh sửa form tư vấn',
 
+    'file_exist' => 'File hiện tại',
+    'show_file_exist' => 'Xem file đã tải lên',
+
     // Veneer Part 2
     'title_ven' => 'Hồ sơ Đánh giá Dán sứ Veneer',
     'part2_ven' => [

@@ -338,14 +338,14 @@
                                     </label>
                                     
                                     <div id="xray_file_wrapper" class="{{ $xrayOpt === 'upload' ? '' : 'hidden' }} pl-7">
-                                        @if(!empty($consultation->xray_file))
+                                        @if(!empty($consultation->xray_file_path))
                                             <p class="text-xs text-teal-700 font-semibold mb-2">
-                                                File hiện tại: <a href="{{ asset('storage/' . $consultation->xray_file) }}" target="_blank" class="underline hover:text-teal-900">Xem file đã tải lên</a>
+                                                {{ __('consultation.file_exist') }}: <a href="{{ asset('storage/' . $consultation->xray_file_path) }}" target="_blank" class="underline hover:text-teal-900">{{ __('consultation.show_file_exist') }}</a>
                                             </p>
                                         @endif
-                                        <input type="file" name="xray_file" id="xray_file" accept="image/*,.pdf,.zip,.dcm" {{ empty($consultation->xray_file) && $xrayOpt === 'upload' ? 'required' : '' }}
+                                        <input type="file" name="xray_file_path" id="xray_file_path" accept="image/*,.pdf,.zip,.dcm" {{ empty($consultation->xray_file_path) && $xrayOpt === 'upload' ? 'required' : '' }}
                                             class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100 cursor-pointer">
-                                        @error('xray_file')
+                                        @error('xray_file_path')
                                             <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
                                         @enderror
                                     </div>

@@ -41,6 +41,9 @@ return [
     'warning' => 'Updating this form will overwrite your previous answers and uploaded files.',
     'edit_button' => 'Edit Consultation Form',
 
+    'file_exist' => 'Current File',
+    'show_file_exist' => 'View Uploaded File',
+
     // Veneer Part 2
     'title_ven' => 'Dental Veneer Assessment Form',
     'part2_ven' => [

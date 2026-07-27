@@ -23,6 +23,6 @@ class OnlineAppointment extends Model
 
     public function consultationAssessment()
     {
-        return $this->hasOne(OnlineAppointment::class);
+        return $this->hasOne(ConsultationAssessment::class, 'online_appointment_id');
     }
 }
