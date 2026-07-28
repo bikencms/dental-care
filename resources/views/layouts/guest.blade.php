@@ -224,7 +224,7 @@
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
                         <!-- Logo Start -->
-                        <a class="navbar-brand" href="./">
+                        <a class="navbar-brand" href="{{ localized_route('home') }}">
                             <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" width="185">
                         </a>
                         <!-- Logo End -->
@@ -236,22 +236,25 @@
                                     <!-- Home Menu -->
                                     <li class="nav-item">
                                         <a class="nav-link {{ in_array(Route::currentRouteName(), ['home', 'locale.home']) ? 'active' : '' }}" 
-                                        href="{{ localized_route('home') }}">
+                                            href="{{ localized_route('home') }}">
                                             {{ __('about.home') ?? 'Home' }}
                                         </a>
                                     </li>                                        
 
                                     <!-- About Us Menu -->
                                     <li class="nav-item">
-                                        <a class="nav-link {{ in_array(Route::currentRouteName(), ['about-us', 'locale.about']) ? 'active' : '' }}" 
-                                        href="{{ localized_route('about-us') }}">
-                                            {{ __('about.title') ?? 'About Us' }}
+                                        <a class="nav-link {{ in_array(Route::currentRouteName(), ['about-us', 'locale.about-us']) ? 'active' : '' }}" 
+                                            href="{{ localized_route('about-us') }}">
+                                            {{ __('home.about_us') ?? 'About Us' }}
                                         </a>
                                     </li>
 
                                     <!-- Contact Us Menu -->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Contact Us</a>
+                                        <a class="nav-link {{ in_array(Route::currentRouteName(), ['contact-us', 'locale.contact-us']) ? 'active' : '' }}" 
+                                            href="{{ localized_route('contact-us') }}">
+                                            {{ __('home.contact_us') ?? 'Contact Us' }}
+                                        </a>
                                     </li>
 
                                     <!-- Language Dropdown Switcher -->
@@ -278,7 +281,6 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item highlighted-menu"><a class="nav-link" href="#"></a></li>
                                 </ul>
                             </div>
 
@@ -341,7 +343,7 @@
                             <ul>
                                 <li><a href="{{ localized_route('home') }}">{{ __('home.home') }}</a></li>
                                 <li><a href="{{ localized_route('about-us') }}">{{ __('home.about_us') }}</a></li>
-                                <li><a href="#contact-us">{{ __('home.contact_us') }}</a></li>
+                                <li><a href="{{ localized_route('contact-us') }}">{{ __('home.contact_us') }}</a></li>
                             </ul>
                         </div>
                         <!-- Footer Links End -->
@@ -352,7 +354,7 @@
                             <ul>
                                 <li><a href="#">{{ __('home.terms_condition') }}</a></li>
                                 <li><a href="#">{{ __('home.privacy_policy') }}</a></li>
-                                <li><a href="#contact-us">{{ __('home.contact_us') }}</a></li>
+                                <li><a href="{{ localized_route('contact-us') }}">{{ __('home.contact_us') }}</a></li>
                             </ul>
                         </div>
                         <!-- Footer Links End -->
@@ -364,7 +366,7 @@
                             <div class="footer-contact-box">
                                 <div class="footer-contact-box-title">
                                     <h3><a class="fontsize13" href="mailto:support@vietnamdentalcare.vn">support@vietnamdentalcare.vn</a></h3>
-                                    <h3><a class="fontsize14" href="tel:+840799108727">+84 0799 108 727</a></h3>
+                                    <h3><a class="fontsize14" href="tel:+840799108727">+84 799 108 727</a></h3>
                                 </div>
                                 <div class="footer-contact-box-hour">
                                     <p>{{ __('home.working_hours') }} <span>{{ __('home.hours_detail') }}</span></p>

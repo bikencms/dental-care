@@ -28,6 +28,7 @@ Route::get('/about-us', function () {
 Route::middleware('localization')->group(function () {
     Route::get('/', function() { return view('welcome'); })->name('home');
     Route::get('/about-us', function() { return view('about_us'); })->name('about-us');
+    Route::get('/contact-us', function() { return view('contact_us'); })->name('contact-us');
     Route::get('/consultation/{token}', [ProfileController::class, 'show'])->name('consultation');
     Route::post('/consultation-assessment/{id}', [ConsultationAssessmentController::class, 'store'])->name('consultation.store');
 });
@@ -38,6 +39,7 @@ Route::prefix('{locale}')
     ->group(function () {
     Route::get('/', function() { return view('welcome'); })->name('locale.home');
     Route::get('/about-us', function() { return view('about_us'); })->name('locale.about-us');
+    Route::get('/contact-us', function() { return view('contact_us'); })->name('locale.contact-us');
     Route::get('/consultation/{token}', [ProfileController::class, 'consultation'])->name('locale.consultation');
 });
 
