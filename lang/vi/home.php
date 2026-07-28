@@ -103,4 +103,18 @@ mất.',
     'working_hours'    => 'Thứ 2 - Thứ 7:',
     'hours_detail'     => '9:00 - 21:00',
     'copyright1'        => 'Bản quyền © :year Tất cả các quyền được bảo hộ.',
+    'address'          => 'Phường An Khánh, Thành phố Thủ Đức, Thành phố Hồ Chí Minh.',
+    // Bổ sung vào cuối mảng trong file home.php
+    'contact' => [
+        'sub_title' => 'Liên hệ với chúng tôi',
+        'title' => 'Đặt lịch khám nha khoa ngay hôm nay',
+        'desc' => 'Dù bạn có thắc mắc, cần tư vấn chuyên sâu hay sẵn sàng đặt lịch hẹn, đội ngũ của chúng tôi luôn sẵn sàng hỗ trợ. Hãy kết nối với chúng tôi qua mạng xã hội!',
+        'follow_us' => 'Theo dõi chúng tôi trên',
+        'watch_us' => 'Xem video trên',
+    ],
+    'info' => [
+        'phone' => 'Số điện thoại',
+        'email' => 'Địa chỉ Email',
+        'location' => 'Địa chỉ phòng khám',
+    ],
 ];

@@ -29,62 +29,64 @@
     <!-- Page Contact Us Start -->
     <div class="page-contact-us">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-xl-6">
-                    <!-- Contact Us Form Start -->
+                    <!-- Contact Us Social Links Start -->
                     <div class="contact-us-form">
                         <!-- Section Title Start -->
                         <div class="section-title">
-                            <h3 class="wow fadeInUp">get in touch</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Reach out to schedule your next dental visit</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">Whether you have a question, need expert advice, or are ready to book your next appointment, our team is here to help. by phone, email,</p>
+                            <h3 class="wow fadeInUp">{{ __('home.contact.sub_title') }}</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">{{ __('home.contact.title') }}</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">{{ __('home.contact.desc') }}</p>
                         </div>
                         <!-- Section Title End -->
 
-                        <!-- Contact Form Start -->
-                        <div class="contact-form">
-                            <form id="contactForm" action="#" method="POST" data-toggle="validator" class="wow fadeInUp" data-wow-delay="0.2s">
-                                <div class="row">
-                                    <div class="form-group col-md-6 mb-4">
-                                        <label class="form-label">First Name*</label>
-                                        <input type="text" name="fname" class="form-control" id="fname" placeholder="Enter First Name *" required="">
-                                        <div class="help-block with-errors"></div>
+                        <!-- Social Links Start -->
+                        <div class="contact-social-links wow fadeInUp" data-wow-delay="0.4s" style="margin-top: 30px;">
+                            <div style="display: flex; flex-direction: column; gap: 15px;">
+                                {{-- Facebook --}}
+                                <a href="https://facebook.com" target="_blank" style="display: flex; align-items: center; gap: 16px; padding: 14px 20px; border: 1px solid #e2e8f0; border-radius: 12px; text-decoration: none; background-color: #ffffff; transition: all 0.3s ease;">
+                                    <div style="width: 48px; height: 48px; border-radius: 50%; background-color: #1877f2; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 20px; flex-shrink: 0;">
+                                        <i class="fa-brands fa-facebook-f"></i>
                                     </div>
+                                    <div>
+                                        <span style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.5px;">
+                                            {{ __('home.contact.follow_us') }}
+                                        </span>
+                                        <strong style="font-size: 16px; font-weight: 600; color: #1e293b; margin: 0;">Facebook</strong>
+                                    </div>
+                                </a>
 
-                                    <div class="form-group col-md-6 mb-4">
-                                        <label class="form-label">Last Name*</label>
-                                        <input type="text" name="lname" class="form-control" id="lname" placeholder="Enter Last Name *" required="">
-                                        <div class="help-block with-errors"></div>
+                                {{-- TikTok --}}
+                                <a href="https://tiktok.com" target="_blank" style="display: flex; align-items: center; gap: 16px; padding: 14px 20px; border: 1px solid #e2e8f0; border-radius: 12px; text-decoration: none; background-color: #ffffff; transition: all 0.3s ease;">
+                                    <div style="width: 48px; height: 48px; border-radius: 50%; background-color: #000000; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 20px; flex-shrink: 0;">
+                                        <i class="fa-brands fa-tiktok"></i>
                                     </div>
+                                    <div>
+                                        <span style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.5px;">
+                                            {{ __('home.contact.watch_us') }}
+                                        </span>
+                                        <strong style="font-size: 16px; font-weight: 600; color: #1e293b; margin: 0;">TikTok</strong>
+                                    </div>
+                                </a>
 
-                                    <div class="form-group col-md-6 mb-4">
-                                        <label class="form-label">Email Address*</label>
-                                        <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email Address *" required="">
-                                        <div class="help-block with-errors"></div>
+                                {{-- Instagram --}}
+                                <a href="https://instagram.com" target="_blank" style="display: flex; align-items: center; gap: 16px; padding: 14px 20px; border: 1px solid #e2e8f0; border-radius: 12px; text-decoration: none; background-color: #ffffff; transition: all 0.3s ease;">
+                                    <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 20px; flex-shrink: 0;">
+                                        <i class="fa-brands fa-instagram"></i>
                                     </div>
-
-                                    <div class="form-group col-md-6 mb-4">
-                                        <label class="form-label">Phone Number*</label>
-                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter Phone Number *" required="">
-                                        <div class="help-block with-errors"></div>
+                                    <div>
+                                        <span style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.5px;">
+                                            {{ __('home.contact.follow_us') }}
+                                        </span>
+                                        <strong style="font-size: 16px; font-weight: 600; color: #1e293b; margin: 0;">Instagram</strong>
                                     </div>
-
-                                    <div class="form-group col-md-12 mb-5">
-                                        <label class="form-label">Message</label>
-                                        <textarea name="message" class="form-control" id="message" rows="4" placeholder="Write message..."></textarea>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn-default"><span>send message</span></button>
-                                        <div id="msgSubmit" class="h3 hidden"></div>
-                                    </div>
-                                </div>
-                            </form>
+                                </a>
+                            </div>
                         </div>
-                        <!-- Contact Form End -->
+                        <!-- Social Links End -->
                     </div>
-                    <!-- Contact Us Form End -->
+                    <!-- Contact Us Social Links End -->
                 </div>
 
                 <div class="col-xl-6">
@@ -100,57 +102,38 @@
 
                         <!-- Contact Info List Start -->
                         <div class="contact-info-list">
-                            <!-- Conatct Info Item Start -->
+                            <!-- Contact Info Item Start -->
                             <div class="contact-info-item wow fadeInUp">
-                                <!-- Icon Box Start -->
                                 <div class="icon-box">
                                     <img src="{{ asset('assets/images/icon-phone-white.svg') }}" alt="">
                                 </div>
-                                <!-- Icon Box End -->
-
-                                <!-- Contact Info Content Start -->
                                 <div class="contact-info-content">
-                                    <h3>Phone Number</h3>
-                                    <p><a href="tel:+789345601">+(84) 799 108 727</a></p>
+                                    <h3>{{ __('home.info.phone') }}</h3>
+                                    <p><a href="tel:+84799108727">+(84) 799 108 727</a></p>
                                 </div>
-                                <!-- Contact Info Content End -->
                             </div>
-                            <!-- Conatct Info Item End -->
 
-                            <!-- Conatct Info Item Start -->
+                            <!-- Contact Info Item Start -->
                             <div class="contact-info-item wow fadeInUp" data-wow-delay="0.2s">
-                                <!-- Icon Box Start -->
                                 <div class="icon-box">
                                     <img src="{{ asset('assets/images/icon-mail-white.svg') }}" alt="">
                                 </div>
-                                <!-- Icon Box End -->
-
-                                <!-- Contact Info Content Start -->
                                 <div class="contact-info-content">
-                                    <h3>Email Address</h3>
+                                    <h3>{{ __('home.info.email') }}</h3>
                                     <p><a href="mailto:support@vietnamdentalcare.vn">support@vietnamdentalcare.vn</a></p>
                                 </div>
-                                <!-- Contact Info Content End -->
                             </div>
-                            <!-- Conatct Info Item End -->
 
-                            <!-- Conatct Info Item Start -->
+                            <!-- Contact Info Item Start -->
                             <div class="contact-info-item location-info-item wow fadeInUp" data-wow-delay="0.4s">
-                                <!-- Icon Box Start -->
                                 <div class="icon-box">
                                     <img src="{{ asset('assets/images/icon-location-white.svg') }}" alt="">
                                 </div>
-                                <!-- Icon Box End -->
-
-                                <!-- Contact Info Content Start -->
                                 <div class="contact-info-content">
-                                    <h3>Our Location</h3>
-                                    <p>An Khanh ward, Thủ Đức City,
-Ho Chí Minh city</p>
+                                    <h3>{{ __('home.info.location') }}</h3>
+                                    <p>{{ __('home.address') }}</p>
                                 </div>
-                                <!-- Contact Info Content End -->
                             </div>
-                            <!-- Conatct Info Item End -->
                         </div>
                         <!-- Contact Info List End -->
                     </div>
