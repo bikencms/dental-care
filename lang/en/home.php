@@ -4,11 +4,13 @@ return [
     'description' => 'Discover affordable, world-class dentistry with Vietnam Dental Care. We guide
 international patients to top-rated, verified clinics for implants, veneers, and more.
 Experience personalized assistance and seamless treatment planning in Vietnam.',
+    'satisfied_patients' => 'Satisfied Patients',
     'hero_title1' => 'Your perfect',
     'hero_title2' => 'smile made in Vietnam',
     'hero_description1' => 'Expert Veneer & Implant Treatments.',
     'hero_description2' => 'Full 1-on-1 Personalized Care.',
     'button' => 'Get Your Free Treatment Plan',
+    'button1' => 'Get Your Treatment Plan',
     'hero_info1' => 'Top-Tier Dental Network',
     'hero_info_description1' => 'Hand-picked specialists & leading clinics. We bring the best of Vietnam\'s
 dentistry to you',
@@ -20,7 +22,8 @@ dentistry to you',
     'hero_info3' => 'Always Open for Your Inquiries',
     'hero_info3_1' => 'You can reach out anytime. Our dedicated Case Manager will prioritize your request
 and get back to you as soon as possible, usually within 24 hours',
-    'hero_info4' => '',
+    'transparent_pricing' => 'Transparent Pricing - No Hidden Costs',
+    'hero_info4' => 'About us',
     'home_about' => 'You are never alone on this journey',
     'home_about_description' => 'At VDC, you are not just a patient. You have a dedicated Case Manager supporting you
     24/7 to ensure a seamless experience.',
@@ -36,7 +39,37 @@ your home country',
     'footer_title' => 'Connecting you to trusted dental care and confident smiles',
     'plan_title' => 'Request Your Personalized Plan',
     'plan_sub_headline' => "Let's start your smile journey together. Tell us what you need, and we'll handle the rest.",
+    'our_service' => 'Our Specialized Services',
+    'our_service2' => 'Expert Solutions for Your Smile.',
+    'our_service_title1' => 'Porcelain Veneers – Instant Smile Transformation.',
+    'our_service_description1' => 'Correct discoloration, gaps, and misalignment. Achieve a radiant, natural-
+looking smile in just 3–5 days.',
+    'our_service_title2' => 'Dental Implants – Restore Your Bite, Restore Your Life.',
+    'our_service_description2' => 'Advanced implant technology for long-lasting, functional, and natural-
+feeling results. The ultimate solution for tooth replacement.',
+    'service_button1' => 'Preview Your New Smile',
+    'service_button2' => 'Get Expert Advice',
+    'choice' => 'Why choose us',
+    'choice_title' => 'Why choose Vietnam',
+    'icon_1_title' => 'World-Class Excellence',
+    'icon_1_text'  => 'Modern Vietnamese dental clinics adhere to strict international standards, utilizing the latest global technology.',
+    'icon_2_title' => 'Unmatched Value',
+    'icon_2_text'  => 'Save up to 70% on premium dental treatments compared to back home, without compromising on quality.',
 
+    'icon_3_title' => 'A Perfect Blend of Care & Vacation',
+    'icon_3_text'  => 'Combine your smile transformation with a relaxing getaway in beautiful Vietnam. Enjoy hospitality like nowhere else.',
+    'icon_4_title' => 'Family-Friendly Environment',
+    'icon_4_text'  => 'We use advanced dental technology to ensure precise, safe, and comfortable treatments for every patient.',
+
+    // Section Before/After
+    'before_after' => 'Before/After',
+    'see_transformation_title' => 'See stunning smile transformation before and after',
+    
+    // Tabs / Categories
+    'tab_invisalign' => 'Invisalign Treatment',
+    'tab_veneers_bonding' => 'Veneers & Bonding',
+    'tab_pediatric' => 'Pediatric Transformations',
+    'tab_teeth_whitening' => 'Teeth Whitening',
     'form' => [
         'full_name' => 'Full Name',
         'full_name_placeholder' => 'Your full name',
@@ -61,4 +94,14 @@ your home country',
         'submit_btn' => 'Get My Free Plan',
         // 'submit_btn' => 'Request Consultation',
     ],
+    'quick_links'      => 'Quick Links',
+    'support'          => 'Support',
+    'contact_us'       => 'Contact Us',
+    'home'             => 'Home',
+    'about_us'         => 'About us',
+    'terms_condition'  => 'Terms & Conditions',
+    'privacy_policy'   => 'Privacy Policy',
+    'working_hours'    => 'Mon to Sat:',
+    'hours_detail'     => '9AM to 9PM',
+    'copyright1'        => 'Copyright © :year All Rights Reserved.',
 ];

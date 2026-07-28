@@ -23,127 +23,232 @@
 @endsection
 
 @section('content')
-    <!-- About Us Section Start -->
-    <div class="about-us" id="about-us">
+    <!-- Page Header Start -->
+    <div class="page-header bg-section dark-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-xl-6">
-                    <!-- About Us Images Start -->
-                    <div class="about-us-images wow fadeInUp">
-                        <!-- About Image Box 1 Start -->
-                        <div class="about-image-box-1">
-                            <!-- About Image Start -->
-                            <div class="about-image">
-                                <figure>
-                                    <img src="./assets/images/about-us-image-1.png" alt="">
-                                </figure>
-                            </div>
-                            <!-- About Image End -->
-                        </div>
-                        <!-- About Image Box 1 End -->
-
-                        <!-- About Image Box 2 Start -->
-                        <div class="about-image-box-2">
-                            <!-- About Image Start -->
-                            <div class="about-image">
-                                <figure class="image-anime reveal">
-                                    <img src="./assets/images/about-us-image-2.jpg" alt="">
-                                </figure>
-                                
-                                <!-- Year Experience Box Start -->
-                                <div class="year-experience-circle">
-                                    <img src="./assets/images/circle.png" alt="">
-                                </div>
-                                <!-- Year Experience Box End -->
-                            </div>
-                            <!-- About Image End -->
-                            
-                            <!-- About Counter Box Start -->
-                            <div class="about-counter-box">
-                                <div class="about-counter-info">
-                                    <h2><span class="counter">4.9</span>/5</h2>
-                                    <ul>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                    </ul>
-                                </div>
-                                <div class="about-counter-content">
-                                    <p>Transparent Pricing - No Hidden Costs</p>
-                                </div>
-                            </div>
-                            <!-- About Counter Box End -->
-                        </div>
-                        <!-- About Image Box 2 End -->
+                <div class="col-lg-12">
+                    <!-- Page Header Box Start -->
+                    <div class="page-header-box">
+                        <h1 class="text-anime-style-3" data-cursor="-opaque">{{ __('about.title') }}</h1>
+                        <nav class="wow fadeInUp">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('about.home') }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __('about.title') }}</li>
+                            </ol>
+                        </nav>
                     </div>
-                    <!-- About Us Images End -->
-                </div>
-
-                <div class="col-xl-6">
-                    <!-- About Us Content Start -->
-                    <div class="about-us-content">
-                        <!-- Section Title Start -->
-                        <div class="section-title custom">
-                            <h3 class="wow fadeInUp">About Us</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">You are never alone on this journey</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">At VDC, you are not just a patient. You have a dedicated Case Manager supporting you
-24/7 to ensure a seamless experience</p>
-                        </div>
-                        <!-- Section Title End -->
-
-                        <!-- About Us List Start -->
-                        <div class="about-us-list wow fadeInUp" data-wow-delay="0.4s">
-                            <ul class="custom">
-                                <li>Personalized Consultation: Customized treatment plans tailored to your
-specific goals and budget</li>
-                                <li>Worry-Free Experience: We manage everything—from scheduling and logistics
-to language support—so you can focus on your smile</li>
-                                <li>Uncompromising Quality: We use only certified, premium materials that meet
-international standards.</li>
-                            </ul>
-                        </div>
-                        <!-- About Us list End -->
-
-                        <!-- About Author Body Start -->
-                        <div class="about-author-body wow fadeInUp" data-wow-delay="0.6s">
-                            <div class="about-author-content custom">
-                                <h3>Save up to 70% compared to treatment costs in
-your home country</h3>
-                            </div>
-                            <div class="satisfy-client-images">
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="./assets/images/author-1.jpg" alt="">
-                                    </figure>
-                                </div>
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="./assets/images/author-2.jpg" alt="">
-                                    </figure>
-                                </div>
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="./assets/images/author-3.jpg" alt="">
-                                    </figure>
-                                </div>
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="./assets/images/author-4.jpg" alt="">
-                                    </figure>
-                                </div>
-                                <div class="satisfy-client-image add-more">
-                                    <i class="fa fa-solid fa-plus"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- About Author Body End -->
-                    </div>
-                    <!-- About Us Content End -->
+                    <!-- Page Header Box End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- About Us Section End -->
+    <!-- Page Header End -->
+
+    <div class="our-approach bg-section">
+        <div class="container">
+            <div class="row section-row">
+                <div class="col-lg-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title section-title-center">
+                        <h3 class="wow fadeInUp">{{ __('about.foundation_subtitle') }}</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">{{ __('about.foundation_title') }}</h2>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <!-- Approach Item Start -->
+                    <div class="approach-item box-bg-shape wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="approach-item-content">
+                            <h3>{{ __('about.mission_title') }}</h3>
+                            <p>{{ __('about.mission_desc') }}</p>
+                        </div>
+                        <div class="approach-item-list">
+                            <ul>
+                                <li>{{ __('about.mission_item_1') }}</li>
+                                <li>{{ __('about.mission_item_2') }}</li>
+                                <li>{{ __('about.mission_item_3') }}</li>
+                            </ul>
+                        </div>
+                        <div class="icon-box">
+                            <img src="{{ asset('assets/images/icon-approach-1.svg') }}" alt="">
+                        </div>
+                    </div>
+                    <!-- Approach Item End -->
+                </div>
+
+                <div class="col-xl-4 col-md-6">
+                    <!-- Approach Item Start -->
+                    <div class="approach-item box-bg-shape wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="approach-item-content">
+                            <h3>{{ __('about.vision_title') }}</h3>
+                            <p>{{ __('about.vision_desc') }}</p>
+                        </div>
+                        <div class="approach-item-list">
+                            <ul>
+                                <li>{{ __('about.vision_item_1') }}</li>
+                                <li>{{ __('about.vision_item_2') }}</li>
+                                <li>{{ __('about.vision_item_3') }}</li>
+                            </ul>
+                        </div>
+                        <div class="icon-box">
+                            <img src="{{ asset('assets/images/icon-approach-2.svg') }}" alt="">
+                        </div>
+                    </div>
+                    <!-- Approach Item End -->
+                </div>
+
+                <div class="col-xl-4 col-md-6">
+                    <!-- Approach Item Start -->
+                    <div class="approach-item box-bg-shape wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="approach-item-content">
+                            <h3>{{ __('about.value_title') }}</h3>
+                            <p>{{ __('about.value_desc') }}</p>
+                        </div>
+                        <div class="approach-item-list">
+                            <ul>
+                                <li>{{ __('about.value_item_1') }}</li>
+                                <li>{{ __('about.value_item_2') }}</li>
+                                <li>{{ __('about.value_item_3') }}</li>
+                            </ul>
+                        </div>
+                        <div class="icon-box">
+                            <img src="{{ asset('assets/images/icon-approach-3.svg') }}" alt="">
+                        </div>
+                    </div>
+                    <!-- Approach Item End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Approach Section End -->
+
+    <!-- How It Work Section Start -->
+    <div class="how-it-work">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6">
+                    <!-- How It Work Image Box Start -->
+                    <div class="how-it-work-image-box wow fadeInUp">
+                        <!-- How It Work Image Start -->
+                        <div class="how-it-work-image">
+                            <figure class="image-anime">
+                                <img src="{{ asset('assets/images/how-it-work-image.jpg') }}" alt="">
+                            </figure>
+                        </div>
+                        <!-- How It Work Image End -->
+
+                        <!-- Work Client Box Start -->
+                        <div class="work-client-box">
+                            <!-- Satisfy Client Images Start -->
+                            <div class="satisfy-client-images">
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="{{ asset('assets/images/author-1.jpg') }}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="{{ asset('assets/images/author-2.jpg') }}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="{{ asset('assets/images/author-3.jpg') }}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image">
+                                    <figure class="image-anime">
+                                        <img src="{{ asset('assets/images/author-4.jpg') }}" alt="">
+                                    </figure>
+                                </div>
+                                <div class="satisfy-client-image add-more">
+                                    <h3><span class="counter">15</span>K+</h3>
+                                </div>
+                            </div>
+                            <!-- Satisfy Client Images End -->
+
+                            <!-- Satisfy Client Content Start -->
+                            <div class="satisfy-client-content">
+                                <p><span>98%</span> {{ __('about.satisfaction_rate') }}</p>
+                            </div>
+                            <!-- Satisfy Client Content End -->
+                        </div>
+                        <!-- Work Client Box End -->
+                    </div>
+                    <!-- How It Work Image Box End -->
+                </div>
+
+                <div class="col-xl-6">
+                    <!-- How It Work Content Start -->
+                    <div class="how-it-work-content">
+                        <!-- Section Title Start -->
+                        <div class="section-title">
+                            <h3 class="wow fadeInUp">{{ __('about.journey_subtitle') }}</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">{{ __('about.journey_title') }}</h2>
+                        </div>
+                        <!-- Section Title End -->
+
+                        <!-- Work Step Item List Start -->
+                        <div class="work-step-item-list wow fadeInUp" data-wow-delay="0.2s">
+                            <!-- Work Step Item Start -->
+                            <div class="work-step-item">
+                                <div class="work-step-no">
+                                    <h3>01</h3>
+                                </div>
+                                <div class="work-step-item-content">
+                                    <h3>{{ __('about.step_1_title') }}</h3>
+                                    <p>{{ __('about.step_1_desc') }}</p>
+                                    <p>{{ __('about.step_1_note') }}</p>
+                                </div>
+                            </div>
+                            <!-- Work Step Item End -->
+
+                            <!-- Work Step Item Start -->
+                            <div class="work-step-item">
+                                <div class="work-step-no">
+                                    <h3>02</h3>
+                                </div>
+                                <div class="work-step-item-content">
+                                    <h3>{{ __('about.step_2_title') }}</h3>
+                                    <p>{{ __('about.step_2_desc') }}</p>
+                                </div>
+                            </div>
+                            <!-- Work Step Item End -->
+                            
+                            <!-- Work Step Item Start -->
+                            <div class="work-step-item">
+                                <div class="work-step-no">
+                                    <h3>03</h3>
+                                </div>
+                                <div class="work-step-item-content">
+                                    <h3>{{ __('about.step_3_title') }}</h3>
+                                    <p>{{ __('about.step_3_desc') }}</p>
+                                </div>
+                            </div>
+                            <!-- Work Step Item End -->
+
+                            <!-- Work Step Item Start -->
+                            <div class="work-step-item">
+                                <div class="work-step-no">
+                                    <h3>04</h3>
+                                </div>
+                                <div class="work-step-item-content">
+                                    <h3>{{ __('about.step_4_title') }}</h3>
+                                    <p>{{ __('about.step_4_desc') }}</p>
+                                </div>
+                            </div>
+                            <!-- Work Step Item End -->
+                        </div>
+                        <!-- Work Step Item List End -->
+                    </div>
+                    <!-- How It Work Content End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- How It Work Section End -->
 @endsection
