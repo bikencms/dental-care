@@ -37,10 +37,9 @@ Route::prefix('{locale}')
     ->middleware('localization')
     ->group(function () {
     Route::get('/', function() { return view('welcome'); })->name('locale.home');
-    Route::get('/about-us', function() { return view('about_us'); })->name('locale.about');
+    Route::get('/about-us', function() { return view('about_us'); })->name('locale.about-us');
     Route::get('/consultation/{token}', [ProfileController::class, 'consultation'])->name('locale.consultation');
 });
-
 
 Route::middleware('auth')->group(function () {
     Route::view(

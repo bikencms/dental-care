@@ -233,21 +233,49 @@
                         <div class="collapse navbar-collapse main-menu">
                             <div class="nav-menu-wrapper">
                                 <ul class="navbar-nav mr-auto" id="menu">
-                                    <li class="nav-item"><a class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
-                                    </li>                                
-                                    <li class="nav-item"><a class="nav-link {{ Route::currentRouteName() == 'about-us' ? 'active' : '' }}" href="{{ route('about-us') }}">About Us</a>
-                                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                                    <!-- Home Menu -->
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ in_array(Route::currentRouteName(), ['home', 'locale.home']) ? 'active' : '' }}" 
+                                        href="{{ localized_route('home') }}">
+                                            {{ __('about.home') ?? 'Home' }}
+                                        </a>
+                                    </li>                                        
+
+                                    <!-- About Us Menu -->
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ in_array(Route::currentRouteName(), ['about-us', 'locale.about']) ? 'active' : '' }}" 
+                                        href="{{ localized_route('about-us') }}">
+                                            {{ __('about.title') ?? 'About Us' }}
+                                        </a>
+                                    </li>
+
+                                    <!-- Contact Us Menu -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Contact Us</a>
+                                    </li>
+
+                                    <!-- Language Dropdown Switcher -->
                                     <li class="nav-item submenu">
                                         <a class="nav-link" href="#">
-                                        @if(app()->getLocale() == 'vi')
-                                            <img src="{{ asset('assets/images/svg/vn.svg') }}" alt="Language VI" width="18">
-                                        @else
-                                            <img src="{{ asset('assets/images/svg/us.svg') }}" alt="Language EN" width="18">
-                                        @endif
+                                            @if(app()->getLocale() == 'vi')
+                                                <img src="{{ asset('assets/images/svg/vn.svg') }}" alt="Language VI" width="18">
+                                            @else
+                                                <img src="{{ asset('assets/images/svg/us.svg') }}" alt="Language EN" width="18">
+                                            @endif
                                         </a>
                                         <ul class="language">                                        
-                                            <li class="nav-item"><a class="nav-link" href="/"><img src="{{ asset('assets/images/svg/us.svg') }}" alt="Language EN" width="18"></a></li>
-                                            <li class="nav-item"><a class="nav-link" href="/vi"><img src="{{ asset('assets/images/svg/vn.svg') }}" alt="Language VN" width="18"></a></li>
+                                            <!-- Tiếng Anh (Default) -->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ switch_locale_url('en') }}">
+                                                    <img src="{{ asset('assets/images/svg/us.svg') }}" alt="Language EN" width="18">
+                                                </a>
+                                            </li>
+                                            <!-- Tiếng Việt -->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ switch_locale_url('vi') }}">
+                                                    <img src="{{ asset('assets/images/svg/vn.svg') }}" alt="Language VN" width="18"> 
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="nav-item highlighted-menu"><a class="nav-link" href="#"></a></li>
@@ -311,8 +339,8 @@
                         <div class="footer-links">
                             <h3>{{ __('home.quick_links') }}</h3>
                             <ul>
-                                <li><a href="#">{{ __('home.home') }}</a></li>
-                                <li><a href="#about-us">{{ __('home.about_us') }}</a></li>
+                                <li><a href="{{ localized_route('home') }}">{{ __('home.home') }}</a></li>
+                                <li><a href="{{ localized_route('about-us') }}">{{ __('home.about_us') }}</a></li>
                                 <li><a href="#contact-us">{{ __('home.contact_us') }}</a></li>
                             </ul>
                         </div>
