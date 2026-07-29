@@ -78,7 +78,7 @@
                     "image": "https://vietnamdentalcare.vn/assets/images/logo.png",
                     "logo": "https://vietnamdentalcare.vn/assets/images/logo.png",
                     "description": "Vietnam Dental Care is a trusted dental clinic providing dental implants, orthodontics, cosmetic dentistry, teeth whitening, porcelain veneers, crowns, and comprehensive oral healthcare for local and international patients.",
-                    "telephone": "+84 0799 108 727",
+                    "telephone": "+84 799 108 727",
                     "email": "support@vietnamdentalcare.vn",
                     "priceRange": "$$",
                     "currenciesAccepted": "VND, USD",
@@ -170,7 +170,7 @@
                     "url":"https://vietnamdentalcare.vn",
                     "logo":"https://vietnamdentalcare.vn/images/logo.png",
                     "email":"support@vietnamdentalcare.vn",
-                    "telephone":"+84 0799 108 727"
+                    "telephone":"+84 799 108 727"
                 }
             </script>
 
@@ -366,7 +366,7 @@
                             <div class="footer-contact-box">
                                 <div class="footer-contact-box-title">
                                     <h3><a class="fontsize13" href="mailto:support@vietnamdentalcare.vn">support@vietnamdentalcare.vn</a></h3>
-                                    <h3><a class="fontsize14" href="tel:+840799108727">+84 799 108 727</a></h3>
+                                    <h3><a class="fontsize14" href="tel:+84799108727">+84 799 108 727</a></h3>
                                 </div>
                                 <div class="footer-contact-box-hour">
                                     <p>{{ __('home.working_hours') }} <span>{{ __('home.hours_detail') }}</span></p>

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\OnlineAppointment;
 use App\Mail\PreConsultationMail;
+use App\Mail\BookingAppointmentMail;
 use Illuminate\Support\Facades\Mail;
 
 class ConsultationAssessmentController extends Controller
@@ -86,12 +87,18 @@ class ConsultationAssessmentController extends Controller
 
             DB::commit();
 
-            if ( $consultationAssessment->xray_option === 'null' || $consultationAssessment->xray_option === 'no_xray' ) {
+            if ( $consultationAssessment->smile_photos === [] || $consultationAssessment->xray_option === 'no_xray' ) {
                 Mail::to([
                 $appointment->email
                 ])
                 ->locale($appointment->language)
                 ->send(new PreConsultationMail($appointment));
+            } else {
+                Mail::to([
+                $appointment->email
+                ])
+                ->locale($appointment->language)
+                ->send(new BookingAppointmentMail($appointment));
             }
 
             return redirect()->back()->with('success', __('consultation.success'));

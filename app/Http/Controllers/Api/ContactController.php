@@ -59,7 +59,7 @@ class ContactController extends Controller
             }
 
             Mail::to([
-                'minhbiken14@gmail.com', 'support@vietnamdentalcare.vn', 'thy.nguyen85@proton.me'
+                'support@vietnamdentalcare.vn'
             ])
             ->send(new AdminAppointmentMail($appointment));
 

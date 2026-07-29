@@ -62,7 +62,7 @@
                         <div class="footer-contact-box">
                             <div class="footer-contact-box-title">
                                 <h3><a class="fontsize13" href="mailto:support@vietnamdentalcare.vn">support@vietnamdentalcare.vn</a></h3>
-                                <h3><a class="fontsize14" href="tel:+84 0799 108 727">+84 0799 108 727</a></h3>
+                                <h3><a class="fontsize14" href="tel:+84799108727">+84 799 108 727</a></h3>
                             </div>
                             <div class="footer-contact-box-hour">
                                 <p>Mon to Sat: <span>9AM to 9PM </span></p>

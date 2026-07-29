@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\SitemapGenerator;
 use App\Http\Controllers\ConsultationAssessmentController;
+use App\Http\Controllers\BookingAppointmentController;
 
 Route::get('/generate-sitemap', function () {
     SitemapGenerator::create(config('app.url'))
@@ -30,6 +31,7 @@ Route::middleware('localization')->group(function () {
     Route::get('/about-us', function() { return view('about_us'); })->name('about-us');
     Route::get('/contact-us', function() { return view('contact_us'); })->name('contact-us');
     Route::get('/consultation/{token}', [ProfileController::class, 'show'])->name('consultation');
+    Route::get('/booking-appointment', [BookingAppointmentController::class, 'index'])->name('booking-appointment.index');
     Route::post('/consultation-assessment/{id}', [ConsultationAssessmentController::class, 'store'])->name('consultation.store');
 });
 
@@ -41,6 +43,7 @@ Route::prefix('{locale}')
     Route::get('/about-us', function() { return view('about_us'); })->name('locale.about-us');
     Route::get('/contact-us', function() { return view('contact_us'); })->name('locale.contact-us');
     Route::get('/consultation/{token}', [ProfileController::class, 'consultation'])->name('locale.consultation');
+    Route::get('/booking-appointment', [BookingAppointmentController::class, 'index'])->name('locale.booking-appointment.index');
 });
 
 Route::middleware('auth')->group(function () {
