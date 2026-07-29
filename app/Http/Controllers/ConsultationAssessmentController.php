@@ -50,6 +50,8 @@ class ConsultationAssessmentController extends Controller
                 $xrayFilePath = $request->file('xray_file_path')->store('xrays', 'public');
             }
 
+            $xray_option = $request->input('xray_option');
+
             // 4. Xử lý Upload 3 ảnh Smile Photos của Veneer (Nếu có)
             $smilePhotoPaths = $appointment->consultationAssessment->smile_photos ?? [];
             if ($request->hasFile('smile_photos')) {
@@ -59,6 +61,7 @@ class ConsultationAssessmentController extends Controller
                         $smilePhotoPaths[$key] = $photoFile->store('smile_photos', 'public');
                     }
                 }
+                $xray_option = 'upload';
             }
             // 5. Khởi tạo hoặc cập nhật (updateOrCreate) thông tin đánh giá
             $consultationAssessment = ConsultationAssessment::updateOrCreate(
@@ -73,7 +76,7 @@ class ConsultationAssessmentController extends Controller
                     'missing_teeth_duration' => $request->input('missing_teeth_duration'),
                     'health_condition'       => $request->input('health_condition'),
                     'smoking_amount'         => $request->input('smoking_amount'),
-                    'xray_option'            => $request->input('xray_option'),
+                    'xray_option'            => $xray_option,
                     'xray_file_path'         => $xrayFilePath ?? null,
 
                     // Veneers Data (Cột kiểu JSON trong DB)
@@ -86,19 +89,19 @@ class ConsultationAssessmentController extends Controller
             $appointment->update(['status' => 'pending']);
 
             DB::commit();
-
-            if ( $consultationAssessment->smile_photos === [] || $consultationAssessment->xray_option === 'no_xray' ) {
-                Mail::to([
-                $appointment->email
-                ])
-                ->locale($appointment->language)
-                ->send(new PreConsultationMail($appointment));
-            } else {
+            
+            if ( $consultationAssessment->xray_option === 'upload' ) {
                 Mail::to([
                 $appointment->email
                 ])
                 ->locale($appointment->language)
                 ->send(new BookingAppointmentMail($appointment));
+            } else {
+                Mail::to([
+                $appointment->email
+                ])
+                ->locale($appointment->language)
+                ->send(new PreConsultationMail($appointment));
             }
 
             return redirect()->back()->with('success', __('consultation.success'));

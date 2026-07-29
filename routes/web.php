@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\SitemapGenerator;
 use App\Http\Controllers\ConsultationAssessmentController;
 use App\Http\Controllers\BookingAppointmentController;
+use App\Http\Controllers\ClinicController;
 
 Route::get('/generate-sitemap', function () {
     SitemapGenerator::create(config('app.url'))
@@ -33,6 +34,11 @@ Route::middleware('localization')->group(function () {
     Route::get('/consultation/{token}', [ProfileController::class, 'show'])->name('consultation');
     Route::get('/booking-appointment', [BookingAppointmentController::class, 'index'])->name('booking-appointment.index');
     Route::post('/consultation-assessment/{id}', [ConsultationAssessmentController::class, 'store'])->name('consultation.store');
+    // Route cho danh sách phòng khám và bộ lọc
+    Route::get('/clinics', [ClinicController::class, 'index'])->name('clinics.index');
+
+    // Route trang chi tiết phòng khám (chứa thông tin chi tiết và form đặt lịch ở cuối trang với id="#booking-section")
+    Route::get('/clinics/{id}', [ClinicController::class, 'show'])->name('clinics.show');
 });
 
 Route::prefix('{locale}')
@@ -44,6 +50,11 @@ Route::prefix('{locale}')
     Route::get('/contact-us', function() { return view('contact_us'); })->name('locale.contact-us');
     Route::get('/consultation/{token}', [ProfileController::class, 'consultation'])->name('locale.consultation');
     Route::get('/booking-appointment', [BookingAppointmentController::class, 'index'])->name('locale.booking-appointment.index');
+    // Route cho danh sách phòng khám và bộ lọc
+    Route::get('/clinics', [ClinicController::class, 'index'])->name('locale.clinics.index');
+
+    // Route trang chi tiết phòng khám (chứa thông tin chi tiết và form đặt lịch ở cuối trang với id="#booking-section")
+    Route::get('/clinics/{id}', [ClinicController::class, 'show'])->name('locale.clinics.show');
 });
 
 Route::middleware('auth')->group(function () {

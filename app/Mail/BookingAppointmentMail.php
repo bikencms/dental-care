@@ -46,7 +46,7 @@ class BookingAppointmentMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.booking-appointment',
+            view: 'emails.booking-appointment',
         );
     }
 

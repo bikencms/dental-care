@@ -49,7 +49,9 @@
                                     </td>
                                 </tr>
                             </table>
-
+                            @php
+                                $portalUrl = localized_route('clinics.index');
+                            @endphp
                             <!-- LARGE BUTTON -->
                             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 30px;">
                                 <tr>
@@ -64,12 +66,6 @@
                                             </tr>
                                         </table>
                                         <p style="font-size: 12px; color: #94a3b8; margin: 10px 0 0 0;">
-                                            @php
-                                                $portalUrl = route('booking-appointment.index');
-                                                if ( app()->getLocale() == 'vi' ) {
-                                                    $portalUrl = route('locale.booking-appointment.index');
-                                                }
-                                            @endphp
                                             {!! __('booking.cta_fallback', ['link' => '<a href="' . ($portalUrl ?? '#') . '" style="color: #0284c7; word-break: break-all;">' . ($portalUrl ?? '#') . '</a>']) !!}
                                         </p>
                                     </td>
@@ -111,9 +107,6 @@
 
                             <!-- SUPPORT CONTACT -->
                             <p style="margin-bottom: 20px; font-size: 15px;">
-                                @php
-                                    $whatsappUrl = 'tel:+84799108727';
-                                @endphp
                                 {{ __('booking.assistance') }} <a href="{{ $whatsappUrl ?? 'https://wa.me/+84799108727' }}" target="_blank" style="color: #16a34a; font-weight: bold; text-decoration: none;">{{ __('booking.whatsapp_btn') }}</a>
                             </p>
 

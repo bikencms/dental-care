@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Clinic extends Model
 {
@@ -51,5 +52,13 @@ class Clinic extends Model
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+
+    /**
+     * Phòng khám thuộc về một Quận cụ thể.
+     */
+    public function district(): BelongsTo
+    {
+        return $this->belongsTo(District::class, 'district_id');
     }
 }

@@ -11,7 +11,7 @@ class BookingAppointmentController extends Controller
      */
     public function index()
     {
-        dd("ok");
+        return view('booking-appointment');
     }
 
     /**
