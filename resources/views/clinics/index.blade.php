@@ -174,13 +174,13 @@
                             <!-- Action Buttons -->
                             <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100">
                                 <!-- Nút View Detailed Information -->
-                                <a href="{{ route('clinics.show', ['token' => $appointment->token, 'id' =>  $clinic->id]) }}" 
+                                <a href="{{ localized_route('clinics.show', ['token' => $appointment->token, 'id' =>  $clinic->id]) }}" 
                                    class="px-4 py-2 border border-slate-300 hover:border-slate-400 text-slate-700 text-sm font-semibold rounded-lg transition-colors">
                                    {{ __('clinics.btn_details') }}
                                 </a>
 
                                 <!-- Nút Book Online Consultation -->
-                                <a href="{{ route('clinics.show', ['token' => $appointment->token, 'id' =>  $clinic->id]) }}#booking-section" 
+                                <a href="{{ localized_route('clinics.show', ['token' => $appointment->token, 'id' =>  $clinic->id]) }}#booking-section" 
                                    class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold rounded-lg shadow-sm transition-colors">
                                    {{ __('clinics.btn_book') }}
                                 </a>
