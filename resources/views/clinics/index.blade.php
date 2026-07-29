@@ -4,6 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ __('clinics.page_title') }}</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="{{ __('clinics.subheading') }}">
+    <meta name="keywords" content="Vietnam Dental Care, dental clinic Vietnam, dental implants Vietnam, cosmetic dentistry, orthodontics, braces, porcelain veneers, dental crowns, teeth whitening, smile makeover, oral surgery, affordable dental care, international dental clinic, Ho Chi Minh dental clinic">
+    <meta name="author" content="Minh Biken">
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="https://vietnamdentalcare.vn/assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://vietnamdentalcare.vn/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://vietnamdentalcare.vn/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://vietnamdentalcare.vn/assets/images/favicon-16x16.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vietnam Dental Care | {{ __('clinics.page_title') }}">
+    <meta property="og:title" content="Vietnam Dental Care | {{ __('clinics.page_title') }}">
+    <meta property="og:description" content="{{ __('clinics.subheading') }}">
+    <meta property="og:url" content="https://vietnamdentalcare.vn/clinics">
+    <meta property="og:image" content="https://vietnamdentalcare.vn/assets/images/og-image.png">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vietnam Dental Care | {{ __('clinics.page_title') }}">
+    <meta name="twitter:description" content="{{ __('clinics.subheading') }}">
+    <meta name="twitter:image" content="https://vietnamdentalcare.vn/assets/images/og-image.jpg">
+
+    @if(app()->getLocale() == 'vi')
+        <link rel="canonical" href="https://vietnamdentalcare.vn/vi/clinics">
+    @else
+        <link rel="canonical" href="https://vietnamdentalcare.vn/clinics">
+    @endif
+
+    <link rel="alternate" hreflang="en" href="https://vietnamdentalcare.vn/clinics">
+    <link rel="alternate" hreflang="vi" href="https://vietnamdentalcare.vn/vi/clinics">
+    <link rel="alternate" hreflang="x-default" href="https://vietnamdentalcare.vn/clinics">
+
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -14,8 +59,8 @@
     <!-- HEADER NAVIGATION -->
     <header class="bg-slate-900 text-white py-4 shadow-md">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-wide">VIETNAM DENTAL CARE</h1>
-            <a href="{{ url('/') }}" class="text-sm text-sky-400 hover:underline"><i class="fa-solid fa-house"></i> {{ __('clinics.header_home') }}</a>
+            <h1 class="text-xl font-bold tracking-wide">{{ __('home.title') }}</h1>
+            <a href="{{ localized_route('home') }}" class="text-sm text-sky-400 hover:underline"><i class="fa-solid fa-house"></i> {{ __('clinics.header_home') }}</a>
         </div>
     </header>
 
@@ -36,7 +81,7 @@
                         <i class="fa-solid fa-filter text-sky-600"></i> {{ __('clinics.filter_title') }}
                     </h3>
 
-                    <form action="{{ route('clinics.index') }}" method="GET">
+                    <form action="{{ localized_route('clinics.index', [ 'token' => $appointment->token ] ) }}" method="GET">
                         <!-- Giữ lại thông tin dịch vụ đã chọn từ bước trước -->
                         @if(request('services'))
                             @foreach(request('services') as $sId)
@@ -129,13 +174,13 @@
                             <!-- Action Buttons -->
                             <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100">
                                 <!-- Nút View Detailed Information -->
-                                <a href="{{ route('clinics.show', $clinic->id) }}" 
+                                <a href="{{ route('clinics.show', ['token' => $appointment->token, 'id' =>  $clinic->id]) }}" 
                                    class="px-4 py-2 border border-slate-300 hover:border-slate-400 text-slate-700 text-sm font-semibold rounded-lg transition-colors">
                                    {{ __('clinics.btn_details') }}
                                 </a>
 
                                 <!-- Nút Book Online Consultation -->
-                                <a href="{{ route('clinics.show', $clinic->id) }}#booking-section" 
+                                <a href="{{ route('clinics.show', ['token' => $appointment->token, 'id' =>  $clinic->id]) }}#booking-section" 
                                    class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold rounded-lg shadow-sm transition-colors">
                                    {{ __('clinics.btn_book') }}
                                 </a>

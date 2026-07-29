@@ -50,7 +50,7 @@
                                 </tr>
                             </table>
                             @php
-                                $portalUrl = localized_route('clinics.index');
+                                $portalUrl = localized_route('clinics.index', [ 'token'  => $appointment->token ]);
                             @endphp
                             <!-- LARGE BUTTON -->
                             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 30px;">
