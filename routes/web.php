@@ -51,10 +51,10 @@ Route::prefix('{locale}')
     Route::get('/consultation/{token}', [ProfileController::class, 'consultation'])->name('locale.consultation');
     Route::get('/booking-appointment', [BookingAppointmentController::class, 'index'])->name('locale.booking-appointment.index');
     // Route cho danh sách phòng khám và bộ lọc
-    Route::get('/clinics/{token}', [ClinicController::class, 'index'])->name('locale.clinics.index');
+    Route::get('/clinics/{token}', [ClinicController::class, 'index2'])->name('locale.clinics.index');
 
     // Route trang chi tiết phòng khám (chứa thông tin chi tiết và form đặt lịch ở cuối trang với id="#booking-section")
-    Route::get('/clinics/{token}/{id}', [ClinicController::class, 'show'])->name('locale.clinics.show');
+    Route::get('/clinics/{token}/{id}', [ClinicController::class, 'show2'])->name('locale.clinics.show');
 });
 
 Route::middleware('auth')->group(function () {
