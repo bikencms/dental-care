@@ -197,7 +197,7 @@
                                 
                                 <!-- Doctor Name & Title -->
                                 <h3 class="fw-bold mb-1 fs-5">
-                                    <a href="#" class="text-dark text-decoration-none hover-primary">{{ $doctor->name }}</a>
+                                    <a href="#" class="text-dark text-decoration-none hover-primary" data-cursor="-opaque">{{ $doctor->name }}</a>
                                 </h3>
                                 <p class="text-primary fw-semibold small mb-3">{{ $doctor->title }}</p>
 
