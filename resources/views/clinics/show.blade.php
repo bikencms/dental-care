@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('clinics.page_title') }}</title>
+    <title>{{ $clinic->name }}</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="{{ __('clinics.subheading') }}">
+    <meta name="description" content="{{ $clinic->description }}">
     <meta name="keywords" content="Vietnam Dental Care, dental clinic Vietnam, dental implants Vietnam, cosmetic dentistry, orthodontics, braces, porcelain veneers, dental crowns, teeth whitening, smile makeover, oral surgery, affordable dental care, international dental clinic, Ho Chi Minh dental clinic">
     <meta name="author" content="Minh Biken">
     
@@ -72,9 +72,9 @@
                     <!-- Our Expert Section Start -->
                     <div class="our-expert-section">
                         <!-- Our Expert Content Start -->
-                        <div class="our-expert-content">
+                        <div class="our-expert-content section-title">
                             <!-- Dòng title lớn ghi thông tin tên phòng khám -->
-                            <h1 class="display-3 fw-bold text-white mb-3 tracking-tight" style="font-family: 'Sora', sans-serif;">
+                            <h1 class="display-1 fw-bold text-white mb-3 tracking-tight" data-cursor="-opaque" style="font-family: 'Sora', sans-serif;">
                                 {{ $clinic->name }}
                             </h1>
 
@@ -127,50 +127,142 @@
 <nav class="clinic-sticky-bar bg-white border-bottom shadow-sm">
     <div class="container">
         <div class="tab-scroll-wrapper">
-            <ul class="nav nav-pills flex-nowrap py-2" id="clinicTabNav">
-                <li class="nav-item">
-                    <a class="nav-link active rounded-pill px-4 py-2 fw-semibold" href="#section-doctors" data-tab="section-doctors">Doctors</a>
+            <ul class="nav nav-pills flex-nowrap w-100 justify-content-between py-2 mb-0" id="clinicTabNav">
+                <li class="nav-item flex-fill mx-1">
+                    <a class="btn btn-primary btn-lg w-100 rounded-pill fw-bold active text-nowrap" href="#section-doctors" data-tab="section-doctors">Doctors</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill px-4 py-2 fw-semibold text-secondary" href="#section-clinic" data-tab="section-clinic">Clinic</a>
+                <li class="nav-item flex-fill mx-1">
+                    <a class="btn btn-outline-primary btn-lg w-100 rounded-pill fw-bold text-nowrap transition-transform hover-scale" href="#section-clinic" data-tab="section-clinic">Clinic</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill px-4 py-2 fw-semibold text-secondary" href="#section-before-after" data-tab="section-before-after">Before & After</a>
+                <li class="nav-item flex-fill mx-1">
+                    <a class="btn btn-outline-primary btn-lg w-100 rounded-pill fw-bold text-nowrap transition-transform hover-scale" href="#section-before-after" data-tab="section-before-after">Before & After</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill px-4 py-2 fw-semibold text-secondary" href="#section-price-list" data-tab="section-price-list">Price List</a>
+                <li class="nav-item flex-fill mx-1">
+                    <a class="btn btn-outline-primary btn-lg w-100 rounded-pill fw-bold text-nowrap transition-transform hover-scale" href="#section-price-list" data-tab="section-price-list">Price List</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-pill px-4 py-2 fw-semibold text-secondary" href="#section-testimonial" data-tab="section-testimonial">Testimonial</a>
+                <li class="nav-item flex-fill mx-1">
+                    <a class="btn btn-outline-primary btn-lg w-100 rounded-pill fw-bold text-nowrap transition-transform hover-scale" href="#section-testimonial" data-tab="section-testimonial">Testimonial</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-
 <!-- ==================== MAIN CONTENT SECTIONS ==================== -->
 <div class="container py-5">
 
     <!-- 1. DOCTORS -->
     <section id="section-doctors" class="clinic-section py-5 border-bottom">
-        <h2 class="fw-bold mb-4">Dental Specialists</h2>
-        <div class="row g-4">
-            @forelse($clinic->doctors as $doctor)
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 p-3">
-                        <img src="{{ asset('assets/images/team-2.png') }}" class="card-img-top rounded-3 object-fit-cover" style="height: 260px;" alt="{{ $doctor->name }}">
-                        <div class="card-body px-0 pb-0">
-                            <h5 class="fw-bold mb-1">{{ $doctor->name }}</h5>
-                            <p class="text-primary small mb-2">{{ $doctor->title }}</p>
-                            <p class="text-muted small mb-0">{{ $doctor->bio }}</p>
+        <!-- Our Team Start -->
+        <div class="our-team">
+            <div class="container">
+                <div class="row section-row">
+                    <div class="col-lg-12">
+                        <!-- Section Title Start -->
+                        <div class="section-title section-title-center">
+                            <h3 class="wow fadeInUp">Meet the Experts</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Trusted professionals creating smiles with expert care</h2>
                         </div>
+                        <!-- Section Title End -->
                     </div>
                 </div>
-            @empty
-                <p class="text-muted">No doctor information available.</p>
-            @endforelse
+                <div class="row">
+                    @forelse($clinic->doctors as $doctor)
+                    <div class="col-xl-3 col-md-6 mb-3">
+                        <!-- Team Item Start -->
+                        <div class="team-item card border-0 shadow-sm rounded-4 overflow-hidden h-100 bg-white">
+                            
+                            <!-- Doctor Image & Socials -->
+                            <div class="team-image box-bg-shape position-relative overflow-hidden">
+                                <figure class="m-0">
+                                    <img src="{{ asset('assets/' . $doctor->avatar) }}" alt="{{ $doctor->name }}" class="w-100 object-fit-cover" style="height: 320px;">
+                                </figure>
+                                <div class="team-social-list">
+                                    <div class="team-social-icon">
+                                        <ul>
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="team-readmore-btn">
+                                        <a href="#"><img src="{{ asset('assets/images/icon-share.svg') }}" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Team Content -->
+                            <div class="team-content">
+                                
+                                <!-- Doctor Name & Title -->
+                                <h3 class="fw-bold mb-1 fs-5">
+                                    <a href="#" class="text-dark text-decoration-none hover-primary">{{ $doctor->name }}</a>
+                                </h3>
+                                <p class="text-primary fw-semibold small mb-3">{{ $doctor->title }}</p>
+
+                                <!-- Specialty & Languages -->
+                                <div class="doctor-meta border-top border-bottom py-2 my-3">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <span class="badge bg-primary-subtle text-primary fw-medium px-2 py-1 rounded-2">Specialty</span>
+                                        <span class="small fw-semibold text-secondary">Prosthodontics & Oral Implantology</span>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge bg-light text-dark fw-medium px-2 py-1 rounded-2">Languages</span>
+                                        <span class="small text-muted">🇺🇸 | 🇻🇳 </span>
+                                    </div>
+                                </div>
+
+                                <!-- Top Credentials (Highlights) -->
+                                <div class="mb-3">
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-1 small fw-semibold" style="font-size: 10px;">
+                                        🏆 USC Trained | MALO CLINIC ALL-ON-4™
+                                    </span>
+                                </div>
+
+                                <!-- Accordion / Collapsible Details (Gọn gàng & chuyên nghiệp) -->
+                                <div class="accordion accordion-flush" id="docAccordion{{ $loop->index ?? '1' }}">
+                                    <div class="accordion-item bg-transparent border-0">
+                                        <button  style="font-size: 18px; line-height: 22px" class="accordion-button collapsed p-0 bg-transparent shadow-none text-primary fw-bold small" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDoc{{ $loop->index ?? '1' }}">
+                                            🎓 View Qualifications & Memberships
+                                        </button>
+                                        <div id="collapseDoc{{ $loop->index ?? '1' }}" class="accordion-collapse collapse" data-bs-parent="#docAccordion{{ $loop->index ?? '1' }}">
+                                            <div class="accordion-body px-0 pt-3 pb-0">
+                                                
+                                                <!-- Education -->
+                                                <h6 class="fw-bold small text-uppercase text-secondary mb-2">Education & Training</h6>
+                                                <ul class="list-unstyled small text-muted mb-3 lh-sm">
+                                                    <li class="mb-1">✓ Doctor of Dental Surgery (DDS)</li>
+                                                    <li class="mb-1">✓ Grad. Dip. in Clinical Science (Prosthodontics)</li>
+                                                    <li class="mb-1">✓ Diplomate in Oral Implantology</li>
+                                                    <li class="mb-1">✓ ALL-ON-4™ MALO CLINIC Residency</li>
+                                                    <li class="mb-1">✓ USC Comprehensive Implant Training</li>
+                                                </ul>
+
+                                                <!-- Associations -->
+                                                <h6 class="fw-bold small text-uppercase text-secondary mb-2">Associations</h6>
+                                                <ul class="list-unstyled small text-muted mb-0 lh-sm">
+                                                    <li class="mb-1"><i class="fas fa-check-circle text-primary me-1"></i> Member, Vietnamese Dental Council</li>
+                                                    <li class="mb-1"><i class="fas fa-check-circle text-primary me-1"></i> Member, International Team for Implantology (ITI)</li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Team Item End -->
+                    </div>
+                    @empty
+                        <p class="text-muted">No doctor information available.</p>
+                    @endforelse
+                </div>
+            </div>
         </div>
+        <!-- Our Team End -->
+
     </section>
 
     <!-- 2. CLINIC -->
@@ -434,44 +526,43 @@
     });
     </script>
     <!-- Jquery Library File -->
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
-    <!-- Bootstrap js file -->
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <!-- Validator js file -->
-    <script src="{{ asset('assets/js/validator.min.js') }}"></script>
-    <!-- SlickNav js file -->
-    <script src="{{ asset('assets/js/jquery.slicknav.js') }}"></script>
-    <!-- Swiper js file -->
-    <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
-    <!-- Counter js file -->
-    <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
-    <!-- Magnific js file -->
-    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-    <!-- SmoothScroll -->
-    <script src="{{ asset('assets/js/SmoothScroll.js') }}"></script>
-    <!-- Parallax js -->
-    <script src="{{ asset('assets/js/parallaxie.js') }}"></script>
-    <!-- Image Comparision js -->
-    <script src="{{ asset('assets/js/jquery.event.move.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.twentytwenty.js') }}"></script>
-    <!-- MagicCursor js file -->
-    <script src="{{ asset('assets/js/gsap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/magiccursor.js') }}"></script>
-    <!-- Text Effect js file -->
-    <script src="{{ asset('assets/js/SplitText.min.js') }}"></script>
-    <script src="{{ asset('assets/js/ScrollTrigger.min.js') }}"></script>
-    <!-- YTPlayer js File -->
-    <script src="{{ asset('assets/js/jquery.mb.YTPlayer.min.js') }}"></script>
-    <!-- Wow js file -->
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-    <!-- Main Custom js file -->
-    <script src="{{ asset('assets/js/function.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+        <!-- Bootstrap js file -->
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <!-- Validator js file -->
+        <script src="{{ asset('assets/js/validator.min.js') }}"></script>
+        <!-- SlickNav js file -->
+        <script src="{{ asset('assets/js/jquery.slicknav.js') }}"></script>
+        <!-- Swiper js file -->
+        <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
+        <!-- Counter js file -->
+        <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+        <!-- Magnific js file -->
+        <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+        <!-- SmoothScroll -->
+        <script src="{{ asset('assets/js/SmoothScroll.js') }}"></script>
+        <!-- Parallax js -->
+        <script src="{{ asset('assets/js/parallaxie.js') }}"></script>
+        <!-- Image Comparision js -->
+        <script src="{{ asset('assets/js/jquery.event.move.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.twentytwenty.js') }}"></script>
+        <!-- MagicCursor js file -->
+        <script src="{{ asset('assets/js/gsap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/magiccursor.js') }}"></script>
+        <!-- Text Effect js file -->
+        <script src="{{ asset('assets/js/SplitText.min.js') }}"></script>
+        <script src="{{ asset('assets/js/ScrollTrigger.min.js') }}"></script>
+        <!-- YTPlayer js File -->
+        <script src="{{ asset('assets/js/jquery.mb.YTPlayer.min.js') }}"></script>
+        <!-- Wow js file -->
+        <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+        <!-- Main Custom js file -->
+        <script src="{{ asset('assets/js/function.js') }}"></script>
 
-
-    {{-- Chèn Widget WhatsApp --}}
-    <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
-    <script src="https://elfsightcdn.com/platform.js" async></script>
-    <div class="elfsight-app-9349fbbd-7502-45cc-b49a-1fa2d4ead97c" data-elfsight-app-lazy></div>
+        {{-- Chèn Widget WhatsApp --}}
+        <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div class="elfsight-app-9349fbbd-7502-45cc-b49a-1fa2d4ead97c" data-elfsight-app-lazy></div>
 </body>
 </html>
