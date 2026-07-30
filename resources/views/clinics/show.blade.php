@@ -129,7 +129,7 @@
         <div class="tab-scroll-wrapper">
             <ul class="nav nav-pills flex-nowrap w-100 justify-content-between py-2 mb-0" id="clinicTabNav">
                 <li class="nav-item flex-fill mx-1">
-                    <a class="btn btn-primary btn-lg w-100 rounded-pill fw-bold active text-nowrap" href="#section-doctors" data-tab="section-doctors">Doctors</a>
+                    <a class="btn btn-primary btn-lg w-100 rounded-pill fw-bold text-nowrap" href="#section-doctors" data-tab="section-doctors">Doctors</a>
                 </li>
                 <li class="nav-item flex-fill mx-1">
                     <a class="btn btn-outline-primary btn-lg w-100 rounded-pill fw-bold text-nowrap transition-transform hover-scale" href="#section-clinic" data-tab="section-clinic">Clinic</a>
