@@ -8,10 +8,11 @@
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="description" content="{{ __('clinics.subheading') }}">
     <meta name="keywords" content="Vietnam Dental Care, dental clinic Vietnam, dental implants Vietnam, cosmetic dentistry, orthodontics, braces, porcelain veneers, dental crowns, teeth whitening, smile makeover, oral surgery, affordable dental care, international dental clinic, Ho Chi Minh dental clinic">
     <meta name="author" content="Minh Biken">
+    
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="https://vietnamdentalcare.vn/assets/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="https://vietnamdentalcare.vn/assets/images/apple-touch-icon.png">
@@ -26,22 +27,11 @@
     <meta property="og:image" content="https://vietnamdentalcare.vn/assets/images/og-image.png">
     <meta property="og:locale" content="en_US">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Vietnam Dental Care | {{ __('clinics.page_title') }}">
-    <meta name="twitter:description" content="{{ __('clinics.subheading') }}">
-    <meta name="twitter:image" content="https://vietnamdentalcare.vn/assets/images/og-image.jpg">
-
     @if(app()->getLocale() == 'vi')
         <link rel="canonical" href="https://vietnamdentalcare.vn/vi/clinics">
     @else
         <link rel="canonical" href="https://vietnamdentalcare.vn/clinics">
     @endif
-
-    <link rel="alternate" hreflang="en" href="https://vietnamdentalcare.vn/clinics">
-    <link rel="alternate" hreflang="vi" href="https://vietnamdentalcare.vn/vi/clinics">
-    <link rel="alternate" hreflang="x-default" href="https://vietnamdentalcare.vn/clinics">
-
-    <meta name="robots" content="index, follow, max-image-preview:large">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -49,86 +39,109 @@
     
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
     
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Css-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+        <!-- Bootstrap Css -->
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+        <!-- Font Awesome Icon Css-->
+        <link href="{{ asset('assets/css/all.min.css') }}" rel="stylesheet" media="screen">
+        <!-- Animated Css -->
+        <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
+        <!-- Mouse Cursor Css File -->
+        <link rel="stylesheet" href="{{ asset('assets/css/mousecursor.css') }}">
+        <!-- Main Custom Css -->
+        <link href="{{ asset('assets/css/custom.css') }}?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" media="screen">
 </head>
 <body class="bg-slate-50 font-sans text-slate-700 antialiased">
-<!-- ==================== HERO SECTION (Style Denture - No Right White Box) ==================== -->
-<section class="hero-clinic-section position-relative text-white d-flex align-items-center py-5" 
-         style="background: linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.78)), url('{{ asset($clinic->cover_image ?? 'assets/images/default-hero.jpg') }}') center/cover no-repeat; min-height: 520px;">
-    <div class="container py-4">
-        <div class="row">
-            {{-- Đã bỏ hoàn toàn khung trắng bên phải --}}
-            <div class="col-lg-10 col-xl-9">
-                
-                {{-- [CLINIC NAME FROM DB] --}}
-                <h1 class="display-4 fw-bold text-white mb-3 text-uppercase tracking-tight">
-                    {{ $clinic->name }}
-                </h1>
+    <!-- Preloader Start -->
+        <div class="preloader">
+            <div class="loading-container">
+                <div class="loading"></div>
+                <div id="loading-icon"><img src="{{ asset('assets/images/icon.png') }}" alt=""></div>
+            </div>
+        </div>
+    <!-- Preloader End -->
 
-                {{-- [THÔNG TIN ĐỊA LÝ & ĐÁNH GIÁ GOOGLE MAP] --}}
-                <div class="d-flex flex-wrap align-items-center gap-2 gap-md-3 fs-5 mb-3 text-light">
-                    <span class="d-flex align-items-center gap-1">
-                        📍 {{ $clinic->district }}, Ho Chi Minh City, Vietnam
-                    </span>
-                    <span class="opacity-50">|</span>
-                    <span class="text-warning fw-semibold d-flex align-items-center gap-1">
-                        ⭐ {{ $clinic->rating ?? '4.9' }}/5 ({{ $clinic->reviews_count ?? '200+' }} International Reviews)
-                    </span>
-                </div>
+    <!-- Our Expert Section Start -->
+    <div class="our-expert bg-section dark-section parallaxie" style="margin-top: 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Our Expert Section Start -->
+                    <div class="our-expert-section">
+                        <!-- Our Expert Content Start -->
+                        <div class="our-expert-content">
+                            <!-- Dòng title lớn ghi thông tin tên phòng khám -->
+                            <h1 class="display-3 fw-bold text-white mb-3 tracking-tight" style="font-family: 'Sora', sans-serif;">
+                                {{ $clinic->name }}
+                            </h1>
 
-                {{-- Đoạn văn khoảng 3 câu miêu tả lấy từ DB --}}
-                <p class="lead text-light opacity-90 mb-4 lh-base" style="max-width: 800px;">
-                    {{ $clinic->description ?? 'Welcome to our international standard dental clinic equipped with advanced modern technology. Our team of highly experienced specialists provides pain-free, world-class treatments tailored for overseas patients. Enjoy full English support and transparent pricing for your entire dental care journey.' }}
-                </p>
+                            <!-- Thông tin địa lý & đánh giá ngay dưới tên -->
+                            <div class="d-flex flex-wrap align-items-center gap-3 fs-5 mb-4 text-light">
+                                <span class="d-flex align-items-center gap-1">
+                                    <i class="fa-solid fa-location-dot text-danger"></i> {{ $clinic->district }}, Ho Chi Minh City, Vietnam
+                                </span>
+                                <span class="opacity-50">|</span>
+                                <span class="text-warning fw-semibold d-flex align-items-center gap-1">
+                                    <i class="fa-solid fa-star"></i> {{ $clinic->rating ?? '4.9' }}/5 <span class="text-light fw-normal font-size-sm">({{ $clinic->reviews_count ?? '200+' }} International Reviews)</span>
+                                </span>
+                            </div>
 
-                {{-- Các Block Tag nhỏ lấy từ DB --}}
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    @forelse($clinic->tags as $tag)
-                        <div class="tag-item bg-white bg-opacity-10 text-white px-3 py-2 rounded-3 fs-6 backdrop-blur">
-                            ✓ {{ $tag->name }}
+                            <!-- Đoạn văn ngắn khoảng 3 câu miêu tả phòng khám lấy từ DB -->
+                            <p class="lead text-light opacity-90 mb-4 lh-lg" style="font-size: 1.15rem;">
+                                {{ $clinic->description ?? 'Welcome to our international standard dental clinic equipped with advanced modern technology. Our team of highly experienced specialists provides pain-free, world-class treatments tailored for overseas patients. Enjoy full English support and transparent pricing for your entire dental care journey.' }}
+                            </p>
+
+                            <!-- Load các tag đã viết sẵn cho phòng khám để hiển thị trong các block nhỏ dạng pill -->
+                            <div class="d-flex flex-wrap gap-2 mb-4">
+                                @forelse($clinic->tags as $tag)
+                                    <div class="tag-badge bg-white bg-opacity-10 text-white px-4 py-2 rounded-pill fs-6 border border-white border-opacity-10 backdrop-blur">
+                                        {{ $tag->tag_name }}
+                                    </div>
+                                @empty
+                                    <div class="tag-badge bg-white bg-opacity-10 text-white px-4 py-2 rounded-pill fs-6 border border-white border-opacity-10 backdrop-blur">General Dentistry</div>
+                                    <div class="tag-badge bg-white bg-opacity-10 text-white px-4 py-2 rounded-pill fs-6 border border-white border-opacity-10 backdrop-blur">Emergency Dentistry</div>
+                                    <div class="tag-badge bg-white bg-opacity-10 text-white px-4 py-2 rounded-pill fs-6 border border-white border-opacity-10 backdrop-blur">Advanced Technology</div>
+                                @endforelse
+                            </div>
+
+                            <!-- Nút BOOK VIDEO CONSULTATION (Click scroll thẳng xuống khúc cuối book lịch) -->
+                            <div class="pt-2">
+                                <a href="#booking-section" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold text-uppercase shadow-lg transition-transform hover-scale">
+                                    Book Video Consultation
+                                </a>
+                            </div>
                         </div>
-                    @empty
-                        <div class="tag-item bg-white bg-opacity-10 text-white px-3 py-2 rounded-3 fs-6">✓ Free Digital Scan</div>
-                        <div class="tag-item bg-white bg-opacity-10 text-white px-3 py-2 rounded-3 fs-6">✓ 10-Year Warranty</div>
-                        <div class="tag-item bg-white bg-opacity-10 text-white px-3 py-2 rounded-3 fs-6">✓ Airport Pick-up</div>
-                    @endforelse
+                        <!-- Our Expert Content End -->
+                    </div>
+                    <!-- Our Expert Section End -->
                 </div>
-
-                {{-- Nút BOOK VIDEO CONSULTATION --}}
-                <div class="pt-2">
-                    <a href="#booking-section" class="btn btn-primary btn-lg px-4 py-3 rounded-pill fw-bold text-uppercase shadow-lg">
-                        📅 BOOK VIDEO CONSULTATION
-                    </a>
-                </div>
-
             </div>
         </div>
     </div>
-</section>
-
+    <!-- Our Expert Section End -->
 
 <!-- ==================== STICKY & HORIZONTAL SCROLLABLE TAB BAR ==================== -->
 <nav class="clinic-sticky-bar bg-white border-bottom shadow-sm">
     <div class="container">
         <div class="tab-scroll-wrapper">
-            <ul class="nav nav-pills flex-nowrap" id="clinicTabNav">
+            <ul class="nav nav-pills flex-nowrap py-2" id="clinicTabNav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#section-doctors" data-tab="section-doctors">Doctors</a>
+                    <a class="nav-link active rounded-pill px-4 py-2 fw-semibold" href="#section-doctors" data-tab="section-doctors">Doctors</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section-clinic" data-tab="section-clinic">Clinic</a>
+                    <a class="nav-link rounded-pill px-4 py-2 fw-semibold text-secondary" href="#section-clinic" data-tab="section-clinic">Clinic</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section-before-after" data-tab="section-before-after">Before & After</a>
+                    <a class="nav-link rounded-pill px-4 py-2 fw-semibold text-secondary" href="#section-before-after" data-tab="section-before-after">Before & After</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section-price-list" data-tab="section-price-list">Price List</a>
+                    <a class="nav-link rounded-pill px-4 py-2 fw-semibold text-secondary" href="#section-price-list" data-tab="section-price-list">Price List</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section-testimonial" data-tab="section-testimonial">Testimonial</a>
+                    <a class="nav-link rounded-pill px-4 py-2 fw-semibold text-secondary" href="#section-testimonial" data-tab="section-testimonial">Testimonial</a>
                 </li>
             </ul>
         </div>
@@ -137,7 +150,7 @@
 
 
 <!-- ==================== MAIN CONTENT SECTIONS ==================== -->
-<div class="container py-4">
+<div class="container py-5">
 
     <!-- 1. DOCTORS -->
     <section id="section-doctors" class="clinic-section py-5 border-bottom">
@@ -146,7 +159,7 @@
             @forelse($clinic->doctors as $doctor)
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 border-0 shadow-sm rounded-4 p-3">
-                        <img src="{{ asset($doctor->avatar ?? 'assets/images/doctor-default.jpg') }}" class="card-img-top rounded-3 object-fit-cover" style="height: 260px;" alt="{{ $doctor->name }}">
+                        <img src="{{ asset('assets/images/team-2.png') }}" class="card-img-top rounded-3 object-fit-cover" style="height: 260px;" alt="{{ $doctor->name }}">
                         <div class="card-body px-0 pb-0">
                             <h5 class="fw-bold mb-1">{{ $doctor->name }}</h5>
                             <p class="text-primary small mb-2">{{ $doctor->title }}</p>
@@ -165,13 +178,13 @@
         <h2 class="fw-bold mb-4">Clinic Facilities & Equipment</h2>
         <div class="row g-3">
             <div class="col-md-4">
-                <img src="{{ asset('assets/images/facility-1.jpg') }}" class="img-fluid rounded-4 shadow-sm w-100 h-100 object-fit-cover" style="min-height: 220px;" alt="Facility">
+                <img src="{{ asset('assets/images/team-2.png') }}" class="img-fluid rounded-4 shadow-sm w-100 h-100 object-fit-cover" style="min-height: 220px;" alt="Facility">
             </div>
             <div class="col-md-4">
-                <img src="{{ asset('assets/images/facility-2.jpg') }}" class="img-fluid rounded-4 shadow-sm w-100 h-100 object-fit-cover" style="min-height: 220px;" alt="Facility">
+                <img src="{{ asset('assets/images/team-2.png') }}" class="img-fluid rounded-4 shadow-sm w-100 h-100 object-fit-cover" style="min-height: 220px;" alt="Facility">
             </div>
             <div class="col-md-4">
-                <img src="{{ asset('assets/images/facility-3.jpg') }}" class="img-fluid rounded-4 shadow-sm w-100 h-100 object-fit-cover" style="min-height: 220px;" alt="Facility">
+                <img src="{{ asset('assets/images/team-2.png') }}" class="img-fluid rounded-4 shadow-sm w-100 h-100 object-fit-cover" style="min-height: 220px;" alt="Facility">
             </div>
         </div>
     </section>
@@ -180,7 +193,6 @@
     <section id="section-before-after" class="clinic-section py-5 border-bottom">
         <h2 class="fw-bold mb-4">Before & After Transformations</h2>
         <div class="row g-4">
-            {{-- Dùng optional() hoặc null coalescing (?? []) để tránh đứt trang --}}
             @forelse($clinic->beforeAfters ?? [] as $case)
                 <div class="col-md-6">
                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
@@ -192,7 +204,6 @@
                     </div>
                 </div>
             @empty
-                {{-- Nếu không có dữ liệu trong DB thì hiển thị khung Placeholder mẫu cực đẹp --}}
                 <div class="col-md-6">
                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
                         <img src="https://placehold.co/600x400/e2e8f0/1e293b?text=Full+Mouth+Implants+Before/After" class="img-fluid" alt="Before After Case">
@@ -250,7 +261,6 @@
     <section id="section-testimonial" class="clinic-section py-5 border-bottom">
         <h2 class="fw-bold mb-4">International Patient Reviews</h2>
         <div class="row g-4">
-            {{-- Thêm ?? [] để an toàn tuyệt đối --}}
             @forelse($clinic->testimonials ?? [] as $review)
                 <div class="col-md-6">
                     <div class="p-4 bg-light rounded-4 h-100 shadow-sm">
@@ -266,8 +276,8 @@
         </div>
     </section>
 
-    <!-- ==================== BOOKING SECTION (SECTION KHÚC CUỐI) ==================== -->
-    <section id="booking-section" class="py-5 mt-5 bg-light rounded-4 p-4 p-md-5 shadow-sm border">
+    <!-- ==================== BOOKING SECTION (KHÚC CUỐI) ==================== -->
+    <section id="booking-section" class="py-5 mt-5 bg-white rounded-4 p-4 p-md-5 shadow-sm border">
         <div class="text-center mb-4">
             <h2 class="fw-bold">Book Online Consultation / Appointment</h2>
             <p class="text-muted">Select your preferred date & time to reserve your consultation with {{ $clinic->name }}</p>
@@ -276,8 +286,7 @@
         <form action="#" method="POST">
             @csrf
             
-            {{-- LƯU SẴN THÔNG TIN KHÁCH TỪ TOKEN & CLINIC ID VÀO DB --}}
-            <input type="hidden" name="token" value="{{ $appointment->token }}">
+            <input type="hidden" name="token" value="{{ $appointment->token ?? '' }}">
             <input type="hidden" name="clinic_id" value="{{ $clinic->id }}">
 
             <div class="row g-3">
@@ -315,103 +324,154 @@
             </div>
         </form>
     </section>
-
 </div>
+    <!-- ==================== HỆ THỐNG CSS TỐI ƯU ==================== -->
+    <style>
+    /* 1. Thiết lập khoảng đệm chuẩn khi scroll dính thanh sticky tab bar (~120px) */
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 120px;
+    }
+
+    /* 2. Thanh Tab dính đỉnh */
+    .clinic-sticky-bar {
+        position: sticky;
+        top: 0;
+        z-index: 1020;
+        background-color: #ffffff;
+    }
+
+    /* 3. Thanh Tab vuốt ngang mượt mà (Horizontal Scroll & Snap) */
+    .tab-scroll-wrapper {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .tab-scroll-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tab-scroll-wrapper .nav-item {
+        scroll-snap-align: center;
+        flex-shrink: 0;
+    }
+
+    .tab-scroll-wrapper .nav-link {
+        color: #475569;
+        transition: all 0.2s ease;
+    }
+
+    .tab-scroll-wrapper .nav-link.active {
+        background-color: #0d6efd !important;
+        color: #ffffff !important;
+    }
+
+    /* Backdrop blur cho các block tag nhỏ */
+    .backdrop-blur {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    </style>
 
 
-<!-- ==================== CSS CẤU HÌNH THEO ĐÚNG "BỘ CÔNG THỨC" ==================== -->
-<style>
-/* 1. Cuộn trang mượt (Smooth Scroll) thuần CSS */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* Offset khoảng cách tránh bị đè bởi Sticky Bar */
-}
+    <!-- ==================== INTERSECTION OBSERVER (LIGHTWEIGHT) ==================== -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // 1. Xử lý click mượt cho nút Book Video Consultation & các thẻ a có href bắt đầu bằng dấu #
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Tính toán vị trí chính xác trừ đi chiều cao thanh sticky bar để không bị che khuất
+                    const headerOffset = 110;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-/* 2. Thanh Tab dính đỉnh (Sticky Bar) */
-.clinic-sticky-bar {
-    position: sticky;
-    top: 0;
-    z-index: 1020;
-    background-color: #ffffff;
-}
-
-/* 3. Thanh Tab vuốt ngang (Horizontal Scroll) */
-.tab-scroll-wrapper {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory; /* Snap tab vào đúng tâm */
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
-}
-.tab-scroll-wrapper::-webkit-scrollbar {
-    display: none; /* Ẩn thanh cuộn trên Chrome/Safari */
-}
-
-.tab-scroll-wrapper .nav {
-    padding: 10px 0;
-    gap: 10px;
-}
-
-.tab-scroll-wrapper .nav-item {
-    scroll-snap-align: center; /* Tự động hít vào tâm khi thả ngón tay */
-}
-
-.tab-scroll-wrapper .nav-link {
-    color: #475569;
-    font-weight: 600;
-    border-radius: 50px;
-    padding: 8px 24px;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-}
-
-.tab-scroll-wrapper .nav-link.active {
-    background-color: #0d6efd;
-    color: #ffffff !important;
-}
-
-/* Backdrop blur cho các Tag trên Hero Banner */
-.backdrop-blur {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-</style>
-
-
-<!-- ==================== JAVASCRIPT: INTERSECTION OBSERVER (NO LAG/NO STUTTER) ==================== -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll(".clinic-section");
-    const navLinks = document.querySelectorAll("#clinicTabNav .nav-link");
-
-    // 4. Scrollspy dùng IntersectionObserver API (Siêu nhẹ, không tốn pin/không gây lag)
-    const observerOptions = {
-        root: null,
-        rootMargin: "-20% 0px -60% 0px", // Nhận biết chính xác section nằm giữa màn hình
-        threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute("id");
-
-                navLinks.forEach((link) => {
-                    if (link.getAttribute("data-tab") === id) {
-                        link.classList.add("active");
-                        
-                        // Tự động cuộn thanh Tab nằm ngang để Tab active nằm chính giữa màn hình
-                        link.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-                    } else {
-                        link.classList.remove("active");
-                    }
-                });
-            }
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
         });
-    }, observerOptions);
 
-    sections.forEach((section) => observer.observe(section));
-});
-</script>
+        // 2. Intersection Observer cho hệ thống active tab khi cuộn chuột
+        const sections = document.querySelectorAll(".clinic-section, #booking-section");
+        const navLinks = document.querySelectorAll("#clinicTabNav .nav-link");
 
+        const observerOptions = {
+            root: null,
+            rootMargin: "-20% 0px -50% 0px",
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute("id");
+
+                    navLinks.forEach((link) => {
+                        if (link.getAttribute("data-tab") === id) {
+                            link.classList.add("active");
+                            link.classList.remove("text-secondary");
+                            link.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                        } else {
+                            link.classList.remove("active");
+                            link.classList.add("text-secondary");
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach((section) => observer.observe(section));
+    });
+    </script>
+    <!-- Jquery Library File -->
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <!-- Bootstrap js file -->
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <!-- Validator js file -->
+    <script src="{{ asset('assets/js/validator.min.js') }}"></script>
+    <!-- SlickNav js file -->
+    <script src="{{ asset('assets/js/jquery.slicknav.js') }}"></script>
+    <!-- Swiper js file -->
+    <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
+    <!-- Counter js file -->
+    <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+    <!-- Magnific js file -->
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <!-- SmoothScroll -->
+    <script src="{{ asset('assets/js/SmoothScroll.js') }}"></script>
+    <!-- Parallax js -->
+    <script src="{{ asset('assets/js/parallaxie.js') }}"></script>
+    <!-- Image Comparision js -->
+    <script src="{{ asset('assets/js/jquery.event.move.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.twentytwenty.js') }}"></script>
+    <!-- MagicCursor js file -->
+    <script src="{{ asset('assets/js/gsap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/magiccursor.js') }}"></script>
+    <!-- Text Effect js file -->
+    <script src="{{ asset('assets/js/SplitText.min.js') }}"></script>
+    <script src="{{ asset('assets/js/ScrollTrigger.min.js') }}"></script>
+    <!-- YTPlayer js File -->
+    <script src="{{ asset('assets/js/jquery.mb.YTPlayer.min.js') }}"></script>
+    <!-- Wow js file -->
+    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+    <!-- Main Custom js file -->
+    <script src="{{ asset('assets/js/function.js') }}"></script>
+
+
+    {{-- Chèn Widget WhatsApp --}}
+    <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+    <script src="https://elfsightcdn.com/platform.js" async></script>
+    <div class="elfsight-app-9349fbbd-7502-45cc-b49a-1fa2d4ead97c" data-elfsight-app-lazy></div>
 </body>
 </html>
