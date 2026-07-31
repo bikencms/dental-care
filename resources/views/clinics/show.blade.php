@@ -561,7 +561,7 @@
                                                                         <div class="testimonial-author">
                                                                             <div class="author-image">
                                                                                 <figure class="image-anime">
-                                                                                    <img src="images/author-2.jpg" alt="">
+                                                                                    <img src="{{ asset('assets/images/author-2.jpg') }}" alt="">
                                                                                 </figure>
                                                                             </div>
                                                                             <div class="author-content">
@@ -570,7 +570,7 @@
                                                                             </div>
                                                                         </div> 
                                                                         <div class="testimonial-quote">
-                                                                            <img src="images/testimonial-quote.svg" alt="">
+                                                                            <img src="{{ asset('assets/images/testimonial-quote.svg') }}" alt="">
                                                                         </div>                                              
                                                                     </div>                                  
                                                                 </div>
@@ -596,7 +596,7 @@
                                                                         <div class="testimonial-author">
                                                                             <div class="author-image">
                                                                                 <figure class="image-anime">
-                                                                                    <img src="images/author-3.jpg" alt="">
+                                                                                    <img src="{{ asset('assets/images/author-3.jpg') }}" alt="">
                                                                                 </figure>
                                                                             </div>
                                                                             <div class="author-content">
@@ -605,7 +605,7 @@
                                                                             </div>
                                                                         </div> 
                                                                         <div class="testimonial-quote">
-                                                                            <img src="images/testimonial-quote.svg" alt="">
+                                                                            <img src="{{ asset('assets/images/testimonial-quote.svg') }}" alt="">
                                                                         </div>                                              
                                                                     </div>                                   
                                                                 </div>
@@ -631,7 +631,7 @@
                                                                         <div class="testimonial-author">
                                                                             <div class="author-image">
                                                                                 <figure class="image-anime">
-                                                                                    <img src="images/author-4.jpg" alt="">
+                                                                                    <img src="{{ asset('assets/images/author-4.jpg') }}" alt="">
                                                                                 </figure>
                                                                             </div>
                                                                             <div class="author-content">
@@ -640,7 +640,7 @@
                                                                             </div>
                                                                         </div> 
                                                                         <div class="testimonial-quote">
-                                                                            <img src="images/testimonial-quote.svg" alt="">
+                                                                            <img src="{{ asset('assets/images/testimonial-quote.svg') }}" alt="">
                                                                         </div>                                              
                                                                     </div>                                   
                                                                 </div>
