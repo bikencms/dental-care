@@ -11145,7 +11145,21 @@ header.main-header.header-metal .header-sticky.active{
     z-index: 999;
 }
 
+.our-transformation-nav ul li {
+	width: 20%;
+}
 
+.our-team {
+	padding: 0;
+}
+
+.our-transformation {
+	padding: 0;
+}
+
+.our-transformation-nav {
+	margin-top: 60px;
+}
 
 @media only screen and (max-width: 1440px){
 
