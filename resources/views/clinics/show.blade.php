@@ -691,46 +691,481 @@
                 <p class="text-muted">{{ __('clinics.booking_subtitle', ['clinic_name' => $clinic->name]) }}</p>
             </div>
 
-            <form action="#" method="POST">
-                @csrf
-                
-                <input type="hidden" name="token" value="{{ $appointment->token ?? '' }}">
-                <input type="hidden" name="clinic_id" value="{{ $clinic->id }}">
+            <div id="booking-container">
+                <!-- Khung hiển thị thông báo chung -->
+                <div id="form-alert" class="d-none alert mb-3" role="alert"></div>
 
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="form-label fw-semibold">{{ __('clinics.label_fullname') }}</label>
-                        <input type="text" name="name" class="form-control form-control-lg fs-6" value="{{ $customer->name ?? '' }}" required placeholder="{{ __('clinics.placeholder_fullname') }}">
-                    </div>
+                <!-- 1. MÀN HÌNH DANH SÁCH LỊCH ĐÃ ĐẶT (TỰ ĐỘNG HIỆN KHI RELOAD CÓ DỮ LIỆU) -->
+                @php
+                    $appointmentsList = $existingAppointments ?? ($appointment ? collect([$appointment]) : collect([]));
+                @endphp
 
-                    <div class="col-md-6">
-                        <label class="form-label fw-semibold">{{ __('clinics.label_email') }}</label>
-                        <input type="email" name="email" class="form-control form-control-lg fs-6" value="{{ $customer->email ?? '' }}" required placeholder="{{ __('clinics.placeholder_email') }}">
-                    </div>
+                <div id="booked-success-section" class="{{ $appointmentsList->isNotEmpty() ? '' : 'd-none' }}">
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                        <div class="card-header bg-success text-white text-center py-3">
+                            <i class="fas fa-check-circle fs-3 mb-1"></i>
+                            <h5 class="mb-0 fw-bold">Thông Tin Lịch Khám Đã Đặt</h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <p class="text-center text-muted fs-7 mb-4">
+                                Cảm ơn bạn đã đặt lịch. Bên dưới là danh sách cuộc hẹn khám của bạn tại phòng khám.
+                            </p>
 
-                    <div class="col-md-6">
-                        <label class="form-label fw-semibold">{{ __('clinics.label_date') }}</label>
-                        <input type="date" name="booking_date" class="form-control form-control-lg fs-6" min="{{ date('Y-m-d') }}" required>
-                    </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle border mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Họ & Tên</th>
+                                            <th>Email</th>
+                                            <th>Múi giờ chọn</th>
+                                            <th>Ngày & Giờ khám</th>
+                                            <th class="text-center">Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="booked-appointments-tbody">
+                                        @foreach($appointmentsList as $item)
+                                            <tr>
+                                                <td class="fw-semibold">{{ $item->fullname ?? $item->patient_name ?? 'N/A' }}</td>
+                                                <td>{{ $item->email ?? $item->patient_email ?? 'N/A' }}</td>
+                                                <td><small class="badge bg-light text-dark border">{{ $item->patient_timezone ?? 'Asia/Ho_Chi_Minh' }}</small></td>
+                                                <td>
+                                                    <strong class="text-primary">
+                                                        {{ $item->appointment_date ?? 'N/A' }} 
+                                                        ({{ $item->start_time ?? 'N/A' }})
+                                                    </strong>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2">
+                                                        {{ $item->status ?? 'Đã xác nhận' }}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label fw-semibold">{{ __('clinics.label_time') }}</label>
-                        <select name="booking_time" class="form-select form-select-lg fs-6" required>
-                            <option value="">{{ __('clinics.option_choose_time') }}</option>
-                            <option value="09:00 AM">09:00 AM</option>
-                            <option value="11:00 AM">11:00 AM</option>
-                            <option value="02:00 PM">02:00 PM</option>
-                            <option value="04:00 PM">04:00 PM</option>
-                        </select>
-                    </div>
-
-                    <div class="col-12 text-center mt-4">
-                        <button type="submit" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold text-uppercase shadow-lg transition-transform hover-scale">
-                            {{ __('clinics.btn_confirm_book') }}
-                        </button>
+                            <div class="text-center mt-4">
+                                <button type="button" id="btn-show-booking-form" class="btn btn-outline-primary rounded-pill px-4">
+                                    <i class="fas fa-plus-circle me-1"></i> Đặt thêm lịch hẹn khác
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </form>
+
+                <!-- 2. FORM ĐĂNG KÝ ĐẶT LỊCH (SẼ TẮT/ẨN KHI ĐẶT THÀNH CÔNG) -->
+                <form id="booking-form" class="{{ $appointmentsList->isNotEmpty() ? 'd-none' : '' }}" novalidate>
+                    @csrf
+                    
+                    <input type="hidden" name="token" value="{{ $appointment->token ?? '' }}">
+                    <input type="hidden" name="clinic_id" value="{{ $clinic->id }}">
+                    
+                    <!-- 🔑 Input Hidden: Lưu Số điện thoại -->
+                    <input type="hidden" name="patient_phone" value="{{ $appointment->phone ?? $appointment->patient_phone ?? 'N/A' }}">
+
+                    <!-- Input Hidden: Lưu start_time theo Giờ Việt Nam -->
+                    <input type="hidden" name="start_time" id="start_time" required>
+
+                    <div class="row g-3">
+                        <!-- 1. Họ và tên (patient_name) -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">{{ __('clinics.label_fullname') }} <span class="text-danger">*</span></label>
+                            <input type="text" name="patient_name" id="input_patient_name" class="form-control form-control-lg fs-6" 
+                                value="{{ $appointment->fullname ?? $appointment->patient_name ?? '' }}" required placeholder="{{ __('clinics.placeholder_fullname') }}">
+                            <div class="invalid-feedback" id="error_patient_name"></div>
+                        </div>
+
+                        <!-- 2. Email (patient_email) -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">{{ __('clinics.label_email') }} <span class="text-danger">*</span></label>
+                            <input type="email" name="patient_email" id="input_patient_email" class="form-control form-control-lg fs-6" 
+                                value="{{ $appointment->email ?? $appointment->patient_email ?? '' }}" required placeholder="{{ __('clinics.placeholder_email') }}">
+                            <div class="invalid-feedback" id="error_patient_email"></div>
+                        </div>
+
+                        <!-- 3. Bộ chọn Múi Giờ (patient_timezone) -->
+                        <div class="col-md-6">
+                            <label for="user_timezone" class="form-label fw-semibold d-flex justify-content-between align-items-center">
+                                <span>🌐 {{ __('clinics.label_timezone') ?? 'Múi giờ của bạn' }}</span>
+                                <span class="badge bg-primary-subtle text-primary border rounded-pill fs-7" id="detected-tz-badge">Auto-detected</span>
+                            </label>
+                            <select id="user_timezone" name="patient_timezone" class="form-select form-select-lg fs-6" required>
+                                <option value="Asia/Ho_Chi_Minh">Asia/Ho Chi Minh (GMT+07:00) - ICT</option>
+                                <option value="America/Los_Angeles">America/Los Angeles (GMT-08:00/07:00) - PST/PDT</option>
+                                <option value="America/New_York">America/New York (GMT-05:00/04:00) - EST/EDT</option>
+                                <option value="Australia/Sydney">Australia/Sydney (GMT+10:00/11:00) - AEST/AEDT</option>
+                                <option value="Australia/Perth">Australia/Perth (GMT+08:00) - AWST</option>
+                                <option value="Europe/Berlin">Europe/Berlin (GMT+01:00/02:00) - CET/CEST</option>
+                                <option value="Europe/London">Europe/London (GMT+00:00/01:00) - GMT/BST</option>
+                                <option value="Asia/Singapore">Asia/Singapore (GMT+08:00) - SGT</option>
+                                <option value="Asia/Tokyo">Asia/Tokyo (GMT+09:00) - JST</option>
+                            </select>
+                            <div class="invalid-feedback" id="error_patient_timezone"></div>
+                        </div>
+
+                        <!-- 4. Chọn Ngày Khám (appointment_date) -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">{{ __('clinics.label_date') }} <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white"><i class="fa-regular fa-calendar text-muted"></i></span>
+                                <input type="text" id="booking_date_picker" name="appointment_date" class="form-control form-control-lg fs-6 bg-white" placeholder="Click để chọn ngày khám..." readonly required>
+                            </div>
+                            <div class="invalid-feedback d-block" id="error_appointment_date"></div>
+                        </div>
+
+                        <!-- Thông báo Múi giờ -->
+                        <div class="col-12">
+                            <div class="alert alert-info border-0 bg-info-subtle text-info-emphasis d-flex align-items-center gap-2 mb-0 py-2 px-3 rounded-3 fs-7">
+                                <i class="fas fa-info-circle fs-5"></i>
+                                <span>Giờ làm việc: <strong>07:00 - 19:00 (Giờ Việt Nam / ICT)</strong>. Các khung giờ sẽ hiển thị song song Giờ địa phương của bạn & Giờ Việt Nam.</span>
+                            </div>
+                        </div>
+
+                        <!-- 5. Chọn Khung Giờ Khám (start_time) -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">{{ __('clinics.label_time') }} <span class="text-danger">*</span></label>
+                            
+                            <div id="slots-loading" class="text-center py-4 d-none">
+                                <div class="spinner-border text-primary spinner-border-sm" role="status"></div>
+                                <span class="ms-2 text-muted fs-7">Đang tải danh sách khung giờ...</span>
+                            </div>
+
+                            <div id="slots-container" class="row g-2">
+                                <div class="col-12 text-muted text-center py-3 fs-7 border rounded bg-light">
+                                    Vui lòng chọn ngày khám ở trên để hiển thị danh sách khung giờ.
+                                </div>
+                            </div>
+                            <div class="invalid-feedback d-block" id="error_start_time"></div>
+                        </div>
+
+                        <!-- 6. Ghi chú (notes) -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Ghi chú / Triệu chứng khám</label>
+                            <textarea name="notes" id="input_notes" class="form-control fs-6" rows="3" placeholder="Nhập ghi chú hoặc yêu cầu thêm nếu có...">{{ $appointment->notes ?? '' }}</textarea>
+                            <div class="invalid-feedback" id="error_notes"></div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="col-12 text-center mt-4">
+                            <button type="submit" id="btn-submit" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold text-uppercase shadow-lg transition-transform hover-scale">
+                                <span class="btn-text">{{ __('clinics.btn_confirm_book') }}</span>
+                                <span class="btn-loading d-none">
+                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    Đang xử lý...
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <style>
+                .slot-btn-radio { display: none; }
+                .slot-label {
+                    display: block;
+                    padding: 10px 8px;
+                    border: 1px solid #cbd5e1;
+                    border-radius: 10px;
+                    text-align: center;
+                    cursor: pointer;
+                    transition: all 0.2s ease-in-out;
+                    background-color: #ffffff;
+                }
+                .slot-label:hover:not(.disabled) {
+                    border-color: #0d6efd;
+                    background-color: #eff6ff;
+                }
+                .slot-btn-radio:checked + .slot-label {
+                    background-color: #0d6efd;
+                    color: #ffffff !important;
+                    border-color: #0d6efd;
+                    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+                }
+                .slot-btn-radio:checked + .slot-label .slot-subtext {
+                    color: rgba(255, 255, 255, 0.85) !important;
+                }
+                .slot-label.disabled {
+                    background-color: #f1f5f9;
+                    border-color: #e2e8f0;
+                    color: #94a3b8;
+                    cursor: not-allowed;
+                    opacity: 0.55;
+                }
+                .flatpickr-calendar {
+                    -webkit-animation: none !important;
+                    animation: none !important;
+                }
+            </style>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css" crossorigin="anonymous" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js" crossorigin="anonymous"></script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const clinicId = "{{ $clinic->id }}";
+                const bookingForm = document.getElementById('booking-form');
+                const bookedSuccessSection = document.getElementById('booked-success-section');
+                const bookedTbody = document.getElementById('booked-appointments-tbody');
+                const btnShowForm = document.getElementById('btn-show-booking-form');
+                
+                const dateInput = document.getElementById('booking_date_picker');
+                const tzSelect = document.getElementById('user_timezone');
+                const slotsContainer = document.getElementById('slots-container');
+                const loadingSpinner = document.getElementById('slots-loading');
+                const hiddenStartTimeInput = document.getElementById('start_time');
+                const btnSubmit = document.getElementById('btn-submit');
+                const formAlert = document.getElementById('form-alert');
+
+                let flatpickrInstance = null;
+                let disabledDatesMap = [];
+
+                // Nút mở lại Form nếu muốn đặt thêm
+                if (btnShowForm) {
+                    btnShowForm.addEventListener('click', function () {
+                        bookingForm.classList.remove('d-none');
+                        bookingForm.scrollIntoView({ behavior: 'smooth' });
+                    });
+                }
+
+                // Auto-detect Timezone
+                const userDetectedTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                if (userDetectedTz) {
+                    let hasOption = Array.from(tzSelect.options).some(opt => opt.value === userDetectedTz);
+                    if (!hasOption) {
+                        let newOpt = new Option(`${userDetectedTz} (Local Detected)`, userDetectedTz, true, true);
+                        tzSelect.add(newOpt, 0);
+                    } else {
+                        tzSelect.value = userDetectedTz;
+                    }
+                }
+
+                // Flatpickr setup
+                flatpickrInstance = flatpickr(dateInput, {
+                    dateFormat: "Y-m-d",
+                    minDate: "today",
+                    animate: false,
+                    disable: [
+                        function(date) {
+                            const dateStr = flatpickr.formatDate(date, "Y-m-d");
+                            return disabledDatesMap.includes(dateStr);
+                        }
+                    ],
+                    onChange: function(selectedDates, dateStr) {
+                        if (dateStr) {
+                            fetchAvailableSlots(dateStr, tzSelect.value);
+                        }
+                    },
+                    onMonthChange: function(selectedDates, dateStr, instance) {
+                        const currentYearMonth = flatpickr.formatDate(new Date(instance.currentYear, instance.currentMonth, 1), "Y-m");
+                        fetchMonthAvailability(currentYearMonth, tzSelect.value);
+                    }
+                });
+
+                async function fetchMonthAvailability(monthStr, timezone) {
+                    try {
+                        const response = await fetch(`/api/v1/clinics/${clinicId}/month-availability?month=${monthStr}&timezone=${encodeURIComponent(timezone)}`);
+                        const result = await response.json();
+
+                        if (result.success) {
+                            disabledDatesMap = result.data.dates_status
+                                .filter(item => item.status === 'disabled')
+                                .map(item => item.date);
+
+                            flatpickrInstance.redraw();
+                        }
+                    } catch (error) {
+                        console.error("Error fetching month availability:", error);
+                    }
+                }
+
+                async function fetchAvailableSlots(dateStr, timezone) {
+                    slotsContainer.innerHTML = '';
+                    loadingSpinner.classList.remove('d-none');
+                    hiddenStartTimeInput.value = '';
+
+                    try {
+                        const response = await fetch(`/api/v1/clinics/${clinicId}/available-slots?date=${dateStr}&timezone=${encodeURIComponent(timezone)}`);
+                        const result = await response.json();
+
+                        loadingSpinner.classList.add('d-none');
+
+                        if (result.success && result.data.slots.length > 0) {
+                            renderSlotsUI(result.data.slots);
+                        } else {
+                            slotsContainer.innerHTML = `<div class="col-12 text-center text-muted py-3">🏥 Không có khung giờ trống cho ngày đã chọn.</div>`;
+                        }
+                    } catch (error) {
+                        console.error("Error fetching available slots:", error);
+                        loadingSpinner.classList.add('d-none');
+                        slotsContainer.innerHTML = `<div class="col-12 text-center text-danger py-3">Lỗi tải khung giờ.</div>`;
+                    }
+                }
+
+                function renderSlotsUI(slots) {
+                    slotsContainer.innerHTML = '';
+
+                    slots.forEach((slot, index) => {
+                        const isDisabled = !slot.is_available;
+                        const slotId = `slot_option_${index}`;
+                        const displayVnTime = slot.clinic_time_display || slot.clinic_time_start?.substring(0, 5) || '';
+
+                        const col = document.createElement('div');
+                        col.className = 'col-6 col-sm-4 col-md-3';
+
+                        col.innerHTML = `
+                            <input type="radio" name="selected_slot_radio" id="${slotId}" 
+                                value="${slot.clinic_time_start}" 
+                                class="slot-btn-radio" ${isDisabled ? 'disabled' : ''}>
+                            <label for="${slotId}" class="slot-label ${isDisabled ? 'disabled' : ''}">
+                                <div class="fw-bold fs-6">${slot.client_display_time}</div>
+                                <div class="small text-muted fs-7 slot-subtext mt-1">
+                                    🇻🇳 ${displayVnTime} (VN)
+                                </div>
+                            </label>
+                        `;
+
+                        slotsContainer.appendChild(col);
+                    });
+
+                    document.querySelectorAll('input[name="selected_slot_radio"]').forEach(radio => {
+                        radio.addEventListener('change', function () {
+                            hiddenStartTimeInput.value = this.value;
+                            clearFieldError('start_time');
+                        });
+                    });
+                }
+
+                tzSelect.addEventListener('change', function () {
+                    const selectedTz = this.value;
+                    const now = new Date();
+                    const currentMonthStr = flatpickr.formatDate(now, "Y-m");
+
+                    fetchMonthAvailability(currentMonthStr, selectedTz);
+
+                    if (dateInput.value) {
+                        fetchAvailableSlots(dateInput.value, selectedTz);
+                    }
+                });
+
+                // AJAX Submit Form Đặt Lịch
+                bookingForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    clearAllErrors();
+                    setSubmitLoading(true);
+
+                    const formData = new FormData(bookingForm);
+
+                    try {
+                        const response = await fetch("{{ route('appointments.store') }}", {
+                            method: "POST",
+                            headers: {
+                                "X-Requested-With": "XMLHttpRequest",
+                                "Accept": "application/json",
+                                "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
+                            },
+                            body: formData
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok && result.success) {
+                            showFormAlert('success', result.message || 'Đặt lịch khám thành công!');
+
+                            // 🚀 1. Ẩn Form đăng ký
+                            bookingForm.classList.add('d-none');
+
+                            // 🚀 2. Chèn thông tin lịch hẹn mới vào danh sách hiển thị
+                            const appt = result.data || {};
+                            const newRow = `
+                                <tr class="table-success">
+                                    <td class="fw-semibold">${appt.patient_name || formData.get('patient_name')}</td>
+                                    <td>${appt.patient_email || formData.get('patient_email')}</td>
+                                    <td><small class="badge bg-light text-dark border">${formData.get('patient_timezone')}</small></td>
+                                    <td>
+                                        <strong class="text-primary">
+                                            ${formData.get('appointment_date')} (${formData.get('start_time')})
+                                        </strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2">
+                                            Đã xác nhận
+                                        </span>
+                                    </td>
+                                </tr>
+                            `;
+                            bookedTbody.insertAdjacentHTML('afterbegin', newRow);
+
+                            // 🚀 3. Hiển thị Màn hình danh sách lịch đã đặt
+                            bookedSuccessSection.classList.remove('d-none');
+                            bookedSuccessSection.scrollIntoView({ behavior: 'smooth' });
+
+                        } else if (response.status === 422) {
+                            showFormAlert('danger', 'Vui lòng kiểm tra lại thông tin đã nhập.');
+                            displayValidationErrors(result.errors);
+                        } else {
+                            showFormAlert('danger', result.message || 'Đã xảy ra lỗi trong quá trình đặt lịch.');
+                        }
+                    } catch (error) {
+                        console.error("Submit Error:", error);
+                        showFormAlert('danger', 'Lỗi kết nối máy chủ.');
+                    } finally {
+                        setSubmitLoading(false);
+                    }
+                });
+
+                function setSubmitLoading(isLoading) {
+                    btnSubmit.disabled = isLoading;
+                    const btnText = btnSubmit.querySelector('.btn-text');
+                    const btnLoading = btnSubmit.querySelector('.btn-loading');
+
+                    if (isLoading) {
+                        btnText.classList.add('d-none');
+                        btnLoading.classList.remove('d-none');
+                    } else {
+                        btnText.classList.remove('d-none');
+                        btnLoading.classList.add('d-none');
+                    }
+                }
+
+                function showFormAlert(type, message) {
+                    formAlert.className = `alert alert-${type} mb-3`;
+                    formAlert.innerText = message;
+                    formAlert.classList.remove('d-none');
+                    formAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                function clearAllErrors() {
+                    formAlert.classList.add('d-none');
+                    document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+                    document.querySelectorAll('.invalid-feedback').forEach(el => el.innerText = '');
+                }
+
+                function clearFieldError(fieldName) {
+                    const inputEl = document.querySelector(`[name="${fieldName}"]`);
+                    if (inputEl) inputEl.classList.remove('is-invalid');
+                    const errEl = document.getElementById(`error_${fieldName}`);
+                    if (errEl) errEl.innerText = '';
+                }
+
+                function displayValidationErrors(errors) {
+                    for (const [field, messages] of Object.entries(errors)) {
+                        const inputEl = document.querySelector(`[name="${field}"]`);
+                        if (inputEl) {
+                            inputEl.classList.add('is-invalid');
+                        }
+                        const errEl = document.getElementById(`error_${field}`);
+                        if (errEl) {
+                            errEl.innerText = messages[0];
+                        }
+                    }
+                }
+
+                const initialMonth = flatpickr.formatDate(new Date(), "Y-m");
+                fetchMonthAvailability(initialMonth, tzSelect.value);
+            });
+            </script>
         </section>
     </div>
 @endsection

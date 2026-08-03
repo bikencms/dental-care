@@ -90,5 +90,5 @@ smiles with expert care',
     'label_time' => 'Preferred Time Slot',
     'option_choose_time' => '-- Choose time slot --',
     'btn_confirm_book' => 'Confirm & Book Now',
-
+    'label_timezone' => 'Your Timezone'
 ];

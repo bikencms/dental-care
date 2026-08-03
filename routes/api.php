@@ -2,5 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\ClinicBookingApiController;
 
 Route::post('/contacts', [ContactController::class, 'store']);
+
+Route::prefix('v1')->group(function () {
+    
+    Route::prefix('clinics/{clinic_id}')->group(function () {
+        
+        // 1. API Lấy danh sách trạng thái ngày trong tháng (Dùng cho Datepicker làm mờ/enable ngày)
+        // GET /api/v1/clinics/1/month-availability?month=2026-08&timezone=America/Los_Angeles
+        Route::get('/month-availability', [ClinicBookingApiController::class, 'getMonthAvailability'])
+            ->name('api.clinics.month-availability');
+
+        // 2. API Lấy danh sách khung giờ (Slots) khả dụng theo ngày chọn
+        // GET /api/v1/clinics/1/available-slots?date=2026-08-03&timezone=America/Los_Angeles
+        Route::get('/available-slots', [ClinicBookingApiController::class, 'getAvailableSlots'])
+            ->name('api.clinics.available-slots');
+            
+    });
+
+});

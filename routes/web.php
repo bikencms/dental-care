@@ -6,6 +6,7 @@ use Spatie\Sitemap\SitemapGenerator;
 use App\Http\Controllers\ConsultationAssessmentController;
 use App\Http\Controllers\BookingAppointmentController;
 use App\Http\Controllers\ClinicController;
+use App\Http\Controllers\AppointmentController;
 
 Route::get('/generate-sitemap', function () {
     SitemapGenerator::create(config('app.url'))
@@ -39,6 +40,9 @@ Route::middleware('localization')->group(function () {
 
     // Route trang chi tiết phòng khám (chứa thông tin chi tiết và form đặt lịch ở cuối trang với id="#booking-section")
     Route::get('/clinics/{token}/{id}', [ClinicController::class, 'show'])->name('clinics.show');
+
+    // Xử lý Submit Form đặt lịch hẹn mới
+    Route::post('/booking', [AppointmentController::class, 'store'])->name('appointments.store');
 });
 
 Route::prefix('{locale}')
@@ -55,6 +59,9 @@ Route::prefix('{locale}')
 
     // Route trang chi tiết phòng khám (chứa thông tin chi tiết và form đặt lịch ở cuối trang với id="#booking-section")
     Route::get('/clinics/{token}/{id}', [ClinicController::class, 'show2'])->name('locale.clinics.show');
+
+    // Xử lý Submit Form đặt lịch hẹn mới
+    Route::post('/booking', [AppointmentController::class, 'store2'])->name('locale.appointments.store');
 });
 
 Route::middleware('auth')->group(function () {

@@ -93,4 +93,5 @@ return [
     'label_time' => 'Khung giờ mong muốn',
     'option_choose_time' => '-- Chọn khung giờ --',
     'btn_confirm_book' => 'Xác nhận & Đặt lịch ngay',
+    'label_timezone' => 'Múi giờ của bạn'
 ];

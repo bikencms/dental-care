@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Clinic;
 use Illuminate\Http\Request;
 use App\Models\OnlineAppointment;
+use App\Models\Appointment;
 
 class ClinicController extends Controller
 {
@@ -132,7 +133,13 @@ class ClinicController extends Controller
             'district'
         ])->findOrFail($id);
 
-        return view('clinics.show', compact('clinic', 'appointment'));
+        // Lấy danh sách tất cả các lịch khám đã đặt (nếu có)
+        $existingAppointments = Appointment::where('patient_email', $appointment->email ?? '')
+        ->whereIn('status', ['confirmed', 'pending'])
+        ->orderBy('appointment_date', 'desc')
+        ->get();
+
+        return view('clinics.show', compact('clinic', 'appointment', 'existingAppointments'));
     }
 
     public function show2(string $language, string $token, int $id)
@@ -147,6 +154,12 @@ class ClinicController extends Controller
             'district'
         ])->findOrFail($id);
 
-        return view('clinics.show', compact('clinic', 'appointment'));
+        // Lấy danh sách tất cả các lịch khám đã đặt (nếu có)
+        $existingAppointments = Appointment::where('patient_email', $appointment->email ?? '')
+        ->whereIn('status', ['confirmed', 'pending'])
+        ->orderBy('appointment_date', 'desc')
+        ->get();
+
+        return view('clinics.show', compact('clinic', 'appointment', 'existingAppointments'));
     }
 }
