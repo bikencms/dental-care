@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\ClinicBookingApiController;
-
+use App\Http\Controllers\Api\AppointmentController;
 Route::post('/contacts', [ContactController::class, 'store']);
 
 Route::prefix('v1')->group(function () {
@@ -23,3 +23,5 @@ Route::prefix('v1')->group(function () {
     });
 
 });
+
+Route::post('/booking', [AppointmentController::class, 'store']);

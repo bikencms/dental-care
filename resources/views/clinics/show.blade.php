@@ -744,12 +744,6 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                            <div class="text-center mt-4">
-                                <button type="button" id="btn-show-booking-form" class="btn btn-outline-primary rounded-pill px-4">
-                                    <i class="fas fa-plus-circle me-1"></i> Đặt thêm lịch hẹn khác
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1056,16 +1050,26 @@
                     setSubmitLoading(true);
 
                     const formData = new FormData(bookingForm);
+                     const data = {
+                        clinic_id: formData.get('clinic_id'),
+                        patient_name: formData.get('patient_name'),
+                        patient_email: formData.get('patient_email'),
+                        patient_phone: formData.get('patient_phone'),
+                        notes: formData.get('notes'),
+                        appointment_date: formData.get('appointment_date'),
+                        patient_phone: formData.get('patient_phone'),
+                        start_time: formData.get('start_time'),
+                        patient_timezone: formData.get('patient_timezone')
+                    };
 
                     try {
-                        const response = await fetch("{{ route('appointments.store') }}", {
+                        const response = await fetch("/api/booking", {
                             method: "POST",
                             headers: {
-                                "X-Requested-With": "XMLHttpRequest",
-                                "Accept": "application/json",
-                                "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
                             },
-                            body: formData
+                            body: JSON.stringify(data)
                         });
 
                         const result = await response.json();
