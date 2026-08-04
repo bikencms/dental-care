@@ -12,20 +12,24 @@ return new class extends Migration
             $table->id();
             $table->foreignId('clinic_id')->constrained()->onDelete('cascade');
             
+            // Loai dich vu: implant, veneers
+            $table->enum('service_type', ['implant', 'veneers']);
+
             // 0: Chủ Nhật, 1: Thứ 2, ..., 6: Thứ 7
             $table->unsignedTinyInteger('day_of_week'); 
             
-            // Mặc định cửa sổ làm việc 07:00:00 -> 19:00:00 (Giờ Việt Nam)
+            // Cửa sổ làm việc
             $table->time('start_time')->default('07:00:00');
             $table->time('end_time')->default('19:00:00');
             
-            $table->unsignedSmallInteger('slot_duration_minutes')->default(30); // Độ dài mỗi ca (phút)
-            $table->unsignedSmallInteger('max_patients_per_slot')->default(1);  // Số bệnh nhân tối đa / slot
-            $table->boolean('is_active')->default(true);                       // Trạng thái ngày làm việc
+            $table->unsignedSmallInteger('slot_duration_minutes')->default(30); 
+            $table->unsignedSmallInteger('max_patients_per_slot')->default(1);  
+            $table->boolean('is_active')->default(true);                       
             
             $table->timestamps();
 
-            $table->unique(['clinic_id', 'day_of_week']);
+            // Unique kết hợp giữa phòng khám, ngày trong tuần và dịch vụ
+            $table->unique(['clinic_id', 'day_of_week', 'service_type']);
         });
     }
 

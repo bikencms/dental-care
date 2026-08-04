@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,28 +10,27 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('clinic_id')->constrained()->onDelete('cascade');
-            
-            // Thông tin cá nhân bệnh nhân
-            $table->string('patient_name');
-            $table->string('patient_email');
-            $table->string('patient_phone');
-            $table->text('notes')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null'); // Nếu có quản lý User
 
-            // Thông tin Ngày & Giờ khám (Lưu theo chuẩn Giờ Việt Nam - Asia/Ho_Chi_Minh)
-            $table->date('appointment_date'); // YYYY-MM-DD
-            $table->time('start_time');       // HH:MM:SS
+            // Thông tin dịch vụ đặt lịch
+            $table->enum('service_type', ['implant', 'veneers']);
+
+            // Ngày và giờ hẹn
+            $table->date('appointment_date');
+            $table->time('start_time');
             $table->time('end_time')->nullable();
 
-            // Múi giờ của bệnh nhân lúc chọn (chuẩn IANA, VD: America/Los_Angeles)
-            $table->string('patient_timezone')->default('Asia/Ho_Chi_Minh');
+            // Thông tin khách hàng
+            $table->string('patient_name');
+            $table->string('patient_phone');
+            $table->string('patient_email')->nullable();
+            $table->text('notes')->nullable();
 
-            // Trạng thái lịch hẹn: pending, confirmed, cancelled, completed
-            $table->enum('status', ['pending', 'confirmed', 'cancelled', 'completed'])->default('pending');
+            // Trạng thái cuộc hẹn
+            $table->enum('status', ['pending', 'confirmed', 'completed', 'cancelled'])->default('pending');
 
             $table->timestamps();
 
-            // Index tối ưu tốc độ query kiểm tra trùng lịch
-            $table->index(['clinic_id', 'appointment_date', 'status']);
         });
     }
 

@@ -15,11 +15,11 @@ class Appointment extends Model
         'patient_name',
         'patient_email',
         'patient_phone',
+        'service_type',
         'notes',
         'appointment_date',
         'start_time',
         'end_time',
-        'patient_timezone',
         'status',
     ];
 
