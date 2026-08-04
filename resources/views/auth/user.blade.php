@@ -142,6 +142,7 @@
                 <!-- Nút hiển thị icon Eye khi Hover -->
                 <a class="btn btn-sm btn-outline-primary btn-view-survey d-inline-flex align-items-center gap-2"
                     href="{{ localized_route('consultation', [ 'token'  => $user->token ]) }}"
+                    target="_blank"
                     >
                     <span class="text-truncate" style="max-width: 180px;">{{ $user->briefly ?? 'View Survey' }}</span>
                     <svg class="icon icon-xs hover-eye-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
