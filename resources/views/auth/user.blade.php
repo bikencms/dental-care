@@ -140,21 +140,15 @@
             <td>
                 @if($user->consultationAssessment)
                 <!-- Nút hiển thị icon Eye khi Hover -->
-                <button type="button" 
-                        class="btn btn-sm btn-outline-primary btn-view-survey d-inline-flex align-items-center gap-2"
-                        data-bs-toggle="modal" 
-                        data-bs-target="#surveyModal"
-                        data-fullname="{{ $user->fullname }}"
-                        data-arrival-date="{{ $user->consultationAssessment->arrival_date ?? 'N/A' }}"
-                        data-stay-length="{{ $user->consultationAssessment->length_of_stay ?? 'N/A' }}"
-                        data-missing-teeth="{{ $user->consultationAssessment->missing_teeth_duration ?? 'N/A' }}"
-                        data-health-condition="{{ $user->consultationAssessment->health_condition ?? 'Neither' }}">
+                <a class="btn btn-sm btn-outline-primary btn-view-survey d-inline-flex align-items-center gap-2"
+                    href="{{ localized_route('consultation', [ 'token'  => $user->token ]) }}"
+                    >
                     <span class="text-truncate" style="max-width: 180px;">{{ $user->briefly ?? 'View Survey' }}</span>
                     <svg class="icon icon-xs hover-eye-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
                         <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
                     </svg>
-                </button>
+                </a>
                 @endif
             </td>
             <td>
@@ -167,12 +161,6 @@
                     </button>
                     <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
                         <a class="dropdown-item d-flex align-items-center" href="#">
-                            <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
-                            </svg> View Details
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
                             <svg class="dropdown-icon text-danger me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11 6a3 3 0 11-6 0 3 3 0 016 0zM14 17a6 6 0 00-12 0h12zM13 8a1 1 0 100 2h4a1 1 0 100-2h-4z"></path>
                             </svg> Suspend
@@ -184,104 +172,6 @@
         @endforeach
     </tbody>
 </table>
-
-<!-- BOOTSTRAP 5 MODAL: SURVEY CONSULTATION ASSESSMENTS -->
-<div class="modal fade" id="surveyModal" tabindex="-1" aria-labelledby="surveyModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content border-0 shadow-lg">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title fw-bold text-white" id="surveyModalLabel">
-                    Consultation Assessment — <span id="modalPatientName" class="text-warning"></span>
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4">
-                
-                <!-- PART 1: TRAVEL & SCHEDULE INFORMATION -->
-                <div class="card border-0 bg-light rounded-3 p-3 mb-4">
-                    <h6 class="fw-bold text-primary mb-3">
-                        <i class="fas fa-plane-departure me-2"></i>Part 1: Travel & Schedule Information
-                    </h6>
-                    <p class="text-muted small mb-3">
-                        1. What is your expected arrival date in Vietnam, and how long do you plan to stay? 
-                        <br><em>(Note: Approximate dates are perfectly fine if you haven't booked flights yet).</em>
-                    </p>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold text-dark">Expected Arrival Date <span class="text-danger">*</span></label>
-                            <div class="form-control bg-white" id="modalArrivalDate">N/A</div>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold text-dark">Length of Stay <span class="text-danger">*</span></label>
-                            <div class="form-control bg-white" id="modalStayLength">N/A</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PART 2: MEDICAL & DENTAL ASSESSMENT -->
-                <div class="card border-0 bg-light rounded-3 p-3">
-                    <h6 class="fw-bold text-primary mb-3">
-                        <i class="fas fa-user-md me-2"></i>Part 2: Medical & Dental Assessment
-                    </h6>
-                    
-                    <!-- Câu 2 -->
-                    <div class="mb-4">
-                        <label class="form-label fw-bold text-dark">
-                            2. How long have you been missing the tooth/teeth? <span class="text-danger">*</span>
-                        </label>
-                        <div class="d-flex flex-column gap-2 ms-2" id="modalMissingTeethGroup">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" disabled id="teeth_less_6m">
-                                <label class="form-check-label text-dark" for="teeth_less_6m">Less than 6 months</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" disabled id="teeth_6m_2y">
-                                <label class="form-check-label text-dark" for="teeth_6m_2y">6 months – 2 years</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" disabled id="teeth_more_2y">
-                                <label class="form-check-label text-dark" for="teeth_more_2y">More than 2 years</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Câu 3 -->
-                    <div>
-                        <label class="form-label fw-bold text-dark mb-1">
-                            3. Do you currently have Diabetes or smoke tobacco? <span class="text-danger">*</span>
-                        </label>
-                        <div class="form-text text-muted mb-2">
-                            (This information is essential for our specialists to ensure the highest success rate for your implants).
-                        </div>
-                        <div class="d-flex flex-column gap-2 ms-2" id="modalHealthGroup">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" disabled id="health_neither">
-                                <label class="form-check-label text-dark" for="health_neither">Neither</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" disabled id="health_diabetes">
-                                <label class="form-check-label text-dark" for="health_diabetes">Yes, I have Diabetes</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" disabled id="health_smoke">
-                                <label class="form-check-label text-dark" for="health_smoke">Yes, I smoke</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" disabled id="health_both">
-                                <label class="form-check-label text-dark" for="health_both">Both</label>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
     <div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
         <nav aria-label="Page navigation example">
             <ul class="pagination mb-0">
@@ -297,38 +187,4 @@
         <div class="fw-normal small mt-4 mt-lg-0">Showing <b>5</b> out of <b>25</b> entries</div>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const surveyModal = document.getElementById('surveyModal');
-
-    if (surveyModal) {
-        surveyModal.addEventListener('show.bs.modal', function (event) {
-            const button = event.relatedTarget;
-
-            // Đọc data attributes từ button
-            const fullname = button.getAttribute('data-fullname') || 'N/A';
-            const arrivalDate = button.getAttribute('data-arrival-date') || 'N/A';
-            const stayLength = button.getAttribute('data-stay-length') || 'N/A';
-            const missingTeeth = button.getAttribute('data-missing-teeth') || '';
-            const healthCondition = button.getAttribute('data-health-condition') || '';
-
-            // Gán thông tin Part 1
-            document.getElementById('modalPatientName').textContent = fullname;
-            document.getElementById('modalArrivalDate').textContent = arrivalDate;
-            document.getElementById('modalStayLength').textContent = stayLength;
-
-            // Set state cho Part 2 - Câu 2 (Missing teeth)
-            document.getElementById('teeth_less_6m').checked = (missingTeeth === 'Less than 6 months');
-            document.getElementById('teeth_6m_2y').checked = (missingTeeth === '6 months – 2 years');
-            document.getElementById('teeth_more_2y').checked = (missingTeeth === 'More than 2 years');
-
-            // Set state cho Part 2 - Câu 3 (Health condition)
-            document.getElementById('health_neither').checked = (healthCondition === 'Neither');
-            document.getElementById('health_diabetes').checked = (healthCondition === 'Diabetes');
-            document.getElementById('health_smoke').checked = (healthCondition === 'Smoke');
-            document.getElementById('health_both').checked = (healthCondition === 'Both');
-        });
-    }
-});
-</script>
 @endsection
