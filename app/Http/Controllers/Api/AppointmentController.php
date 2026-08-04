@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Appointment;
+use App\Models\OnlineAppointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
@@ -43,6 +44,7 @@ class AppointmentController extends Controller
         }
 
         $validated = $validator->validated();
+
         try {
             // 2. Lưu vào CSDL
             $appointment = Appointment::create([
@@ -56,6 +58,10 @@ class AppointmentController extends Controller
                 'start_time'       => $validated['start_time'],
                 'status'           => 'pending',
             ]);
+
+            OnlineAppointment::where('email', $validated['patient_email'])->update(
+                ['status' => 'confirmed']
+            );
 
             return response()->json([
                 'success' => true,

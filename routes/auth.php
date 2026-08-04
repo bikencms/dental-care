@@ -65,5 +65,5 @@ Route::middleware([
 Route::prefix('dashboard')
     ->middleware('auth')
     ->group(function () {
-        Route::get('/user-list', [UserController::class, 'index'])->name('dashboard.user.list');
+        Route::get('/appointment', [UserController::class, 'index'])->name('dashboard.user.list');
 });
