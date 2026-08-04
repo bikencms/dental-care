@@ -31,4 +31,9 @@ class Appointment extends Model
     {
         return $this->belongsTo(Clinic::class);
     }
+
+    public function onlineAppointment()
+    {
+        return $this->belongsTo(OnlineAppointment::class);
+    }
 }

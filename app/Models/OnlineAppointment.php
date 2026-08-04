@@ -25,4 +25,9 @@ class OnlineAppointment extends Model
     {
         return $this->hasOne(ConsultationAssessment::class, 'online_appointment_id');
     }
+
+     public function appointment()
+    {
+        return $this->hasOne(Appointment::class, 'patient_email', 'email');
+    }
 }

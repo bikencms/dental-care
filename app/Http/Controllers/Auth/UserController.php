@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = OnlineAppointment::with('consultationAssessment')->get();
+        $users = OnlineAppointment::with('consultationAssessment', 'appointment')->paginate(10);
         return view('auth.user', compact('users'));
     }
 }

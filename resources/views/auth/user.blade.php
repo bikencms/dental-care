@@ -9,7 +9,7 @@
         transition: all 0.25s ease-in-out;
     }
 
-    .btn-view-survey:hover .hover-eye-icon {
+    .btn-view-survey .hover-eye-icon {
         opacity: 1;
         visibility: visible;
         transform: scale(1);
@@ -26,8 +26,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Appointment</li>
             </ol>
         </nav>
-        <h2 class="h4">Appointment List</h2>
-        <p class="mb-0">Manager Appointment</p>
     </div>
     <div class="btn-toolbar mb-2 mb-md-0"><a href="#" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center"><svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -79,113 +77,119 @@
         <button class="btn btn-sm px-3 btn-secondary ms-3">Apply</button>
     </div>
     <table class="table user-table table-hover align-items-center">
-    <thead>
-        <tr>
-            <th class="border-bottom">
-                <div class="form-check dashboard-check">
-                    <input class="form-check-input" type="checkbox" value="" id="userCheck55">
-                    <label class="form-check-label" for="userCheck55"></label>
-                </div>
-            </th>
-            <th class="border-bottom">Status</th>
-            <th class="border-bottom">Full Name</th>
-            <th class="border-bottom">Interested Service</th>
-            <th class="border-bottom">View Consultation Assessments</th>
-            <th class="border-bottom">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($users as $user)
-        <tr>
-            <td>
-                <div class="form-check dashboard-check">
-                    <input class="form-check-input" type="checkbox" value="" id="userCheck{{ $user->id ?? $loop->index }}">
-                    <label class="form-check-label" for="userCheck{{ $user->id ?? $loop->index }}"></label>
-                </div>
-            </td>
-            <td>
-                <span class="fw-normal 
-                @switch($user->status)
-                    @case('new') text-info @break
-                    @case('pending') text-warning @break
-                    @case('confirmed') text-success @break
-                    @default text-secondary
-                @endswitch
-                ">{{ ucfirst($user->status) }}</span>
-            </td>
-            <td>
-                <a href="#" class="d-flex align-items-center">
-                    <img src="{{ $user->avatar ?? '../assets/img/team/profile-picture-1.jpg' }}" class="avatar rounded-circle me-3" alt="Avatar">
-                    <div class="d-block">
-                        <span class="fw-bold">{{ $user->fullname }} ({{ $user->phone }})</span>
-                        <div class="small text-gray">{{ $user->email }}</div>
+        <thead>
+            <tr>
+                <th class="border-bottom">
+                    <div class="form-check dashboard-check">
+                        <input class="form-check-input" type="checkbox" value="" id="userCheck55">
+                        <label class="form-check-label" for="userCheck55"></label>
                     </div>
-                </a>
-            </td>
-            <td>
-                @if( count($user->interest) == 1 && in_array('dental_implants', (array)($user->interest ?? [])) )
-                <span class="fw-normal badge bg-primary">
-                    Implant
-                </span>
-                @elseif( count($user->interest) >= 2 )
-                <span class="fw-normal badge bg-secondary">
-                    Both
-                </span>
-                @else
-                <span class="fw-normal badge bg-info">
-                    Veneers
-                </span>
-                @endif
-            </td>
-            <td>
-                @if($user->consultationAssessment)
-                <!-- Nút hiển thị icon Eye khi Hover -->
-                <a class="btn btn-sm btn-outline-primary btn-view-survey d-inline-flex align-items-center gap-2"
-                    href="{{ localized_route('consultation', [ 'token'  => $user->token ]) }}"
-                    target="_blank"
-                    >
-                    <span class="text-truncate" style="max-width: 180px;">{{ $user->briefly ?? 'View Survey' }}</span>
-                    <svg class="icon icon-xs hover-eye-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-                @endif
-            </td>
-            <td>
-                <div class="btn-group">
-                    <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                </th>
+                <th class="border-bottom">Status</th>
+                <th class="border-bottom">Full Name</th>
+                <th class="border-bottom">Consultation Assessments</th>
+                <th class="border-bottom">Appointment</th>
+                <th class="border-bottom">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($users as $user)
+            <tr>
+                <td>
+                    <div class="form-check dashboard-check">
+                        <input class="form-check-input" type="checkbox" value="" id="userCheck{{ $user->id ?? $loop->index }}">
+                        <label class="form-check-label" for="userCheck{{ $user->id ?? $loop->index }}"></label>
+                    </div>
+                </td>
+                <td>
+                    @switch($user->status)
+                        @case('new') 
+                            <span class="fw-normal badge bg-success">
+                                {{ $user->status }}
+                            </span>
+                            @break
+                        @case('pending') 
+                            <span class="fw-normal badge bg-secondary">
+                                {{ $user->status }}
+                            </span>
+                            @break
+                        @case('confirmed') 
+                            <span class="fw-normal badge bg-info">
+                                {{ $user->status }}
+                            </span>
+                            @break
+                        @default 
+                            <span class="fw-normal badge bg-danger">
+                                {{ $user->status }}
+                            </span>
+                    @endswitch
+                </td>
+                <td>
+                    <a href="#" class="d-flex align-items-center">
+                        <img src="{{ $user->avatar ?? '../assets/img/team/profile-picture-1.jpg' }}" class="avatar rounded-circle me-3" alt="Avatar">
+                        <div class="d-block">
+                            <span class="fw-bold">{{ $user->fullname }} ({{ $user->phone }})</span>
+                            <div class="small text-gray">{{ $user->email }}</div>
+                        </div>
+                    </a>
+                </td>
+                <td>
+                    @if($user->consultationAssessment)
+                    <!-- Nút hiển thị icon Eye khi Hover -->
+                    <a class="btn btn-sm btn-outline-primary btn-view-survey d-inline-flex align-items-center gap-2"
+                        href="{{ localized_route('consultation', [ 'token'  => $user->token ]) }}"
+                        target="_blank"
+                        >
+                        @if( count($user->interest) == 1 && in_array('dental_implants', (array)($user->interest ?? [])) )
+                        <span class="fw-normal badge bg-primary">
+                            Implant
+                        </span>
+                        @elseif( count($user->interest) >= 2 )
+                        <span class="fw-normal badge bg-secondary">
+                            Both
+                        </span>
+                        @else
+                        <span class="fw-normal badge bg-info">
+                            Veneers
+                        </span>
+                        @endif
+                        <svg class="icon icon-xs hover-eye-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <svg class="dropdown-icon text-danger me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M11 6a3 3 0 11-6 0 3 3 0 016 0zM14 17a6 6 0 00-12 0h12zM13 8a1 1 0 100 2h4a1 1 0 100-2h-4z"></path>
-                            </svg> Suspend
-                        </a>
+                    </a>
+                    @endif
+                </td>
+                <td>
+                    @if($user->appointment)
+                    <span class="btn btn-sm btn-outline-primary btn-view-survey d-inline-flex align-items-center gap-2 fw-semibold text-success px-2 py-1 rounded">
+                        {{ $user->appointment ? \Carbon\Carbon::parse($user->appointment->appointment_date)->format('d/m/Y') : '' }} {{ $user->appointment->start_time ?? '' }} 
+                    </span>
+                    @endif
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                            </svg>
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <svg class="dropdown-icon text-danger me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 6a3 3 0 11-6 0 3 3 0 016 0zM14 17a6 6 0 00-12 0h12zM13 8a1 1 0 100 2h4a1 1 0 100-2h-4z"></path>
+                                </svg> Suspend
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
     <div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination mb-0">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
-        <div class="fw-normal small mt-4 mt-lg-0">Showing <b>5</b> out of <b>25</b> entries</div>
+        {{ $users->links() }}
     </div>
 </div>
 @endsection
