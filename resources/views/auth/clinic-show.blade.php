@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <style>
-    
 </style>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
     <div class="d-block mb-4 mb-md-0">
@@ -28,7 +27,7 @@
             <!-- Clinic Image Banner -->
             <div class="col-lg-5 position-relative bg-light">
                 <img src="{{ $clinic->image ? asset('storage/' . $clinic->image) : asset('assets/images/default-clinic.jpg') }}" 
-                     class="w-100 h-100 clinic-detail-banner" 
+                     class="clinic-detail-banner" 
                      alt="{{ $clinic->name }}">
                 <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 px-3 py-2 fw-bold shadow-sm">
                     <span class="fw-normal text-white fw-semibold d-flex align-items-center">{{ number_format($clinic->rating ?? 0, 1) }} <svg class="icon icon-xxs" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
