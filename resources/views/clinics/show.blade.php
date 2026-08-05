@@ -685,9 +685,9 @@
     <!-- ==================== MAIN CONTENT SECTIONS ==================== -->
     <div class="container">
         <!-- ==================== BOOKING SECTION (KHÚC CUỐI) ==================== -->
-        <section id="booking-section" class="py-5 mt-5 bg-white rounded-4 p-4 p-md-5 shadow-sm border">
+        <section id="booking-section" class="py-5 mt-5 bg-white rounded-4 p-4 p-md-5 shadow-sm border mb-4">
             <div class="text-center mb-4">
-                <h2 class="fw-bold">{{ __('appointment.booking_title') }}</h2>
+                <h2 class="text-anime-style-3" data-cursor="-opaque">{{ __('appointment.booking_title') }}</h2>
                 <p class="text-muted">{{ __('appointment.booking_subtitle', ['clinic_name' => $clinic->name]) }}</p>
             </div>
 
@@ -702,9 +702,9 @@
 
                 <div id="booked-success-section" class="{{ $appointmentsList->isNotEmpty() ? '' : 'd-none' }}">
                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
-                        <div class="card-header bg-success text-white text-center py-3">
+                        <div class="card-header bg-primary text-white text-center py-3">
                             <i class="fas fa-check-circle fs-3 mb-1"></i>
-                            <h5 class="mb-0 fw-bold">{{ __('appointment.booked_info_header') }}</h5>
+                            <h5 class="mb-0 fw-bold text-white">{{ __('appointment.booked_info_header') }}</h5>
                         </div>
                         <div class="card-body p-4">
                             <p class="text-center text-muted fs-7 mb-4">

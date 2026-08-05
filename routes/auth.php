@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Auth\ClinicController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -65,4 +66,7 @@ Route::prefix('dashboard')
     ->middleware('auth')
     ->group(function () {
         Route::get('/appointment', [UserController::class, 'index'])->name('dashboard.user.list');
-});
+        Route::get('/clinic', [ClinicController::class, 'index'])->name('dashboard.clinic.list');
+        Route::get('/clinic/{id}', [ClinicController::class, 'show'])->name('dashboard.clinic.show');
+    }
+);

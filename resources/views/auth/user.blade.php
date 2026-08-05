@@ -162,9 +162,18 @@
                 </td>
                 <td>
                     @if($user->appointment)
-                    <span class="btn btn-sm btn-outline-primary btn-view-survey d-inline-flex align-items-center gap-2 fw-semibold text-success px-2 py-1 rounded">
-                        {{ $user->appointment ? \Carbon\Carbon::parse($user->appointment->appointment_date)->format('d/m/Y') : '' }} {{ $user->appointment->start_time ?? '' }} 
-                    </span>
+                    <a class="btn btn-sm btn-outline-primary btn-view-survey d-inline-flex align-items-center gap-2"
+                        href="{{ localized_route('clinics.show', [ 'token'  => $user->token , 'id' => $user->appointment->clinic_id ]) }}"
+                        target="_blank"
+                    >
+                        <span class="text-success px-2 py-1">
+                            {{ $user->appointment ? \Carbon\Carbon::parse($user->appointment->appointment_date)->format('d/m/Y') : '' }} {{ $user->appointment->start_time ? \Carbon\Carbon::parse($user->appointment->start_time)->format('H:i') : '' }} 
+                        </span>
+                        <svg class="icon icon-xs hover-eye-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
                     @endif
                 </td>
                 <td>
