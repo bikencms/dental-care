@@ -34,7 +34,7 @@
                     Remember me
                 </label>
             </div>
-            <div><a href="./forgot-password.html" class="small text-right">Lost password?</a></div>
+            <div><a href="#" class="small text-right">Lost password?</a></div>
         </div>
     </div>
     <div class="d-grid">
@@ -58,7 +58,7 @@
 <div class="d-flex justify-content-center align-items-center mt-4">
     <span class="fw-normal">
         Not registered?
-        <a href="{{ route('register') }}" class="fw-bold">Create account</a>
+        <a href="#" class="fw-bold">Create account</a>
     </span>
 </div>
 @endsection
