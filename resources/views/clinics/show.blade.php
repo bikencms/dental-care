@@ -420,32 +420,125 @@
                                 <!-- 4. PRICE LIST -->
                                 <section id="section-price-list" class="clinic-section border-bottom">
                                     <h2 class="fw-bold mb-4">{{ __('clinics.price_list_title') }}</h2>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover align-middle border">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th>{{ __('clinics.table_category') }}</th>
-                                                    <th>{{ __('clinics.table_treatment') }}</th>
-                                                    <th>{{ __('clinics.table_price') }}</th>
-                                                    <th>{{ __('clinics.table_warranty') }}</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse($clinic->services as $service)
-                                                    <tr>
-                                                        <td class="fw-bold text-capitalize">{{ $service->category }}</td>
-                                                        <td>{{ $service->name }}</td>
-                                                        <td class="text-danger fw-bold">${{ number_format($service->starting_price) }} {{ $service->unit_name ? '/ '.$service->unit_name : '' }}</td>
-                                                        <td>{{ $service->warranty_years ? $service->warranty_years.' '.__('clinics.warranty_years') : __('clinics.warranty_na') }}</td>
-                                                    </tr>
+                                    
+                                    @php
+                                        // Dùng optional() / collect() để tránh lỗi null khi clinic chưa có procedures
+                                        $groupedProcedures = collect(optional($clinic)->procedures)->groupBy('service_id');
+                                    @endphp
+
+                                    <div class="card border-0 shadow-sm">
+                                        <div class="card-header bg-white py-3">
+                                            <h5 class="mb-0 fw-bold text-primary">{{ __('clinics.services_and_procedures') }}</h5>
+                                        </div>
+                                        
+                                        <div class="card-body p-3">
+                                            <div class="accordion" id="clinicServicesAccordion">
+                                                @forelse($groupedProcedures as $serviceId => $procedures)
+                                                    @php
+                                                        $service = optional($procedures->first())->service;
+                                                        $isFirstThree = $loop->iteration <= 3;
+                                                        $collapseId = 'collapse-service-' . $serviceId;
+                                                        $headingId = 'heading-service-' . $serviceId;
+                                                    @endphp
+
+                                                    <div class="accordion-item mb-3 border rounded shadow-sm {{ !$isFirstThree ? 'extra-service d-none' : '' }}">
+                                                        <h2 class="accordion-header" id="{{ $headingId }}">
+                                                            <button class="accordion-button collapsed fw-bold text-dark fs-6" 
+                                                                    type="button" 
+                                                                    data-bs-toggle="collapse" 
+                                                                    data-bs-target="#{{ $collapseId }}" 
+                                                                    aria-expanded="false" 
+                                                                    aria-controls="{{ $collapseId }}">
+                                                                <div class="d-flex align-items-center justify-content-between w-100 me-3">
+                                                                    <span>{{ $service->name ?? __('clinics.other_service') }}</span>
+                                                                    @if(isset($service->category))
+                                                                        <span class="badge bg-secondary fw-normal me-2">{{ $service->category }}</span>
+                                                                    @endif
+                                                                </div>
+                                                            </button>
+                                                        </h2>
+                                                        
+                                                        <div id="{{ $collapseId }}" 
+                                                            class="accordion-collapse collapse" 
+                                                            aria-labelledby="{{ $headingId }}" 
+                                                            data-bs-parent="#clinicServicesAccordion">
+                                                            <div class="accordion-body p-0">
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-hover align-middle mb-0">
+                                                                        <thead class="table-light">
+                                                                            <tr>
+                                                                                <th scope="col" class="ps-3" style="width: 50%;">{{ __('clinics.procedure_name') }}</th>
+                                                                                <th scope="col" style="width: 25%;">{{ __('clinics.duration') }}</th>
+                                                                                <th scope="col" class="text-end pe-3" style="width: 25%;">{{ __('clinics.price') }}</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @foreach($procedures as $procedure)
+                                                                                <tr>
+                                                                                    <td class="ps-3 fw-semibold text-secondary">
+                                                                                        {{ $procedure->procedure_name }}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <span class="badge bg-light text-dark border">
+                                                                                            <i class="bi bi-clock me-1"></i>{{ $procedure->procedure_duration ?? __('clinics.not_available') }}
+                                                                                        </span>
+                                                                                    </td>
+                                                                                    <td class="text-end pe-3 fw-bold text-danger">
+                                                                                        {{ number_format($procedure->procedure_price, 0, ',', '.') }} VNĐ
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @empty
-                                                    <tr>
-                                                        <td colspan="4" class="text-center">{{ __('clinics.no_pricing_available') }}</td>
-                                                    </tr>
+                                                    <div class="text-center py-4 text-muted">
+                                                        {{ __('clinics.no_data') }}
+                                                    </div>
                                                 @endforelse
-                                            </tbody>
-                                        </table>
+                                            </div>
+
+                                            {{-- Nút "Xem thêm" nếu số lượng dịch vụ > 3 --}}
+                                            @if($groupedProcedures->count() > 3)
+                                                <div class="text-center mt-3">
+                                                    <button type="button" id="btnToggleServices" class="btn btn-outline-primary fw-semibold px-4">
+                                                        {{ __('clinics.show_more', ['count' => $groupedProcedures->count() - 3]) }} <i class="bi bi-chevron-down ms-1"></i>
+                                                    </button>
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
+
+                                    <!-- JavaScript xử lý bấm Xem thêm / Thu gọn -->
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            const btnToggle = document.getElementById('btnToggleServices');
+                                            if (btnToggle) {
+                                                let isExpanded = false;
+                                                const extraServices = document.querySelectorAll('.extra-service');
+
+                                                const textShowMore = "{{ __('clinics.show_more', ['count' => $groupedProcedures->count() - 3]) }}";
+                                                const textShowLess = "{{ __('clinics.show_less') }}";
+
+                                                btnToggle.addEventListener('click', function () {
+                                                    isExpanded = !isExpanded;
+                                                    
+                                                    extraServices.forEach(item => {
+                                                        item.classList.toggle('d-none', !isExpanded);
+                                                    });
+
+                                                    if (isExpanded) {
+                                                        btnToggle.innerHTML = textShowLess + ' <i class="bi bi-chevron-up ms-1"></i>';
+                                                    } else {
+                                                        btnToggle.innerHTML = textShowMore + ' <i class="bi bi-chevron-down ms-1"></i>';
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    </script>
                                 </section>
                             </div>
                             <!-- Transformation Image Box End -->

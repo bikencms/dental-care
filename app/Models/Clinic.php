@@ -61,4 +61,9 @@ class Clinic extends Model
     {
         return $this->belongsTo(District::class, 'district_id');
     }
+
+    public function procedures()
+    {
+        return $this->hasMany(ClinicProcedure::class, 'clinic_id');
+    }
 }

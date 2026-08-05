@@ -93,5 +93,15 @@ return [
     'label_time' => 'Khung giờ mong muốn',
     'option_choose_time' => '-- Chọn khung giờ --',
     'btn_confirm_book' => 'Xác nhận & Đặt lịch ngay',
-    'label_timezone' => 'Múi giờ của bạn'
+    'label_timezone' => 'Múi giờ của bạn',
+    'price_list_title' => 'Bảng Giá Dịch Vụ',
+    'services_and_procedures' => 'Danh Sách Dịch Vụ & Thủ Thuật',
+    'other_service' => 'Dịch vụ khác',
+    'procedure_name' => 'Tên thủ thuật',
+    'duration' => 'Thời gian',
+    'price' => 'Giá dịch vụ',
+    'no_data' => 'Chưa có dịch vụ nào được cập nhật.',
+    'show_more' => 'Xem thêm :count dịch vụ khác',
+    'show_less' => 'Thu gọn',
+    'not_available' => 'N/A',
 ];
