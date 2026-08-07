@@ -13,7 +13,7 @@ class ClinicController extends Controller
 {
     public function index()
     {
-        $clinics = Clinic::with('district')->paginate(10);
+        $clinics = Clinic::withTrashed()->with('district')->paginate(10);
         return view('auth.clinic.clinic', compact('clinics'));
     }
 

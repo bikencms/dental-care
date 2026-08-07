@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\ClinicBookingApiController;
 use App\Http\Controllers\Api\AppointmentController;
-Route::post('/contacts', [ContactController::class, 'store']);
+use App\Http\Controllers\Api\ClinicController;
 
+Route::post('/contacts', [ContactController::class, 'store']);
 Route::prefix('v1')->group(function () {
     Route::prefix('clinics/{clinic_id}')->group(function () {
         // 1. API Lấy danh sách trạng thái ngày trong tháng theo loại dịch vụ
@@ -19,6 +20,8 @@ Route::prefix('v1')->group(function () {
             ->name('api.clinics.available-slots');
     });
 
-});
+    Route::post('/clinics/bulk-delete', [ClinicController::class, 'bulkDelete']);
+    Route::post('/clinics/bulk-restore', [ClinicController::class, 'bulkRestore']);
 
+});
 Route::post('/booking', [AppointmentController::class, 'store']);
