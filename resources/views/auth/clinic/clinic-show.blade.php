@@ -2,25 +2,7 @@
 @section('content')
 <style>
 </style>
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
-    <div class="d-block mb-4 mb-md-0">
-        <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
-            <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
-                <li class="breadcrumb-item"><a href="#"><svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                        </svg></a></li>
-                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item" aria-current="page"><a href="/dashboard/clinic">Clinic</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ $clinic->name }}</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="btn-toolbar mb-2 mb-md-0"><a href="#" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center"><svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-            </svg> New Clinic</a>
-        <div class="btn-group ms-2 ms-lg-3"><button type="button" class="btn btn-sm btn-outline-gray-600">Share</button> <button type="button" class="btn btn-sm btn-outline-gray-600">Export</button></div>
-    </div>
-</div>
+@include('auth.clinic.clinic-breadcrumb')
  <!-- Header Section: Image Banner & Primary Info -->
     <div class="card border-0 shadow-sm rounded-3 overflow-hidden mb-4">
         <div class="row g-0">
@@ -93,39 +75,76 @@
 
     <!-- Main Content Layout (2 Columns) -->
     <div class="row g-4">
-        <!-- Left Column: Services & Doctors -->
+        <!-- Left Column: Services, Procedures & Doctors -->
         <div class="col-lg-8">
             
             <!-- SECTION 1: SERVICES OFFERED -->
+             @include('auth.clinic.clinic-service', [
+                'clinic' => $clinic,
+            ])
+
+            <!-- SECTION 2: CLINIC PROCEDURES & PRICING (MỚI THÊM) -->
             <div class="card border-0 shadow-sm rounded-3 p-4 mb-4">
                 <h4 class="fw-bold text-dark mb-3 border-bottom pb-2">
-                    <i class="fas fa-concierge-bell text-primary me-2"></i>Services Offered
+                    <i class="fas fa-list-check text-primary me-2"></i>Procedures & Treatments
                 </h4>
-                
-                <div class="row row-cols-1 row-cols-md-2 g-3">
-                    @forelse($clinic->services as $service)
-                    <div class="col">
-                        <div class="p-3 border rounded-3 bg-light h-100 d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="fw-bold text-dark mb-1">{{ $service->name }}</h6>
-                                <p class="text-muted small mb-0">{{ Str::limit($service->description ?? 'Professional dental care service.', 60) }}</p>
-                            </div>
-                            @if(isset($service->price))
-                            <span class="badge bg-success-subtle text-success fw-bold ms-2">
-                                ${{ number_format($service->price) }}
-                            </span>
-                            @endif
-                        </div>
-                    </div>
-                    @empty
-                    <div class="col-12">
-                        <p class="text-muted mb-0">No services listed for this clinic yet.</p>
-                    </div>
-                    @endforelse
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle border-0 mb-0">
+                        <thead class="table-light">
+                            <tr class="fs-7 text-muted text-uppercase">
+                                <th scope="col" class="py-3">Procedure Name</th>
+                                <th scope="col" class="py-3">Service Category</th>
+                                <th scope="col" class="py-3 text-center">Duration</th>
+                                <th scope="col" class="py-3 text-end">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($clinic->procedures as $procedure)
+                            <tr>
+                                <!-- Procedure Name -->
+                                <td class="fw-semibold text-dark">
+                                    <i class="fas fa-check-circle text-success me-2 fs-7"></i>{{ $procedure->procedure_name }}
+                                </td>
+                                
+                                <!-- Service Name / Category -->
+                                <td>
+                                    <span class="badge bg-info-subtle text-info border border-info-subtle px-2 py-1">
+                                        {{ $procedure->service->name ?? 'General' }}
+                                    </span>
+                                </td>
+
+                                <!-- Procedure Duration -->
+                                <td class="text-center text-muted small">
+                                    @if($procedure->procedure_duration)
+                                        <i class="far fa-clock me-1"></i>{{ $procedure->procedure_duration }}
+                                    @else
+                                        <span class="text-muted">N/A</span>
+                                    @endif
+                                </td>
+
+                                <!-- Procedure Price -->
+                                <td class="text-end fw-bold text-success">
+                                    @if($procedure->procedure_price)
+                                        ${{ number_format($procedure->procedure_price) }}
+                                    @else
+                                        <span class="text-muted small fw-normal">Contact for Quote</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-4">
+                                    No specific procedures available at the moment.
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <!-- SECTION 2: OUR DOCTORS / SPECIALISTS -->
+            <!-- SECTION 3: OUR DOCTORS / SPECIALISTS -->
             <div class="card border-0 shadow-sm rounded-3 p-4 mb-4">
                 <h4 class="fw-bold text-dark mb-3 border-bottom pb-2">
                     <i class="fas fa-user-md text-primary me-2"></i>Medical Specialists & Doctors
@@ -137,9 +156,9 @@
                         <div class="card h-100 border-0 shadow-none bg-light p-3 rounded-3">
                             <div class="d-flex align-items-center gap-3">
                                 <img src="{{ $doctor->avatar ? asset('storage/' . $doctor->avatar) : asset('assets/images/default-doctor.jpg') }}" 
-                                     class="rounded-circle img-thumbnail flex-shrink-0" 
-                                     style="width: 70px; height: 70px; object-fit: cover;" 
-                                     alt="{{ $doctor->name }}">
+                                    class="rounded-circle img-thumbnail flex-shrink-0" 
+                                    style="width: 70px; height: 70px; object-fit: cover;" 
+                                    alt="{{ $doctor->name }}">
                                 <div>
                                     <h6 class="fw-bold text-dark mb-1">{{ $doctor->name }}</h6>
                                     <span class="badge bg-primary-subtle text-primary mb-1">
