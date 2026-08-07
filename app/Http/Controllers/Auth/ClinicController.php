@@ -8,7 +8,9 @@ use App\Models\Service;
 use App\Models\ClinicProcedure;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 class ClinicController extends Controller
 {
     public function index()
@@ -43,7 +45,26 @@ class ClinicController extends Controller
             $validated['image'] = $path;
         }
 
-        Clinic::create($validated);
+        // Tạo tên ngẫu nhiên
+        $randomName = fake()->name();
+        // Tạo username ngẫu nhiên từ tên (viết liền không dấu + số ngẫu nhiên)
+        $randomUsername = Str::slug($randomName, '') . rand(10, 99);
+        $plainPassword = Str::password(length: 16, letters: true, numbers: true, symbols: true, spaces: false);
+
+        $user = User::create([
+            'name'     => $randomName,
+            'username' => $randomUsername,
+            'email'    => fake()->unique()->safeEmail(),
+            'phone'    => '09' . fake()->numerify('########'),
+            'password'       => Hash::make($plainPassword),
+            'plain_password' => $plainPassword, // Lưu thẳng plain text
+        ]);
+
+        // Gán role User (Spatie)
+        $user->assignRole('User');
+
+        $clinic = Clinic::create($validated);
+        $user->clinics()->attach($clinic->id);
 
         return redirect()->back()->with('success', 'New clinic created successfully!');
     }

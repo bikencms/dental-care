@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes; // 1. Import Trait
-
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Clinic extends Model
 {
     use HasFactory;
@@ -67,5 +67,11 @@ class Clinic extends Model
     public function procedures()
     {
         return $this->hasMany(ClinicProcedure::class, 'clinic_id');
+    }
+
+    // Trong App\Models\Clinic.php
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'clinic_user');
     }
 }

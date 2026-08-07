@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany; // Import class này
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -26,6 +27,7 @@ class User extends Authenticatable
         'password',
         'interest',
         'briefly',
+        'plain_password'
     ];
 
     /**
@@ -49,5 +51,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Lấy phòng khám đầu tiên của User
+    public function myClinic()
+    {
+        return $this->belongsToMany(Clinic::class, 'clinic_user')->first();
+    }
+    public function clinics(): BelongsToMany
+    {
+        return $this->belongsToMany(Clinic::class, 'clinic_user');
     }
 }
