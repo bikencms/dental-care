@@ -23,7 +23,7 @@
                 @if(isset($service->pivot->starting_price))
                 <div class="text-end ms-2">
                     <span class="badge bg-success-subtle text-success fw-bold d-block">
-                        ${{ number_format($service->pivot->starting_price) }}
+                        VND{{ number_format($service->pivot->starting_price) }}
                     </span>
                     @if($service->pivot->unit)
                         <span class="text-muted small" style="font-size: 0.75rem;">/ {{ $service->pivot->unit }}</span>
@@ -84,7 +84,7 @@
                     <!-- ClinicService Pivot Data -->
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="startingPrice" class="form-label fw-semibold">Starting Price ($)</label>
+                            <label for="startingPrice" class="form-label fw-semibold">Starting Price (VND)</label>
                             <input type="number" step="0.01" min="0" class="form-control" id="startingPrice" name="starting_price" placeholder="e.g. 150">
                         </div>
                         <div class="col-md-6">

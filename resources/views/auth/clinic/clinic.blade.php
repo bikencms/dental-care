@@ -121,7 +121,7 @@
 
                 <!-- Footer Card: Action Buttons -->
                 <div class="card-footer bg-light border-0 p-3 text-center">
-                    <a href="{{ route('dashboard.clinic.show', [ 'id' => $clinic->id ]) }}" 
+                    <a href="{{ route('dashboard.clinic.show', [ 'id' => $clinic->id ]) }}#booking-form" 
                     class="btn btn-outline-primary btn-sm w-100 btn-view-clinic d-flex align-items-center justify-content-center gap-2">
                         <span>View Clinic Details</span>
                         <svg class="icon icon-xs hover-eye-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

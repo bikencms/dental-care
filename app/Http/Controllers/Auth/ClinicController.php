@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Clinic;
 use App\Models\Service;
+use App\Models\ClinicProcedure;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 
 class ClinicController extends Controller
@@ -71,5 +73,51 @@ class ClinicController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Service added successfully!');
+    }
+
+    public function storeProcedure(Request $request, $clinicId)
+    {
+        $validated = $request->validate([
+            'service_id'         => 'required|exists:services,id',
+            'procedure_name'     => 'required|string|max:255',
+            'procedure_price'    => 'nullable|numeric|min:0',
+            'procedure_duration' => 'nullable|string|max:100',
+        ]);
+
+        ClinicProcedure::create([
+            'clinic_id'          => $clinicId,
+            'service_id'         => $validated['service_id'],
+            'procedure_name'     => $validated['procedure_name'],
+            'procedure_price'    => $validated['procedure_price'] ?? null,
+            'procedure_duration' => $validated['procedure_duration'] ?? null,
+        ]);
+
+        return redirect()->back()->with('success', 'Procedure added successfully!');
+    }
+
+    public function storeDoctor(Request $request, $clinicId)
+    {
+        $validated = $request->validate([
+            'name'   => 'required|string|max:255',
+            'title'  => 'nullable|string|max:255',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ]);
+
+        $avatarPath = null;
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('doctors', 'public');
+        }
+
+        Doctor::create([
+            'clinic_id'          => $clinicId,
+            'name'               => $validated['name'],
+            'title'              => $validated['title'] ?? 'Specialist',
+            'avatar'             => $avatarPath,
+            'is_expert_10_years' => $request->boolean('is_expert_10_years'),
+            'has_high_degree'    => $request->boolean('has_high_degree'),
+            'has_studied_abroad' => $request->boolean('has_studied_abroad'),
+        ]);
+
+        return redirect()->back()->with('success', 'Doctor added successfully!');
     }
 }

@@ -65,7 +65,7 @@
                     <a href="#booking-form" class="btn btn-primary px-4 fw-semibold">
                         <i class="far fa-calendar-check me-2"></i>Book Appointment
                     </a>
-                    <a href="tel:{{ $clinic->phone ?? '#' }}" class="btn btn-outline-secondary px-3">
+                    <a href="tel:{{ $clinic->phone ?? '+84799108727' }}" class="btn btn-outline-secondary px-3">
                         <i class="fas fa-phone-alt me-1"></i> Call Clinic
                     </a>
                 </div>
@@ -79,105 +79,20 @@
         <div class="col-lg-8">
             
             <!-- SECTION 1: SERVICES OFFERED -->
-             @include('auth.clinic.clinic-service', [
+            @include('auth.clinic.clinic-service', [
                 'clinic' => $clinic,
             ])
 
             <!-- SECTION 2: CLINIC PROCEDURES & PRICING (MỚI THÊM) -->
-            <div class="card border-0 shadow-sm rounded-3 p-4 mb-4">
-                <h4 class="fw-bold text-dark mb-3 border-bottom pb-2">
-                    <i class="fas fa-list-check text-primary me-2"></i>Procedures & Treatments
-                </h4>
-
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle border-0 mb-0">
-                        <thead class="table-light">
-                            <tr class="fs-7 text-muted text-uppercase">
-                                <th scope="col" class="py-3">Procedure Name</th>
-                                <th scope="col" class="py-3">Service Category</th>
-                                <th scope="col" class="py-3 text-center">Duration</th>
-                                <th scope="col" class="py-3 text-end">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($clinic->procedures as $procedure)
-                            <tr>
-                                <!-- Procedure Name -->
-                                <td class="fw-semibold text-dark">
-                                    <i class="fas fa-check-circle text-success me-2 fs-7"></i>{{ $procedure->procedure_name }}
-                                </td>
-                                
-                                <!-- Service Name / Category -->
-                                <td>
-                                    <span class="badge bg-info-subtle text-info border border-info-subtle px-2 py-1">
-                                        {{ $procedure->service->name ?? 'General' }}
-                                    </span>
-                                </td>
-
-                                <!-- Procedure Duration -->
-                                <td class="text-center text-muted small">
-                                    @if($procedure->procedure_duration)
-                                        <i class="far fa-clock me-1"></i>{{ $procedure->procedure_duration }}
-                                    @else
-                                        <span class="text-muted">N/A</span>
-                                    @endif
-                                </td>
-
-                                <!-- Procedure Price -->
-                                <td class="text-end fw-bold text-success">
-                                    @if($procedure->procedure_price)
-                                        ${{ number_format($procedure->procedure_price) }}
-                                    @else
-                                        <span class="text-muted small fw-normal">Contact for Quote</span>
-                                    @endif
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="4" class="text-center text-muted py-4">
-                                    No specific procedures available at the moment.
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            @include('auth.clinic.clinic-procedure', [
+                'clinic' => $clinic,
+            ])
+        
 
             <!-- SECTION 3: OUR DOCTORS / SPECIALISTS -->
-            <div class="card border-0 shadow-sm rounded-3 p-4 mb-4">
-                <h4 class="fw-bold text-dark mb-3 border-bottom pb-2">
-                    <i class="fas fa-user-md text-primary me-2"></i>Medical Specialists & Doctors
-                </h4>
-
-                <div class="row row-cols-1 row-cols-md-2 g-3">
-                    @forelse($clinic->doctors as $doctor)
-                    <div class="col">
-                        <div class="card h-100 border-0 shadow-none bg-light p-3 rounded-3">
-                            <div class="d-flex align-items-center gap-3">
-                                <img src="{{ $doctor->avatar ? asset('storage/' . $doctor->avatar) : asset('assets/images/default-doctor.jpg') }}" 
-                                    class="rounded-circle img-thumbnail flex-shrink-0" 
-                                    style="width: 70px; height: 70px; object-fit: cover;" 
-                                    alt="{{ $doctor->name }}">
-                                <div>
-                                    <h6 class="fw-bold text-dark mb-1">{{ $doctor->name }}</h6>
-                                    <span class="badge bg-primary-subtle text-primary mb-1">
-                                        {{ $doctor->title ?? 'Dental Specialist' }}
-                                    </span>
-                                    <p class="text-muted small mb-0">
-                                        {{ $doctor->is_expert_10_years ? '10+' : '5+' }} Years Exp.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @empty
-                    <div class="col-12">
-                        <p class="text-muted mb-0">No doctors profiles currently available.</p>
-                    </div>
-                    @endforelse
-                </div>
-            </div>
+            @include('auth.clinic.clinic-doctor', [
+                'clinic' => $clinic,
+            ])
 
         </div>
 

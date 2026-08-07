@@ -70,5 +70,7 @@ Route::prefix('dashboard')
         Route::get('/clinic/{id}', [ClinicController::class, 'show'])->name('dashboard.clinic.show');
         Route::post('/clinic', [ClinicController::class, 'store'])->name('dashboard.clinic.store');
         Route::post('/clinics/{clinic}/services', [ClinicController::class, 'storeService'])->name('clinics.services.store');
+        Route::post('/clinics/{clinic}/procedures', [ClinicController::class, 'storeProcedure'])->name('clinics.procedures.store');
+        Route::post('/clinics/{clinic}/doctors', [ClinicController::class, 'storeDoctor'])->name('clinics.doctors.store');
     }
 );
