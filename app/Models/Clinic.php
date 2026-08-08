@@ -22,7 +22,28 @@ class Clinic extends Model
         'description',
         'rating',
         'review_count',
+        'is_published',
     ];
+
+    protected $casts = [
+        'is_published' => 'boolean',
+    ];
+
+    /**
+     * Scope lọc các clinic đã xuất bản (Public)
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true);
+    }
+
+    /**
+     * Scope lọc các clinic dạng bản nháp (Draft)
+     */
+    public function scopeDraft($query)
+    {
+        return $query->where('is_published', false);
+    }
 
     // Quan hệ với Bác sĩ (1 phòng khám có nhiều bác sĩ)
     public function doctors()

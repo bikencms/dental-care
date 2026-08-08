@@ -76,7 +76,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="{{ route('clinics.doctors.store', $clinic->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('my-clinic.doctors.store', $clinic->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body p-4">
                     

@@ -80,7 +80,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="{{ route('clinics.procedures.store', $clinic->id) }}" method="POST">
+            <form action="{{ route('my-clinic.procedures.store', $clinic->id) }}" method="POST">
                 @csrf
                 <div class="modal-body p-4">
                     

@@ -63,6 +63,7 @@ class ClinicController extends Controller
         // Gán role User (Spatie)
         $user->assignRole('User');
 
+        $validated['is_published'] = false;
         $clinic = Clinic::create($validated);
         $user->clinics()->attach($clinic->id);
 
@@ -74,9 +75,9 @@ class ClinicController extends Controller
         $validated = $request->validate([
             'name'           => 'required|string|max:255',
             'slug'           => 'required|string|max:255|unique:services,slug',
-            'category'       => 'nullable|string|max:255',
-            'starting_price' => 'nullable|numeric|min:0',
-            'unit'           => 'nullable|string|max:100',
+            'category'       => 'required|nullable|string|max:255',
+            'starting_price' => 'required|nullable|numeric|min:0',
+            'unit'           => 'required|nullable|string|max:100',
         ]);
 
         // 1. Tạo Service
@@ -140,5 +141,23 @@ class ClinicController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Doctor added successfully!');
+    }
+
+    // Toggle hoặc bật trạng thái Public
+    public function publish($id)
+    {
+        $clinic = Clinic::findOrFail($id);
+        $clinic->update(['is_published' => true]);
+
+        return redirect()->back()->with('success', 'Đã xuất bản (Public) phòng khám thành công!');
+    }
+
+    // Chuyển lại thành bản nháp (Unpublish)
+    public function unpublish($id)
+    {
+        $clinic = Clinic::findOrFail($id);
+        $clinic->update(['is_published' => false]);
+
+        return redirect()->back()->with('success', 'Đã chuyển phòng khám về dạng bản nháp!');
     }
 }

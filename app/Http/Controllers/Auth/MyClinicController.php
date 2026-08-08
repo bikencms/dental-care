@@ -26,7 +26,7 @@ class MyClinicController extends Controller
     public function index()
     {
         $clinic = $this->getClinic();
-        return view('auth.user.clinic-index', compact('clinic'));
+        return view('auth.clinic.clinic-show', compact('clinic'));
     }
 
     /**
@@ -35,7 +35,7 @@ class MyClinicController extends Controller
     public function edit()
     {
         $clinic = $this->getClinic();
-        return view('auth.user.clinic-index', compact('clinic'));
+        return view('auth.clinic.clinic-show', compact('clinic'));
     }
 
     /**
@@ -72,5 +72,11 @@ class MyClinicController extends Controller
         $clinic->delete();
 
         return redirect()->route('dashboard.user.clinic.index')->with('success', 'Đã xóa phòng khám!');
+    }
+
+    public function preview() {
+        $clinic = $this->getClinic();
+        $appointment = [];
+        return view('clinics.show', compact('clinic', 'appointment'));
     }
 }

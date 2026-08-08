@@ -2,9 +2,13 @@
     <div class="d-block mb-4 mb-md-0">
         <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
             <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
-                <li class="breadcrumb-item"><a href="#"><svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <li class="breadcrumb-item">
+                    <a href="#">
+                        <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                        </svg></a></li>
+                        </svg>
+                    </a>
+                </li>
                 <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
                 <li class="breadcrumb-item" aria-current="page"><a href="/dashboard/clinic">Clinic</a></li>
                 @if(isset($clinic->name))
@@ -13,16 +17,67 @@
             </ol>
         </nav>
     </div>
-    <div class="btn-toolbar mb-2 mb-md-0">
+    
+    <div class="btn-toolbar mb-2 mb-md-0 d-flex align-items-center gap-2">
+        <!-- 1. Nút New Clinic -->
         <button type="button" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#createClinicModal">
             <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
             </svg> 
             New Clinic
         </button>
-        <div class="btn-group ms-2 ms-lg-3"><button type="button" class="btn btn-sm btn-outline-gray-600">Share</button> <button type="button" class="btn btn-sm btn-outline-gray-600">Export</button></div>
+    
+        <!-- 2. NÚT PREVIEW -->
+        <a href="{{ isset($clinic) ? route('my-clinic.preview', $clinic->id) : '#' }}" target="_blank" class="btn btn-sm btn-outline-info d-inline-flex align-items-center">
+            <svg class="icon icon-xs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+            Preview
+        </a>
+
+        <!-- 3. NÚT PUBLIC / UNPUBLISH -->
+        @if (!$clinic->is_published)
+            <!-- 3A. NÚT PUBLIC (Draft -> Public) -->
+            <form action="{{ route('my-clinic.publish', $clinic->id) }}" method="POST" class="d-inline-flex align-items-center m-0">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="btn btn-sm btn-success text-white fw-bold d-inline-flex align-items-center px-3 shadow-sm btn-publish">
+                    <svg class="icon icon-xs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Publish Clinic
+                </button>
+            </form>
+        @else
+            <!-- 3B. NÚT UNPUBLISH (Public -> Draft) -->
+            <form action="{{ route('my-clinic.unpublish', $clinic->id) }}" method="POST" class="d-inline-flex align-items-center m-0" onsubmit="return confirm('Bạn có chắc muốn đưa clinic này về dạng bản nháp?');">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="btn btn-sm btn-warning text-dark fw-bold d-inline-flex align-items-center px-3 shadow-sm">
+                    <svg class="icon icon-xs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+                    </svg>
+                    Unpublish
+                </button>
+            </form>
+        @endif
     </div>
 </div>
+
+<!-- CSS bổ sung để tăng hiệu ứng thị giác cho nút Public -->
+<style>
+    .btn-publish {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border: none;
+        transition: all 0.25s ease-in-out;
+    }
+    .btn-publish:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35) !important;
+    }
+</style>
 <!-- BOOTSTRAP 5 MODAL: CREATE NEW CLINIC -->
 <div class="modal fade" id="createClinicModal" tabindex="-1" aria-labelledby="createClinicModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">

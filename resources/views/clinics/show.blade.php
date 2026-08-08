@@ -790,7 +790,7 @@
 
                 <!-- 1. MÀN HÌNH DANH SÁCH LỊCH ĐÃ ĐẶT -->
                 @php
-                    $appointmentsList = $existingAppointments ?? ($appointment ? collect([$appointment]) : collect([]));
+                    $appointmentsList = $existingAppointments ?? ( $appointment  ? collect([$appointment]) : collect([]));
                 @endphp
 
                 <div id="booked-success-section" class="{{ $appointmentsList->isNotEmpty() ? '' : 'd-none' }}">

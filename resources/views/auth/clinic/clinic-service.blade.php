@@ -57,7 +57,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="{{ route('clinics.services.store', $clinic->id) }}" method="POST">
+            <form action="{{ route('my-clinic.services.store', $clinic->id) }}" method="POST">
                 @csrf
                 <div class="modal-body p-4">
                     
@@ -75,8 +75,8 @@
 
                     <!-- Category -->
                     <div class="mb-3">
-                        <label for="serviceCategory" class="form-label fw-semibold">Category</label>
-                        <input type="text" class="form-control" id="serviceCategory" name="category" placeholder="e.g. Cosmetic Dentistry, Orthodontics">
+                        <label for="serviceCategory" class="form-label fw-semibold">Category <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="serviceCategory" name="category" required placeholder="e.g. Cosmetic Dentistry, Orthodontics">
                     </div>
 
                     <hr class="my-3 text-muted opacity-25">
@@ -84,12 +84,12 @@
                     <!-- ClinicService Pivot Data -->
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="startingPrice" class="form-label fw-semibold">Starting Price (VND)</label>
-                            <input type="number" step="0.01" min="0" class="form-control" id="startingPrice" name="starting_price" placeholder="e.g. 150">
+                            <label for="startingPrice" class="form-label fw-semibold">Starting Price (VND) <span class="text-danger">*</span></label>
+                            <input type="number" step="0.01" min="0" class="form-control" id="startingPrice" required name="starting_price" required placeholder="e.g. 150">
                         </div>
                         <div class="col-md-6">
-                            <label for="serviceUnit" class="form-label fw-semibold">Unit</label>
-                            <input type="text" class="form-control" id="serviceUnit" name="unit" placeholder="e.g. tooth, session, package">
+                            <label for="serviceUnit" class="form-label fw-semibold">Unit <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="serviceUnit" name="unit" required placeholder="e.g. tooth, session, package">
                         </div>
                     </div>
 

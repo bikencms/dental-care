@@ -14,7 +14,9 @@ class ClinicController extends Controller
         // $request->services chứa mảng ID dịch vụ khách đã chọn từ bước trước (ví dụ: [1, 2] tương ứng Implant và Veneer)
         $selectedServices = $request->input('services', []); 
 
-        $query = Clinic::with(['doctors', 'services', 'district']);
+        $query = Clinic::published()
+            ->with(['doctors', 'services', 'district'])
+            ->latest();
 
         // 1. Lọc theo dịch vụ (Bắt buộc phòng khám phải có TẤT CẢ các dịch vụ khách chọn)
         if (!empty($selectedServices)) {
@@ -70,8 +72,9 @@ class ClinicController extends Controller
         // $request->services chứa mảng ID dịch vụ khách đã chọn từ bước trước (ví dụ: [1, 2] tương ứng Implant và Veneer)
         $selectedServices = $request->input('services', []); 
 
-        $query = Clinic::with(['doctors', 'services', 'district']);
-
+        $query = Clinic::published()
+            ->with(['doctors', 'services', 'district'])
+            ->latest();
         // 1. Lọc theo dịch vụ (Bắt buộc phòng khám phải có TẤT CẢ các dịch vụ khách chọn)
         if (!empty($selectedServices)) {
             foreach ($selectedServices as $serviceId) {
@@ -124,14 +127,10 @@ class ClinicController extends Controller
     public function show(string $token, int $id)
     {
         $appointment = OnlineAppointment::where('token', $token)->firstOrFail();
-        
-        $clinic = Clinic::with([
-            'languages', 
-            'services', 
-            'doctors', 
-            'tags',
-            'district'
-        ])->findOrFail($id);
+
+        $clinic = Clinic::published()
+            ->with(['doctors', 'services', 'district', 'languages', 'tags'])
+            ->findOrFail($id);
 
         // Lấy danh sách tất cả các lịch khám đã đặt (nếu có)
         $existingAppointments = Appointment::where('patient_email', $appointment->email ?? '')
@@ -146,13 +145,9 @@ class ClinicController extends Controller
     {
         $appointment = OnlineAppointment::where('token', $token)->firstOrFail();
         
-        $clinic = Clinic::with([
-            'languages', 
-            'services', 
-            'doctors', 
-            'tags',
-            'district'
-        ])->findOrFail($id);
+        $clinic = Clinic::published()
+            ->with(['doctors', 'services', 'district', 'languages', 'tags'])
+            ->findOrFail($id);
 
         // Lấy danh sách tất cả các lịch khám đã đặt (nếu có)
         $existingAppointments = Appointment::where('patient_email', $appointment->email ?? '')

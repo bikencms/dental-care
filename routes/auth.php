@@ -87,9 +87,16 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         Route::delete('/destroy', [MyClinicController::class, 'destroy'])->name('destroy'); // Xóa phòng khám
 
         // Thêm dịch vụ, quy trình, bác sĩ vào Clinic của mình
-        Route::post('/services', [MyClinicController::class, 'storeService'])->name('services.store');
-        Route::post('/procedures', [MyClinicController::class, 'storeProcedure'])->name('procedures.store');
-        Route::post('/doctors', [MyClinicController::class, 'storeDoctor'])->name('doctors.store');
-    });
+        Route::post('/services/{id}', [ClinicController::class, 'storeService'])->name('services.store');
+        Route::post('/procedures/{id}', [ClinicController::class, 'storeProcedure'])->name('procedures.store');
+        Route::post('/doctors/{id}', [ClinicController::class, 'storeDoctor'])->name('doctors.store');
+        Route::get('/preview/{id}', [MyClinicController::class, 'preview'])->name('preview');
 
+        // Route đổi trạng thái Public/Unpublish
+        Route::patch('/clinic/{id}/publish', [ClinicController::class, 'publish'])->name('publish');
+        Route::patch('/clinic/{id}/unpublish', [ClinicController::class, 'unpublish'])->name('unpublish');
+    });
 });
+
+Route::get('/preview/{id}', [ClinicController::class, 'preview'])->name('locale.my-clinic.preview');
+
