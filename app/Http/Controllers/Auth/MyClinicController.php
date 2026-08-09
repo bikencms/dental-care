@@ -11,7 +11,7 @@ class MyClinicController extends Controller
      */
     private function getClinic()
     {
-        $clinic = auth()->user()->clinics()->first();
+        $clinic = auth()->user()->clinic()->first();
 
         if (!$clinic) {
             abort(444, 'Tài khoản của bạn chưa được gán phòng khám nào.');

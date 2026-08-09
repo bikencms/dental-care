@@ -21,7 +21,7 @@ class ClinicController extends Controller
 
     public function show($id)
     {
-        $clinic = Clinic::with(['district', 'doctors', 'services', 'languages', 'tags'])->find($id);
+        $clinic = Clinic::with(['district', 'doctors', 'services', 'languages', 'tags', 'user'])->find($id);
         return view('auth.clinic.clinic-show', compact('clinic'));
     }
 

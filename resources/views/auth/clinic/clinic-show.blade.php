@@ -75,89 +75,30 @@
 
     <!-- Main Content Layout (2 Columns) -->
     <div class="row g-4">
-        <!-- Left Column: Services, Procedures & Doctors -->
-        <div class="col-lg-8">
+        <!-- Left Column: Services, Procedures, Doctors & Account -->
+        <div class="col-lg-12">
+
+            <!-- SECTION 4: CLINIC ACCOUNT MANAGEMENT (BỔ SUNG MỚI) -->
+            @hasrole('Admin') 
+            @include('auth.clinic.clinic-account', [
+                'clinic' => $clinic,
+            ])
+            @endhasrole
             
             <!-- SECTION 1: SERVICES OFFERED -->
             @include('auth.clinic.clinic-service', [
                 'clinic' => $clinic,
             ])
 
-            <!-- SECTION 2: CLINIC PROCEDURES & PRICING (MỚI THÊM) -->
+            <!-- SECTION 2: CLINIC PROCEDURES & PRICING -->
             @include('auth.clinic.clinic-procedure', [
                 'clinic' => $clinic,
             ])
-        
 
             <!-- SECTION 3: OUR DOCTORS / SPECIALISTS -->
             @include('auth.clinic.clinic-doctor', [
                 'clinic' => $clinic,
             ])
-
-        </div>
-
-        <!-- Right Column: Sidebar (Location Map & Booking Form) -->
-        <div class="col-lg-4">
-            <!-- Sidebar Widget: Working Hours & Location -->
-            <div class="card border-0 shadow-sm rounded-3 p-4 mb-4">
-                <h5 class="fw-bold text-dark mb-3 border-bottom pb-2">
-                    <i class="fas fa-clock text-primary me-2"></i>Opening Hours
-                </h5>
-                <ul class="list-unstyled mb-0 fs-7">
-                    <li class="d-flex justify-content-between py-1 border-bottom">
-                        <span class="text-muted">Monday - Friday</span>
-                        <span class="fw-semibold text-dark">07:00 AM - 07:00 PM</span>
-                    </li>
-                    <li class="d-flex justify-content-between py-1 border-bottom">
-                        <span class="text-muted">Saturday</span>
-                        <span class="fw-semibold text-dark">07:00 AM - 05:00 PM</span>
-                    </li>
-                    <li class="d-flex justify-content-between py-1">
-                        <span class="text-muted">Sunday</span>
-                        <span class="text-danger fw-semibold">Closed</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Sidebar Widget: Quick Booking Form -->
-            <div class="card border-0 shadow-sm rounded-3 p-4" id="booking-form">
-                <h5 class="fw-bold text-dark mb-3 border-bottom pb-2">
-                    <i class="fas fa-paper-plane text-primary me-2"></i>Request Consultation
-                </h5>
-                <form action="#" method="POST">
-                    @csrf
-                    <input type="hidden" name="clinic_id" value="{{ $clinic->id }}">
-                    
-                    <div class="mb-3">
-                        <label class="form-label small fw-semibold">Full Name</label>
-                        <input type="text" class="form-control" name="fullname" required placeholder="John Doe">
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label small fw-semibold">Phone Number</label>
-                        <input type="tel" class="form-control" name="phone" required placeholder="+84 ...">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label small fw-semibold">Interested Service</label>
-                        <select class="form-select" name="service_id">
-                            <option value="">Select a service</option>
-                            @foreach($clinic->services as $service)
-                                <option value="{{ $service->id }}">{{ $service->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label small fw-semibold">Message / Brief Request</label>
-                        <textarea class="form-control" name="briefly" rows="3" placeholder="Describe your symptoms or preferred time..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
-                        Submit Request
-                    </button>
-                </form>
-            </div>
 
         </div>
     </div>

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes; // 1. Import Trait
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use App\Models\ClinicUser;
+use App\Models\User;
 class Clinic extends Model
 {
     use HasFactory;
@@ -90,9 +93,16 @@ class Clinic extends Model
         return $this->hasMany(ClinicProcedure::class, 'clinic_id');
     }
 
-    // Trong App\Models\Clinic.php
-    public function users(): BelongsToMany
+    // Lấy User của Clinic này (Quan hệ 1-1 qua bảng clinic_user)
+    public function user(): HasOneThrough
     {
-        return $this->belongsToMany(User::class, 'clinic_user');
+        return $this->hasOneThrough(
+            User::class,       // Model đích muốn lấy
+            ClinicUser::class, // Pivot/Intermediate Model
+            'clinic_id',       // Khóa ngoại trên bảng clinic_user
+            'id',              // Khóa chính trên bảng users
+            'id',              // Khóa chính trên bảng clinics
+            'user_id'          // Khóa ngoại trên bảng clinic_user
+        );
     }
 }

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany; // Import class này
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -58,8 +59,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Clinic::class, 'clinic_user')->first();
     }
-    public function clinics(): BelongsToMany
+   
+    public function clinic(): HasOneThrough
     {
-        return $this->belongsToMany(Clinic::class, 'clinic_user');
+        return $this->hasOneThrough(
+            Clinic::class,
+            ClinicUser::class,
+            'user_id',         // Khóa ngoại trên bảng clinic_user
+            'id',              // Khóa chính trên bảng clinics
+            'id',              // Khóa chính trên bảng users
+            'clinic_id'        // Khóa ngoại trên bảng clinic_user
+        );
     }
 }
