@@ -849,6 +849,37 @@
                     });
                 }
             });
+            (function () {
+                const version = new Date().getTime();
+
+                function addVersionToImg(img) {
+                    const src = img.getAttribute('src');
+                    if (src && (src.includes('/assets/') || src.startsWith('assets/')) && !src.includes('v=')) {
+                        const separator = src.includes('?') ? '&' : '?';
+                        img.src = `${src}${separator}v=${version}`;
+                    }
+                }
+
+                // Áp dụng cho các ảnh đã có sẵn khi load trang
+                document.addEventListener("DOMContentLoaded", function () {
+                    document.querySelectorAll('img').forEach(addVersionToImg);
+
+                    // Theo dõi DOM để tự động xử lý các ảnh được thêm mới sau này
+                    const observer = new MutationObserver(mutations => {
+                        mutations.forEach(mutation => {
+                            mutation.addedNodes.forEach(node => {
+                                if (node.tagName === 'IMG') {
+                                    addVersionToImg(node);
+                                } else if (node.querySelectorAll) {
+                                    node.querySelectorAll('img').forEach(addVersionToImg);
+                                }
+                            });
+                        });
+                    });
+
+                    observer.observe(document.body, { childList: true, subtree: true });
+                });
+            })();
         </script>
     @endpush
 @endsection
