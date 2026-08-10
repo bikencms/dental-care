@@ -94,10 +94,15 @@ class Clinic extends Model
     }
 
     // Lấy User của Clinic này (Quan hệ 1-1 qua bảng clinic_user)
-    public function user(): BelongsToMany
+    public function user(): HasOneThrough
     {
-        return $this->belongsToMany(Clinic::class, 'clinic_user', 'user_id', 'clinic_id')
-            ->using(ClinicUser::class)
-            ->one(); // Vẫn giữ tính chất quan hệ 1-1
+        return $this->hasOneThrough(
+            User::class,       // Model đích muốn lấy
+            ClinicUser::class, // Pivot/Intermediate Model
+            'clinic_id',       // Khóa ngoại trên bảng clinic_user
+            'id',              // Khóa chính trên bảng users
+            'id',              // Khóa chính trên bảng clinics
+            'user_id'          // Khóa ngoại trên bảng clinic_user
+        );
     }
 }
