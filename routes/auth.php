@@ -95,6 +95,23 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         // Route đổi trạng thái Public/Unpublish
         Route::patch('/clinic/{id}/publish', [ClinicController::class, 'publish'])->name('publish');
         Route::patch('/clinic/{id}/unpublish', [ClinicController::class, 'unpublish'])->name('unpublish');
+
+        // 1. Quản lý Lịch nghỉ Lễ / Khóa ngày (Clinic Holidays)
+        Route::post('/holidays', [ClinicController::class, 'storeHoliday'])
+            ->name('holidays.store');
+
+
+        // 2. Quản lý Khung giờ làm việc cố định (Clinic Schedules)
+        // Lấy cấu hình khung giờ theo phòng khám & dịch vụ
+        Route::get('/schedules', [ClinicController::class, 'index'])
+            ->name('schedules.index');
+
+        // Lưu / Cập nhật cấu hình khung giờ làm việc
+        Route::post('/schedules', [ClinicController::class, 'storeOrUpdate'])
+            ->name('schedules.store');
+
+        // Giao diện Admin quản lý đặt lịch & ngày nghỉ
+        Route::get('/{id}/booking-appointment', [ClinicController::class, 'bookingAppointment'])->name('clinic.clinic-appointment');
     });
 });
 

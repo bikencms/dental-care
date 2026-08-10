@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\ClinicSchedule;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Models\Appointment;
+use App\Models\ClinicHoliday;
 class ClinicController extends Controller
 {
     public function bulkDelete(Request $request)
@@ -101,5 +103,106 @@ class ClinicController extends Controller
             'success'     => true,
             'message'     => 'Lưu khung giờ cho dịch vụ ' . strtoupper($serviceType) . ' thành công!',
         ]);
+    }
+
+    /**
+     * Khách hàng gửi Yêu cầu Đặt Lịch
+     */
+    public function storeBooking(Request $request)
+    {
+        $request->validate([
+            'clinic_id' => 'required|exists:clinics,id',
+            'service_type' => 'required|in:implant,veneers',
+            'appointment_date' => 'required|date_format:Y-m-d',
+            'start_time' => 'required|date_format:H:i:s',
+            'patient_name' => 'required|string|max:255',
+            'patient_phone' => 'required|string|max:20',
+            'patient_email' => 'nullable|email|max:255',
+            'notes' => 'nullable|string'
+        ]);
+
+        $date = Carbon::parse($request->appointment_date);
+        $dayOfWeek = $date->dayOfWeek;
+
+        // 1. Kiểm tra Ngày nghỉ Holiday
+        $isHoliday = ClinicHoliday::where('clinic_id', $request->clinic_id)
+            ->where('holiday_date', $request->appointment_date)
+            ->where(function ($q) use ($request) {
+                $q->whereNull('service_type')->orWhere('service_type', $request->service_type);
+            })->exists();
+
+        if ($isHoliday) {
+            return response()->json(['message' => 'Phòng khám nghỉ vào ngày này!'], 422);
+        }
+
+        // 2. Lấy Cấu hình Khung giờ
+        $schedule = ClinicSchedule::where('clinic_id', $request->clinic_id)
+            ->where('service_type', $request->service_type)
+            ->where('day_of_week', $dayOfWeek)
+            ->where('is_active', true)
+            ->first();
+
+        if (!$schedule) {
+            return response()->json(['message' => 'Dịch vụ không hoạt động vào ngày này!'], 422);
+        }
+
+        // 3. Tính end_time dựa vào slot_duration_minutes
+        $endTime = Carbon::parse($request->start_time)
+            ->addMinutes($schedule->slot_duration_minutes)
+            ->format('H:i:s');
+
+        // 4. Kiểm tra giới hạn max_patients_per_slot
+        $currentBookings = Appointment::where('clinic_id', $request->clinic_id)
+            ->where('service_type', $request->service_type)
+            ->where('appointment_date', $request->appointment_date)
+            ->where('start_time', $request->start_time)
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->count();
+
+        if ($currentBookings >= $schedule->max_patients_per_slot) {
+            return response()->json(['message' => 'Khung giờ này đã đủ số lượng bệnh nhân!'], 422);
+        }
+
+        // 5. Lưu Đặt Lịch
+        $appointment = Appointment::create([
+            'clinic_id' => $request->clinic_id,
+            'service_type' => $request->service_type,
+            'appointment_date' => $request->appointment_date,
+            'start_time' => $request->start_time,
+            'end_time' => $endTime,
+            'patient_name' => $request->patient_name,
+            'patient_phone' => $request->patient_phone,
+            'patient_email' => $request->patient_email,
+            'notes' => $request->notes,
+            'status' => 'pending'
+        ]);
+
+        return response()->json(['message' => 'Đặt lịch thành công!', 'data' => $appointment]);
+    }
+
+    /**
+     * Admin đặt Ngày Nghỉ (Block Lịch theo Ngày/Dịch vụ)
+     */
+    public function storeHoliday(Request $request)
+    {
+        $request->validate([
+            'clinic_id' => 'required|exists:clinics,id',
+            'holiday_date' => 'required|date',
+            'title' => 'nullable|string|max:255',
+            'service_type' => 'nullable|in:implant,veneers'
+        ]);
+
+        $holiday = ClinicHoliday::updateOrCreate(
+            [
+                'clinic_id' => $request->clinic_id,
+                'holiday_date' => $request->holiday_date,
+                'service_type' => $request->service_type,
+            ],
+            [
+                'title' => $request->title ?? 'Nghỉ đột xuất / Đóng cửa',
+            ]
+        );
+
+        return response()->json(['message' => 'Đã thêm ngày nghỉ thành công!', 'data' => $holiday]);
     }
 }

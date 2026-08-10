@@ -283,4 +283,181 @@ class ClinicBookingApiController extends Controller
 
         return false;
     }
+
+    public function getAvailableSlots2(Request $request)
+    {
+        $clinicId = $request->query('clinic_id');
+        $serviceType = $request->query('service_type'); // 'implant' hoặc 'veneers'
+        $startDate = Carbon::parse($request->query('start'));
+        $endDate = Carbon::parse($request->query('end'));
+
+        $events = [];
+        $period = CarbonPeriod::create($startDate, $endDate);
+
+        // 1. Lấy tất cả Cấu hình Lịch theo dịch vụ
+        $schedules = ClinicSchedule::where('clinic_id', $clinicId)
+            ->where('service_type', $serviceType)
+            ->where('is_active', true)
+            ->get()
+            ->keyBy('day_of_week');
+
+        // 2. Lấy tất cả Lịch nghỉ trong khoảng thời gian này
+        $holidays = ClinicHoliday::where('clinic_id', $clinicId)
+            ->whereBetween('holiday_date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
+            ->where(function ($query) use ($serviceType) {
+                $query->whereNull('service_type')->orWhere('service_type', $serviceType);
+            })
+            ->get()
+            ->keyBy('holiday_date');
+
+        // 3. Lấy tất cả Đặt lịch thực tế
+        $appointments = Appointment::where('clinic_id', $clinicId)
+            ->where('service_type', $serviceType)
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->whereBetween('appointment_date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
+            ->get();
+
+        // 4. Duyệt qua từng ngày để sinh ra các Khung giờ (Slots)
+        foreach ($period as $date) {
+            $dateStr = $date->format('Y-m-d');
+            $dayOfWeek = $date->dayOfWeek; // 0: Chủ nhật, 1: Thứ 2,...
+
+            // Kiểm tra xem ngày này có phải Ngày nghỉ Holiday không
+            if (isset($holidays[$dateStr])) {
+                $events[] = [
+                    'title' => '🔒 [NGHỈ LỄ] ' . ($holidays[$dateStr]->title ?? ''),
+                    'start' => $dateStr . 'T00:00:00',
+                    'end' => $dateStr . 'T23:59:59',
+                    'display' => 'background',
+                    'backgroundColor' => '#ffc107',
+                    'extendedProps' => ['is_blocked' => true]
+                ];
+                continue; // Bỏ qua không chia slot cho ngày nghỉ
+            }
+
+            // Nếu ngày này có cấu hình làm việc
+            if (isset($schedules[$dayOfWeek])) {
+                $schedule = $schedules[$dayOfWeek];
+                $startTime = Carbon::parse($dateStr . ' ' . $schedule->start_time);
+                $endTime = Carbon::parse($dateStr . ' ' . $schedule->end_time);
+                $slotDuration = $schedule->slot_duration_minutes;
+                $maxPatients = $schedule->max_patients_per_slot;
+
+                // Chia nhỏ khung giờ theo slot_duration_minutes
+                while ($startTime->lt($endTime)) {
+                    $slotStartStr = $startTime->format('Y-m-d H:i:s');
+                    $slotEnd = (clone $startTime)->addMinutes($slotDuration);
+                    $slotEndStr = $slotEnd->format('Y-m-d H:i:s');
+
+                    if ($slotEnd->gt($endTime)) break;
+
+                    // Đếm số lượng khách đã đặt slot này
+                    $bookedCount = $appointments->where('appointment_date', $dateStr)
+                        ->where('start_time', $startTime->format('H:i:s'))
+                        ->count();
+
+                    $isFull = $bookedCount >= $maxPatients;
+
+                    $events[] = [
+                        'title' => $isFull ? "❌ Đã kín ($bookedCount/$maxPatients)" : "🟢 Còn chỗ ($bookedCount/$maxPatients)",
+                        'start' => $startTime->toIso8601String(),
+                        'end' => $slotEnd->toIso8601String(),
+                        'backgroundColor' => $isFull ? '#dc3545' : '#198754',
+                        'borderColor' => $isFull ? '#dc3545' : '#198754',
+                        'extendedProps' => [
+                            'is_full' => $isFull,
+                            'booked_count' => $bookedCount,
+                            'max_patients' => $maxPatients,
+                            'slot_start' => $startTime->format('H:i:s'),
+                            'slot_end' => $slotEnd->format('H:i:s'),
+                            'appointment_date' => $dateStr
+                        ]
+                    ];
+
+                    $startTime->addMinutes($slotDuration);
+                }
+            }
+        }
+
+        return response()->json($events);
+    }
+
+    // Lấy danh sách khung giờ cho FullCalendar
+    public function getEvents(Request $request)
+    {
+        $start = $request->query('start');
+        $end = $request->query('end');
+
+        $appointments = Appointment::whereBetween('start_time', [$start, $end])->get();
+
+        $events = $appointments->map(function ($item) {
+            if ($item->is_blocked) {
+                return [
+                    'id' => $item->id,
+                    'title' => '🔒 [ĐÃ KHÓA] ' . ($item->note ?? 'Khung giờ bận'),
+                    'start' => $item->start_time,
+                    'end' => $item->end_time,
+                    'backgroundColor' => '#6c757d', // Màu xám cho khung giờ block
+                    'borderColor' => '#6c757d',
+                    'extendedProps' => ['is_blocked' => true]
+                ];
+            }
+
+            return [
+                'id' => $item->id,
+                'title' => '👤 ' . $item->customer_name,
+                'start' => $item->start_time,
+                'end' => $item->end_time,
+                'backgroundColor' => '#0d6efd', // Màu xanh cho khách đặt
+                'borderColor' => '#0d6efd',
+                'extendedProps' => [
+                    'is_blocked' => false,
+                    'email' => $item->customer_email
+                ]
+            ];
+        });
+
+        return response()->json($events);
+    }
+
+    /**
+     * Bật / Tắt (Block / Unblock) Lịch làm việc cố định theo clinic_schedules
+     */
+    public function toggleAdminBlock(Request $request)
+    {
+        $request->validate([
+            'clinic_id' => 'required|exists:clinics,id',
+            'service_type' => 'required|in:implant,veneers',
+            'day_of_week' => 'nullable|integer|between:0,6', // 0: CN, 1: T2, ..., 6: T7 (Nếu null = áp dụng cho tất cả các ngày)
+            'is_active' => 'required|boolean', // false: Khóa/Block, true: Mở lại/Unblock
+        ]);
+
+        $query = ClinicSchedule::where('clinic_id', $request->clinic_id)
+            ->where('service_type', $request->service_type);
+
+        // Nếu có truyền day_of_week cụ thể
+        if ($request->has('day_of_week') && !is_null($request->day_of_week)) {
+            $query->where('day_of_week', $request->day_of_week);
+        }
+
+        // Cập nhật trạng thái is_active
+        $updatedRows = $query->update([
+            'is_active' => $request->is_active
+        ]);
+
+        $statusText = $request->is_active ? 'Khôi phục/Mở' : 'Khóa/Block';
+
+        if ($updatedRows === 0) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Không tìm thấy cấu hình lịch phù hợp để cập nhật!'
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => "Đã {$statusText} lịch làm việc thành công!",
+            'affected_rows' => $updatedRows
+        ]);
+    }
 }

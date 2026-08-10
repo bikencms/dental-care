@@ -205,4 +205,8 @@ class ClinicController extends Controller
 
         return redirect()->back()->with('success', 'Đã chuyển phòng khám về dạng bản nháp!');
     }
+
+    public function bookingAppointment($clinicId) {
+        return view('auth.clinic.clinic-appointment', compact('clinicId'));
+    }
 }
