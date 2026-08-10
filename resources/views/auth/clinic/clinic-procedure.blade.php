@@ -95,7 +95,7 @@
                         <label for="serviceId" class="form-label fw-semibold">Service Category <span class="text-danger">*</span></label>
                         <select class="form-select" id="serviceId" name="service_id" required>
                             <option value="" selected disabled>-- Select Service --</option>
-                            @foreach($clinic->services as $service)
+                            @foreach($services as $service)
                                 <option value="{{ $service->id }}">{{ $service->name }}</option>
                             @endforeach
                         </select>

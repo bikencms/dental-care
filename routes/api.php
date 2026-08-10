@@ -23,5 +23,9 @@ Route::prefix('v1')->group(function () {
     Route::post('/clinics/bulk-delete', [ClinicController::class, 'bulkDelete']);
     Route::post('/clinics/bulk-restore', [ClinicController::class, 'bulkRestore']);
 
+    // Đặt trong nhóm route Admin/Clinic của bạn
+    Route::post('/clinics/{clinicId}/schedules/save', [ClinicController::class, 'saveScheduleByService'])
+    ->name('api.clinic-schedules.save-service');
+
 });
 Route::post('/booking', [AppointmentController::class, 'store']);

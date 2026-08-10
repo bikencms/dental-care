@@ -77,22 +77,22 @@
             <!-- SIDEBAR FILTER -->
             <div class="lg:col-span-1">
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 sticky top-6">
-                    <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-filter text-sky-600"></i> {{ __('clinics.filter_title') }}
+                    <h3 class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-filter text-sky-600 text-xs"></i> 
+                        <span>{{ __('clinics.filter_title') }}</span>
                     </h3>
-
-                    <form action="{{ localized_route('clinics.index', [ 'token' => $appointment->token ] ) }}" method="GET">
+                    <form action="{{ localized_route('clinics.index', [ 'token' => $appointment->token ] ) }}" method="GET" class="space-y-4">
                         <!-- Giữ lại thông tin dịch vụ đã chọn từ bước trước -->
                         @if(request('services'))
-                            @foreach(request('services') as $sId)
+                            @foreach((array)request('services') as $sId)
                                 <input type="hidden" name="services[]" value="{{ $sId }}">
                             @endforeach
                         @endif
 
-                        <!-- Vị trí địa lý -->
-                        <div class="mb-4">
+                        <!-- 1. Vị trí địa lý -->
+                        <div>
                             <label class="block text-xs font-bold uppercase text-slate-500 mb-2">{{ __('clinics.location_label') }}</label>
-                            <select name="district_id" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                            <select name="district_id" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none bg-slate-50 focus:bg-white">
                                 <option value="">{{ __('clinics.all_locations') }}</option>
                                 <option value="1" {{ request('district_id') == 1 ? 'selected' : '' }}>{{ __('clinics.location_q1') }}</option>
                                 <option value="5" {{ request('district_id') == 5 ? 'selected' : '' }}>{{ __('clinics.location_q5') }}</option>
@@ -100,33 +100,155 @@
                             </select>
                         </div>
 
-                        <!-- Ngôn ngữ giao tiếp -->
-                        <div class="mb-4">
-                            <label class="block text-xs font-bold uppercase text-slate-500 mb-2">{{ __('clinics.language_label') }}</label>
-                            <select name="support_type" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
-                                <option value="">{{ __('clinics.all_languages') }}</option>
-                                <option value="free_english" {{ request('support_type') == 'free_english' ? 'selected' : '' }}>
-                                    {{ __('clinics.lang_free') }}
-                                </option>
-                                <option value="paid_interpreter" {{ request('support_type') == 'paid_interpreter' ? 'selected' : '' }}>
-                                    {{ __('clinics.lang_paid') }}
-                                </option>
-                            </select>
-                        </div>
-
-                        <!-- Chuyên môn Bác sĩ -->
-                        <div class="mb-6">
+                        <!-- 2. Trình độ & Chuyên môn Bác sĩ -->
+                        <div>
                             <label class="block text-xs font-bold uppercase text-slate-500 mb-2">{{ __('clinics.specialty_label') }}</label>
-                            <select name="doctor_specialty" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                            <select name="doctor_specialty" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none bg-slate-50 focus:bg-white">
                                 <option value="">{{ __('clinics.all_specialties') }}</option>
-                                <option value="foreign_trained" {{ request('doctor_specialty') == 'foreign_trained' ? 'selected' : '' }}>{{ __('clinics.spec_foreign') }}</option>
-                                <option value="expert_10_years" {{ request('doctor_specialty') == 'expert_10_years' ? 'selected' : '' }}>{{ __('clinics.spec_expert') }}</option>
-                                <option value="high_degree" {{ request('doctor_specialty') == 'high_degree' ? 'selected' : '' }}>{{ __('clinics.spec_degree') }}</option>
+                                
+                                <option value="has_studied_abroad" {{ request('doctor_specialty') == 'foreign_trained' ? 'selected' : '' }}>
+                                    {{ __('clinics.spec_foreign_trained') }}
+                                </option>
+                                
+                                <option value="has_studied_abroad" {{ request('doctor_specialty') == 'expert_10_years' ? 'selected' : '' }}>
+                                    {{ __('clinics.spec_expert_10_years') }}
+                                </option>
+                                
+                                <option value="has_studied_abroad" {{ request('doctor_specialty') == 'prof_phd' ? 'selected' : '' }}>
+                                    {{ __('clinics.spec_prof_phd') }}
+                                </option>
+
+                                <option value="has_studied_abroad" {{ request('doctor_specialty') == 'association_leaders' ? 'selected' : '' }}>
+                                    {{ __('clinics.spec_association_leaders') }}
+                                </option>
+
+                                <option value="has_studied_abroad" {{ request('doctor_specialty') == 'foreign_expat_dentists' ? 'selected' : '' }}>
+                                    {{ __('clinics.spec_foreign_expat_dentists') }}
+                                </option>
+
+                                <option value="has_studied_abroad" {{ request('doctor_specialty') == 'international_members' ? 'selected' : '' }}>
+                                    {{ __('clinics.spec_international_members') }}
+                                </option>
+
+                                <option value="has_studied_abroad" {{ request('doctor_specialty') == 'trainers_speakers' ? 'selected' : '' }}>
+                                    {{ __('clinics.spec_trainers_speakers') }}
+                                </option>
                             </select>
                         </div>
 
-                        <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2.5 rounded-lg text-sm transition-colors shadow-sm">
-                            {{ __('clinics.apply_filter') }}
+                        <!-- 3. Bộ lọc nâng cao (HTML details) -->
+                        <details class="group">
+                            <summary class="w-full border border-slate-300 hover:border-sky-500 text-slate-700 font-medium py-2 px-3 rounded-lg text-sm flex items-center justify-between transition bg-slate-50 hover:bg-sky-50 cursor-pointer list-none select-none">
+                                <span class="flex items-center gap-2">
+                                    <i class="fas fa-sliders-h text-sky-600"></i>
+                                    <span>{{ __('clinics.advance_filter_btn') }}</span>
+                                </span>
+                                <i class="fas fa-chevron-down group-open:rotate-180 transition-transform duration-200"></i>
+                            </summary>
+
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-4 mt-2">
+                                
+                                <!-- Additional Languages -->
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-500 mb-2">
+                                        {{ __('clinics.additional_languages') }}
+                                    </label>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        @foreach(['Chinese' => 'Chinese', 'FR' => 'FR', 'JP' => 'JP', 'KR' => 'KR'] as $code => $label)
+                                            <label class="flex items-center gap-2 p-2 rounded border border-slate-200 bg-white hover:border-sky-500 cursor-pointer text-xs font-medium text-slate-700 transition">
+                                                <input type="checkbox" name="additional_languages[]" value="{{ $code }}" 
+                                                    {{ in_array($code, (array)request('additional_languages')) ? 'checked' : '' }} 
+                                                    class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+                                                <span>{{ $label }}</span>
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                <hr class="border-slate-200">
+
+                                <!-- Dịch vụ hỗ trợ & Tiện ích -->
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-500 mb-2">
+                                        {{ __('clinics.transport_partners') }}
+                                    </label>
+                                    <div class="space-y-2">
+                                        <!-- Airport Pickup -->
+                                        <label class="flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-sky-500 cursor-pointer transition">
+                                            <input type="checkbox" name="facilities[]" value="free_airport_pickup" 
+                                                {{ in_array('free_airport_pickup', (array)request('facilities')) ? 'checked' : '' }}
+                                                class="mt-0.5 rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+                                            <div class="text-xs">
+                                                <span class="font-semibold text-slate-800 block">{{ __('clinics.facility_airport_pickup') }}</span>
+                                                <span class="text-slate-500 flex items-center gap-1 mt-0.5">
+                                                    <i class="fas fa-info-circle text-sky-500"></i> {{ __('clinics.facility_airport_pickup_note') }}
+                                                </span>
+                                            </div>
+                                        </label>
+
+                                        <!-- Local Transport -->
+                                        <label class="flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-sky-500 cursor-pointer transition">
+                                            <input type="checkbox" name="facilities[]" value="local_transport" 
+                                                {{ in_array('local_transport', (array)request('facilities')) ? 'checked' : '' }}
+                                                class="mt-0.5 rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+                                            <div class="text-xs">
+                                                <span class="font-semibold text-slate-800 block">{{ __('clinics.facility_local_transport') }}</span>
+                                                <span class="text-slate-500 flex items-center gap-1 mt-0.5">
+                                                    <i class="fas fa-info-circle text-sky-500"></i> {{ __('clinics.facility_local_transport_note') }}
+                                                </span>
+                                            </div>
+                                        </label>
+
+                                        <!-- Partner Clinic -->
+                                        <label class="flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-sky-500 cursor-pointer transition">
+                                            <input type="checkbox" name="facilities[]" value="partner_clinic_overseas" 
+                                                {{ in_array('partner_clinic_overseas', (array)request('facilities')) ? 'checked' : '' }}
+                                                class="mt-0.5 rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+                                            <div class="text-xs font-semibold text-slate-800">
+                                                {{ __('clinics.facility_partner_clinic') }}
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <hr class="border-slate-200">
+
+                                <!-- Trang thiết bị & Tiêu chuẩn lâm sàng -->
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-500 mb-2">
+                                        {{ __('clinics.clinical_standards') }}
+                                    </label>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center gap-2.5 p-2 rounded-lg border border-slate-200 bg-white hover:border-sky-500 cursor-pointer text-xs font-medium text-slate-800 transition">
+                                            <input type="checkbox" name="facilities[]" value="diag_3d_imaging" 
+                                                {{ in_array('diag_3d_imaging', (array)request('facilities')) ? 'checked' : '' }}
+                                                class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+                                            <span>{{ __('clinics.facility_3d_imaging') }}</span>
+                                        </label>
+
+                                        <label class="flex items-center gap-2.5 p-2 rounded-lg border border-slate-200 bg-white hover:border-sky-500 cursor-pointer text-xs font-medium text-slate-800 transition">
+                                            <input type="checkbox" name="facilities[]" value="fast_inhouse_lab" 
+                                                {{ in_array('fast_inhouse_lab', (array)request('facilities')) ? 'checked' : '' }}
+                                                class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+                                            <span>{{ __('clinics.facility_inhouse_lab') }}</span>
+                                        </label>
+
+                                        <label class="flex items-center gap-2.5 p-2 rounded-lg border border-slate-200 bg-white hover:border-sky-500 cursor-pointer text-xs font-medium text-slate-800 transition">
+                                            <input type="checkbox" name="facilities[]" value="sterile_operating_room" 
+                                                {{ in_array('sterile_operating_room', (array)request('facilities')) ? 'checked' : '' }}
+                                                class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+                                            <span>{{ __('clinics.facility_operating_room') }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </details>
+
+                        <!-- 4. Submit Button -->
+                        <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2.5 rounded-lg text-sm transition-colors shadow-sm flex items-center justify-center gap-2">
+                            <i class="fas fa-search"></i>
+                            <span>{{ __('clinics.apply_filter') }}</span>
                         </button>
                     </form>
                 </div>
@@ -199,7 +321,6 @@
                     {{ $clinics->withQueryString()->links() }}
                 </div>
             </div>
-
         </div>
     </main>
 

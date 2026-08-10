@@ -13,10 +13,14 @@ class Doctor extends Model
         'clinic_id',
         'name',
         'avatar',
+        'title',
         'has_studied_abroad',
         'is_expert_10_years',
         'has_high_degree',
-        'title',
+        'is_association_leader',
+        'is_foreign_expat',
+        'is_international_member',
+        'is_trainer_speaker',
     ];
 
     // Thuộc về 1 phòng khám

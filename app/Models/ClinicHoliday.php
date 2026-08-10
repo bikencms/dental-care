@@ -12,6 +12,7 @@ class ClinicHoliday extends Model
 
     protected $fillable = [
         'clinic_id',
+        'service_type',
         'holiday_date',
         'title',
         'allow_emergency',

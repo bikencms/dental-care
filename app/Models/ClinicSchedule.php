@@ -12,6 +12,7 @@ class ClinicSchedule extends Model
 
     protected $fillable = [
         'clinic_id',
+        'service_type',
         'day_of_week',
         'start_time',
         'end_time',

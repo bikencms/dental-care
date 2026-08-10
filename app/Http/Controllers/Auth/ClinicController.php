@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\ClinicSchedule;
+use Carbon\Carbon;
 class ClinicController extends Controller
 {
     public function index()
@@ -22,8 +24,73 @@ class ClinicController extends Controller
 
     public function show($id)
     {
-        $clinic = Clinic::with(['district', 'doctors', 'services', 'languages', 'tags', 'user'])->find($id);
-        return view('auth.clinic.clinic-show', compact('clinic'));
+        $clinic = Clinic::with(['district', 'doctors', 'languages', 'tags', 'user'])->find($id);
+        $services = Service::all();
+
+        // 1. Lấy toàn bộ lịch active của phòng khám (cả implant và veneers)
+        $allSchedules = ClinicSchedule::where('clinic_id', $id)
+            ->where('is_active', 1)
+            ->orderBy('service_type')
+            ->orderBy('day_of_week')
+            ->orderBy('start_time')
+            ->get();
+
+        // Mảng chứa dữ liệu gom nhóm theo service_type
+        $existingSchedules = [
+            'implant' => [],
+            'veneers' => [],
+        ];
+
+        // 2. Nhóm theo service_type
+        $groupedByService = $allSchedules->groupBy('service_type');
+
+        foreach (['implant', 'veneers'] as $service) {
+            if (!$groupedByService->has($service)) {
+                continue;
+            }
+
+            $groupedByDay = $groupedByService[$service]->groupBy('day_of_week');
+
+            foreach ($groupedByDay as $dayOfWeek => $slots) {
+                $currentStart = null;
+                $currentEnd = null;
+
+                foreach ($slots as $slot) {
+                    $slotStart = Carbon::parse($slot->start_time)->format('H:i');
+                    $slotEnd = Carbon::parse($slot->end_time)->format('H:i');
+
+                    if ($currentStart === null) {
+                        $currentStart = $slotStart;
+                        $currentEnd = $slotEnd;
+                    } else {
+                        // Nếu slot nối tiếp liên tục
+                        if ($slotStart === $currentEnd) {
+                            $currentEnd = $slotEnd;
+                        } else {
+                            // Bị ngắt quãng -> lưu khoảng cũ, tạo khoảng mới
+                            $existingSchedules[$service][] = [
+                                'day_of_week' => (int) $dayOfWeek,
+                                'start_time'  => $currentStart,
+                                'end_time'    => $currentEnd,
+                            ];
+                            $currentStart = $slotStart;
+                            $currentEnd = $slotEnd;
+                        }
+                    }
+                }
+
+                // Lưu khoảng cuối cùng trong ngày
+                if ($currentStart !== null) {
+                    $existingSchedules[$service][] = [
+                        'day_of_week' => (int) $dayOfWeek,
+                        'start_time'  => $currentStart,
+                        'end_time'    => $currentEnd,
+                    ];
+                }
+            }
+        }
+
+        return view('auth.clinic.clinic-show', compact('clinic', 'services', 'existingSchedules'));
     }
 
     public function store(Request $request)
@@ -73,33 +140,6 @@ class ClinicController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'New clinic created successfully!');
-    }
-
-    public function storeService(Request $request, $clinicId)
-    {
-        $validated = $request->validate([
-            'name'           => 'required|string|max:255',
-            'slug'           => 'required|string|max:255|unique:services,slug',
-            'category'       => 'required|nullable|string|max:255',
-            'starting_price' => 'required|nullable|numeric|min:0',
-            'unit'           => 'required|nullable|string|max:100',
-        ]);
-
-        // 1. Tạo Service
-        $service = Service::create([
-            'name'     => $validated['name'],
-            'slug'     => $validated['slug'],
-            'category' => $validated['category'],
-        ]);
-
-        // 2. Gán vào bảng trung gian ClinicService
-        $clinic = Clinic::findOrFail($clinicId);
-        $clinic->services()->attach($service->id, [
-            'starting_price' => $validated['starting_price'] ?? null,
-            'unit'           => $validated['unit'] ?? null,
-        ]);
-
-        return redirect()->back()->with('success', 'Service added successfully!');
     }
 
     public function storeProcedure(Request $request, $clinicId)

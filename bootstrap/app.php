@@ -6,6 +6,8 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Spatie\Permission\Middleware\RoleMiddleware;
 use Spatie\Permission\Middleware\PermissionMiddleware;
 use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -23,6 +25,18 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->append(\App\Http\Middleware\Localization::class);
     })
-    ->withExceptions(function (Exceptions $exceptions): void {
-        //
+    ->withExceptions(function (Exceptions $exceptions) {
+        
+        // Bắt lỗi 403 chung hoặc lỗi role của Spatie
+        $exceptions->render(function (AccessDeniedHttpException|UnauthorizedException $e, Request $request) {
+            
+            // Nếu là request AJAX / API thì trả về JSON như bình thường
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'User does not have the right role.'], 403);
+            }
+
+            // Chuyển hướng về trang dashboard kèm thông báo
+            return redirect()->route('dashboard')->with('error', 'Bạn không có quyền truy cập vào trang này!');
+        });
+
     })->create();
