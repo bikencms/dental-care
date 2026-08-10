@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use App\Models\ClinicUser;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Clinic extends Model
 {
     use HasFactory;
@@ -94,15 +95,10 @@ class Clinic extends Model
     }
 
     // Lấy User của Clinic này (Quan hệ 1-1 qua bảng clinic_user)
-    public function user(): HasOneThrough
+    public function user(): BelongsToMany
     {
-        return $this->hasOneThrough(
-            User::class,       // Model đích muốn lấy
-            ClinicUser::class, // Pivot/Intermediate Model
-            'clinic_id',       // Khóa ngoại trên bảng clinic_user
-            'id',              // Khóa chính trên bảng users
-            'id',              // Khóa chính trên bảng clinics
-            'user_id'          // Khóa ngoại trên bảng clinic_user
-        );
+        return $this->belongsToMany(Clinic::class, 'clinic_user', 'user_id', 'clinic_id')
+            ->using(ClinicUser::class)
+            ->one(); // Vẫn giữ tính chất quan hệ 1-1
     }
 }

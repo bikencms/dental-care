@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -60,15 +61,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Clinic::class, 'clinic_user')->first();
     }
    
-    public function clinic(): HasOneThrough
+    public function clinic(): BelongsToMany
     {
-        return $this->hasOneThrough(
-            Clinic::class,
-            ClinicUser::class,
-            'user_id',         // Khóa ngoại trên bảng clinic_user
-            'id',              // Khóa chính trên bảng clinics
-            'id',              // Khóa chính trên bảng users
-            'clinic_id'        // Khóa ngoại trên bảng clinic_user
-        );
+        return $this->belongsToMany(Clinic::class, 'clinic_user', 'user_id', 'clinic_id')
+            ->using(ClinicUser::class)
+            ->one(); // Đảm bảo lấy 1 bản ghi duy nhất
     }
 }
