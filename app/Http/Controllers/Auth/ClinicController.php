@@ -65,7 +65,7 @@ class ClinicController extends Controller
 
         $validated['is_published'] = false;
         $clinic = Clinic::create($validated);
-        $user->clinic()->attach($clinic->id);
+        $user->clinic()->sync([$clinic->id]);
 
         return redirect()->back()->with('success', 'New clinic created successfully!');
     }
