@@ -67,7 +67,7 @@ class ClinicController extends Controller
         $validated['is_published'] = false;
         $clinic = Clinic::create($validated);
 
-        ClinicUser::created([
+        ClinicUser::create([
             'clinic_id'     => $clinic->id,
             'user_id' => $user->id,
         ]);
