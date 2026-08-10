@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use App\Models\ClinicUser;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Clinic extends Model
 {
     use HasFactory;
