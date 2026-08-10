@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clinic;
+use App\Models\ClinicUser;
 use App\Models\Service;
 use App\Models\ClinicProcedure;
 use App\Models\Doctor;
@@ -65,8 +66,11 @@ class ClinicController extends Controller
 
         $validated['is_published'] = false;
         $clinic = Clinic::create($validated);
-        $user->clinic_id = $clinic->id;
-        $user->update();
+
+        ClinicUser::created([
+            'clinic_id'     => $clinic->id,
+            'user_id' => $user->id,
+        ]);
 
         return redirect()->back()->with('success', 'New clinic created successfully!');
     }
