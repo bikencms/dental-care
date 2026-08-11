@@ -11,6 +11,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class ClinicBookingApiController extends Controller
 {
@@ -420,44 +421,62 @@ class ClinicBookingApiController extends Controller
         return response()->json($events);
     }
 
-    /**
-     * Bật / Tắt (Block / Unblock) Lịch làm việc cố định theo clinic_schedules
-     */
     public function toggleAdminBlock(Request $request)
     {
         $request->validate([
-            'clinic_id' => 'required|exists:clinics,id',
+            'clinic_id'    => 'required|exists:clinics,id',
             'service_type' => 'required|in:implant,veneers',
-            'day_of_week' => 'nullable|integer|between:0,6', // 0: CN, 1: T2, ..., 6: T7 (Nếu null = áp dụng cho tất cả các ngày)
-            'is_active' => 'required|boolean', // false: Khóa/Block, true: Mở lại/Unblock
+            'day_of_week'  => 'required|integer|between:0,6', // 0: CN, 1: T2, ..., 6: T7
+            'is_active'    => 'required|boolean',
+            'note'         => 'nullable|string|max:255'
         ]);
 
-        $query = ClinicSchedule::where('clinic_id', $request->clinic_id)
-            ->where('service_type', $request->service_type);
+        return DB::transaction(function () use ($request) {
+            // 1. Cập nhật trạng thái trong clinic_schedules
+            $schedule = ClinicSchedule::where('clinic_id', $request->clinic_id)
+                ->where('service_type', $request->service_type)
+                ->where('day_of_week', $request->day_of_week)
+                ->first();
 
-        // Nếu có truyền day_of_week cụ thể
-        if ($request->has('day_of_week') && !is_null($request->day_of_week)) {
-            $query->where('day_of_week', $request->day_of_week);
-        }
+            if (!$schedule) {
+                return response()->json([
+                    'status'  => 'error',
+                    'message' => 'Không tìm thấy cấu hình lịch cho ngày và dịch vụ này!'
+                ], 404);
+            }
 
-        // Cập nhật trạng thái is_active
-        $updatedRows = $query->update([
-            'is_active' => $request->is_active
-        ]);
+            $schedule->update([
+                'is_active' => $request->is_active
+            ]);
 
-        $statusText = $request->is_active ? 'Khôi phục/Mở' : 'Khóa/Block';
+            $actionText = $request->is_active ? 'mở' : 'khóa';
 
-        if ($updatedRows === 0) {
+            // 2. Nếu Khóa (is_active = 0): Hủy/chặn các lịch đặt hiện tại trong các ngày tương ứng tới đây (30 ngày tới)
+            if (!$request->is_active) {
+                // Lấy danh sách các ngày trong 30 ngày tới rơi vào day_of_week này
+                $affectedDates = [];
+                $today = Carbon::today();
+                for ($i = 0; $i < 30; $i++) {
+                    $date = $today->copy()->addDays($i);
+                    if ($date->dayOfWeek === (int)$request->day_of_week) {
+                        $affectedDates[] = $date->format('Y-m-d');
+                    }
+                }
+
+                // Cập nhật các cuộc hẹn đã đặt trong các ngày bị khóa thành 'cancelled'
+                Appointment::where('clinic_id', $request->clinic_id)
+                    ->where('service_type', $request->service_type)
+                    ->whereIn('appointment_date', $affectedDates)
+                    ->whereIn('status', ['pending', 'confirmed'])
+                    ->update([
+                        'status' => 'cancelled'
+                    ]);
+            }
+
             return response()->json([
-                'status' => 'error',
-                'message' => 'Không tìm thấy cấu hình lịch phù hợp để cập nhật!'
-            ], 404);
-        }
-
-        return response()->json([
-            'status' => 'success',
-            'message' => "Đã {$statusText} lịch làm việc thành công!",
-            'affected_rows' => $updatedRows
-        ]);
+                'status'  => 'success',
+                'message' => "Đã {$actionText} lịch làm việc cho dịch vụ {$request->service_type} thành công!"
+            ]);
+        });
     }
 }

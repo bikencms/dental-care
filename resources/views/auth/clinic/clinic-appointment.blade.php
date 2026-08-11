@@ -40,20 +40,17 @@
             <div class="modal-body">
                 <form id="blockForm">
                     <input type="hidden" id="clinic_id" name="clinic_id" value="{{ $clinicId ?? 1 }}">
+                    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()?->id ?? 0 }}">
                     <input type="hidden" id="block_service_type" name="service_type">
-                    <input type="hidden" id="block_day_of_week" name="day_of_week">
+                    <input type="hidden" id="patient_name" name="patient_name" value="{{ auth()->user()?->name }}">
+                    <input type="hidden" id="patient_email" name="patient_email" value="{{ auth()->user()?->email }}">
+                    <input type="hidden" id="patient_phone" name="patient_phone" value="0933333333">
+                    <input type="hidden" id="appointment_date" name="appointment_date" value="">
+                    <input type="hidden" id="start_time" name="start_time" value="">
 
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Thông tin ngày chọn:</label>
                         <div id="block_day_display" class="p-2 bg-light border rounded text-danger fw-bold"></div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Hành động:</label>
-                        <select name="is_active" id="block_is_active" class="form-select">
-                            <option value="0">🔒 Khóa/Tắt Lịch (is_active = 0)</option>
-                            <option value="1">🟢 Mở/Bật Lịch (is_active = 1)</option>
-                        </select>
                     </div>
 
                     <div class="mb-3">
@@ -128,6 +125,21 @@ document.addEventListener('DOMContentLoaded', function () {
             const dayName = daysOfWeekNames[dayOfWeek];
             const serviceName = selectedService === 'implant' ? 'Trồng Răng Implant' : 'Dán Sứ Veneers';
 
+            const hours = String(startDate.getHours()).padStart(2, '0');
+            const minutes = String(startDate.getMinutes()).padStart(2, '0');
+            const seconds = String(startDate.getSeconds()).padStart(2, '0');
+            const timeSt = String = `${hours}:${minutes}:${seconds}`; 
+
+
+            const year = startDate.getFullYear();
+            // getMonth() trả về từ 0-11 nên phải +1
+            const month = String(startDate.getMonth() + 1).padStart(2, '0'); 
+            const day = String(startDate.getDate()).padStart(2, '0');
+            const dateFormat = `${year}-${month}-${day}`; // Kết quả: "2026-08-11"
+
+            $('#appointment_date').val(dateFormat);
+            $('#start_time').val(timeString);
+
             $('#block_day_display').html(`
                 Dịch vụ: <strong>${serviceName}</strong><br>
                 Ngày: <strong>${dayName} (${dateStr})</strong><br>
@@ -158,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
 
         $.ajax({
-            url: '/api/v1/schedules/toggle-block',
+            url: '/api/booking',
             type: 'POST',
             data: $(this).serialize(),
             headers: {
