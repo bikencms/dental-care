@@ -1120,7 +1120,7 @@ header.main-header .header-sticky.active{
 	left: 20px;
 	right: 20px;
 	bottom: 20px;
-	background: var(--divider-color);
+	background: var(--accent-color);
 	backdrop-filter: blur(30px);
 	-webkit-backdrop-filter: blur(30px);
 	border-radius: 20px;
