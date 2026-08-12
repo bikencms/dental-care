@@ -60,12 +60,21 @@
             </div>
 
             <!-- Call to Action -->
-            <div class="d-flex gap-2 pt-2 border-top">
+            <div class="d-flex gap-2 pt-2 border-top align-items-center flex-wrap">
+                <!-- Nút Đặt lịch khám (Cho khách hàng) -->
                 <a href="#booking-form" class="btn btn-primary px-4 fw-semibold">
                     <i class="far fa-calendar-check me-2"></i>Book Appointment
                 </a>
+
+                <!-- Nút Gọi điện -->
                 <a href="tel:{{ $clinic->phone ?? '+84799108727' }}" class="btn btn-outline-secondary px-3">
                     <i class="fas fa-phone-alt me-1"></i> Call Clinic
+                </a>
+
+                <!-- Nút Cấu hình lịch cố định (Dành cho Admin/Quản lý) -->
+                <a href="{{ route('dashboard.clinic.recurring.index', ['id' => $clinic->id]) }}" 
+                class="btn btn-outline-primary px-3 fw-semibold">
+                    <i class="fas fa-clock me-1"></i> Cấu hình lịch khám
                 </a>
             </div>
         </div>

@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\ClinicBookingApiController;
 use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\ClinicController;
+use App\Http\Controllers\Api\ClinicScheduleController;
+use App\Http\Controllers\Api\ScheduleController;
 
 Route::post('/contacts', [ContactController::class, 'store']);
 Route::prefix('v1')->group(function () {
@@ -39,6 +41,31 @@ Route::prefix('v1')->group(function () {
 
     Route::post('/holidays', [AppointmentController::class, 'storeHoliday'])
         ->name('holidays.store');
+
+    // Đổi khung giờ cho 1 ngày cụ thể (VD: 5/1 mở 10h-18h)
+    Route::post('/set-custom-time', [ClinicScheduleController::class, 'setCustomDayTime']);
+    
+    // Block khoảng giờ (VD: 5/1 khóa 13h-15h)
+    Route::post('/block-time', [ClinicScheduleController::class, 'blockTimeSlot']);
+    
+    // Lấy danh sách overrides cho Calendar
+    Route::get('/overrides', [ClinicScheduleController::class, 'getOverrides']);
+
+    Route::get('/clinic/{id}/get-by-service', [ClinicScheduleController::class, 'getScheduleByService'])
+    ->name('clinic.recurring.by_service');
+
+
+    // Đổi khung giờ cho 1 ngày cụ thể (VD: 5/1 mở 10h-18h)
+    Route::post('/set-custom-time', [ScheduleController::class, 'setCustomDayTime']);
+    
+    // Block khoảng giờ (VD: 5/1 khóa 13h-15h)
+    Route::post('/block-time', [ScheduleController::class, 'blockTimeSlot']);
+    
+    // Gỡ Block / Xóa tùy chỉnh ngày
+    Route::delete('/overrides/{id}', [ScheduleController::class, 'destroy']);
+    
+    // Lấy danh sách overrides cho Calendar
+    Route::get('/overrides', [ScheduleController::class, 'getOverrides']);
 
 });
 Route::post('/booking', [AppointmentController::class, 'store']);

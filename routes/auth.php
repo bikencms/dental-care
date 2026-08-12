@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\ClinicController;
 use App\Http\Controllers\Auth\MyClinicController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ClinicScheduleRegistrationController;
 
 Route::middleware('guest')->group(function () {
     // Route::get('register', [RegisteredUserController::class, 'create'])
@@ -75,6 +76,17 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         Route::get('/clinic', [ClinicController::class, 'index'])->name('dashboard.clinic.list');
         Route::get('/clinic/{id}', [ClinicController::class, 'show'])->name('dashboard.clinic.show');
         Route::post('/clinic', [ClinicController::class, 'store'])->name('dashboard.clinic.store');
+
+         // Trang hiển thị form đăng ký khung giờ theo clinic_id
+        Route::get('/clinic/{id}/recurring', [ClinicScheduleRegistrationController::class, 'index'])
+            ->name('dashboard.clinic.recurring.index');
+
+        // Xử lý lưu lịch cố định áp dụng tháng này & tháng sau theo clinic_id
+        Route::post('/clinic/{id}/recurring', [ClinicScheduleRegistrationController::class, 'store'])
+            ->name('dashboard.clinic.recurring.store');
+
+        // Giao diện Admin quản lý đặt lịch & ngày nghỉ
+        Route::get('/clinic/{id}/booking-schedule', [ClinicScheduleRegistrationController::class, 'schedule'])->name('dashboard.clinic.book-appointment');
     });
 
     // ==========================================
@@ -100,7 +112,6 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         Route::post('/holidays', [ClinicController::class, 'storeHoliday'])
             ->name('holidays.store');
 
-
         // 2. Quản lý Khung giờ làm việc cố định (Clinic Schedules)
         // Lấy cấu hình khung giờ theo phòng khám & dịch vụ
         Route::get('/schedules', [ClinicController::class, 'index'])
@@ -109,11 +120,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         // Lưu / Cập nhật cấu hình khung giờ làm việc
         Route::post('/schedules', [ClinicController::class, 'storeOrUpdate'])
             ->name('schedules.store');
-
-        // Giao diện Admin quản lý đặt lịch & ngày nghỉ
-        Route::get('/{id}/booking-appointment', [ClinicController::class, 'bookingAppointment'])->name('clinic.clinic-appointment');
     });
 });
 
 Route::get('/preview/{id}', [ClinicController::class, 'preview'])->name('locale.my-clinic.preview');
-

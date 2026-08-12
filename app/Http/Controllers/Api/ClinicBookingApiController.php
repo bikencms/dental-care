@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use App\Models\ClinicScheduleOverride;
 
 class ClinicBookingApiController extends Controller
 {
@@ -287,102 +288,195 @@ class ClinicBookingApiController extends Controller
 
     public function getAvailableSlots2(Request $request)
     {
-        $clinicId = $request->query('clinic_id');
-        $serviceType = $request->query('service_type'); // 'implant' hoặc 'veneers'
-        $startDate = Carbon::parse($request->query('start'));
-        $endDate = Carbon::parse($request->query('end'));
-
-        $events = [];
-        $period = CarbonPeriod::create($startDate, $endDate);
-
-        // 1. Lấy tất cả Cấu hình Lịch theo dịch vụ
-        $schedules = ClinicSchedule::where('clinic_id', $clinicId)
-            ->where('service_type', $serviceType)
-            ->where('is_active', true)
-            ->get()
-            ->keyBy('day_of_week');
-
-        // 2. Lấy tất cả Lịch nghỉ trong khoảng thời gian này
-        $holidays = ClinicHoliday::where('clinic_id', $clinicId)
-            ->whereBetween('holiday_date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
-            ->where(function ($query) use ($serviceType) {
-                $query->whereNull('service_type')->orWhere('service_type', $serviceType);
-            })
-            ->get()
-            ->keyBy('holiday_date');
-
-        // 3. Lấy tất cả Đặt lịch thực tế
-        $appointments = Appointment::where('clinic_id', $clinicId)
-            ->where('service_type', $serviceType)
-            ->whereIn('status', ['pending', 'confirmed'])
-            ->whereBetween('appointment_date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
-            ->get();
-
-        // 4. Duyệt qua từng ngày để sinh ra các Khung giờ (Slots)
-        foreach ($period as $date) {
-            $dateStr = $date->format('Y-m-d');
-            $dayOfWeek = $date->dayOfWeek; // 0: Chủ nhật, 1: Thứ 2,...
-
-            // Kiểm tra xem ngày này có phải Ngày nghỉ Holiday không
-            if (isset($holidays[$dateStr])) {
-                $events[] = [
-                    'title' => '🔒 [NGHỈ LỄ] ' . ($holidays[$dateStr]->title ?? ''),
-                    'start' => $dateStr . 'T00:00:00',
-                    'end' => $dateStr . 'T23:59:59',
-                    'display' => 'background',
-                    'backgroundColor' => '#ffc107',
-                    'extendedProps' => ['is_blocked' => true]
-                ];
-                continue; // Bỏ qua không chia slot cho ngày nghỉ
+        try {
+            $clinicId = $request->query('clinic_id');
+            $serviceType = $request->query('service_type');
+            
+            if (!$clinicId || !$serviceType || !$request->query('start') || !$request->query('end')) {
+                return response()->json(['error' => 'Thiếu tham số đầu vào'], 400);
             }
 
-            // Nếu ngày này có cấu hình làm việc
-            if (isset($schedules[$dayOfWeek])) {
-                $schedule = $schedules[$dayOfWeek];
-                $startTime = Carbon::parse($dateStr . ' ' . $schedule->start_time);
-                $endTime = Carbon::parse($dateStr . ' ' . $schedule->end_time);
-                $slotDuration = $schedule->slot_duration_minutes;
-                $maxPatients = $schedule->max_patients_per_slot;
+            $startDate = Carbon::parse($request->query('start'));
+            $endDate = Carbon::parse($request->query('end'));
 
-                // Chia nhỏ khung giờ theo slot_duration_minutes
-                while ($startTime->lt($endTime)) {
-                    $slotStartStr = $startTime->format('Y-m-d H:i:s');
-                    $slotEnd = (clone $startTime)->addMinutes($slotDuration);
-                    $slotEndStr = $slotEnd->format('Y-m-d H:i:s');
+            $events = [];
+            $period = CarbonPeriod::create($startDate, $endDate);
 
-                    if ($slotEnd->gt($endTime)) break;
+            // 1. Cấu hình định kỳ hàng tuần
+            $schedules = ClinicSchedule::where('clinic_id', $clinicId)
+                ->where('service_type', $serviceType)
+                ->where('is_active', true)
+                ->get()
+                ->keyBy('day_of_week');
 
-                    // Đếm số lượng khách đã đặt slot này
-                    $bookedCount = $appointments->where('appointment_date', $dateStr)
-                        ->where('start_time', $startTime->format('H:i:s'))
-                        ->count();
+            // 2. Lịch nghỉ lễ/tết
+            $holidays = ClinicHoliday::where('clinic_id', $clinicId)
+                ->whereBetween('holiday_date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
+                ->where(function ($query) use ($serviceType) {
+                    $query->whereNull('service_type')->orWhere('service_type', $serviceType);
+                })
+                ->get()
+                ->keyBy('holiday_date');
 
-                    $isFull = $bookedCount >= $maxPatients;
+            // 2.5. Lịch Ghi Đè (Overrides) - Group theo ngày
+            $overridesGrouped = ClinicScheduleOverride::where('clinic_id', $clinicId)
+                ->where('service_type', $serviceType)
+                ->whereBetween('override_date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
+                ->get()
+                ->groupBy('override_date');
 
+            // 3. Đặt lịch thực tế
+            $appointments = Appointment::where('clinic_id', $clinicId)
+                ->where('service_type', $serviceType)
+                ->whereIn('status', ['pending', 'confirmed'])
+                ->whereBetween('appointment_date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
+                ->get();
+
+            // 4. Duyệt qua từng ngày
+            foreach ($period as $date) {
+                $dateStr = $date->format('Y-m-d');
+                $dayOfWeek = $date->dayOfWeek;
+
+                // 🟢 ƯU TIÊN 1: Lịch Nghỉ Lễ
+                if (isset($holidays[$dateStr])) {
                     $events[] = [
-                        'title' => $isFull ? "❌ Đã kín ($bookedCount/$maxPatients)" : "🟢 Còn chỗ ($bookedCount/$maxPatients)",
-                        'start' => $startTime->toIso8601String(),
-                        'end' => $slotEnd->toIso8601String(),
-                        'backgroundColor' => $isFull ? '#dc3545' : '#198754',
-                        'borderColor' => $isFull ? '#dc3545' : '#198754',
+                        'id' => 'holiday_' . $holidays[$dateStr]->id,
+                        'title' => '🔒 [NGHỈ LỄ] ' . ($holidays[$dateStr]->title ?? ''),
+                        'start' => $dateStr . 'T00:00:00',
+                        'end' => $dateStr . 'T23:59:59',
+                        'display' => 'background',
+                        'backgroundColor' => '#ffc107',
                         'extendedProps' => [
-                            'is_full' => $isFull,
-                            'booked_count' => $bookedCount,
-                            'max_patients' => $maxPatients,
-                            'slot_start' => $startTime->format('H:i:s'),
-                            'slot_end' => $slotEnd->format('H:i:s'),
-                            'appointment_date' => $dateStr
+                            'is_blocked' => true,
+                            'override_id' => null,
+                            'holiday_id' => $holidays[$dateStr]->id
                         ]
                     ];
+                    continue;
+                }
 
-                    $startTime->addMinutes($slotDuration);
+                $dayOverrides = $overridesGrouped->get($dateStr, collect());
+
+                // 🟢 ƯU TIÊN 2: Khóa Nguyên Ngày (start_time là NULL)
+                $fullDayBlock = $dayOverrides->first(function ($item) {
+                    return $item->override_type === 'blocked' && empty($item->start_time);
+                });
+
+                if ($fullDayBlock) {
+                    $events[] = [
+                        'id' => 'override_' . $fullDayBlock->id,
+                        'title' => '🔒 [KHÓA CẢ NGÀY] ' . ($fullDayBlock->reason ?? 'Khóa lịch Admin'),
+                        'start' => $dateStr . 'T00:00:00',
+                        'end' => $dateStr . 'T23:59:59',
+                        'display' => 'background',
+                        'backgroundColor' => '#6c757d',
+                        'extendedProps' => [
+                            'is_blocked' => true,
+                            'override_id' => $fullDayBlock->id, // 🔑 ID khóa cả ngày
+                            'blocked_reason' => $fullDayBlock->reason ?? 'Khóa cả ngày'
+                        ]
+                    ];
+                    continue;
+                }
+
+                // 🟢 ƯU TIÊN 3: Xác định khung giờ làm việc
+                $customTimeOverride = $dayOverrides->firstWhere('override_type', 'custom_time');
+                $scheduleToUse = $customTimeOverride ?? ($schedules[$dayOfWeek] ?? null);
+
+                if ($scheduleToUse && !empty($scheduleToUse->start_time) && !empty($scheduleToUse->end_time)) {
+                    $startTime = Carbon::parse($dateStr . ' ' . $scheduleToUse->start_time);
+                    $endTime = Carbon::parse($dateStr . ' ' . $scheduleToUse->end_time);
+
+                    $defaultSchedule = $schedules[$dayOfWeek] ?? null;
+                    $slotDuration = (int) ($scheduleToUse->slot_duration_minutes ?? $defaultSchedule->slot_duration_minutes ?? 30);
+                    $maxPatients = (int) ($scheduleToUse->max_patients_per_slot ?? $defaultSchedule->max_patients_per_slot ?? 1);
+
+                    if ($slotDuration <= 0) continue;
+
+                    // Lấy danh sách các bản ghi bị Block theo giờ trong ngày
+                    $blockedSlots = $dayOverrides->filter(function ($item) {
+                        return $item->override_type === 'blocked' && !empty($item->start_time);
+                    });
+
+                    while ($startTime->lt($endTime)) {
+                        $slotEnd = $startTime->clone()->addMinutes($slotDuration);
+                        if ($slotEnd->gt($endTime)) break;
+
+                        $slotStartFormatted = $startTime->format('H:i:s');
+                        $slotEndFormatted = $slotEnd->format('H:i:s');
+
+                        // Tìm bản ghi block khớp với slot này (nếu có)
+                        $matchedBlock = $blockedSlots->first(function ($blocked) use ($slotStartFormatted, $slotEndFormatted) {
+                            // Khớp chính xác start_time hoặc nằm trong khoảng block
+                            return $blocked->start_time === $slotStartFormatted || 
+                                ($blocked->start_time <= $slotStartFormatted && $blocked->end_time >= $slotEndFormatted);
+                        });
+
+                        if ($matchedBlock) {
+                            // Hiển thị khung giờ bị block cụ thể
+                            $timeDisplay = Carbon::parse($matchedBlock->start_time)->format('H:i') . ' - ' . Carbon::parse($matchedBlock->end_time)->format('H:i');
+                            $reason = $matchedBlock->reason ?? 'Đã khóa';
+
+                            $events[] = [
+                                'id' => 'override_' . $matchedBlock->id,
+                                'title' => "🔒 [$timeDisplay] $reason",
+                                'start' => $startTime->toIso8601String(),
+                                'end' => $slotEnd->toIso8601String(),
+                                'backgroundColor' => '#6c757d', // Màu xám khóa
+                                'borderColor' => '#5a6268',
+                                'extendedProps' => [
+                                    'is_blocked' => true,
+                                    'override_id' => $matchedBlock->id, // 🔑 ID của bản ghi clinic_schedule_overrides
+                                    'blocked_reason' => $reason,
+                                    'slot_start' => $slotStartFormatted,
+                                    'slot_end' => $slotEndFormatted,
+                                    'appointment_date' => $dateStr,
+                                ]
+                            ];
+                        } else {
+                            // Slot mở bình thường
+                            $bookedCount = $appointments->where('appointment_date', $dateStr)
+                                ->where('start_time', $slotStartFormatted)
+                                ->count();
+
+                            $isFull = $bookedCount >= $maxPatients;
+
+                            $events[] = [
+                                'id' => 'slot_' . $dateStr . '_' . $startTime->format('Hi'),
+                                'title' => $isFull ? "❌ Đã kín ($bookedCount/$maxPatients)" : "🟢 Còn chỗ ($bookedCount/$maxPatients)",
+                                'start' => $startTime->toIso8601String(),
+                                'end' => $slotEnd->toIso8601String(),
+                                'backgroundColor' => $isFull ? '#dc3545' : '#198754',
+                                'borderColor' => $isFull ? '#dc3545' : '#198754',
+                                'extendedProps' => [
+                                    'is_blocked' => false,
+                                    'override_id' => null, // Slot mở không có ID override
+                                    'is_full' => $isFull,
+                                    'booked_count' => $bookedCount,
+                                    'max_patients' => $maxPatients,
+                                    'slot_start' => $slotStartFormatted,
+                                    'slot_end' => $slotEndFormatted,
+                                    'appointment_date' => $dateStr,
+                                    'is_override' => $dayOverrides->isNotEmpty()
+                                ]
+                            ];
+                        }
+
+                        $startTime->addMinutes($slotDuration);
+                    }
                 }
             }
+
+            return response()->json($events);
+
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Lỗi hệ thống: ' . $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile()
+            ], 500);
         }
-
-        return response()->json($events);
     }
-
     // Lấy danh sách khung giờ cho FullCalendar
     public function getEvents(Request $request)
     {
