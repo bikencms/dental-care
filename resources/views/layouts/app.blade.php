@@ -173,21 +173,21 @@
 </main>
 
     <!-- Core -->
-<script src="../../vendor/@popperjs/core/dist/umd/popper.min.js"></script>
-<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{ asset('vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
 <!-- Vendor JS -->
-<script src="../../vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script src="{{ asset('vendor/onscreen/dist/on-screen.umd.min.js') }}"></script>
 
 <!-- Smooth scroll -->
-<script src="../../vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="{{ asset('vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
 
 <!-- Charts -->
-<script src="../../vendor/chartist/dist/chartist.min.js"></script>
-<script src="../../vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script src="{{ asset('vendor/chartist/dist/chartist.min.js') }}"></script>
+<script src="{{ asset('vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
 
 <!-- Datepicker -->
-<script src="../../vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+<script src="{{ asset('vendor/vanillajs-datepicker/dist/js/datepicker.min.js') }}"></script>
 
 <!-- Sweet Alerts 2 -->
 <script src="{{ asset('vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>

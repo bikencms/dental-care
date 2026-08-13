@@ -90,7 +90,33 @@ class ClinicController extends Controller
             }
         }
 
-        return view('auth.clinic.clinic-show', compact('clinic', 'services', 'existingSchedules'));
+
+        $clinicId = $id;
+
+        $currentMonth = Carbon::now()->format('m/Y');
+        $nextMonth = Carbon::now()->addMonth()->format('m/Y');
+
+        // Lấy danh sách lịch đã lưu của phòng khám
+        $schedules = ClinicSchedule::where('clinic_id', $clinicId)
+            ->get()
+            ->groupBy('day_of_week');
+
+        // Lấy cấu hình chung (thời lượng slot & số bệnh nhân) từ bản ghi đầu tiên nếu có
+        $firstSchedule = ClinicSchedule::where('clinic_id', $clinicId)->first();
+        $currentDuration = $firstSchedule ? $firstSchedule->slot_duration_minutes : 30;
+        $currentMaxPatients = $firstSchedule ? $firstSchedule->max_patients_per_slot : 1;
+        $currentServiceType = $firstSchedule ? $firstSchedule->service_type : 'implant';
+
+        return view('auth.clinic.clinic-show', 
+        compact('clinic', 'services', 'existingSchedules',
+            'clinicId', 
+            'schedules', 
+            'currentMonth', 
+            'nextMonth',
+            'currentDuration',
+            'currentMaxPatients',
+            'currentServiceType'
+        ));
     }
 
     public function store(Request $request)

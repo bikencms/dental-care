@@ -98,7 +98,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const rawPassword = "{{ $clinic->user?->plain_password ?? $clinic->password_raw ?? 'Secret@123' }}";
+    const rawPassword = "{!! $clinic->user?->plain_password ?? $clinic->password_raw ?? 'Secret@123' !!}";
     const pwTextEl = document.getElementById('account-password-text');
     const btnToggle = document.getElementById('btn-toggle-view-password');
     const iconOpen = document.getElementById('icon-eye-open');
