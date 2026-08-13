@@ -1,8 +1,5 @@
 <div class="card border-0 shadow-sm rounded-3 p-4 mb-4">
     <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-        <h4 class="fw-bold text-dark mb-0">
-            <i class="fas fa-list-check text-primary me-2"></i>Procedures & Treatments
-        </h4>
         <button type="button" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#addProcedureModal">
             <i class="fas fa-plus fs-7"></i> Add Procedure
         </button>

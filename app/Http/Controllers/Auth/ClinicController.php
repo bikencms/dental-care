@@ -218,6 +218,12 @@ class ClinicController extends Controller
     public function publish($id)
     {
         $clinic = Clinic::findOrFail($id);
+
+        // Kiểm tra xem phòng khám đã cấu hình lịch khám (clinic_schedules) chưa
+        if (!$clinic->schedules()->exists()) {
+            return redirect()->back()->with('error', 'Không thể xuất bản! Phòng khám chưa được thiết lập lịch khám.');
+        }
+
         $clinic->update(['is_published' => true]);
 
         return redirect()->back()->with('success', 'Đã xuất bản (Public) phòng khám thành công!');

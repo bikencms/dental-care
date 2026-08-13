@@ -4,6 +4,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 @endif
+{{-- Hiển thị thông báo lỗi --}}
+@if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show shadow-sm mb-3" role="alert">
+        <i class="fas fa-exclamation-triangle me-2"></i> {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 <div class="d-flex gap-2 pt-4 border-top align-items-center flex-wrap">
     <!-- Nút Cấu hình lịch cố định (To, nổi bật, mở Modal) -->
     <button type="button" 

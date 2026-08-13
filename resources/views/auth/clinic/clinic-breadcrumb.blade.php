@@ -45,7 +45,9 @@
                     <form action="{{ route('my-clinic.publish', $clinic->id) }}" method="POST" class="d-inline-flex align-items-center m-0">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" class="btn btn-sm btn-success text-white fw-bold d-inline-flex align-items-center px-3 shadow-sm btn-publish">
+                        <button type="submit" class="btn btn-sm btn-success text-white fw-bold d-inline-flex align-items-center px-3 shadow-sm btn-publish"
+                            onclick="return confirm('Tôi xác nhận tất cả thông tin trên là chính xác và hoàn toàn chịu trách nhiệm. ');"
+                        >
                             <svg class="icon icon-xs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>

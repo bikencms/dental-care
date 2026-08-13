@@ -105,4 +105,9 @@ class Clinic extends Model
             'user_id'          // Khóa ngoại trên bảng clinic_user
         );
     }
+
+    public function schedules()
+    {
+        return $this->hasMany(ClinicSchedule::class, 'clinic_id');
+    }
 }
