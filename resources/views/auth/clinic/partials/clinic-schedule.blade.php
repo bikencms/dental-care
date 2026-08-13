@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
     <style>
         .fc-event { cursor: pointer; }
-        /* Tùy chỉnh làm mờ nhẹ các ngày trong quá khứ */
         .fc-day-past {
             background-color: #f8f9fa !important;
             opacity: 0.8;
@@ -24,7 +23,6 @@
             <p class="text-muted small mb-0">Chỉ cho phép thao tác khóa / mở khóa lịch từ ngày hiện tại trở về sau</p>
         </div>
         
-        <!-- Bộ lọc Dịch Vụ & Phòng Khám -->
         <div class="d-flex align-items-center gap-3">
             <input type="hidden" id="clinic_id" value="{{ $clinicId ?? 1 }}">
             <div class="d-flex align-items-center gap-2">
@@ -37,7 +35,6 @@
         </div>
     </div>
 
-    <!-- Calendar Element -->
     <div id="adminCalendar"></div>
 </div>
 
@@ -54,16 +51,15 @@
                     <input type="hidden" id="modal_clinic_id" name="clinic_id">
                     <input type="hidden" id="modal_service_type" name="service_type">
 
-                    <!-- Loại hành động -->
                     <div class="mb-3">
                         <label class="form-label fw-bold">Loại hành động:</label>
                         <select id="action_type" class="form-select fw-semibold border-danger">
                             <option value="block">🔒 Khóa khung giờ (Block Time)</option>
                             <option value="custom_time">⏰ Đổi khung giờ làm việc riêng trong ngày</option>
+                            <option value="unblock_full_day">🔓 Mở khóa nguyên ngày (Unblock Full Day)</option>
                         </select>
                     </div>
 
-                    <!-- Chọn Khoảng Ngày áp dụng -->
                     <div class="row g-2 mb-3">
                         <div class="col-6">
                             <label class="form-label small fw-semibold">Từ ngày:</label>
@@ -75,13 +71,11 @@
                         </div>
                     </div>
 
-                    <!-- Thông tin ngày/giờ được chọn -->
                     <div class="mb-3 p-3 bg-light border rounded">
                         <div class="text-secondary small mb-1">Thời gian đã chọn:</div>
                         <div id="selected_info_display" class="fw-bold text-danger"></div>
                     </div>
 
-                    <!-- Khóa cả ngày checkbox -->
                     <div class="form-check mb-3" id="full_day_container">
                         <input class="form-check-input" type="checkbox" id="is_full_day" name="is_full_day" value="1">
                         <label class="form-check-label fw-semibold" for="is_full_day">
@@ -89,7 +83,6 @@
                         </label>
                     </div>
 
-                    <!-- Giờ bắt đầu & Kết thúc -->
                     <div class="row g-2 mb-3" id="time_range_container">
                         <div class="col-6">
                             <label class="form-label small fw-semibold">Giờ Bắt Đầu:</label>
@@ -101,8 +94,7 @@
                         </div>
                     </div>
 
-                    <!-- Ghi chú lý do -->
-                    <div class="mb-3">
+                    <div class="mb-3" id="reason_container">
                         <label class="form-label fw-semibold">Lý do (Bảo trì, Bận, Đổi ca...)</label>
                         <input type="text" id="reason" name="reason" class="form-control" placeholder="Ví dụ: Bận họp / Bảo trì phòng khám">
                     </div>
@@ -127,7 +119,6 @@
                 <p><strong>Khung giờ:</strong> <span id="unblock_time"></span></p>
                 <p><strong>Lý do khóa:</strong> <span id="unblock_reason" class="text-danger fw-bold"></span></p>
                 
-                <!-- Lưu trữ override_id để xóa -->
                 <input type="hidden" id="unblock_override_id">
                 <input type="hidden" id="unblock_slot_start">
                 <input type="hidden" id="unblock_slot_end">
@@ -150,11 +141,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const overrideModal = new bootstrap.Modal(document.getElementById('overrideModal'));
     const unblockModal = new bootstrap.Modal(document.getElementById('unblockModal'));
 
-    // Lấy mốc đầu ngày hôm nay (00:00:00) để so sánh chuẩn xác
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // Format ngày YYYY-MM-DD
     const formatYMD = (d) => {
         const y = d.getFullYear();
         const m = String(d.getMonth() + 1).padStart(2, '0');
@@ -163,11 +152,8 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const todayStr = formatYMD(today);
-
-    // Đặt hạn chế tối thiểu (min date) cho ô input chọn ngày
     $('#modal_override_date, #modal_end_date').attr('min', todayStr);
 
-    // Khởi tạo FullCalendar
     const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'timeGridWeek',
         timeZone: 'local',
@@ -183,12 +169,10 @@ document.addEventListener('DOMContentLoaded', function () {
         selectable: true,
         selectOverlap: true,
         
-        // 🔒 CẤM QUÉT CHỌN CÁC NGÀY TRONG QUÁ KHỨ
         selectAllow: function(selectInfo) {
             return selectInfo.start >= today;
         },
 
-        // Tải slots và các khung giờ đã bị khóa lên Calendar
         events: function(fetchInfo, successCallback, failureCallback) {
             const startDate = fetchInfo.startStr.split('T')[0];
             const endDate = fetchInfo.endStr.split('T')[0];
@@ -203,7 +187,26 @@ document.addEventListener('DOMContentLoaded', function () {
                     end: endDate
                 },
                 success: function(response) {
-                    successCallback(response);
+                    // 🔥 XỬ LÝ FIX LỖI KHÓA NGUYÊN NGÀY:
+                    // Chuyển đổi các event khóa nguyên ngày để phủ full khung thời gian làm việc (07:00 - 23:00)
+                    const formattedEvents = response.map(evt => {
+                        const props = evt.extendedProps || {};
+                        
+                        // Nếu là khóa nguyên ngày hoặc không có khung giờ cụ thể
+                        if (props.is_blocked && (props.is_full_day || !props.slot_start)) {
+                            const dateStr = props.appointment_date || (evt.start ? evt.start.split('T')[0] : '');
+                            
+                            return {
+                                ...evt,
+                                allDay: false, // Bắt buộc false để render vừa vặn vào lưới timeGrid
+                                start: `${dateStr}T07:00:00`,
+                                end: `${dateStr}T23:00:00`
+                            };
+                        }
+                        return evt;
+                    });
+
+                    successCallback(formattedEvents);
                 },
                 error: function() {
                     failureCallback();
@@ -211,11 +214,9 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         },
 
-        // 🟢 1. Khi nhấp trực tiếp vào một Event/Slot
         eventClick: function(info) {
             const startDateObj = info.event.start;
             
-            // 🛑 Kiểm tra: Nếu slot nằm ở ngày trong quá khứ -> Không cho phép thao tác
             if (startDateObj < today) {
                 alert('Không thể thao tác (Khóa/Mở khóa) trên các ngày đã qua trong quá khứ!');
                 return;
@@ -224,33 +225,33 @@ document.addEventListener('DOMContentLoaded', function () {
             const props = info.event.extendedProps;
             const endDateObj = info.event.end;
 
-            // Nếu nhấp vào Slot đã bị Block trong hiện tại/tương lai -> Hiển thị Modal Unblock (Mở khóa)
             if (props && props.is_blocked) {
-                // Kiểm tra nếu là lịch nghỉ lễ (không cho unblock bằng override_id)
                 if (props.holiday_id) {
                     alert('Đây là lịch nghỉ lễ chung, không thể hủy khóa tại đây!');
                     return;
                 }
 
                 const dateStr = props.appointment_date || startDateObj.toISOString().split('T')[0];
+                
+                // Hiển thị nhãn thời gian rõ ràng nếu là Nguyên Ngày
+                const isFullDay = props.is_full_day || (!props.slot_start && !props.slot_end);
+                const timeDisplay = isFullDay ? '🔒 NGUYÊN NGÀY (07:00 - 23:00)' : `${props.slot_start} -${props.slot_end}`;
+
                 $('#unblock_date').text(dateStr);
-                $('#unblock_time').text(props.slot_start && props.slot_end ? `${props.slot_start} - ${props.slot_end}` : 'Cả ngày');
+                $('#unblock_time').text(timeDisplay);
                 $('#unblock_reason').text(props.blocked_reason || info.event.title);
                 
-                // 🔑 Lưu trữ override_id
                 $('#unblock_override_id').val(props.override_id || '');
-                $('#unblock_slot_start').val(dateStr + ' ' + (props.slot_start || '00:00:00'));
-                $('#unblock_slot_end').val(dateStr + ' ' + (props.slot_end || '23:59:59'));
+                $('#unblock_slot_start').val(dateStr + ' ' + (props.slot_start || '07:00:00'));
+                $('#unblock_slot_end').val(dateStr + ' ' + (props.slot_end || '23:00:00'));
                 
                 unblockModal.show();
                 return;
             }
 
-            // Nếu nhấp vào Slot Còn Chỗ / Khả dụng -> Mở Modal Khóa đúng Slot này
             openModalWithRange(startDateObj, endDateObj);
         },
 
-        // 🟢 2. Khi Admin quét chọn 1 khoảng giờ/ngày
         select: function (info) {
             if (info.start < today) {
                 alert('Vui lòng chỉ chọn từ ngày hiện tại trở về sau!');
@@ -263,7 +264,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     calendar.render();
 
-    // Hàm hỗ trợ mở Modal & Điền sẵn dữ liệu ngày giờ
     function openModalWithRange(startDateObj, endDateObj) {
         const startDateStr = formatYMD(startDateObj);
         
@@ -273,11 +273,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         const endDateStr = formatYMD(tempEndDate);
 
-        // Format Giờ H:i
         const startTimeStr = String(startDateObj.getHours()).padStart(2, '0') + ':' + String(startDateObj.getMinutes()).padStart(2, '0');
         const endTimeStr = String(endDateObj.getHours()).padStart(2, '0') + ':' + String(endDateObj.getMinutes()).padStart(2, '0');
 
-        // Set Form Data
         $('#modal_clinic_id').val($('#clinic_id').val());
         $('#modal_service_type').val($('#service_type_filter').val());
         $('#modal_override_date').val(startDateStr);
@@ -287,19 +285,17 @@ document.addEventListener('DOMContentLoaded', function () {
         $('#is_full_day').prop('checked', false);
         $('#time_range_container').show();
 
-        // Hiển thị thông tin trực quan
         const serviceText = $('#service_type_filter').val() === 'implant' ? 'Trồng Răng Implant' : 'Dán Sứ Veneers';
 
         $('#selected_info_display').html(`
             Dịch vụ: <strong>${serviceText}</strong><br>
-            Khoảng ngày: <strong>${startDateStr} ${startDateStr !== endDateStr ? 'đến ' + endDateStr : ''}</strong><br>
-            Khung giờ: <strong>${startTimeStr} - ${endTimeStr}</strong>
+            Khoảng ngày: <strong>${startDateStr}${startDateStr !== endDateStr ? 'đến ' + endDateStr : ''}</strong><br>
+            Khung giờ: <strong>${startTimeStr} -${endTimeStr}</strong>
         `);
 
         overrideModal.show();
     }
 
-    // Toggle ẩn/hiện khung chọn giờ khi tick "Khóa nguyên ngày"
     $('#is_full_day').on('change', function() {
         if ($(this).is(':checked')) {
             $('#time_range_container').hide();
@@ -310,29 +306,43 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Thay đổi linh hoạt tiêu đề Form tùy thuộc Action Type
+    // 1. Xử lý Ẩn/Hiện các trường trên UI theo loại hành động
     $('#action_type').on('change', function() {
         const action = $(this).val();
+
         if (action === 'block') {
             $('#modalTitle').text('🔒 Khóa Khung Giờ (Block Time)');
             $('#full_day_container').show();
-        } else {
+            $('#time_range_container').show();
+            $('#reason_container').show();
+            $('#start_time, #end_time').prop('required', !$('#is_full_day').is(':checked'));
+        } 
+        else if (action === 'custom_time') {
             $('#modalTitle').text('⏰ Đổi Khung Giờ Làm Việc Riêng');
             $('#full_day_container').hide();
-            $('#is_full_day').prop('checked', false).trigger('change');
+            $('#is_full_day').prop('checked', false);
+            $('#time_range_container').show();
+            $('#reason_container').show();
+            $('#start_time, #end_time').prop('required', true);
+        } 
+        else if (action === 'unblock_full_day') {
+            $('#modalTitle').text('🔓 Mở Khóa Nguyên Ngày (Xóa tất cả vết khóa)');
+            $('#full_day_container').hide();
+            $('#is_full_day').prop('checked', false);
+            $('#time_range_container').hide();   // Ẩn khung giờ
+            $('#reason_container').hide();       // Ẩn lý do
+            $('#start_time, #end_time').prop('required', false);
         }
     });
 
-    // Đổi bộ lọc Dịch vụ -> Reload Calendar
     $('#service_type_filter').on('change', function() {
         calendar.refetchEvents();
     });
 
-    // Xử lý Submit Form gọi API về Controller
+    // 2. Cập nhật xử lý Submit Form gửi API
     $('#overrideForm').on('submit', function (e) {
         e.preventDefault();
 
-        // Kiểm tra an toàn lần cuối từ phía Client trước khi gửi API
         const selectedDate = new Date($('#modal_override_date').val());
         selectedDate.setHours(0, 0, 0, 0);
         
@@ -342,15 +352,54 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         const actionType = $('#action_type').val();
-        const apiUrl = actionType === 'block' 
-            ? '/api/v1/block-time' 
-            : '/api/v1/set-custom-time';
+        const clinicId = $('#modal_clinic_id').val();
+        const serviceType = $('#modal_service_type').val();
+        const startDate = $('#modal_override_date').val();
+        const endDate = $('#modal_end_date').val();
 
+        // ========================================================
+        // TRƯỜNG HỢP 1: MỞ KHÓA NGUYÊN NGÀY (Gửi API XÓA BẢN GHI)
+        // ========================================================
+        if (actionType === 'unblock_full_day') {
+            if (!confirm(`Bạn có chắc chắn muốn MỞ KHÓA TẤT CẢ các khung giờ bị khóa từ ngày ${startDate} đến ${endDate}?`)) {
+                return;
+            }
+
+            $.ajax({
+                url: '/api/v1/unblock-range', // API endpoint riêng để xóa bản ghi khóa
+                type: 'POST', // Hoặc DELETE tùy bạn định nghĩa ở Route
+                data: {
+                    clinic_id: clinicId,
+                    service_type: serviceType,
+                    start_date: startDate,
+                    end_date: endDate
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    alert(response.message || 'Đã mở khóa nguyên ngày thành công!');
+                    overrideModal.hide();
+                    $('#overrideForm')[0].reset();
+                    $('#action_type').val('block').trigger('change');
+                    calendar.refetchEvents(); // Render lại lịch trên FullCalendar
+                },
+                error: function (xhr) {
+                    alert(xhr.responseJSON?.message || 'Có lỗi xảy ra khi mở khóa lịch!');
+                }
+            });
+            return; // Dừng lại, không chạy xuống đoạn khóa lịch bên dưới
+        }
+
+        // ========================================================
+        // TRƯỜNG HỢP 2: KHÓA LỊCH / ĐỔI GIỜ TỰ CHỌN (Gửi API TẠO MỚI)
+        // ========================================================
+        const apiUrl = actionType === 'block' ? '/api/v1/block-time' : '/api/v1/set-custom-time';
         const payload = {
-            clinic_id: $('#modal_clinic_id').val(),
-            service_type: $('#modal_service_type').val(),
-            override_date: $('#modal_override_date').val(),
-            end_date: $('#modal_end_date').val(),
+            clinic_id: clinicId,
+            service_type: serviceType,
+            override_date: startDate,
+            end_date: endDate,
             reason: $('#reason').val(),
             is_full_day: $('#is_full_day').is(':checked') ? 1 : 0,
             start_time: $('#start_time').val(),
@@ -368,16 +417,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert(response.message || 'Cập nhật thành công!');
                 overrideModal.hide();
                 $('#overrideForm')[0].reset();
+                $('#action_type').val('block').trigger('change');
                 calendar.refetchEvents();
             },
             error: function (xhr) {
-                const msg = xhr.responseJSON?.message || 'Có lỗi xảy ra khi cập nhật lịch!';
-                alert(msg);
+                alert(xhr.responseJSON?.message || 'Có lỗi xảy ra khi cập nhật lịch!');
             }
         });
     });
 
-    // Xử lý Nút Mở Khóa (Unblock) sử dụng override_id
     $('#btnConfirmUnblock').on('click', function() {
         const overrideId = $('#unblock_override_id').val();
         
@@ -391,8 +439,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var clinicId = $('#clinic_id').val();
 
         $.ajax({
-            url: `/api/v1/overrides/${overrideId}`, // Gửi trực tiếp ID override cần mở khóa
-            type: 'DELETE', // Chuẩn RESTful cho thao tác Xóa / Mở khóa (hoặc dùng POST nếu route định nghĩa POST)
+            url: `/api/v1/overrides/${overrideId}`,
+            type: 'DELETE',
             data: {
                 clinic_id: clinicId,
                 service_type: $('#service_type_filter').val(),

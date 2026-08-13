@@ -67,5 +67,7 @@ Route::prefix('v1')->group(function () {
     // Lấy danh sách overrides cho Calendar
     Route::get('/overrides', [ScheduleController::class, 'getOverrides']);
 
+    Route::post('/unblock-range', [ScheduleController::class, 'unblockRange']);
+
 });
 Route::post('/booking', [AppointmentController::class, 'store']);

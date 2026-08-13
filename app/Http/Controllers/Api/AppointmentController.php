@@ -7,7 +7,7 @@ use App\Models\OnlineAppointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-
+use Carbon\Carbon;
 class AppointmentController extends Controller
 {
     /**
@@ -56,6 +56,7 @@ class AppointmentController extends Controller
                 'notes'            => $validated['notes'] ?? null,
                 'appointment_date' => $validated['appointment_date'],
                 'start_time'       => $validated['start_time'],
+                'end_time'   => Carbon::parse($validated['start_time'])->addMinutes(30)->format('H:i:s'),
                 'status'           => 'pending',
             ]);
 

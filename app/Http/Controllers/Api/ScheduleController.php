@@ -159,4 +159,33 @@ class ScheduleController extends Controller
             'data'   => $overrides
         ]);
     }
+
+    public function unblockRange(Request $request)
+    {
+        $request->validate([
+            'clinic_id'    => 'required|integer',
+            'service_type' => 'required|string',
+            'start_date'   => 'required|date',
+            'end_date'     => 'required|date|after_or_equal:start_date',
+        ]);
+
+        try {
+            // Tìm và XÓA tất cả bản ghi khóa lịch/ngoại lệ nằm trong khoảng ngày được chọn
+            $deletedCount = ClinicScheduleOverride::where('clinic_id', $request->clinic_id)
+                ->where('service_type', $request->service_type)
+                ->whereBetween('override_date', [$request->start_date, $request->end_date])
+                ->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => "Đã mở khóa thành công! (Xóa {$deletedCount} khoảng thời gian bị khóa)"
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Lỗi server khi mở khóa: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 }

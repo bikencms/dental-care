@@ -115,126 +115,209 @@ class ClinicBookingApiController extends Controller
         ]);
     }
 
-    /**
-     * API 2: Lấy danh sách khung giờ trống theo ngày & loại dịch vụ
-     * GET /api/v1/clinics/{clinic_id}/available-slots
-     */
-    public function getAvailableSlots(Request $request, int $clinicId): JsonResponse
-    {
-        $validator = Validator::make(array_merge($request->all(), ['clinic_id' => $clinicId]), [
-            'clinic_id'    => 'required|integer|exists:clinics,id',
-            'service_type' => 'required|string|in:implant,veneers',
-            'date'         => 'required|date_format:Y-m-d',
-            'timezone'     => 'required|string|timezone',
-        ]);
+public function getAvailableSlots(Request $request, int $clinicId): JsonResponse
+{
+    $validator = Validator::make(array_merge($request->all(), ['clinic_id' => $clinicId]), [
+        'clinic_id'    => 'required|integer|exists:clinics,id',
+        'service_type' => 'required|string|in:implant,veneers',
+        'date'         => 'required|date_format:Y-m-d',
+        'timezone'     => 'required|string|timezone',
+    ]);
 
-        if ($validator->fails()) {
-            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
-        }
+    if ($validator->fails()) {
+        return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
+    }
 
-        $serviceType       = $request->query('service_type');
-        $clientDateStr     = $request->query('date');
-        $clientTz          = $request->query('timezone');
-        $minAllowedTimeUtc = Carbon::now('UTC')->addHours($this->bufferHours);
+    $serviceType   = $request->query('service_type');
+    $clientDateStr = $request->query('date');
+    $clientTz      = $request->query('timezone');
+    $clinicTz      = $this->clinicTz;
 
-        $clientDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $clientDateStr . ' 00:00:00', $clientTz);
-        $clinicDateTime = $clientDateTime->copy()->setTimezone($this->clinicTz);
-        $clinicDateStr  = $clinicDateTime->format('Y-m-d');
+    $minAllowedTimeUtc = Carbon::now('UTC')->addHours($this->bufferHours);
 
-        // 1. Kiểm tra Ngày Lễ
-        $holiday = ClinicHoliday::where('clinic_id', $clinicId)
-            ->where('holiday_date', $clinicDateStr)
-            ->where(function ($q) use ($serviceType) {
-                $q->where('service_type', $serviceType)
-                  ->orWhereNull('service_type');
-            })
-            ->first();
+    // 1. TẠO KHỎANG THỜI GIAN NGÀY DƯỚI GÓC NHÌN CLIENT
+    // Khách chọn ngày clientDateStr (00:00:00 -> 23:59:59 clientTz)
+    $clientDayStart = Carbon::createFromFormat('Y-m-d H:i:s', $clientDateStr . ' 00:00:00', $clientTz);
+    $clientDayEnd   = $clientDayStart->copy()->endOfDay();
 
+    // Chuyển sang ClinicTz để biết khoảng thời gian tương ứng ở phòng khám
+    $clinicStartBound = $clientDayStart->copy()->setTimezone($clinicTz);
+    $clinicEndBound   = $clientDayEnd->copy()->setTimezone($clinicTz);
+
+    // Lấy tất cả các ngày Y-m-d ở Phòng khám bị ảnh hưởng (Thường là 1 đến 2 ngày)
+    $affectedClinicDates = [
+        $clinicStartBound->format('Y-m-d'),
+        $clinicEndBound->format('Y-m-d')
+    ];
+    $affectedClinicDates = array_unique($affectedClinicDates);
+
+    // 2. QUERY DỮ LIỆU CỦA CLINIC THEO CÁC NGÀY BỊ ẢNH HƯỞNG
+    $holidays = ClinicHoliday::where('clinic_id', $clinicId)
+        ->whereIn('holiday_date', $affectedClinicDates)
+        ->where(function ($q) use ($serviceType) {
+            $q->where('service_type', $serviceType)->orWhereNull('service_type');
+        })->get()->keyBy('holiday_date');
+
+    $dayOverrides = ClinicScheduleOverride::where('clinic_id', $clinicId)
+        ->where('service_type', $serviceType)
+        ->whereIn('override_date', $affectedClinicDates)
+        ->get();
+
+    $schedules = ClinicSchedule::where('clinic_id', $clinicId)
+        ->where('service_type', $serviceType)
+        ->where('is_active', true)
+        ->get();
+
+    $bookedAppointments = Appointment::where('clinic_id', $clinicId)
+        ->where('service_type', $serviceType)
+        ->whereIn('appointment_date', $affectedClinicDates)
+        ->whereIn('status', ['pending', 'confirmed'])
+        ->get();
+
+    // 3. XÂY DỰNG DANH SÁCH KHUNG GIỜ LÀM VIỆC CHUẨN NGUYÊN BẢN CỦA CLINIC (CLINIC TIME SLOTS)
+    // Duyệt qua từng ngày bị ảnh hưởng ở phòng khám để gom toàn bộ Slots làm việc của Clinic
+    $allClinicSlots = [];
+
+    foreach ($affectedClinicDates as $cDate) {
+        $cCarbon = Carbon::createFromFormat('Y-m-d', $cDate, $clinicTz);
+        $holiday = $holidays->get($cDate);
+
+        // Kiểm tra ngày lễ không cho cấp cứu -> bỏ qua ngày này
         if ($holiday && !$holiday->allow_emergency) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Phòng khám nghỉ ngày lễ: ' . $holiday->title,
-                'slots'   => []
-            ]);
+            continue;
         }
 
-        // 2. Lấy lịch làm việc theo day_of_week VÀ service_type
-        $schedule = ClinicSchedule::where('clinic_id', $clinicId)
-            ->where('service_type', $serviceType)
-            ->where('day_of_week', $clinicDateTime->dayOfWeek)
-            ->where('is_active', true)
-            ->first();
+        $dateOverrides = $dayOverrides->where('override_date', $cDate);
 
-        if (!$schedule) {
-            return response()->json(['success' => true, 'slots' => []]);
+        // Block nguyên ngày ở Clinic
+        $fullDayBlock = $dateOverrides->first(function ($item) {
+            return $item->override_type === 'blocked' && empty($item->start_time);
+        });
+        if ($fullDayBlock) {
+            continue;
         }
 
-        // 3. Xác định khung giờ mở cửa
+        $schedule = $schedules->firstWhere('day_of_week', $cCarbon->dayOfWeek);
+        $customTimeOverride = $dateOverrides->firstWhere('override_type', 'custom_time');
+
+        if (!$schedule && !$customTimeOverride) {
+            continue;
+        }
+
+        // Xác định giờ mở / đóng cửa
         if ($holiday && $holiday->allow_emergency && $holiday->emergency_start_time) {
             $startTimeStr = $holiday->emergency_start_time;
             $endTimeStr   = $holiday->emergency_end_time;
+        } elseif ($customTimeOverride) {
+            $startTimeStr = $customTimeOverride->start_time;
+            $endTimeStr   = $customTimeOverride->end_time;
         } else {
             $startTimeStr = $schedule->start_time;
             $endTimeStr   = $schedule->end_time;
         }
 
-        $actualStart   = Carbon::parse($clinicDateStr . ' ' . $startTimeStr, $this->clinicTz);
-        $actualEnd     = Carbon::parse($clinicDateStr . ' ' . $endTimeStr, $this->clinicTz);
-        $lastSlotStart = $actualEnd->copy()->subMinutes($schedule->slot_duration_minutes);
+        $slotDurationMinutes = (int)($customTimeOverride->slot_duration_minutes ?? $schedule->slot_duration_minutes ?? 30);
+        $maxPatients          = (int)($customTimeOverride->max_patients_per_slot ?? $schedule->max_patients_per_slot ?? 1);
 
-        if ($actualStart->gte($lastSlotStart)) {
-            return response()->json(['success' => true, 'slots' => []]);
+        $workStart = Carbon::parse($cDate . ' ' . $startTimeStr, $clinicTz);
+        $workEnd   = Carbon::parse($cDate . ' ' . $endTimeStr, $clinicTz);
+        $lastSlot  = $workEnd->copy()->subMinutes($slotDurationMinutes);
+
+        if ($workStart->gte($lastSlot) || $slotDurationMinutes <= 0) {
+            continue;
         }
 
-        // 4. Lấy các cuộc hẹn đã đặt theo service_type
-        $bookedAppointments = Appointment::where('clinic_id', $clinicId)
-            ->where('service_type', $serviceType)
-            ->where('appointment_date', $clinicDateStr)
-            ->whereIn('status', ['pending', 'confirmed'])
-            ->get();
+        $period = CarbonPeriod::create($workStart, $slotDurationMinutes . ' minutes', $lastSlot);
 
-        $period = CarbonPeriod::create($actualStart, $schedule->slot_duration_minutes . ' minutes', $lastSlotStart);
-        $slots  = [];
+        foreach ($period as $slotStartClinic) {
+            $slotEndClinic = $slotStartClinic->copy()->addMinutes($slotDurationMinutes);
 
-        foreach ($period as $slotStartVn) {
-            $slotStartClient = $slotStartVn->copy()->setTimezone($clientTz);
+            // Chỉ lấy slot nếu nó rơi vào đúng NGÀY MÀ CLIENT ĐANG XEM (theo múi giờ của Client)
+            $slotStartClient = $slotStartClinic->copy()->setTimezone($clientTz);
+            if ($slotStartClient->format('Y-m-d') !== $clientDateStr) {
+                continue;
+            }
 
-            // Kiểm tra Buffer Time
-            $isBufferValid = $slotStartVn->copy()->setTimezone('UTC')->gte($minAllowedTimeUtc);
-
-            // Kiểm tra Capacity cho loại dịch vụ này
-            $slotFormattedTime = $slotStartVn->format('H:i');
-            $countBooked = $bookedAppointments->filter(function ($appointment) use ($slotFormattedTime) {
-                return Carbon::parse($appointment->start_time)->format('H:i') === $slotFormattedTime;
-            })->count();
-
-            $isCapacityValid = $countBooked < $schedule->max_patients_per_slot;
-            $isAvailable     = $isBufferValid && $isCapacityValid;
-
-            $slots[] = [
-                'clinic_time_start'   => $slotStartVn->format('H:i:s'),
-                'client_time_start'   => $slotStartClient->format('H:i:s'),
-                'clinic_time_display' => $slotStartVn->format('H:i'),
-                'client_display_time' => $slotStartClient->format('h:i A'),
-                'client_display_date' => $slotStartClient->format('D, M d'),
-                'is_available'         => $isAvailable,
-                'is_emergency'         => (bool)($holiday && $holiday->allow_emergency),
-                'remaining_capacity'  => max(0, $schedule->max_patients_per_slot - $countBooked)
+            $allClinicSlots[] = [
+                'start_clinic' => $slotStartClinic,
+                'end_clinic'   => $slotEndClinic,
+                'start_client' => $slotStartClient,
+                'max_patients' => $maxPatients,
+                'is_emergency' => (bool)($holiday && $holiday->allow_emergency),
+                'date_clinic'   => $cDate
             ];
         }
-
-        return response()->json([
-            'success' => true,
-            'data'    => [
-                'service_type'  => $serviceType,
-                'date'          => $clientDateStr,
-                'timezone'      => $clientTz,
-                'is_holiday'    => (bool)$holiday,
-                'holiday_title' => $holiday?->title,
-                'slots'         => $slots
-            ]
-        ]);
     }
+
+    // 4. KIỂM TRA TỪNG SLOT VỚI ĐIỀU KIỆN BLOCK VÀ APPOINTMENTS (DÙNG THỜI GIAN TUYỆT ĐỐ)
+    $slots = [];
+
+    foreach ($allClinicSlots as $slot) {
+        /** @var Carbon $slotStartClinic */
+        $slotStartClinic = $slot['start_clinic'];
+        /** @var Carbon $slotEndClinic */
+        $slotEndClinic   = $slot['end_clinic'];
+        /** @var Carbon $slotStartClient */
+        $slotStartClient = $slot['start_client'];
+        $cDate           = $slot['date_clinic'];
+
+        // A. Buffer Time Check (UTC comparison)
+        $isBufferValid = $slotStartClinic->copy()->setTimezone('UTC')->gte($minAllowedTimeUtc);
+
+        // B. Check Blocked Range (So sánh thời gian tuyệt đối Carbon)
+        $matchedBlock = $dayOverrides->where('override_date', $cDate)->first(function ($item) use ($slotStartClinic, $slotEndClinic, $clinicTz, $cDate) {
+            if ($item->override_type !== 'blocked' || empty($item->start_time)) {
+                return false;
+            }
+            $blockStart = Carbon::parse($cDate . ' ' . $item->start_time, $clinicTz);
+            $blockEnd   = Carbon::parse($cDate . ' ' . $item->end_time, $clinicTz);
+
+            // Hai khoảng thời gian giao nhau: [SlotStart, SlotEnd] giao [BlockStart, BlockEnd]
+            return $slotStartClinic->lt($blockEnd) && $slotEndClinic->gt($blockStart);
+        });
+
+        // C. Check Appointments trùng/giao nhau
+        $countBooked = $bookedAppointments->filter(function ($app) use ($slotStartClinic, $slotEndClinic, $clinicTz) {
+            $appDateStr = Carbon::parse($app->appointment_date)->format('Y-m-d');
+            $appStart = Carbon::parse($appDateStr . ' ' . $app->start_time, $clinicTz);
+            $appEnd   = $app->end_time 
+                ? Carbon::parse($appDateStr . ' ' . $app->end_time, $clinicTz)
+                : $appStart->copy()->addMinutes(30);
+
+            return $slotStartClinic->lt($appEnd) && $slotEndClinic->gt($appStart);
+        })->count();
+
+        $maxPatients = $slot['max_patients'];
+        $isCapacityValid = $countBooked < $maxPatients;
+        $isAvailable = $isBufferValid && $isCapacityValid && !$matchedBlock;
+
+        $slots[] = [
+            'clinic_time_start'   => $slotStartClinic->format('H:i:s'),
+            'clinic_time_end'     => $slotEndClinic->format('H:i:s'),
+            'client_time_start'   => $slotStartClient->format('H:i:s'),
+            'clinic_time_display' => $slotStartClinic->format('H:i'),
+            'client_display_time' => $slotStartClient->format('h:i A'),
+            'client_display_date' => $slotStartClient->format('D, M d'),
+            'is_available'        => $isAvailable,
+            'is_blocked'          => (bool)$matchedBlock,
+            'block_reason'        => $matchedBlock ? ($matchedBlock->reason ?? 'Khung giờ bị khóa') : null,
+            'is_emergency'        => $slot['is_emergency'],
+            'booked_count'        => $countBooked,
+            'max_patients'        => $maxPatients,
+            'remaining_capacity'  => max(0, $maxPatients - $countBooked)
+        ];
+    }
+
+    return response()->json([
+        'success' => true,
+        'data'    => [
+            'service_type'  => $serviceType,
+            'date'          => $clientDateStr,
+            'timezone'      => $clientTz,
+            'slots'         => $slots
+        ]
+    ]);
+}
 
     /**
      * Helper kiểm tra ngày có slot khả dụng theo loại dịch vụ
@@ -296,11 +379,11 @@ class ClinicBookingApiController extends Controller
                 return response()->json(['error' => 'Thiếu tham số đầu vào'], 400);
             }
 
-            $startDate = Carbon::parse($request->query('start'));
-            $endDate = Carbon::parse($request->query('end'));
+            $startDate = Carbon::parse($request->query('start'))->startOfDay();
+            $endDate = Carbon::parse($request->query('end'))->endOfDay();
 
             $events = [];
-            $period = CarbonPeriod::create($startDate, $endDate);
+            $period = CarbonPeriod::create($startDate, '1 day', $endDate);
 
             // 1. Cấu hình định kỳ hàng tuần
             $schedules = ClinicSchedule::where('clinic_id', $clinicId)
@@ -325,13 +408,16 @@ class ClinicBookingApiController extends Controller
                 ->get()
                 ->groupBy('override_date');
 
-            // 3. Đặt lịch thực tế
-            $appointments = Appointment::where('clinic_id', $clinicId)
+            // 3. Đặt lịch thực tế - Lấy danh sách cuộc hẹn trong khoảng ngày
+            $appointmentsGrouped = Appointment::where('clinic_id', $clinicId)
                 ->where('service_type', $serviceType)
                 ->whereIn('status', ['pending', 'confirmed'])
                 ->whereBetween('appointment_date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
-                ->get();
-
+                ->get()
+                ->groupBy(function ($item) {
+                    return Carbon::parse($item->appointment_date)->format('Y-m-d');
+            });
+        
             // 4. Duyệt qua từng ngày
             foreach ($period as $date) {
                 $dateStr = $date->format('Y-m-d');
@@ -372,7 +458,7 @@ class ClinicBookingApiController extends Controller
                         'backgroundColor' => '#6c757d',
                         'extendedProps' => [
                             'is_blocked' => true,
-                            'override_id' => $fullDayBlock->id, // 🔑 ID khóa cả ngày
+                            'override_id' => $fullDayBlock->id,
                             'blocked_reason' => $fullDayBlock->reason ?? 'Khóa cả ngày'
                         ]
                     ];
@@ -397,7 +483,9 @@ class ClinicBookingApiController extends Controller
                     $blockedSlots = $dayOverrides->filter(function ($item) {
                         return $item->override_type === 'blocked' && !empty($item->start_time);
                     });
-
+                    // Lấy danh sách lịch hẹn của ngày hiện tại
+                    $dayAppointments = $appointmentsGrouped->get($dateStr, collect());
+                    \Log::info('Appointments found for date:', [$dayAppointments]);
                     while ($startTime->lt($endTime)) {
                         $slotEnd = $startTime->clone()->addMinutes($slotDuration);
                         if ($slotEnd->gt($endTime)) break;
@@ -407,13 +495,11 @@ class ClinicBookingApiController extends Controller
 
                         // Tìm bản ghi block khớp với slot này (nếu có)
                         $matchedBlock = $blockedSlots->first(function ($blocked) use ($slotStartFormatted, $slotEndFormatted) {
-                            // Khớp chính xác start_time hoặc nằm trong khoảng block
                             return $blocked->start_time === $slotStartFormatted || 
                                 ($blocked->start_time <= $slotStartFormatted && $blocked->end_time >= $slotEndFormatted);
                         });
 
                         if ($matchedBlock) {
-                            // Hiển thị khung giờ bị block cụ thể
                             $timeDisplay = Carbon::parse($matchedBlock->start_time)->format('H:i') . ' - ' . Carbon::parse($matchedBlock->end_time)->format('H:i');
                             $reason = $matchedBlock->reason ?? 'Đã khóa';
 
@@ -422,11 +508,11 @@ class ClinicBookingApiController extends Controller
                                 'title' => "🔒 [$timeDisplay] $reason",
                                 'start' => $startTime->toIso8601String(),
                                 'end' => $slotEnd->toIso8601String(),
-                                'backgroundColor' => '#6c757d', // Màu xám khóa
+                                'backgroundColor' => '#6c757d',
                                 'borderColor' => '#5a6268',
                                 'extendedProps' => [
                                     'is_blocked' => true,
-                                    'override_id' => $matchedBlock->id, // 🔑 ID của bản ghi clinic_schedule_overrides
+                                    'override_id' => $matchedBlock->id,
                                     'blocked_reason' => $reason,
                                     'slot_start' => $slotStartFormatted,
                                     'slot_end' => $slotEndFormatted,
@@ -434,11 +520,16 @@ class ClinicBookingApiController extends Controller
                                 ]
                             ];
                         } else {
-                            // Slot mở bình thường
-                            $bookedCount = $appointments->where('appointment_date', $dateStr)
-                                ->where('start_time', $slotStartFormatted)
-                                ->count();
-
+                            // 🛠 ĐẾM CHÍNH XÁC CẢ START_TIME VÀ END_TIME
+                            // Slot được tính là có lịch nếu khoảng [slotStart, slotEnd] giao nhau với [appStart, appEnd]
+                            $bookedCount = $dayAppointments->filter(function ($app) use ($slotStartFormatted, $slotEndFormatted) {
+                                $appStart = Carbon::parse($app->start_time)->format('H:i:s');
+                                // Nếu end_time bị NULL thì lấy mặc định bằng start_time
+                                $appEnd = $app->end_time ? Carbon::parse($app->end_time)->format('H:i:s') : $appStart;
+                                // Điều kiện 2 khoảng thời gian giao nhau: AppStart < SlotEnd VÀ AppEnd > SlotStart
+                                return ($appStart < $slotEndFormatted) && ($appEnd > $slotStartFormatted);
+                            })->count();
+                            
                             $isFull = $bookedCount >= $maxPatients;
 
                             $events[] = [
@@ -450,7 +541,7 @@ class ClinicBookingApiController extends Controller
                                 'borderColor' => $isFull ? '#dc3545' : '#198754',
                                 'extendedProps' => [
                                     'is_blocked' => false,
-                                    'override_id' => null, // Slot mở không có ID override
+                                    'override_id' => null,
                                     'is_full' => $isFull,
                                     'booked_count' => $bookedCount,
                                     'max_patients' => $maxPatients,
