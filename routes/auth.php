@@ -80,13 +80,6 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
          // Trang hiển thị form đăng ký khung giờ theo clinic_id
         Route::get('/clinic/{id}/recurring', [ClinicScheduleRegistrationController::class, 'index'])
             ->name('dashboard.clinic.recurring.index');
-
-        // Xử lý lưu lịch cố định áp dụng tháng này & tháng sau theo clinic_id
-        Route::post('/clinic/{id}/recurring', [ClinicScheduleRegistrationController::class, 'store'])
-            ->name('dashboard.clinic.recurring.store');
-
-        // Giao diện Admin quản lý đặt lịch & ngày nghỉ
-        Route::get('/clinic/{id}/booking-schedule', [ClinicScheduleRegistrationController::class, 'schedule'])->name('dashboard.clinic.book-appointment');
     });
 
     // ==========================================
@@ -104,6 +97,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         Route::post('/doctors/{id}', [ClinicController::class, 'storeDoctor'])->name('doctors.store');
         Route::get('/preview/{id}', [MyClinicController::class, 'preview'])->name('preview');
 
+        // Giao diện Admin quản lý đặt lịch & ngày nghỉ
+        Route::get('booking-schedule/{id}', [ClinicScheduleRegistrationController::class, 'schedule'])->name('book-appointment');
+
         // Route đổi trạng thái Public/Unpublish
         Route::patch('/clinic/{id}/publish', [ClinicController::class, 'publish'])->name('publish');
         Route::patch('/clinic/{id}/unpublish', [ClinicController::class, 'unpublish'])->name('unpublish');
@@ -120,6 +116,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         // Lưu / Cập nhật cấu hình khung giờ làm việc
         Route::post('/schedules', [ClinicController::class, 'storeOrUpdate'])
             ->name('schedules.store');
+
+        // Xử lý lưu lịch cố định áp dụng tháng này & tháng sau theo clinic_id
+        Route::post('/recurring/{id}', [ClinicScheduleRegistrationController::class, 'store'])
+            ->name('recurring.store');
     });
 });
 

@@ -18,8 +18,14 @@
             data-bs-toggle="modal" 
             data-bs-target="#scheduleConfigModal">
         <i class="fas fa-calendar-alt fs-5 me-2"></i> 
-        Cấu hình lịch khám
+        Khung giờ cố định
     </button>
+    <a href="{{ route('my-clinic.book-appointment', ['id' => $clinicId]) }}"
+            class="btn btn-primary btn-lg px-4 py-2 fw-bold shadow-sm d-flex align-items-center btn-hover-elevate" 
+    >
+        <i class="fas fa-calendar-alt fs-5 me-2"></i> 
+        Tùy chỉnh ngoại lệ
+    </a>
 </div>
 <!-- Modal Popup Cấu hình lịch khám -->
 <div class="modal fade" id="scheduleConfigModal" tabindex="-1" aria-labelledby="scheduleConfigModalLabel" aria-hidden="true">
@@ -35,7 +41,7 @@
                     </p>
                 </div>
 
-                <form action="{{ route('dashboard.clinic.recurring.store', ['id' => $clinicId]) }}" method="POST">
+                <form action="{{ route('my-clinic.recurring.store', ['id' => $clinicId]) }}" method="POST">
                     @csrf
 
                     <!-- Cấu hình chung -->
@@ -135,7 +141,6 @@
                     </div>
 
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                        <button type="reset" class="btn btn-secondary">Đặt Lại</button>
                         <button type="submit" class="btn btn-primary fw-bold px-4">Lưu & Áp Dụng Lịch</button>
                     </div>
                 </form>

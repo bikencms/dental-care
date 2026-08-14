@@ -71,4 +71,25 @@ class User extends Authenticatable
             'clinic_id'        // Khóa ngoại trên bảng clinic_user
         );
     }
+
+    public function isAdmin(): bool
+    {
+        // Cấu hình điều kiện Admin của bạn ở đây (ID = 1, Email admin, hoặc role == 'admin')
+        return $this->id === 1 
+            || in_array($this->email, ['Thy.nguyen85@gmail.com', 'minhbiken14@gmail.com', 'admin@example.com']) 
+            || $this->role === 'Admin';
+    }
+
+    public function hasClinicAccess($clinicId): bool
+    {
+        // Nếu là Admin thì luôn có quyền
+        if ($this->isAdmin()) {
+            return true;
+        }
+
+        // Ngược lại kiểm tra trong bảng clinic_user
+        return \App\Models\ClinicUser::where('user_id', $this->id)
+                ->where('clinic_id', $clinicId)
+                ->exists();
+    }
 }

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\ClinicUser;
 class ClinicScheduleRegistrationController extends Controller
 {
     /**
@@ -48,6 +49,17 @@ class ClinicScheduleRegistrationController extends Controller
     {
         $clinicId = $id;
 
+        $user = Auth::user();
+        // 1. Kiểm tra đăng nhập
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+        // Kiểm tra phân quyền truy cập
+        if (!$user->hasClinicAccess($clinicId)) {
+            abort(403, 'Tài khoản của bạn không có quyền truy cập phòng khám này.');
+        }
+
         $request->validate([
             'service_type'            => 'required|in:implant,veneers',
             'schedules'               => 'required|array',
@@ -82,15 +94,24 @@ class ClinicScheduleRegistrationController extends Controller
                 );
             }
 
-            $currentMonth = Carbon::now()->format('m/Y');
-            $nextMonth = Carbon::now()->addMonth()->format('m/Y');
-
             return redirect()->back()->with('success', "Đã cập nhật khung giờ, thời lượng ({$slotDuration} phút) và số bệnh nhân tối đa ({$maxPatients} người/ca) cho Phòng khám #{$clinicId} thành công!");
         });
     }
 
     public function schedule(Request $request, $id) {
         $clinicId = $id;
+        
+        $user = Auth::user();
+        // 1. Kiểm tra đăng nhập
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+        // Kiểm tra phân quyền truy cập
+        if (!$user->hasClinicAccess($clinicId)) {
+            abort(403, 'Tài khoản của bạn không có quyền truy cập phòng khám này.');
+        }
+   
         return view('auth.clinic.partials.clinic-schedule', compact(
             'clinicId'));
     }

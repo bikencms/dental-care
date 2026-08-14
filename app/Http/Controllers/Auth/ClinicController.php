@@ -220,8 +220,8 @@ class ClinicController extends Controller
         $clinic = Clinic::findOrFail($id);
 
         // Kiểm tra xem phòng khám đã cấu hình lịch khám (clinic_schedules) chưa
-        if (!$clinic->schedules()->exists()) {
-            return redirect()->back()->with('error', 'Không thể xuất bản! Phòng khám chưa được thiết lập lịch khám.');
+        if ($clinic->schedules()->count() < 14) {
+            return redirect()->back()->with('error', 'Không thể xuất bản! Chưa tạo đủ khung giờ cố định cho Implant hoặc Veneer (Yêu cầu tối thiểu 14 khung giờ từ Thứ 2 đến Chủ Nhật).');
         }
 
         $clinic->update(['is_published' => true]);

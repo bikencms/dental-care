@@ -1,28 +1,13 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Admin - Quản Lý & Khóa Lịch (Overrides)</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
-    <style>
-        .fc-event { cursor: pointer; }
-        .fc-day-past {
-            background-color: #f8f9fa !important;
-            opacity: 0.8;
-        }
-    </style>
-</head>
-<body class="bg-light p-4">
-
+@extends('layouts.app')
+@section('content')
+<style>
+</style>
+@include('auth.clinic.clinic-breadcrumb')
 <div class="container bg-white p-4 rounded shadow-sm">
     <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
         <div>
-            <h3 class="fw-bold text-danger mb-1">Admin Dashboard - Quản Lý Ngoại Lệ & Khóa Lịch</h3>
             <p class="text-muted small mb-0">Chỉ cho phép thao tác khóa / mở khóa lịch từ ngày hiện tại trở về sau</p>
         </div>
-        
         <div class="d-flex align-items-center gap-3">
             <input type="hidden" id="clinic_id" value="{{ $clinicId ?? 1 }}">
             <div class="d-flex align-items-center gap-2">
@@ -34,7 +19,6 @@
             </div>
         </div>
     </div>
-
     <div id="adminCalendar"></div>
 </div>
 
@@ -461,5 +445,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-</body>
-</html>
+@endsection
